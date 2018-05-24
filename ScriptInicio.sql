@@ -1,6 +1,10 @@
 -- ****************** SqlDBM: Microsoft SQL Server ******************
 -- ******************************************************************
 
+DROP TABLE [Estadia];
+GO
+
+
 DROP TABLE [Clientes_Consumibles];
 GO
 
@@ -61,10 +65,6 @@ DROP TABLE [Estados];
 GO
 
 
-DROP TABLE [Estado_Reserva];
-GO
-
-
 DROP TABLE [Consumibles];
 GO
 
@@ -78,10 +78,6 @@ GO
 
 
 DROP TABLE [Regimenes];
-GO
-
-
-DROP TABLE [Direcciones];
 GO
 
 
@@ -145,18 +141,6 @@ GO
 
 
 
---************************************** [Estado_Reserva]
-
-CREATE TABLE [Estado_Reserva]
-(
- [eyr_id] INT IDENTITY (1, 1) NOT NULL ,
-
- CONSTRAINT [PK_Estados_Reserva] PRIMARY KEY CLUSTERED ([eyr_id] ASC)
-);
-GO
-
-
-
 --************************************** [Consumibles]
 
 CREATE TABLE [Consumibles]
@@ -212,35 +196,21 @@ GO
 
 
 
---************************************** [Direcciones]
-
-CREATE TABLE [Direcciones]
-(
- [dir_id]        INT IDENTITY (1, 1) NOT NULL ,
- [dir_calle]     VARCHAR(50) NOT NULL ,
- [dir_localidad] VARCHAR(50) NOT NULL ,
- [dir_pais]      VARCHAR(50) NOT NULL ,
-
- CONSTRAINT [PK_Direcciones] PRIMARY KEY CLUSTERED ([dir_id] ASC)
-);
-GO
-
-
-
 --************************************** [Hoteles]
 
 CREATE TABLE [Hoteles]
 (
  [hot_id]          INT IDENTITY (1, 1) NOT NULL ,
  [hot_nombre]      VARCHAR(50) NULL ,
- [hot_estrellas]   INT NOT NULL ,
- [hot_direccion]   VARCHAR(50) NOT NULL ,
- [hot_ciudad]      VARCHAR(50) NOT NULL ,
- [hot_pais]        VARCHAR(50) NOT NULL ,
+ [hot_estrellas]   INT NULL ,
+ [hot_calle]       VARCHAR(50) NULL ,
+ [hot_calle_nro]   INT NULL ,
+ [hot_ciudad]      VARCHAR(50) NULL ,
+ [hot_pais]        VARCHAR(50) NULL ,
  [hot_mail]        VARCHAR(50) NULL ,
  [hot_telefono]    VARCHAR(50) NULL ,
- [hot_fecha_cre]   DATE NOT NULL ,
- [hot_habilitado]  BIT NOT NULL ,
+ [hot_fecha_cre]   DATE NULL ,
+ [hot_habilitado]  BIT NULL ,
  [hot_inhab_desde] DATE NULL ,
  [hot_inhab_hasta] DATE NULL ,
 
@@ -373,7 +343,7 @@ GO
 
 CREATE TABLE [Clientes]
 (
- [cli_tipo_doc]      VARCHAR(10) NOT NULL ,
+ [cli_tipo_doc]      VARCHAR(20) NOT NULL ,
  [cli_documento]     BIGINT NOT NULL ,
  [cli_hot_id]        INT NOT NULL ,
  [cli_nombre]        VARCHAR(50) NOT NULL ,
@@ -382,7 +352,10 @@ CREATE TABLE [Clientes]
  [cli_nacionalidad]  VARCHAR(50) NOT NULL ,
  [cli_fecha_nac]     DATE NOT NULL ,
  [cli_habilitado]    BIT NULL ,
- [cli_dir_direccion] VARCHAR(50) NOT NULL ,
+ [cli_calle]         VARCHAR(50) NULL ,
+ [cli_calle_nro]     INT NULL ,
+ [cli_piso]          NVARCHAR(10) NULL ,
+ [cli_depto]         NVARCHAR(10) NULL ,
  [cli_dir_localidad] VARCHAR(50) NULL ,
  [cli_dir_pais]      VARCHAR(50) NULL ,
  [cli_telefono]      NVARCHAR(50) NULL ,
@@ -402,7 +375,7 @@ GO
 CREATE TABLE [Clientes_Consumibles]
 (
  [con_id]        INT NOT NULL ,
- [cli_tipo_doc]  VARCHAR(10) NOT NULL ,
+ [cli_tipo_doc]  VARCHAR(20) NOT NULL ,
  [cli_documento] BIGINT NOT NULL ,
  [cyc_id]        INT IDENTITY (1, 1) NOT NULL ,
 
@@ -469,7 +442,7 @@ GO
 CREATE TABLE [factura]
 (
  [fac_id]            INT IDENTITY (1, 1) NOT NULL ,
- [fac_cli_tipo_doc]  VARCHAR(10) NOT NULL ,
+ [fac_cli_tipo_doc]  VARCHAR(20) NOT NULL ,
  [fac_cli_documento] BIGINT NOT NULL ,
  [fac_tipo_pago]     VARCHAR(50) NOT NULL ,
 
@@ -496,10 +469,11 @@ CREATE TABLE [Reservas]
  [res_checkout]      DATE NOT NULL ,
  [res_tip_id]        INT NOT NULL ,
  [res_reg_id]        INT NOT NULL ,
- [res_cli_tipo_doc]  VARCHAR(10) NOT NULL ,
+ [res_cli_tipo_doc]  VARCHAR(20) NOT NULL ,
  [res_cli_documento] BIGINT NOT NULL ,
- [res_hot_id]        INT NOT NULL ,
  [res_usu_encargado] INT NOT NULL ,
+ [hab_id]            INT NOT NULL ,
+ [hab_hot_id]        INT NOT NULL ,
 
  CONSTRAINT [PK_Reservas] PRIMARY KEY CLUSTERED ([res_id] ASC),
  CONSTRAINT [FK_155] FOREIGN KEY ([res_tip_id])
@@ -508,12 +482,12 @@ CREATE TABLE [Reservas]
   REFERENCES [Regimenes]([reg_id]),
  CONSTRAINT [FK_163] FOREIGN KEY ([res_cli_tipo_doc], [res_cli_documento])
   REFERENCES [Clientes]([cli_tipo_doc], [cli_documento]),
- CONSTRAINT [FK_169] FOREIGN KEY ([res_hot_id])
-  REFERENCES [Hoteles]([hot_id]),
  CONSTRAINT [FK_327] FOREIGN KEY ([res_usu_encargado])
   REFERENCES [Usuario]([usu_id]),
  CONSTRAINT [FK_374] FOREIGN KEY ([res_est_id])
-  REFERENCES [Estados]([est_id])
+  REFERENCES [Estados]([est_id]),
+ CONSTRAINT [FK_385] FOREIGN KEY ([hab_id], [hab_hot_id])
+  REFERENCES [Habitaciones]([hab_id], [hab_hot_id])
 );
 GO
 
@@ -524,10 +498,35 @@ GO
 
 --SKIP Index: [fkIdx_163]
 
---SKIP Index: [fkIdx_169]
-
 --SKIP Index: [fkIdx_327]
 
 --SKIP Index: [fkIdx_374]
+
+--SKIP Index: [fkIdx_385]
+
+
+--************************************** [Estadia]
+
+CREATE TABLE [Estadia]
+(
+ [est_id]            INT IDENTITY (1, 1) NOT NULL ,
+ [est_res_id]        INT NOT NULL ,
+ [est_usu_encargado] INT NOT NULL ,
+ [est_checkin]       DATE NULL ,
+ [est_checkout]      DATE NULL ,
+ [est_cant_noches]   INT NULL ,
+
+ CONSTRAINT [PK_Estadia] PRIMARY KEY CLUSTERED ([est_id] ASC),
+ CONSTRAINT [FK_394] FOREIGN KEY ([est_res_id])
+  REFERENCES [Reservas]([res_id]),
+ CONSTRAINT [FK_401] FOREIGN KEY ([est_usu_encargado])
+  REFERENCES [Usuario]([usu_id])
+);
+GO
+
+
+--SKIP Index: [fkIdx_394]
+
+--SKIP Index: [fkIdx_401]
 
 
