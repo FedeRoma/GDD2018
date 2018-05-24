@@ -8,7 +8,9 @@ Cosas realizadas:
 Migracion HOTELES
 Migracion CLIENTES
 Temporal #TemporalClientesRepetidos con los pasaportes problematicos.
+Migracion Consumibles
+Migracion Habitaciones
 
 
 Federico Romano tareas realizando:
-Migracion Consumibles
+
