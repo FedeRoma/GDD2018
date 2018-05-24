@@ -35,14 +35,68 @@ INSERT INTO Clientes
 	Cliente_Dom_Calle,Cliente_Nro_Calle,Cliente_Piso,Cliente_Depto,null,null,null
 	from gd_esquema.Maestra m where m.cliente_pasaporte_nro not in(select * from #TemporalClientesRepetidos)
 PRINT 'Clientes Migrados Papaaaa...'
+DROP TABLE #TemporalClientesRepetidos;
+/*------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+-- TRASPASO DE DATOS DE gd_esquema.Maestra A Consumibles
+PRINT 'Migrando Consumibles...'
+INSERT INTO Consumibles
+		select distinct Consumible_Codigo,Consumible_Descripcion,Consumible_Precio from gd_esquema.Maestra where Consumible_Codigo is not null
+PRINT 'Consumibles Migrados Papaaaa...'
+
+/*------------------------------------------------------------------------------------------------------------------------------------------------------------------*/	
+
+
+-- TRASPASO DE DATOS DE gd_esquema.Maestra A TIPOS_HABITACIONES
+PRINT 'Migrando TiposHabitaciones...'
+INSERT INTO TiposHabitaciones
+	select distinct Habitacion_Tipo_Codigo,Habitacion_Tipo_Descripcion
+	from gd_esquema.Maestra m 
+PRINT 'TiposHabitaciones Migrados Papaaaa...'
 
 /*------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+
+-- Crear tabla temporal de Habitaciones
+
+-- eliminando si existe
+IF OBJECT_ID( N'tempdb..#TemporalHabitaciones') IS NOT NULL
+DROP TABLE #TemporalHabitaciones;
+GO
+
+-- creando la tabla temporal
+CREATE TABLE #TemporalHabitaciones (
 	
+	[hab_hot_ciudad] nvarchar(255) NOT NULL,
+	[hab_hot_calle] nvarchar(255) NOT NULL,
+	[hab_tip_id] [int] NOT NULL,
+	[hab_numero] [int] NOT NULL,
+	[hab_piso] [int] NOT NULL,
+	[hab_vista] [char](1) NOT NULL,
+	[hab_desc] [varchar](50) NULL,
+	[hab_habilitado] [bit] NULL
+);
+GO
 
+-- insertando los datos actuales de la tabla proyecto
+INSERT INTO #TemporalHabitaciones(hab_hot_ciudad,hab_hot_calle,hab_tip_id,hab_numero,hab_piso,hab_vista,hab_desc,hab_habilitado)
+select m.Hotel_Ciudad,m.Hotel_Calle, Habitacion_Tipo_Codigo, Habitacion_Numero,Habitacion_Piso, Habitacion_Frente,null,null
+	from gd_esquema.Maestra m 
+	group by m.Hotel_Ciudad,m.Hotel_Calle,Habitacion_Tipo_Codigo, Habitacion_Numero,Habitacion_Piso, Habitacion_Frente
+	order by Hotel_Calle,Habitacion_Piso,Habitacion_Numero
+GO
+
+
+-- TRASPASO DE DATOS DE gd_esquema.Maestra A HABITACIONES
+PRINT 'Migrando Habitaciones...'
+
+INSERT INTO Habitaciones(hab_hot_id,hab_tip_id,hab_numero,hab_piso,hab_vista,hab_desc,hab_habilitado)
+	select (select top 1 hot_id from Hoteles h where hab_hot_ciudad=h.hot_ciudad and hab_hot_calle = h.hot_calle),hab_tip_id,hab_numero,hab_piso,hab_vista,hab_desc,hab_habilitado 
+	from #TemporalHabitaciones
 	
+PRINT 'Habitaciones Migrados Papaaaa...'
 
-
-
+drop TABLE #TemporalHabitaciones
+/*------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
 
 
@@ -57,27 +111,25 @@ PRINT 'Clientes Migrados Papaaaa...'
 /*------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 --Funciones de Ayuda
 /*------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
-	
-	select distinct 'Pasaporte',Cliente_Pasaporte_Nro,(select hot_id from hoteles where hot_calle = m.Hotel_Calle and hot_ciudad = m.Hotel_Ciudad),
-	Cliente_Nombre,Cliente_Apellido,Cliente_Mail,Cliente_Nacionalidad,Cliente_Fecha_Nac,1,
-	Cliente_Dom_Calle,Cliente_Nro_Calle,Cliente_Piso,Cliente_Depto,null,null,null
-	 from gd_esquema.Maestra m
-
-	
+	/*
 	 select * from gd_esquema.Maestra m where m.Cliente_Pasaporte_Nro =  5833450
-	  select * from gd_esquema.Maestra m where m.Cliente_Pasaporte_Nro = 8573690
-	  select * from gd_esquema.Maestra m where m.Cliente_Pasaporte_Nro =  9616602
-	   select * from gd_esquema.Maestra m where m.Cliente_Pasaporte_Nro = 10968810
-	    select * from gd_esquema.Maestra m where m.Cliente_Pasaporte_Nro = 13197523
-	  select * from gd_esquema.Maestra m where m.Cliente_Pasaporte_Nro = 17144724
-		
-		select * from gd_esquema.Maestra m where m.Cliente_Pasaporte_Nro = 17993372
-		select max(cliente_pasaporte_nro) from gd_esquema.Maestra
+
 		
 	
+	--Selects de chequeo!
+
 	select * from hoteles 
 	select * from clientes 
+	select * from TiposHabitaciones
+	select * from Habitaciones
+	select * from #TemporalHabitaciones
+	
 
-	delete from hoteles
+
+		
+	
+	select top 1 hot_id,h.hot_calle,hab_hot_calle,h.hot_ciudad,hab_hot_ciudad from Hoteles h, #TemporalHabitaciones where 'Bahía Blanca'=h.hot_ciudad and 'Avenida Eva Perón' = h.hot_calle
+	order by hot_id
+	*/
 /*------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
