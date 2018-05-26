@@ -19,8 +19,9 @@ Migracion TiposHabitaciones
 <br>
 Migracion Habitaciones
 <br>
-<br>
 Migracion Regimenes
+<br>
+Migracion Regimen_Hotel
 <br>
 
 Federico Romano tareas realizando:
