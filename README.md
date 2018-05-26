@@ -58,4 +58,13 @@ Migracion Usuario
 
 
 Federico Romano tareas realizando:
+Reservas y Factura
 
+Mati y Pablo:
+Estados, Estadia, Roles y Usuarios
+
+Maxi:
+ItemFactura 
+
+ESTUDIAR C#
+Pablo se puso la 10
