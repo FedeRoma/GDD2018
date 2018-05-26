@@ -1,6 +1,10 @@
 -- ****************** SqlDBM: Microsoft SQL Server ******************
 -- ******************************************************************
 
+DROP TABLE [factura];
+GO
+
+
 DROP TABLE [Estadia];
 GO
 
@@ -14,10 +18,6 @@ GO
 
 
 DROP TABLE [Rol_Usuario];
-GO
-
-
-DROP TABLE [factura];
 GO
 
 
@@ -371,6 +371,29 @@ GO
 --SKIP Index: [fkIdx_18]
 
 
+--************************************** [Clientes_Consumibles]
+
+CREATE TABLE [Clientes_Consumibles]
+(
+ [cyc_id]        INT IDENTITY (1, 1) NOT NULL ,
+ [con_id]        INT NOT NULL ,
+ [cli_tipo_doc]  VARCHAR(20) NOT NULL ,
+ [cli_documento] BIGINT NOT NULL ,
+
+ CONSTRAINT [PK_Clientes_Consumibles] PRIMARY KEY CLUSTERED ([cyc_id] ASC),
+ CONSTRAINT [FK_354] FOREIGN KEY ([con_id])
+  REFERENCES [Consumibles]([con_id]),
+ CONSTRAINT [FK_358] FOREIGN KEY ([cli_tipo_doc], [cli_documento])
+  REFERENCES [Clientes]([cli_tipo_doc], [cli_documento])
+);
+GO
+
+
+--SKIP Index: [fkIdx_354]
+
+--SKIP Index: [fkIdx_358]
+
+
 --************************************** [Status_Habitacion]
 
 CREATE TABLE [Status_Habitacion]
@@ -415,30 +438,11 @@ GO
 --SKIP Index: [fkIdx_254]
 
 
---************************************** [factura]
-
-CREATE TABLE [factura]
-(
- [fac_id]            INT IDENTITY (1, 1) NOT NULL ,
- [fac_cli_tipo_doc]  VARCHAR(20) NOT NULL ,
- [fac_cli_documento] BIGINT NOT NULL ,
- [fac_tipo_pago]     VARCHAR(50) NOT NULL ,
-
- CONSTRAINT [PK_factura] PRIMARY KEY CLUSTERED ([fac_id] ASC),
- CONSTRAINT [FK_340] FOREIGN KEY ([fac_cli_tipo_doc], [fac_cli_documento])
-  REFERENCES [Clientes]([cli_tipo_doc], [cli_documento])
-);
-GO
-
-
---SKIP Index: [fkIdx_340]
-
-
 --************************************** [Reservas]
 
 CREATE TABLE [Reservas]
 (
- [res_id]            INT IDENTITY (1, 1) NOT NULL ,
+ [res_id]            INT NOT NULL ,
  [res_est_id]        INT NOT NULL ,
  [res_fecha]         DATETIME NOT NULL ,
  [res_inicio]        DATE NOT NULL ,
@@ -493,15 +497,12 @@ CREATE TABLE [Estadia]
  [est_checkin]       DATE NULL ,
  [est_checkout]      DATE NULL ,
  [est_cant_noches]   INT NULL ,
- [fac_id]            INT NOT NULL ,
 
  CONSTRAINT [PK_Estadia] PRIMARY KEY CLUSTERED ([est_id] ASC),
  CONSTRAINT [FK_394] FOREIGN KEY ([est_res_id])
   REFERENCES [Reservas]([res_id]),
  CONSTRAINT [FK_401] FOREIGN KEY ([est_usu_encargado])
-  REFERENCES [Usuario]([usu_id]),
- CONSTRAINT [FK_437] FOREIGN KEY ([fac_id])
-  REFERENCES [factura]([fac_id])
+  REFERENCES [Usuario]([usu_id])
 );
 GO
 
@@ -510,34 +511,28 @@ GO
 
 --SKIP Index: [fkIdx_401]
 
---SKIP Index: [fkIdx_437]
 
+--************************************** [factura]
 
---************************************** [Clientes_Consumibles]
-
-CREATE TABLE [Clientes_Consumibles]
+CREATE TABLE [factura]
 (
- [cyc_id]        INT IDENTITY (1, 1) NOT NULL ,
- [con_id]        INT NOT NULL ,
- [cli_tipo_doc]  VARCHAR(20) NOT NULL ,
- [cli_documento] BIGINT NOT NULL ,
- [fac_id]        INT NOT NULL ,
+ [fac_id]            INT IDENTITY (1, 1) NOT NULL ,
+ [fac_cli_tipo_doc]  VARCHAR(20) NOT NULL ,
+ [fac_cli_documento] BIGINT NOT NULL ,
+ [fac_tipo_pago]     VARCHAR(50) NOT NULL ,
+ [fac_est_id]        INT NOT NULL ,
 
- CONSTRAINT [PK_Clientes_Consumibles] PRIMARY KEY CLUSTERED ([cyc_id] ASC),
- CONSTRAINT [FK_354] FOREIGN KEY ([con_id])
-  REFERENCES [Consumibles]([con_id]),
- CONSTRAINT [FK_358] FOREIGN KEY ([cli_tipo_doc], [cli_documento])
+ CONSTRAINT [PK_factura] PRIMARY KEY CLUSTERED ([fac_id] ASC),
+ CONSTRAINT [FK_340] FOREIGN KEY ([fac_cli_tipo_doc], [fac_cli_documento])
   REFERENCES [Clientes]([cli_tipo_doc], [cli_documento]),
- CONSTRAINT [FK_433] FOREIGN KEY ([fac_id])
-  REFERENCES [factura]([fac_id])
+ CONSTRAINT [FK_443] FOREIGN KEY ([fac_est_id])
+  REFERENCES [Estadia]([est_id])
 );
 GO
 
 
---SKIP Index: [fkIdx_354]
+--SKIP Index: [fkIdx_340]
 
---SKIP Index: [fkIdx_358]
-
---SKIP Index: [fkIdx_433]
+--SKIP Index: [fkIdx_443]
 
 

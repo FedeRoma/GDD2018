@@ -114,6 +114,8 @@ INSERT INTO Regimen_Hotel
 PRINT 'Regimen_Hotel Migrados Papaaaa...'
 /*------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
+
+
 /*Clientes consumibles
 Estadia
 Estados
@@ -147,7 +149,11 @@ inhabilitado
 	select * from regimenes,regimen_hotel,hoteles where hot_id = ryh_hot_id and reg_id = ryh_reg_id and hot_id = 3
 
 	
+	select distinct Reserva_Codigo,Reserva_Cant_Noches,Reserva_Fecha_Inicio from gd_esquema.Maestra
 
+select distinct m1.Reserva_Codigo from gd_esquema.Maestra m1, gd_esquema.Maestra m2 
+where m1.Reserva_Codigo = m2.Reserva_Codigo and m1.Cliente_Pasaporte_Nro <> m2.Cliente_Pasaporte_Nro 
+		order by m1.Reserva_Codigo
 
 		
 	
