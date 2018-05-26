@@ -26,7 +26,7 @@ Migracion Regimen_Hotel
 
 <b>Faltantes:</b>
 <br>
-Migracion Clientes_Consumibles
+Migracion ItemFactura --GUARDAR MONTO EN CANTIDAD Y CANTIDAD EN MONTO
 <br>
 Migracion Estadia
 <br>
