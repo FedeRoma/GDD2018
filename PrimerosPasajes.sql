@@ -98,9 +98,29 @@ PRINT 'Habitaciones Migrados Papaaaa...'
 drop TABLE #TemporalHabitaciones
 /*------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
+-- TRASPASO DE DATOS DE gd_esquema.Maestra A Regimenes
+PRINT 'Migrando Regimenes...'
+INSERT INTO Regimenes
+		select distinct Regimen_Descripcion,Regimen_Precio,NULL from gd_esquema.Maestra
+PRINT 'Regimenes Migrados Papaaaa...'
 
+/*------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+-- TRASPASO DE DATOS DE gd_esquema.Maestra A Regimen_Hotel
+PRINT 'Migrando Regimen_Hotel..'
+INSERT INTO Regimen_Hotel
+		select distinct (select hot_id from Hoteles where Hotel_Calle=hot_calle and Hotel_Ciudad=hot_ciudad),
+		(select reg_id from Regimenes where  Regimen_Descripcion = reg_desc and reg_precio =Regimen_Precio )
+		from gd_esquema.Maestra
+PRINT 'Regimen_Hotel Migrados Papaaaa...'
+/*------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
-
+/*Clientes consumibles
+Estadia
+Estados
+Factura
+Funcionalidad
+inhabilitado
+*/
 
 
 
@@ -121,8 +141,11 @@ drop TABLE #TemporalHabitaciones
 	select * from hoteles 
 	select * from clientes 
 	select * from TiposHabitaciones
-	select * from Habitaciones
+	select * from Habitaciones,tiposHabitaciones where hab_tip_id = tip_id
 	select * from #TemporalHabitaciones
+	select * from #TemporalClientesRepetidos
+	select * from regimenes,regimen_hotel,hoteles where hot_id = ryh_hot_id and reg_id = ryh_reg_id and hot_id = 3
+
 	
 
 

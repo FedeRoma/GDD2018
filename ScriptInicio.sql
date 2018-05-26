@@ -188,7 +188,7 @@ CREATE TABLE [Regimenes]
  [reg_id]         INT IDENTITY (1, 1) NOT NULL ,
  [reg_desc]       VARCHAR(50) NOT NULL ,
  [reg_precio]     INT NOT NULL ,
- [reg_habilitado] BIT NOT NULL ,
+ [reg_habilitado] BIT NULL ,
 
  CONSTRAINT [PK_TipoHoteles] PRIMARY KEY CLUSTERED ([reg_id] ASC)
 );
