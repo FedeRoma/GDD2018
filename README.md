@@ -34,23 +34,23 @@ Migracion Estados
 <br>
 Migracion factura
 <br>
-Migracion Funcionalidad
+Migracion Funcionalidad -- NULL
 <br>
-Migracion Funcionalidad_Rol
+Migracion Funcionalidad_Rol - NULL
 <br>
-Migracion Inhabilitacion_Hotel
+Migracion Inhabilitacion_Hotel -- NULL
 <br>
-Migracion Inhabilitaciones
+Migracion Inhabilitaciones -- NULL
 <br>
 Migracion Reservas
 <br>
-Migracion Rol
+Migracion Rol -- NULL
 <br>
-Migracion Rol_Usuario
+Migracion Rol_Usuario -- NULL
 <br>
-Migracion Status
+Migracion Status -- NULL
 <br>  
-Migracion Status_Habitacion
+Migracion Status_Habitacion - NULL
 <br>
 Migracion Usuario
 <br>
