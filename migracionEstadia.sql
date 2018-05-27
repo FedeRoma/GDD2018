@@ -10,5 +10,12 @@
 	Estadia_Cant_Noches	
     FROM gd_esquema.Maestra
 
+
+	/*INSERT INTO Estadia(est_checkin,est_checkout,est_cant_noches)
+	select distinct null,null,Estadia_Cant_Noches from gd_esquema.Maestra
+
+	INSERT Estadia(est_checkin,est_checkout,est_cant_noches) VALUES (null,null,(select distinct Estadia_Cant_Noches from gd_esquema.Maestra)) 
+
+	*/
 	
 
