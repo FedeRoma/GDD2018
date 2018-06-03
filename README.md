@@ -44,7 +44,7 @@ Migracion Inhabilitaciones -- NULL
 <br>
 Migracion Reservas
 <br>
-Migracion Rol -- NULL
+Migracion Rol - <b>Hecho</b>
 <br>
 Migracion Rol_Usuario -- NULL
 <br>
