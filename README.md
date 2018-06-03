@@ -70,3 +70,4 @@ ESTUDIAR C#
 Pablo se puso la 10
 
 -- Ver validacion de mail (Unique en el DER pero no en la BD)
+-- Agregar a Hernan al Git
