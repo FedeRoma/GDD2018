@@ -28,15 +28,15 @@ Migracion Regimen_Hotel
 <br>
 Migracion ItemFactura --GUARDAR MONTO EN CANTIDAD Y CANTIDAD EN MONTO
 <br>
-Migracion Estadia - Hecho, falta Reserva para ver si funciona bien
+Migracion Estadia - <b>Hecho</b>, falta Reserva para ver si funciona bien
 <br>
-Migracion Estados - Hecho, modificar DER
+Migracion Estados - <b>Hecho</b>, modificar DER
 <br>
 Migracion factura
 <br>
-Migracion Funcionalidad - Hecho
+Migracion Funcionalidad - <b>Hecho</b>
 <br>
-Migracion Funcionalidad_Rol - Hecho
+Migracion Funcionalidad_Rol - <b>Hecho</b>
 <br>
 Migracion Inhabilitacion_Hotel -- NULL
 <br>
