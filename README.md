@@ -58,7 +58,7 @@ A tener en cuenta, campos no migrados:
 - Habitacion_tipo_porcentual
 
 Federico Romano tareas realizando:
-Factura (fijate que faltan campos fecha y total)
+Factura (fijate que faltan campos fecha y total) <- LISTO AGREGADO AL DER
 
 Mati y Pablo:
 Estados Roles y Usuarios
