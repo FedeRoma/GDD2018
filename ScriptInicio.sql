@@ -129,9 +129,7 @@ CREATE TABLE [Estados]
 (
  [est_id]     INT IDENTITY (1, 1) NOT NULL ,
  [est_desc]   VARCHAR(50) NOT NULL ,
- [est_fecha]  DATETIME NOT NULL ,
- [est_motivo] VARCHAR(50) NOT NULL ,
-
+ 
  CONSTRAINT [PK_Estados] PRIMARY KEY CLUSTERED ([est_id] ASC)
 );
 GO
