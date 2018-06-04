@@ -26,11 +26,11 @@ Migracion Regimenes_Hoteles
 
 <b>Faltantes:</b>
 <br>
-Migracion Items_Facturas -- Falta migrar Facturas para que funcione (Guarde monto en cantidad y cantidad en monto, discutirlo)
+Migracion Items_Facturas - Falta migrar Facturas para que funcione (Guarde monto en cantidad y cantidad en monto, discutirlo)
 <br>
-Migracion Estadias - <b>Hecho</b>, falta Reserva para ver si funciona bien
+Migracion Estadias - Falta migrar Reservas para ver si funciona bien
 <br>
-Migracion Estados - <b>Hecho</b>, modificar DER
+Migracion Estados - 
 <br>
 Migracion Facturas
 <br>
@@ -42,7 +42,7 @@ Migracion Inhabilitaciones_Hoteles -- NULL
 <br>
 Migracion Inhabilitaciones -- NULL
 <br>
-Migracion Reservas
+Migracion Reservas - Falta resolver el insert, el select estaría bien armado
 <br>
 Migracion Roles - <b>Hecho</b>
 <br>
@@ -58,10 +58,10 @@ Migracion Usuarios
 
 
 Federico Romano tareas realizando:
-Reservas y Factura
+Factura
 
 Mati y Pablo:
-Estados, Estadia, Roles y Usuarios
+Estados Roles y Usuarios
 
 ESTUDIAR C#
 Pablo se puso la 10
