@@ -1,9 +1,7 @@
 # GDD2018
 
-En script inicio esta para correr el ultimo diagrama del der
-
-En Primeros pasajes esta comentado cada pasaje y lo que hago
-<br>
+Script inicio: Crea tablas
+El resto son migraciones
 
 <b>Cosas realizadas:</b>
 <br>
@@ -26,9 +24,11 @@ Migracion Regimenes_Hoteles
 
 <b>Faltantes:</b>
 <br>
-Migracion Items_Facturas - Falta migrar Facturas para que funcione (Guarde monto en cantidad y cantidad en monto, discutirlo)
+Migracion Items_Facturas - Me saltee la constraint para poder migrar
 <br>
-Migracion Estadias - Falta migrar Reservas para ver si funciona bien
+Migracion Estadias - Saco una validacion de nulo para poder migrar
+<br>
+Migracion Reservas - Saco varias validaciones de nulos y me salteo una constraint para poder migrar
 <br>
 Migracion Estados - 
 <br>
@@ -42,8 +42,6 @@ Migracion Inhabilitaciones_Hoteles -- NULL
 <br>
 Migracion Inhabilitaciones -- NULL
 <br>
-Migracion Reservas - Falta resolver el insert, el select estaría bien armado
-<br>
 Migracion Roles - <b>Hecho</b>
 <br>
 Migracion Roles_Usuarios -- NULL
@@ -55,10 +53,12 @@ Migracion Status_Habitaciones - NULL
 Migracion Usuarios
 <br>
 
-
+A tener en cuenta, campos no migrados:
+- Hotel_recarga_estrella
+- Habitacion_tipo_porcentual
 
 Federico Romano tareas realizando:
-Factura
+Factura (fijate que faltan campos fecha y total)
 
 Mati y Pablo:
 Estados Roles y Usuarios
@@ -67,4 +67,3 @@ ESTUDIAR C#
 Pablo se puso la 10
 
 -- Ver validacion de mail (Unique en el DER pero no en la BD)
--- Agregar a Hernan al Git
