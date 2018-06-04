@@ -1,0 +1,12 @@
+Nombres tablas modificadas:
+  Items_Facturas
+	Facturas
+	Estadias (tambien agregue el campo monto)
+	Usuarios (tambie cambie el campo estados por estado y agregue el campo direccion)
+	Roles_Usuarios
+	Roles
+	Funcionalidades_Roles
+	Funcionalidades
+	Regimenes_Hoteles
+	Inhabilitaciones_Hoteles
+	Status_Habitaciones
