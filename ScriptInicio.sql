@@ -130,10 +130,10 @@ GO
 
 CREATE TABLE [Estados]
 (
- [est_id]   INT IDENTITY (1, 1) NOT NULL ,
- [est_desc] VARCHAR(50) NOT NULL ,
+ [estados_id]   INT IDENTITY (1, 1) NOT NULL ,
+ [estados_desc] VARCHAR(50) NOT NULL ,
 
- CONSTRAINT [PK_Estados] PRIMARY KEY CLUSTERED ([est_id] ASC)
+ CONSTRAINT [PK_Estados] PRIMARY KEY CLUSTERED ([estados_id] ASC)
 );
 GO
 
@@ -419,7 +419,7 @@ GO
 CREATE TABLE [Reservas]
 (
  [res_id]            INT NOT NULL ,
- [res_est_id]        INT NOT NULL ,
+ [res_estados_id]    INT NOT NULL ,
  [res_fecha]         DATETIME NOT NULL ,
  [res_inicio]        DATE NOT NULL ,
  [res_fin]           DATE NOT NULL ,
@@ -440,8 +440,8 @@ CREATE TABLE [Reservas]
   REFERENCES [Clientes]([cli_tipo_doc], [cli_documento]),
  CONSTRAINT [FK_327] FOREIGN KEY ([res_usu_encargado])
   REFERENCES [Usuarios]([usu_id]),
- CONSTRAINT [FK_374] FOREIGN KEY ([res_est_id])
-  REFERENCES [Estados]([est_id]),
+ CONSTRAINT [FK_374] FOREIGN KEY ([res_estados_id])
+  REFERENCES [Estados]([estados_id]),
  CONSTRAINT [FK_385] FOREIGN KEY ([res_hab_id], [res_hab_hot_id])
   REFERENCES [Habitaciones]([hab_id], [hab_hot_id])
 );
@@ -465,7 +465,6 @@ GO
 
 CREATE TABLE [Estadias]
 (
- [est_id]            INT IDENTITY (1, 1) NOT NULL ,
  [est_res_id]        INT NOT NULL ,
  [est_usu_encargado] INT NOT NULL ,
  [est_checkin]       DATE NULL ,
@@ -473,7 +472,7 @@ CREATE TABLE [Estadias]
  [est_cant_noches]   INT NULL ,
  [est_monto]         INT NOT NULL ,
 
- CONSTRAINT [PK_Estadia] PRIMARY KEY CLUSTERED ([est_id] ASC),
+ CONSTRAINT [PK_Estadia] PRIMARY KEY CLUSTERED ([est_res_id] ASC),
  CONSTRAINT [FK_394] FOREIGN KEY ([est_res_id])
   REFERENCES [Reservas]([res_id]),
  CONSTRAINT [FK_401] FOREIGN KEY ([est_usu_encargado])
@@ -495,13 +494,13 @@ CREATE TABLE [Facturas]
  [fac_cli_tipo_doc]  VARCHAR(20) NOT NULL ,
  [fac_cli_documento] BIGINT NOT NULL ,
  [fac_tipo_pago]     VARCHAR(50) NOT NULL ,
- [fac_est_id]        INT NOT NULL ,
+ [est_res_id]        INT NOT NULL ,
 
  CONSTRAINT [PK_factura] PRIMARY KEY CLUSTERED ([fac_id] ASC),
  CONSTRAINT [FK_340] FOREIGN KEY ([fac_cli_tipo_doc], [fac_cli_documento])
   REFERENCES [Clientes]([cli_tipo_doc], [cli_documento]),
- CONSTRAINT [FK_462] FOREIGN KEY ([fac_est_id])
-  REFERENCES [Estadias]([est_id])
+ CONSTRAINT [FK_462] FOREIGN KEY ([est_res_id])
+  REFERENCES [Estadias]([est_res_id])
 );
 GO
 
