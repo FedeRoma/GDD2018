@@ -1,7 +1,7 @@
 Nombres tablas modificadas:
   	Items_Facturas
 	Facturas
-	Estadias (tambien agregue el campo monto)
+	Estadias (tambien agregue el campo monto y elimine la PK est_id que era identity, porque en realidad esa PK tiene que ser FK de reservas donde la PK de reservas es el codigo_reserva de la maestra)
 	Usuarios (tambie cambie el campo estados por estado y agregue el campo direccion)
 	Roles_Usuarios
 	Roles
