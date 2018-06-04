@@ -1,23 +1,20 @@
--- ****************** SqlDBM: Microsoft SQL Server ******************
--- ******************************************************************
-
-DROP TABLE [factura];
+DROP TABLE [Items_Facturas];
 GO
 
 
-DROP TABLE [Estadia];
+DROP TABLE [Facturas];
 GO
 
 
-DROP TABLE [Clientes_Consumibles];
+DROP TABLE [Estadias];
 GO
 
 
-DROP TABLE [Status_Habitacion];
+DROP TABLE [Status_Habitaciones];
 GO
 
 
-DROP TABLE [Rol_Usuario];
+DROP TABLE [Roles_Usuarios];
 GO
 
 
@@ -25,11 +22,11 @@ DROP TABLE [Reservas];
 GO
 
 
-DROP TABLE [Funcionalidad_Rol];
+DROP TABLE [Funcionalidades_Roles];
 GO
 
 
-DROP TABLE [Usuario];
+DROP TABLE [Usuarios];
 GO
 
 
@@ -37,11 +34,11 @@ DROP TABLE [Habitaciones];
 GO
 
 
-DROP TABLE [Inhabilitacion_Hotel];
+DROP TABLE [Inhabilitaciones_Hoteles];
 GO
 
 
-DROP TABLE [Regimen_Hotel];
+DROP TABLE [Regimenes_Hoteles];
 GO
 
 
@@ -53,11 +50,11 @@ DROP TABLE [Status];
 GO
 
 
-DROP TABLE [Funcionalidad];
+DROP TABLE [Funcionalidades];
 GO
 
 
-DROP TABLE [Rol];
+DROP TABLE [Roles];
 GO
 
 
@@ -98,9 +95,9 @@ GO
 
 
 
---************************************** [Funcionalidad]
+--************************************** [Funcionalidades]
 
-CREATE TABLE [Funcionalidad]
+CREATE TABLE [Funcionalidades]
 (
  [fun_id]     INT IDENTITY (1, 1) NOT NULL ,
  [fun_nombre] VARCHAR(50) NOT NULL ,
@@ -112,9 +109,9 @@ GO
 
 
 
---************************************** [Rol]
+--************************************** [Roles]
 
-CREATE TABLE [Rol]
+CREATE TABLE [Roles]
 (
  [rol_id]     INT IDENTITY (1, 1) NOT NULL ,
  [rol_nombre] VARCHAR(50) NOT NULL ,
@@ -220,17 +217,17 @@ GO
 
 
 
---************************************** [Funcionalidad_Rol]
+--************************************** [Funcionalidades_Roles]
 
-CREATE TABLE [Funcionalidad_Rol]
+CREATE TABLE [Funcionalidades_Roles]
 (
  [fyr_rol_id] INT NOT NULL ,
  [fyr_fun_id] INT NOT NULL ,
 
  CONSTRAINT [FK_258] FOREIGN KEY ([fyr_rol_id])
-  REFERENCES [Rol]([rol_id]),
+  REFERENCES [Roles]([rol_id]),
  CONSTRAINT [FK_262] FOREIGN KEY ([fyr_fun_id])
-  REFERENCES [Funcionalidad]([fun_id])
+  REFERENCES [Funcionalidades]([fun_id])
 );
 GO
 
@@ -240,14 +237,14 @@ GO
 --SKIP Index: [fkIdx_262]
 
 
---************************************** [Usuario]
+--************************************** [Usuarios]
 
-CREATE TABLE [Usuario]
+CREATE TABLE [Usuarios]
 (
  [usu_id]        INT IDENTITY (1, 1) NOT NULL ,
  [usu_nombre]    VARCHAR(50) NOT NULL ,
  [usu_password]  VARCHAR(50) NOT NULL ,
- [usu_estados]   VARCHAR(50) NOT NULL ,
+ [usu_estado]    VARCHAR(50) NOT NULL ,
  [usu_apellido]  VARCHAR(50) NOT NULL ,
  [usu_mail]      VARCHAR(50) NOT NULL ,
  [usu_tel]       VARCHAR(50) NOT NULL ,
@@ -256,6 +253,7 @@ CREATE TABLE [Usuario]
  [usu_documento] BIGINT NOT NULL ,
  [usu_intentos]  INT NOT NULL ,
  [usu_hot_id]    INT NOT NULL ,
+ [usu_direccion] VARCHAR(50) NOT NULL ,
 
  CONSTRAINT [PK_Usuario] PRIMARY KEY CLUSTERED ([usu_id] ASC),
  CONSTRAINT [FK_273] FOREIGN KEY ([usu_hot_id])
@@ -294,9 +292,9 @@ GO
 --SKIP Index: [fkIdx_137]
 
 
---************************************** [Inhabilitacion_Hotel]
+--************************************** [Inhabilitaciones_Hoteles]
 
-CREATE TABLE [Inhabilitacion_Hotel]
+CREATE TABLE [Inhabilitaciones_Hoteles]
 (
  [iyh_hot_id]      INT NOT NULL ,
  [iyh_inh_id]      INT NOT NULL ,
@@ -318,9 +316,9 @@ GO
 --SKIP Index: [fkIdx_113]
 
 
---************************************** [Regimen_Hotel]
+--************************************** [Regimenes_Hoteles]
 
-CREATE TABLE [Regimen_Hotel]
+CREATE TABLE [Regimenes_Hoteles]
 (
  [ryh_hot_id] INT NOT NULL ,
  [ryh_reg_id] INT NOT NULL ,
@@ -371,32 +369,9 @@ GO
 --SKIP Index: [fkIdx_18]
 
 
---************************************** [Clientes_Consumibles]
+--************************************** [Status_Habitaciones]
 
-CREATE TABLE [Clientes_Consumibles]
-(
- [cyc_id]        INT IDENTITY (1, 1) NOT NULL ,
- [con_id]        INT NOT NULL ,
- [cli_tipo_doc]  VARCHAR(20) NOT NULL ,
- [cli_documento] BIGINT NOT NULL ,
-
- CONSTRAINT [PK_Clientes_Consumibles] PRIMARY KEY CLUSTERED ([cyc_id] ASC),
- CONSTRAINT [FK_354] FOREIGN KEY ([con_id])
-  REFERENCES [Consumibles]([con_id]),
- CONSTRAINT [FK_358] FOREIGN KEY ([cli_tipo_doc], [cli_documento])
-  REFERENCES [Clientes]([cli_tipo_doc], [cli_documento])
-);
-GO
-
-
---SKIP Index: [fkIdx_354]
-
---SKIP Index: [fkIdx_358]
-
-
---************************************** [Status_Habitacion]
-
-CREATE TABLE [Status_Habitacion]
+CREATE TABLE [Status_Habitaciones]
 (
  [syh_sta_id]       INT NOT NULL ,
  [syh_hab_id]       INT NOT NULL ,
@@ -418,17 +393,17 @@ GO
 --SKIP Index: [fkIdx_292]
 
 
---************************************** [Rol_Usuario]
+--************************************** [Roles_Usuarios]
 
-CREATE TABLE [Rol_Usuario]
+CREATE TABLE [Roles_Usuarios]
 (
  [ryu_usu_id] INT NOT NULL ,
  [ryu_rol_id] INT NOT NULL ,
 
  CONSTRAINT [FK_250] FOREIGN KEY ([ryu_usu_id])
-  REFERENCES [Usuario]([usu_id]),
+  REFERENCES [Usuarios]([usu_id]),
  CONSTRAINT [FK_254] FOREIGN KEY ([ryu_rol_id])
-  REFERENCES [Rol]([rol_id])
+  REFERENCES [Roles]([rol_id])
 );
 GO
 
@@ -454,8 +429,8 @@ CREATE TABLE [Reservas]
  [res_cli_tipo_doc]  VARCHAR(20) NOT NULL ,
  [res_cli_documento] BIGINT NOT NULL ,
  [res_usu_encargado] INT NOT NULL ,
- [hab_id]            INT NOT NULL ,
- [hab_hot_id]        INT NOT NULL ,
+ [res_hab_id]        INT NOT NULL ,
+ [res_hab_hot_id]    INT NOT NULL ,
 
  CONSTRAINT [PK_Reservas] PRIMARY KEY CLUSTERED ([res_id] ASC),
  CONSTRAINT [FK_155] FOREIGN KEY ([res_tip_id])
@@ -465,10 +440,10 @@ CREATE TABLE [Reservas]
  CONSTRAINT [FK_163] FOREIGN KEY ([res_cli_tipo_doc], [res_cli_documento])
   REFERENCES [Clientes]([cli_tipo_doc], [cli_documento]),
  CONSTRAINT [FK_327] FOREIGN KEY ([res_usu_encargado])
-  REFERENCES [Usuario]([usu_id]),
+  REFERENCES [Usuarios]([usu_id]),
  CONSTRAINT [FK_374] FOREIGN KEY ([res_est_id])
   REFERENCES [Estados]([est_id]),
- CONSTRAINT [FK_385] FOREIGN KEY ([hab_id], [hab_hot_id])
+ CONSTRAINT [FK_385] FOREIGN KEY ([res_hab_id], [res_hab_hot_id])
   REFERENCES [Habitaciones]([hab_id], [hab_hot_id])
 );
 GO
@@ -487,9 +462,9 @@ GO
 --SKIP Index: [fkIdx_385]
 
 
---************************************** [Estadia]
+--************************************** [Estadias]
 
-CREATE TABLE [Estadia]
+CREATE TABLE [Estadias]
 (
  [est_id]            INT IDENTITY (1, 1) NOT NULL ,
  [est_res_id]        INT NOT NULL ,
@@ -497,12 +472,13 @@ CREATE TABLE [Estadia]
  [est_checkin]       DATE NULL ,
  [est_checkout]      DATE NULL ,
  [est_cant_noches]   INT NULL ,
+ [est_monto]         INT NOT NULL ,
 
  CONSTRAINT [PK_Estadia] PRIMARY KEY CLUSTERED ([est_id] ASC),
  CONSTRAINT [FK_394] FOREIGN KEY ([est_res_id])
   REFERENCES [Reservas]([res_id]),
  CONSTRAINT [FK_401] FOREIGN KEY ([est_usu_encargado])
-  REFERENCES [Usuario]([usu_id])
+  REFERENCES [Usuarios]([usu_id])
 );
 GO
 
@@ -512,9 +488,9 @@ GO
 --SKIP Index: [fkIdx_401]
 
 
---************************************** [factura]
+--************************************** [Facturas]
 
-CREATE TABLE [factura]
+CREATE TABLE [Facturas]
 (
  [fac_id]            INT IDENTITY (1, 1) NOT NULL ,
  [fac_cli_tipo_doc]  VARCHAR(20) NOT NULL ,
@@ -525,14 +501,38 @@ CREATE TABLE [factura]
  CONSTRAINT [PK_factura] PRIMARY KEY CLUSTERED ([fac_id] ASC),
  CONSTRAINT [FK_340] FOREIGN KEY ([fac_cli_tipo_doc], [fac_cli_documento])
   REFERENCES [Clientes]([cli_tipo_doc], [cli_documento]),
- CONSTRAINT [FK_443] FOREIGN KEY ([fac_est_id])
-  REFERENCES [Estadia]([est_id])
+ CONSTRAINT [FK_462] FOREIGN KEY ([fac_est_id])
+  REFERENCES [Estadias]([est_id])
 );
 GO
 
 
 --SKIP Index: [fkIdx_340]
 
---SKIP Index: [fkIdx_443]
+--SKIP Index: [fkIdx_462]
+
+
+--************************************** [Items_Facturas]
+
+CREATE TABLE [Items_Facturas]
+(
+ [iyf_id]       INT IDENTITY (1, 1) NOT NULL ,
+ [iyf_con_id]   INT NULL ,
+ [iyf_fac_id]   INT NULL ,
+ [iyf_cantidad] INT NULL ,
+ [iyf_monto]    INT NULL ,
+
+ CONSTRAINT [PK_Clientes_Consumibles] PRIMARY KEY CLUSTERED ([iyf_id] ASC),
+ CONSTRAINT [FK_354] FOREIGN KEY ([iyf_con_id])
+  REFERENCES [Consumibles]([con_id]),
+ CONSTRAINT [FK_455] FOREIGN KEY ([iyf_fac_id])
+  REFERENCES [Facturas]([fac_id])
+);
+GO
+
+
+--SKIP Index: [fkIdx_354]
+
+--SKIP Index: [fkIdx_455]
 
 
