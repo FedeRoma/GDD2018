@@ -5,9 +5,9 @@ El resto son migraciones
 
 <b>Cosas realizadas:</b>
 <br>
-Migracion HOTELES
+Migracion Hoteles
 <br>
-Migracion CLIENTES
+Migracion Clientes
 <br>
 Temporal #TemporalClientesRepetidos con los pasaportes problematicos.
 <br>
@@ -24,46 +24,43 @@ Migracion Regimenes_Hoteles
 
 <b>Faltantes:</b>
 <br>
-Migracion Items_Facturas - Me saltee la constraint para poder migrar
+Migracion Items_Facturas - <b>Hecho</b> Omito constraint para migrar
 <br>
-Migracion Estadias - Saco una validacion de nulo para poder migrar
+Migracion Estadias - <b>Hecho</b> Saco una validacion de nulo para poder migrar
 <br>
-Migracion Reservas - Saco varias validaciones de nulos y me salteo una constraint para poder migrar
+Migracion Reservas - <b>Hecho</b> Saco varias validaciones de nulos y Omito constraint para migrar
 <br>
-Migracion Estados - 
-<br>
-Migracion Facturas
+Migracion Estados - <b>Hecho</b>
 <br>
 Migracion Funcionalidades - <b>Hecho</b>
 <br>
-Migracion Funcionalidades_Roles - <b>Hecho</b>
-<br>
-Migracion Inhabilitaciones_Hoteles -- NULL
-<br>
-Migracion Inhabilitaciones -- NULL
-<br>
 Migracion Roles - <b>Hecho</b>
 <br>
-Migracion Roles_Usuarios -- NULL
+Migracion Funcionalidades_Roles - <b>Hecho</b>
 <br>
-Migracion Status -- NULL
+Migracion Inhabilitaciones_Hoteles - <b>NULL</b>
+<br>
+Migracion Inhabilitaciones - <b>NULL</b>
+<br>
+Migracion Roles_Usuarios - <b>NULL</b>
+<br>
+Migracion Status - <b>NULL</b>
 <br>  
-Migracion Status_Habitaciones - NULL
+Migracion Status_Habitaciones - <b>NULL</b>
 <br>
 Migracion Usuarios
 <br>
+Migracion Facturas
+<br>
 
-A tener en cuenta, campos no migrados:
-- Hotel_recarga_estrella
-- Habitacion_tipo_porcentual
+A tener en cuenta:
+- Ver validacion de mail (Unique en el DER pero no en la BD)
+- campo Hotel_recarga_estrella no migrado
+- campo Habitacion_tipo_porcentual no migrado
 
-Federico Romano tareas realizando:
-Factura (fijate que faltan campos fecha y total) <- LISTO AGREGADO AL DER
+Federico Romano tareas realizando: Factura
 
-Mati y Pablo:
-Estados Roles y Usuarios
+Mati y Pablo: Usuarios
 
 ESTUDIAR C#
 Pablo se puso la 10
-
--- Ver validacion de mail (Unique en el DER pero no en la BD)
