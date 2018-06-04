@@ -21,38 +21,38 @@ Migracion Habitaciones
 <br>
 Migracion Regimenes
 <br>
-Migracion Regimen_Hotel
+Migracion Regimenes_Hoteles
 <br>
 
 <b>Faltantes:</b>
 <br>
-Migracion ItemFactura --GUARDAR MONTO EN CANTIDAD Y CANTIDAD EN MONTO
+Migracion Items_Facturas -- Falta migrar Facturas para que funcione (Guarde monto en cantidad y cantidad en monto, discutirlo)
 <br>
-Migracion Estadia - <b>Hecho</b>, falta Reserva para ver si funciona bien
+Migracion Estadias - <b>Hecho</b>, falta Reserva para ver si funciona bien
 <br>
 Migracion Estados - <b>Hecho</b>, modificar DER
 <br>
-Migracion factura
+Migracion Facturas
 <br>
-Migracion Funcionalidad - <b>Hecho</b>
+Migracion Funcionalidades - <b>Hecho</b>
 <br>
-Migracion Funcionalidad_Rol - <b>Hecho</b>
+Migracion Funcionalidades_Roles - <b>Hecho</b>
 <br>
-Migracion Inhabilitacion_Hotel -- NULL
+Migracion Inhabilitaciones_Hoteles -- NULL
 <br>
 Migracion Inhabilitaciones -- NULL
 <br>
 Migracion Reservas
 <br>
-Migracion Rol - <b>Hecho</b>
+Migracion Roles - <b>Hecho</b>
 <br>
-Migracion Rol_Usuario -- NULL
+Migracion Roles_Usuarios -- NULL
 <br>
 Migracion Status -- NULL
 <br>  
-Migracion Status_Habitacion - NULL
+Migracion Status_Habitaciones - NULL
 <br>
-Migracion Usuario
+Migracion Usuarios
 <br>
 
 
@@ -62,9 +62,6 @@ Reservas y Factura
 
 Mati y Pablo:
 Estados, Estadia, Roles y Usuarios
-
-Maxi:
-ItemFactura 
 
 ESTUDIAR C#
 Pablo se puso la 10
