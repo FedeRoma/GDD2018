@@ -1,5 +1,5 @@
 Nombres tablas modificadas:
-  Items_Facturas
+  	Items_Facturas
 	Facturas
 	Estadias (tambien agregue el campo monto)
 	Usuarios (tambie cambie el campo estados por estado y agregue el campo direccion)
@@ -10,3 +10,28 @@ Nombres tablas modificadas:
 	Regimenes_Hoteles
 	Inhabilitaciones_Hoteles
 	Status_Habitaciones
+	
+	
+DROP TABLE [Item_Factura];
+GO
+DROP TABLE [Estadia];
+GO
+DROP TABLE [Factura];
+GO
+DROP TABLE [Usuario];
+GO
+DROP TABLE [Rol_Usuario];
+GO
+DROP TABLE [Rol];
+GO
+DROP TABLE [Funcionalidad_Rol];
+GO
+DROP TABLE [Funcionalidad];
+GO
+DROP TABLE [Regimen_Hotel];
+GO
+DROP TABLE [Inhabilitacion_Hotel];
+GO
+DROP TABLE [Status_Habitacion];
+GO
+
