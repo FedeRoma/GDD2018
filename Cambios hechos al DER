@@ -10,7 +10,7 @@ Nombres tablas modificadas:
 	Regimenes_Hoteles
 	Inhabilitaciones_Hoteles
 	Status_Habitaciones
-	
+	Estados (ya se llaba Estados, solo modifique los campos est_id y est_desc por estados_id y estados_desc para que no coincida la PK con estadias)
 	
 DROP TABLE [Item_Factura];
 GO
@@ -33,5 +33,7 @@ GO
 DROP TABLE [Inhabilitacion_Hotel];
 GO
 DROP TABLE [Status_Habitacion];
+GO
+DROP TABLE [Estados];
 GO
 
