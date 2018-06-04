@@ -1,3 +1,6 @@
+-- ****************** SqlDBM: Microsoft SQL Server ******************
+-- ******************************************************************
+
 DROP TABLE [Items_Facturas];
 GO
 
@@ -127,9 +130,9 @@ GO
 
 CREATE TABLE [Estados]
 (
- [est_id]     INT IDENTITY (1, 1) NOT NULL ,
- [est_desc]   VARCHAR(50) NOT NULL ,
- 
+ [est_id]   INT IDENTITY (1, 1) NOT NULL ,
+ [est_desc] VARCHAR(50) NOT NULL ,
+
  CONSTRAINT [PK_Estados] PRIMARY KEY CLUSTERED ([est_id] ASC)
 );
 GO
@@ -420,8 +423,6 @@ CREATE TABLE [Reservas]
  [res_fecha]         DATETIME NOT NULL ,
  [res_inicio]        DATE NOT NULL ,
  [res_fin]           DATE NOT NULL ,
- [res_checkin]       DATE NOT NULL ,
- [res_checkout]      DATE NOT NULL ,
  [res_tip_id]        INT NOT NULL ,
  [res_reg_id]        INT NOT NULL ,
  [res_cli_tipo_doc]  VARCHAR(20) NOT NULL ,
