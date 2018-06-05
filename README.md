@@ -24,7 +24,8 @@ Hoteles
 <br>
 Habitaciones
 <br>
-
+Items_Facturas
+<br>
 
 <b>No hay que migrar:</b>
 <br>
@@ -34,7 +35,6 @@ BajasHotel
 <br>
 
 <b>Faltan:</b>
-Items_Facturas
 Clientes_Estadias
 Facturas
 Reservas_Habitaciones
