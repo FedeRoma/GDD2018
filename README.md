@@ -1,57 +1,57 @@
 # GDD2018
 
-Script inicio: Crea tablas
-El resto son migraciones
-
 <b>Cosas realizadas:</b>
 <br>
-Migracion Hoteles
+Documentos
 <br>
-Migracion Clientes
+Estados
 <br>
-Temporal #TemporalClientesRepetidos con los pasaportes problematicos.
+MediosPago
 <br>
-Migracion Consumibles
+Roles
 <br>
-Migracion TiposHabitaciones
+Funcionalidades
 <br>
-Migracion Habitaciones
+Funcionalidades_Roles
 <br>
-Migracion Regimenes
+TiposHabitaciones
 <br>
-Migracion Regimenes_Hoteles
+Regimenes
+<br>
+Consumibles
+<br>
+Hoteles
+<br>
+Habitaciones
 <br>
 
-<b>Faltantes:</b>
+
+<b>No hay que migrar:</b>
 <br>
-Migracion Items_Facturas - <b>Hecho</b> Omito constraint para migrar
+Tarjetas
 <br>
-Migracion Estadias - <b>Hecho</b> Saco una validacion de nulo para poder migrar
+BajasHotel
 <br>
-Migracion Reservas - <b>Hecho</b> Saco varias validaciones de nulos y Omito constraint para migrar
-<br>
-Migracion Estados - <b>Hecho</b>
-<br>
-Migracion Funcionalidades - <b>Hecho</b>
-<br>
-Migracion Roles - <b>Hecho</b>
-<br>
-Migracion Funcionalidades_Roles - <b>Hecho</b>
-<br>
-Migracion Inhabilitaciones_Hoteles - <b>NULL</b>
-<br>
-Migracion Inhabilitaciones - <b>NULL</b>
-<br>
-Migracion Roles_Usuarios - <b>NULL</b>
-<br>
-Migracion Status - <b>NULL</b>
-<br>  
-Migracion Status_Habitaciones - <b>NULL</b>
-<br>
-Migracion Usuarios
-<br>
-Migracion Facturas
-<br>
+
+<b>Faltan:</b>
+Items_Facturas
+Clientes_Estadias
+Facturas
+Reservas_Habitaciones
+Usuarios_ReservasCancelaciones
+Usuarios_ReservasModificaciones
+Estadias
+Hoteles_Usuarios
+Status_Habitaciones
+Roles_Usuarios
+Reservas
+Clientes_Errores
+Usuarios
+Inhabilitaciones_Hoteles
+Regimenes_Hoteles
+Clientes
+Status
+Inhabilitaciones
 
 A tener en cuenta:
 - Ver validacion de mail (Unique en el DER pero no en la BD)
