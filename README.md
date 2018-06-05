@@ -40,7 +40,7 @@ Facturas
 Reservas_Habitaciones
 Usuarios_ReservasCancelaciones
 Usuarios_ReservasModificaciones
-Estadias
+Estadias(mati)
 Hoteles_Usuarios
 Status_Habitaciones
 Roles_Usuarios
