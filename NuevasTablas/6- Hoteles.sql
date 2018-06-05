@@ -1,7 +1,7 @@
 use GD1C2018
 /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------*/
--- TRASPASO DE DATOS DE gd_esquema.Maestra A Consumibles
-PRINT 'Migrando Consumibles...'
+-- TRASPASO DE DATOS DE gd_esquema.Maestra A Hoteles
+PRINT 'Migrando Hoteles...'
 insert into Hoteles(
 					hot_estrellas,
 					hot_calle,
@@ -17,5 +17,5 @@ select distinct 	hotel_cantestrella,
 
 from gd_esquema.Maestra
 GO
-PRINT 'Consumibles Migrados Papaaaa...'
+PRINT 'Hoteles Migrados Papaaaa...'
 /*------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
