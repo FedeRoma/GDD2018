@@ -33,10 +33,6 @@ DROP TABLE [Hoteles_Usuarios];
 GO
 
 
-DROP TABLE [Status_Habitaciones];
-GO
-
-
 DROP TABLE [Roles_Usuarios];
 GO
 
@@ -65,10 +61,6 @@ DROP TABLE [Habitaciones];
 GO
 
 
-DROP TABLE [Inhabilitaciones_Hoteles];
-GO
-
-
 DROP TABLE [Regimenes_Hoteles];
 GO
 
@@ -89,10 +81,6 @@ DROP TABLE [MediosPago];
 GO
 
 
-DROP TABLE [Status];
-GO
-
-
 DROP TABLE [Funcionalidades];
 GO
 
@@ -110,10 +98,6 @@ GO
 
 
 DROP TABLE [TiposHabitaciones];
-GO
-
-
-DROP TABLE [Inhabilitaciones];
 GO
 
 
@@ -162,19 +146,6 @@ CREATE TABLE [MediosPago]
  [med_desc] VARCHAR(50) NOT NULL ,
 
  CONSTRAINT [PK_MedioPago] PRIMARY KEY CLUSTERED ([med_id] ASC)
-);
-GO
-
-
-
---************************************** [Status]
-
-CREATE TABLE [Status]
-(
- [sta_id]   INT IDENTITY (1, 1) NOT NULL ,
- [sta_desc] VARCHAR(50) NOT NULL ,
-
- CONSTRAINT [PK_StatusHabitacion] PRIMARY KEY CLUSTERED ([sta_id] ASC)
 );
 GO
 
@@ -244,19 +215,6 @@ CREATE TABLE [TiposHabitaciones]
  [tip_personas]   INT NOT NULL ,
 
  CONSTRAINT [PK_TiposHabitaciones] PRIMARY KEY CLUSTERED ([tip_id] ASC)
-);
-GO
-
-
-
---************************************** [Inhabilitaciones]
-
-CREATE TABLE [Inhabilitaciones]
-(
- [inh_id]   INT IDENTITY (1, 1) NOT NULL ,
- [inh_desc] VARCHAR(50) NOT NULL ,
-
- CONSTRAINT [PK_Inhabilitaciones] PRIMARY KEY CLUSTERED ([inh_id] ASC)
 );
 GO
 
@@ -425,30 +383,6 @@ GO
 --SKIP Index: [fkIdx_137]
 
 
---************************************** [Inhabilitaciones_Hoteles]
-
-CREATE TABLE [Inhabilitaciones_Hoteles]
-(
- [iyh_hot_id]      INT NOT NULL ,
- [iyh_inh_id]      INT NOT NULL ,
- [inh_fecha_desde] DATE NOT NULL ,
- [inh_fecha_hasta] DATE NOT NULL ,
- [iyh_id]          INT IDENTITY (1, 1) NOT NULL ,
-
- CONSTRAINT [PK_Inahbilitacion_Hoteles] PRIMARY KEY CLUSTERED ([iyh_id] ASC),
- CONSTRAINT [FK_109] FOREIGN KEY ([iyh_hot_id])
-  REFERENCES [Hoteles]([hot_id]),
- CONSTRAINT [FK_113] FOREIGN KEY ([iyh_inh_id])
-  REFERENCES [Inhabilitaciones]([inh_id])
-);
-GO
-
-
---SKIP Index: [fkIdx_109]
-
---SKIP Index: [fkIdx_113]
-
-
 --************************************** [Regimenes_Hoteles]
 
 CREATE TABLE [Regimenes_Hoteles]
@@ -523,30 +457,6 @@ GO
 --SKIP Index: [fkIdx_649]
 
 
---************************************** [Status_Habitaciones]
-
-CREATE TABLE [Status_Habitaciones]
-(
- [syh_sta_id]       INT NOT NULL ,
- [syh_hab_id]       INT NOT NULL ,
- [syh_hab_hot_id]   INT NOT NULL ,
- [syh_fecha_inicio] DATE NOT NULL ,
- [syh_fecha_fin]    DATE NOT NULL ,
-
- CONSTRAINT [PK_Status_Habitacion] PRIMARY KEY CLUSTERED ([syh_sta_id] ASC, [syh_hab_id] ASC, [syh_hab_hot_id] ASC),
- CONSTRAINT [FK_288] FOREIGN KEY ([syh_sta_id])
-  REFERENCES [Status]([sta_id]),
- CONSTRAINT [FK_292] FOREIGN KEY ([syh_hab_id], [syh_hab_hot_id])
-  REFERENCES [Habitaciones]([hab_id], [hab_hot_id])
-);
-GO
-
-
---SKIP Index: [fkIdx_288]
-
---SKIP Index: [fkIdx_292]
-
-
 --************************************** [Roles_Usuarios]
 
 CREATE TABLE [Roles_Usuarios]
@@ -571,24 +481,24 @@ GO
 
 CREATE TABLE [Reservas]
 (
- [res_id]             INT NOT NULL ,
- [res_estados_id]     INT NOT NULL ,
- [res_fecha]          DATETIME NOT NULL ,
- [res_inicio]         DATE NOT NULL ,
- [res_fin]            DATE NOT NULL ,
- [res_tip_id]         INT NOT NULL ,
- [res_reg_id]         INT NOT NULL ,
- [res_cli_documento]  BIGINT NOT NULL ,
- [res_usu_id]         INT NOT NULL ,
- [res_fac_cli_doc_id] INT NOT NULL ,
- [res_cye_id]         INT NOT NULL ,
+ [res_id]            INT NOT NULL ,
+ [res_estados_id]    INT NOT NULL ,
+ [res_fecha]         DATETIME NOT NULL ,
+ [res_inicio]        DATE NOT NULL ,
+ [res_fin]           DATE NOT NULL ,
+ [res_tip_id]        INT NOT NULL ,
+ [res_reg_id]        INT NOT NULL ,
+ [res_cli_documento] BIGINT NOT NULL ,
+ [res_usu_id]        INT NOT NULL ,
+ [res_cli_doc_id]    INT NOT NULL ,
+ [res_cye_id]        INT NULL ,
 
  CONSTRAINT [PK_Reservas] PRIMARY KEY CLUSTERED ([res_id] ASC),
  CONSTRAINT [FK_155] FOREIGN KEY ([res_tip_id])
   REFERENCES [TiposHabitaciones]([tip_id]),
  CONSTRAINT [FK_159] FOREIGN KEY ([res_reg_id])
   REFERENCES [Regimenes]([reg_id]),
- CONSTRAINT [FK_163] FOREIGN KEY ([res_cli_documento], [res_fac_cli_doc_id])
+ CONSTRAINT [FK_163] FOREIGN KEY ([res_cli_documento], [res_cli_doc_id])
   REFERENCES [Clientes]([cli_documento], [cli_doc_id]),
  CONSTRAINT [FK_374] FOREIGN KEY ([res_estados_id])
   REFERENCES [Estados]([estados_id]),
@@ -690,7 +600,7 @@ CREATE TABLE [Estadias]
  [est_checkin]        DATE NULL ,
  [est_checkout]       DATE NULL ,
  [est_cant_noches]    INT NULL ,
- [est_precio_noche]   INT NOT NULL ,
+ [est_precio]         INT NOT NULL ,
  [est_usu_salida]     INT NOT NULL ,
  [est_dias_sobrantes] INT NOT NULL ,
 
@@ -752,14 +662,14 @@ CREATE TABLE [Facturas]
  [fac_med_id]        INT NOT NULL ,
  [fac_tar_id]        INT NOT NULL ,
  [fac_cli_doc_id]    INT NOT NULL ,
- [cye_id]            INT NOT NULL ,
+ [fac_cye_id]        INT NOT NULL ,
 
  CONSTRAINT [PK_factura] PRIMARY KEY CLUSTERED ([fac_id] ASC),
  CONSTRAINT [FK_340] FOREIGN KEY ([fac_cli_documento], [fac_cli_doc_id])
   REFERENCES [Clientes]([cli_documento], [cli_doc_id]),
  CONSTRAINT [FK_462] FOREIGN KEY ([fac_est_res_id])
   REFERENCES [Estadias]([est_res_id]),
- CONSTRAINT [FK_597] FOREIGN KEY ([cye_id])
+ CONSTRAINT [FK_597] FOREIGN KEY ([fac_cye_id])
   REFERENCES [Clientes_Errores]([cye_id]),
  CONSTRAINT [FK_604] FOREIGN KEY ([fac_med_id])
   REFERENCES [MediosPago]([med_id]),
