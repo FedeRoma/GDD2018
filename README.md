@@ -51,7 +51,7 @@ Facturas
 Reservas_Habitaciones
 Usuarios_ReservasCancelaciones
 Estadias(mati)
-Reservas
+Reservas(<B>IMPORTANTE: VER COSTO TOTAL DE FACTURA</B>
 Clientes_Errores
 Clientes
 
