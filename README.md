@@ -53,15 +53,12 @@ BajasHotel
 <br>
 Usuarios_ReservasModificaciones
 
-Reservas_Habitaciones
-
 <b>Faltan:</b>
 <br>
 Clientes_Estadias
 <br>
 Facturas
 <br>
-
 Estadias - Mati
 <br>
 Clientes_Errores
