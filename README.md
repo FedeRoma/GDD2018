@@ -55,12 +55,10 @@ Facturas
 Reservas_Habitaciones
 Usuarios_ReservasCancelaciones
 Estadias(mati)
-Status_Habitaciones
 Reservas
 Clientes_Errores
 Inhabilitaciones_Hoteles
 Clientes
-Status
 Inhabilitaciones
 
 A tener en cuenta:
