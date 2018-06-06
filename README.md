@@ -26,6 +26,8 @@ Habitaciones
 <br>
 Items_Facturas
 <br>
+Regimenes_Hoteles
+<br>
 
 <b>No hay que migrar:</b>
 <br>
@@ -48,7 +50,7 @@ Reservas
 Clientes_Errores
 Usuarios
 Inhabilitaciones_Hoteles
-Regimenes_Hoteles
+
 Clientes
 Status
 Inhabilitaciones
