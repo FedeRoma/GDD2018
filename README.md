@@ -38,7 +38,7 @@ Hoteles_Usuarios
 <br>
 -------- aca irian los clientes
 <br>
--------- aca irian las reservas
+Reservas
 <br>
 Reservas_Habitaciones
 <br>
@@ -62,8 +62,6 @@ Facturas
 Usuarios_ReservasCancelaciones
 <br>
 Estadias - Mati
-<br>
-Reservas(<B>IMPORTANTE: VER COSTO TOTAL DE FACTURA</B>)
 <br>
 Clientes_Errores
 <br>
