@@ -36,8 +36,6 @@ Roles_Usuarios
 <br>
 Hoteles_Usuarios
 <br>
------ aca irian los Clientes
-<br>
 
 <b>No hay que migrar:</b>
 <br>
@@ -46,8 +44,6 @@ Tarjetas
 BajasHotel
 <br>
 Usuarios_ReservasModificaciones
-<br>
-
 
 <b>Faltan:</b>
 Clientes_Estadias
@@ -57,9 +53,7 @@ Usuarios_ReservasCancelaciones
 Estadias(mati)
 Reservas
 Clientes_Errores
-Inhabilitaciones_Hoteles
 Clientes
-Inhabilitaciones
 
 A tener en cuenta:
 - Ver validacion de mail (Unique en el DER pero no en la BD)
