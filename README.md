@@ -42,6 +42,8 @@ Reservas
 <br>
 Reservas_Habitaciones
 <br>
+Usuarios_ReservasCancelaciones
+<br>
 
 <b>No hay que migrar:</b>
 <br>
@@ -59,8 +61,7 @@ Clientes_Estadias
 <br>
 Facturas
 <br>
-Usuarios_ReservasCancelaciones
-<br>
+
 Estadias - Mati
 <br>
 Clientes_Errores
