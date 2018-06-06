@@ -44,6 +44,8 @@ Reservas_Habitaciones
 <br>
 Usuarios_ReservasCancelaciones
 <br>
+<br>
+Estadias
 
 <b>No hay que migrar:</b>
 <br>
@@ -58,8 +60,6 @@ Usuarios_ReservasModificaciones
 Clientes_Estadias
 <br>
 Facturas
-<br>
-Estadias - Mati
 
 A tener en cuenta:
 - Ver validacion de mail (Unique en el DER pero no en la BD)
