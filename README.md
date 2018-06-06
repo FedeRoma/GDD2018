@@ -36,7 +36,7 @@ Roles_Usuarios
 <br>
 Hoteles_Usuarios
 <br>
--------- aca irian los clientes
+Clientes y Clientes_Errores
 <br>
 Reservas
 <br>
@@ -60,10 +60,6 @@ Clientes_Estadias
 Facturas
 <br>
 Estadias - Mati
-<br>
-Clientes_Errores
-<br>
-Clientes
 
 A tener en cuenta:
 - Ver validacion de mail (Unique en el DER pero no en la BD)
