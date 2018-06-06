@@ -24,9 +24,19 @@ Hoteles
 <br>
 Habitaciones
 <br>
+------ aca irian las Facturas
+<br>
 Items_Facturas
 <br>
 Regimenes_Hoteles
+<br>
+Usuarios
+<br>
+Roles_Usuarios
+<br>
+Hoteles_Usuarios
+<br>
+----- aca irian los Clientes
 <br>
 
 <b>No hay que migrar:</b>
@@ -35,22 +45,20 @@ Tarjetas
 <br>
 BajasHotel
 <br>
+Usuarios_ReservasModificaciones
+<br>
+
 
 <b>Faltan:</b>
 Clientes_Estadias
 Facturas
 Reservas_Habitaciones
 Usuarios_ReservasCancelaciones
-Usuarios_ReservasModificaciones
 Estadias(mati)
-Hoteles_Usuarios
 Status_Habitaciones
-Roles_Usuarios
 Reservas
 Clientes_Errores
-Usuarios
 Inhabilitaciones_Hoteles
-
 Clientes
 Status
 Inhabilitaciones
