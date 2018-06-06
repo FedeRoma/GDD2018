@@ -36,6 +36,12 @@ Roles_Usuarios
 <br>
 Hoteles_Usuarios
 <br>
+-------- aca irian los clientes
+<br>
+-------- aca irian las reservas
+<br>
+Reservas_Habitaciones
+<br>
 
 <b>No hay que migrar:</b>
 <br>
@@ -45,10 +51,11 @@ BajasHotel
 <br>
 Usuarios_ReservasModificaciones
 
+Reservas_Habitaciones
+
 <b>Faltan:</b>
 Clientes_Estadias
 Facturas
-Reservas_Habitaciones
 Usuarios_ReservasCancelaciones
 Estadias(mati)
 Reservas(<B>IMPORTANTE: VER COSTO TOTAL DE FACTURA</B>)
