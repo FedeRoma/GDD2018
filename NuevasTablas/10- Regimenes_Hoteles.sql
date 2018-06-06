@@ -2,7 +2,6 @@ use GD1C2018
 /*-----------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 -- TRASPASO DE DATOS DE gd_esquema.Maestra A Regimenes_Hoteles
 PRINT 'Migrando Regimenes_Hoteles...'
-ALTER TABLE Items_Facturas NOCHECK CONSTRAINT ALL
 insert into Regimenes_Hoteles(
 					ryh_hot_id,
 					ryh_reg_id
