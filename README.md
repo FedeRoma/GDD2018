@@ -54,22 +54,25 @@ Usuarios_ReservasModificaciones
 Reservas_Habitaciones
 
 <b>Faltan:</b>
+<br>
 Clientes_Estadias
+<br>
 Facturas
+<br>
 Usuarios_ReservasCancelaciones
-Estadias(mati)
+<br>
+Estadias - Mati
+<br>
 Reservas(<B>IMPORTANTE: VER COSTO TOTAL DE FACTURA</B>)
+<br>
 Clientes_Errores
+<br>
 Clientes
 
 A tener en cuenta:
 - Ver validacion de mail (Unique en el DER pero no en la BD)
 - campo Hotel_recarga_estrella no migrado
 - campo Habitacion_tipo_porcentual no migrado
-
-Federico Romano tareas realizando: Factura
-
-Mati y Pablo: Usuarios
 
 ESTUDIAR C#
 Pablo se puso la 10
