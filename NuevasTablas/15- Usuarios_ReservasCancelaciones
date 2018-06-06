@@ -11,7 +11,7 @@ insert into Usuarios_ReservasCancelaciones(
 select										distinct res_id,
 											usu_id,
 											res_fecha,
-											'Cancelación tabla maestra'
+											'CancelaciÃ³n tabla maestra'
 from 		reservas r,
 			usuarios u,
 			estados e
