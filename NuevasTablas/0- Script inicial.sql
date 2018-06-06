@@ -261,13 +261,14 @@ GO
 
 CREATE TABLE [Clientes_Errores]
 (
+ [cye_id]            INT IDENTITY (1, 1) NOT NULL ,
  [cye_doc_id]        INT NOT NULL ,
  [cye_documento]     BIGINT NOT NULL ,
  [cye_nombre]        VARCHAR(50) NOT NULL ,
  [cye_apellido]      VARCHAR(50) NOT NULL ,
  [cye_mail]          VARCHAR(50) NOT NULL ,
  [cye_nacionalidad]  VARCHAR(50) NOT NULL ,
- [cye_fecha_nach]    DATE NOT NULL ,
+ [cye_fecha_nac]     DATE NOT NULL ,
  [cye_habilitado]    BIT NOT NULL ,
  [cye_calle]         VARCHAR(50) NOT NULL ,
  [cye_calle_nro]     INT NOT NULL ,
@@ -276,7 +277,7 @@ CREATE TABLE [Clientes_Errores]
  [cye_dir_localidad] VARCHAR(50) NOT NULL ,
  [cye_dir_pais]      VARCHAR(50) NOT NULL ,
  [cye_telefono]      NVARCHAR(50) NOT NULL ,
- [cye_id]            INT IDENTITY (1, 1) NOT NULL ,
+ [cye_error]         VARCHAR(50) NOT NULL ,
 
  CONSTRAINT [PK_Clientes_Errores] PRIMARY KEY CLUSTERED ([cye_id] ASC),
  CONSTRAINT [FK_630] FOREIGN KEY ([cye_doc_id])
