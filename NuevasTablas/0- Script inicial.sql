@@ -627,18 +627,21 @@ GO
 
 CREATE TABLE [Clientes_Estadias]
 (
- [cye_cli_documento] BIGINT NOT NULL ,
+ [cye_cli_documento] BIGINT NULL ,
  [cye_est_res_id]    INT NOT NULL ,
  [cye_hab_id]        INT NOT NULL ,
  [cye_hab_hot_id]    INT NOT NULL ,
- [cye_cli_doc_id]    INT NOT NULL ,
+ [cye_cli_doc_id]    INT NULL ,
+ [cye_cye_id]        INT NULL ,
 
  CONSTRAINT [FK_560] FOREIGN KEY ([cye_cli_documento], [cye_cli_doc_id])
   REFERENCES [Clientes]([cli_documento], [cli_doc_id]),
  CONSTRAINT [FK_565] FOREIGN KEY ([cye_est_res_id])
   REFERENCES [Estadias]([est_res_id]),
  CONSTRAINT [FK_569] FOREIGN KEY ([cye_hab_id], [cye_hab_hot_id])
-  REFERENCES [Habitaciones]([hab_id], [hab_hot_id])
+  REFERENCES [Habitaciones]([hab_id], [hab_hot_id]),
+ CONSTRAINT [FK_658] FOREIGN KEY ([cye_cye_id])
+  REFERENCES [Clientes_Errores]([cye_id])
 );
 GO
 
@@ -648,6 +651,8 @@ GO
 --SKIP Index: [fkIdx_565]
 
 --SKIP Index: [fkIdx_569]
+
+--SKIP Index: [fkIdx_658]
 
 
 --************************************** [Facturas]
