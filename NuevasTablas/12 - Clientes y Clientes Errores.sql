@@ -12,11 +12,29 @@ CREATE TABLE #TemporalClientesRepetidos (
 );
 GO
 
--- insertando los datos actuales de la tabla proyecto
+-- insertando los CLIENTES CON PASAPORTE REPETIDO EN LA TABLA TEMPORAL
 INSERT INTO #TemporalClientesRepetidos(pasaporte_repetido)
 select distinct m1.Cliente_Pasaporte_Nro from gd_esquema.Maestra m1, gd_esquema.Maestra m2 where m1.Cliente_Pasaporte_Nro = m2.Cliente_Pasaporte_Nro and m1.Cliente_Nombre <> m2.Cliente_Nombre 
 		order by m1.Cliente_Pasaporte_Nro
 GO
+-- insertando los CLIENTES CON MAIL REPETIDO EN LA TABLA TEMPORAL
+INSERT INTO #TemporalClientesRepetidos(pasaporte_repetido)
+select distinct m1.Cliente_Pasaporte_Nro from gd_esquema.Maestra m1, gd_esquema.Maestra m2 where m1.Cliente_Mail = m2.Cliente_Mail and m1.Cliente_Nombre <> m2.Cliente_Nombre 
+		order by m1.Cliente_Pasaporte_Nro
+GO
+
+--ACA QUEDE LABURANDO CON LOS REPETIDOS DE MAIL
+/*
+select tipoDoc,nroDoc,apellido,nombre,fecha_nac,mail,direccion,nacionalidad,
+	habilitado,telefono,'mail duplicado'
+from GESTION_DE_GATOS.Cliente
+Where idCli >
+(select MIN(idCli)
+from GESTION_DE_GATOS.Cliente as auxCli
+where Cliente.mail = auxCli.mail
+
+*/
+
 /*------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 -- TRASPASO DE DATOS DE gd_esquema.Maestra A Clientes_Errores
 PRINT 'Migrando Clientes Errores...'
@@ -39,3 +57,8 @@ INSERT INTO Clientes
 	from gd_esquema.Maestra m where m.cliente_pasaporte_nro not in(select * from #TemporalClientesRepetidos)
 PRINT 'Clientes Migrados Papaaaa...'
 DROP TABLE #TemporalClientesRepetidos;
+
+-- Agrego ahora la condicion de que mails sea unico en clientes
+
+Alter table Clientes
+add constraint cli_mail UNIQUE (cli_mail);

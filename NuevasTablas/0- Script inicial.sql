@@ -41,7 +41,7 @@ DROP TABLE [Reservas];
 GO
 
 
-DROP TABLE [Clientes_Errores];
+DROP TABLE [ClientesErrores];
 GO
 
 
@@ -257,9 +257,9 @@ GO
 
 
 
---************************************** [Clientes_Errores]
+--************************************** [ClientesErrores]
 
-CREATE TABLE [Clientes_Errores]
+CREATE TABLE [ClientesErrores]
 (
  [cye_id]            INT IDENTITY (1, 1) NOT NULL ,
  [cye_doc_id]        INT NOT NULL ,
@@ -506,7 +506,7 @@ CREATE TABLE [Reservas]
  CONSTRAINT [FK_533] FOREIGN KEY ([res_usu_id])
   REFERENCES [Usuarios]([usu_id]),
  CONSTRAINT [FK_592] FOREIGN KEY ([res_cye_id])
-  REFERENCES [Clientes_Errores]([cye_id])
+  REFERENCES [ClientesErrores]([cye_id])
 );
 GO
 
@@ -641,7 +641,7 @@ CREATE TABLE [Clientes_Estadias]
  CONSTRAINT [FK_569] FOREIGN KEY ([cye_hab_id], [cye_hab_hot_id])
   REFERENCES [Habitaciones]([hab_id], [hab_hot_id]),
  CONSTRAINT [FK_658] FOREIGN KEY ([cye_cye_id])
-  REFERENCES [Clientes_Errores]([cye_id])
+  REFERENCES [ClientesErrores]([cye_id])
 );
 GO
 
@@ -676,7 +676,7 @@ CREATE TABLE [Facturas]
  CONSTRAINT [FK_462] FOREIGN KEY ([fac_est_res_id])
   REFERENCES [Estadias]([est_res_id]),
  CONSTRAINT [FK_597] FOREIGN KEY ([fac_cye_id])
-  REFERENCES [Clientes_Errores]([cye_id]),
+  REFERENCES [ClientesErrores]([cye_id]),
  CONSTRAINT [FK_604] FOREIGN KEY ([fac_med_id])
   REFERENCES [MediosPago]([med_id]),
  CONSTRAINT [FK_621] FOREIGN KEY ([fac_tar_id])
