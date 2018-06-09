@@ -720,5 +720,7 @@ drop table EN_CASA_ANDABA.Regimenes
 drop table EN_CASA_ANDABA.Estados
 drop table EN_CASA_ANDABA.TiposHabitaciones
 drop table EN_CASA_ANDABA.Documentos
+PRINT 'Chau Tablas!'
 drop schema EN_CASA_ANDABA
+PRINT 'Chau Schema!'
 */
