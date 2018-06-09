@@ -105,7 +105,7 @@ create table EN_CASA_ANDABA.Hoteles_Usuarios (
 
 create table EN_CASA_ANDABA.Facturas (
 	fac_id int NOT NULL,
-	fac_cli_documento bigint NOT NULL,
+	fac_cli_documento bigint NULL,
 	fac_fecha date NOT NULL,
 	fac_total int NOT NULL,
 	fac_est_res_id int NOT NULL,
@@ -155,9 +155,9 @@ create table EN_CASA_ANDABA.Reservas (
 	res_fin date NOT NULL,
 	res_tip_id int NOT NULL,
 	res_reg_id int NOT NULL,
-	res_cli_documento bigint NOT NULL,
+	res_cli_documento bigint NULL,
 	res_usu_id int NOT NULL,
-	res_cli_doc_id int NOT NULL,
+	res_cli_doc_id int NULL,
 	res_cye_id int NULL)
 
 create table EN_CASA_ANDABA.Reservas_Habitaciones (
@@ -560,18 +560,6 @@ insert into EN_CASA_ANDABA.Habitaciones (hab_hot_id, hab_tip_id, hab_numero, hab
 go
 PRINT 'Habitaciones... OK!'
 
-PRINT 'Facturas... NO!'
-
-alter table EN_CASA_ANDABA.Items_Facturas NOCHECK CONSTRAINT ALL --quitar al migrar facturas
-insert into EN_CASA_ANDABA.Items_Facturas (iyf_con_id, iyf_fac_id, iyf_cantidad, iyf_monto)
-	select distinct consumible_codigo, factura_nro, sum(item_factura_monto), sum(item_factura_cantidad)
-		from gd_esquema.Maestra
-		where consumible_codigo is not null
-		group by consumible_codigo, factura_nro
-		order by factura_nro,consumible_codigo
-go
-PRINT 'Items_Facturas... OK!'
-
 insert into EN_CASA_ANDABA.Regimenes_Hoteles (ryh_hot_id, ryh_reg_id)
 	select distinct 
 		(select hot_id from EN_CASA_ANDABA.Hoteles where Hotel_Calle = hot_calle and Hotel_Ciudad = hot_ciudad),
@@ -624,8 +612,8 @@ insert into EN_CASA_ANDABA.Clientes
 		Cliente_Depto, null, null, null
 		from gd_esquema.Maestra M where M.cliente_pasaporte_nro not in (select * from #TemporalClientesRepetidos)
 go
-PRINT 'Clientes... OK!'
 drop table #TemporalClientesRepetidos
+PRINT 'Clientes... OK!'
 
 alter table EN_CASA_ANDABA.Reservas NOCHECK CONSTRAINT all --quitar al migrar facturas
 alter table EN_CASA_ANDABA.Reservas
@@ -683,3 +671,35 @@ insert into EN_CASA_ANDABA.Estadias (est_res_id, est_usu_alta, est_checkin, est_
 		from EN_CASA_ANDABA.Reservas R, gd_esquema.Maestra M, EN_CASA_ANDABA.Usuarios U
 		where M.Reserva_Codigo = R.res_id and U.usu_id = R.res_usu_id and M.Estadia_Fecha_Inicio is not null
 PRINT 'Estadias... OK!'
+
+-- facturas clientes
+insert into EN_CASA_ANDABA.Facturas
+	select distinct M.Factura_Nro, C.cli_documento, M.Factura_Fecha, M.Factura_Total + E.est_precio, 
+			E.est_res_id, mp.med_id, null, c.cli_doc_id, null
+		from gd_esquema.Maestra M, EN_CASA_ANDABA.Clientes C, EN_CASA_ANDABA.Estadias E, 
+			EN_CASA_ANDABA.MediosPago MP, EN_CASA_ANDABA.Reservas R
+		where M.Factura_Nro is not null and M.Reserva_Codigo = R.res_id and E.est_res_id = R.res_id
+			and MP.med_desc = 'Efectivo' and R.res_cli_documento = C.cli_documento 
+			and R.res_cli_doc_id = C.cli_doc_id and M.Consumible_Codigo is null
+		order by M.Factura_Nro
+-- facturas clientesErrores
+insert into EN_CASA_ANDABA.Facturas
+	select distinct M.Factura_Nro, C.cye_documento, M.Factura_Fecha, M.Factura_Total + E.est_precio,
+			E.est_res_id, mp.med_id, null, C.cye_doc_id, C.cye_id
+		from gd_esquema.Maestra M, EN_CASA_ANDABA.ClientesErrores C, EN_CASA_ANDABA.Estadias E, 
+			EN_CASA_ANDABA.MediosPago MP, EN_CASA_ANDABA.Reservas R
+		where M.Factura_Nro is not null and M.Reserva_Codigo = R.res_id and E.est_res_id = R.res_id
+			and MP.med_desc = 'Efectivo' and R.res_cli_documento = C.cye_documento 
+			and R.res_cli_doc_id = C.cye_doc_id and M.Consumible_Codigo is null and M.Cliente_Nombre = cye_nombre
+	order by M.Factura_Nro
+go
+PRINT 'Facturas... OK!'
+
+insert into EN_CASA_ANDABA.Items_Facturas (iyf_con_id, iyf_fac_id, iyf_cantidad, iyf_monto)
+	select distinct consumible_codigo, factura_nro, sum(item_factura_monto), sum(item_factura_cantidad)
+		from gd_esquema.Maestra
+		where consumible_codigo is not null
+		group by consumible_codigo, factura_nro
+		order by factura_nro,consumible_codigo
+go
+PRINT 'Items_Facturas... OK!'
