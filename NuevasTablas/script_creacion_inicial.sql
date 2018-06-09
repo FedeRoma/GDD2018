@@ -1,12 +1,16 @@
 use [GD1C2018]
-GO
+go
 
-----------	ESQUEMA
+-------------------------------------------------------------------------------
+---------- ESQUEMA ------------------------------------------------------------
+-------------------------------------------------------------------------------
 
 create schema [EN_CASA_ANDABA] AUTHORIZATION [gdHotel2018] 
-GO
+go
 
-----------	TABLAS
+-------------------------------------------------------------------------------
+---------- CREACION TABLAS ----------------------------------------------------
+-------------------------------------------------------------------------------
 
 create table EN_CASA_ANDABA.Clientes (
 	cli_documento bigint NOT NULL,
@@ -153,7 +157,7 @@ create table EN_CASA_ANDABA.Reservas (
 	res_cli_documento bigint NOT NULL,
 	res_usu_id int NOT NULL,
 	res_fac_cli_doc_id int NOT NULL,
-	res_cye_id int NOT NULL)
+	res_cye_id int NULL)
 
 create table EN_CASA_ANDABA.Reservas_Habitaciones (
 	ryh_hab_id int NOT NULL,
@@ -222,7 +226,9 @@ create table EN_CASA_ANDABA.Usuarios_ReservasModificaciones (
 
 PRINT 'TABLAS CREADAS'
 
-----------	PK
+-------------------------------------------------------------------------------
+---------- PK -----------------------------------------------------------------
+-------------------------------------------------------------------------------
 
 alter table EN_CASA_ANDABA.Clientes
 	ADD CONSTRAINT PK_Clientes PRIMARY KEY CLUSTERED (cli_documento ASC, cli_doc_id ASC)
@@ -292,10 +298,12 @@ alter table EN_CASA_ANDABA.Usuarios_ReservasCancelaciones
 
 alter table EN_CASA_ANDABA.Usuarios_ReservasModificaciones
 	ADD CONSTRAINT PK_Usuarios_ReservasModificaciones PRIMARY KEY CLUSTERED (urm_id ASC)
- 
+
 PRINT 'PK ASIGNADAS'
-				
-----------	FK
+
+-------------------------------------------------------------------------------				
+---------- FK -----------------------------------------------------------------
+-------------------------------------------------------------------------------
 
 alter table EN_CASA_ANDABA.Clientes
 	ADD CONSTRAINT FK_Clientes_Documentos FOREIGN KEY (cli_doc_id)
@@ -431,37 +439,286 @@ alter table EN_CASA_ANDABA.Usuarios_ReservasModificaciones
 	ADD CONSTRAINT FK_Usuarios_ReservasModificaciones_Usuarios FOREIGN KEY (urm_usu_id)
 		REFERENCES EN_CASA_ANDABA.Usuarios(usu_id)
 
- 
 PRINT 'FK ASIGNADAS'
 
-/*	DROPs
-drop table EN_CASA_ANDABA.BajasHotel
-drop table EN_CASA_ANDABA.Clientes
-drop table EN_CASA_ANDABA.Clientes_Estadias
-drop table EN_CASA_ANDABA.ClientesErrores
-drop table EN_CASA_ANDABA.Consumibles
-drop table EN_CASA_ANDABA.Documentos
-drop table EN_CASA_ANDABA.Estadias
-drop table EN_CASA_ANDABA.Estados
-drop table EN_CASA_ANDABA.Facturas
-drop table EN_CASA_ANDABA.Funcionalidades
-drop table EN_CASA_ANDABA.Funcionalidades_Roles
-drop table EN_CASA_ANDABA.Habitaciones
-drop table EN_CASA_ANDABA.Hoteles
-drop table EN_CASA_ANDABA.Hoteles_Usuarios
+-------------------------------------------------------------------------------				
+---------- MIGRACIONES ---------------------------------------------------------
+-------------------------------------------------------------------------------
+
+insert into EN_CASA_ANDABA.Documentos (doc_desc)
+values
+	('Pasaporte'),
+	('Documento Nacional de Identidad'),
+	('Libreta Civica'),
+	('Libreta de Enrolamiento')
+go
+PRINT 'Documentos... OK!'
+
+insert into EN_CASA_ANDABA.Estados (estados_desc)
+values
+	('Reserva CORRECTA'),
+	('Reserva MODIFICADA'),
+	('Reserva CANCELADA MAESTRA'),
+	('Reserva CANCELADA POR RECEPCION'),
+	('Reserva CANCELADA POR CLIENTE'),
+	('Reserva CANCELADA POR NO-SHOW'),
+	('Reserva CON INGRESO')
+go
+PRINT 'Estados... OK!'
+
+insert into EN_CASA_ANDABA.MediosPago (med_desc)
+values 
+	('Efectivo'),
+	('Tarjeta')
+go
+PRINT 'MediosPago... OK!'
+
+insert into EN_CASA_ANDABA.Roles (rol_nombre, rol_estado)
+values
+	('Administrador', 1),
+	('Recepcionista', 1),
+	('Guest', 1),
+	('SysAdmin', 1)
+go
+PRINT 'Roles... OK!'
+
+insert into EN_CASA_ANDABA.Funcionalidades (fun_desc)
+values
+	('ABM Rol'),
+	('ABM Usuario'),
+	('ABM Cliente'),
+	('ABM Hotel'),
+	('ABM Habitación'),
+	('ABM Régimen'),
+	('Generar Reserva'),
+	('Modificar Reserva'),
+	('Baja Reserva'),
+	('Registrar Estadía'),
+	('Registar Consumibles'),
+	('Listado Estadístico')
+go
+PRINT 'Funcionalidades... OK!'
+
+insert into EN_CASA_ANDABA.Funcionalidades_Roles (fyr_rol_id, fyr_fun_id)
+	select distinct R.rol_id, F.fun_id 
+		from EN_CASA_ANDABA.Roles R, EN_CASA_ANDABA.Funcionalidades F
+		where R.rol_nombre = 'SysAdmin';
+insert into EN_CASA_ANDABA.Funcionalidades_Roles (fyr_rol_id, fyr_fun_id)
+	select distinct R.rol_id, F.fun_id 
+		from EN_CASA_ANDABA.Roles R, EN_CASA_ANDABA.Funcionalidades F
+		where R.rol_nombre = 'Administrador' and F.fun_desc in ('ABM Hotel', 'ABM Habitación', 'ABM Régimen', 'ABM Usuario');
+insert into EN_CASA_ANDABA.Funcionalidades_Roles (fyr_rol_id, fyr_fun_id)
+	select distinct R.rol_id, F.fun_id 
+		from EN_CASA_ANDABA.Roles R, EN_CASA_ANDABA.Funcionalidades F
+		where R.rol_nombre = 'Recepcionista' and F.fun_desc in ('ABM Cliente', 'Generar Reserva', 'Modificar Reserva', 'Baja Reserva', 'Registrar Estadía', 'Registar Consumibles');			
+insert into EN_CASA_ANDABA.Funcionalidades_Roles (fyr_rol_id, fyr_fun_id)
+	select distinct R.rol_id, F.fun_id 
+		from EN_CASA_ANDABA.Roles R, EN_CASA_ANDABA.Funcionalidades F
+		where R.rol_nombre = 'Guest' and F.fun_desc in ('Generar Reserva', 'Modificar Reserva', 'Baja Reserva');
+go
+PRINT 'Funcionalidades_Roles... OK!'
+
+insert into EN_CASA_ANDABA.TiposHabitaciones (tip_id, tip_nombre, tip_porcentual, tip_personas)
+	select distinct Habitacion_Tipo_codigo, Habitacion_Tipo_descripcion, Habitacion_Tipo_porcentual, 1 from gd_esquema.Maestra
+		update EN_CASA_ANDABA.TiposHabitaciones
+			set tip_personas = case when tip_nombre = 'Base Simple' Then 1
+									when tip_nombre = 'Base Doble' Then 2
+									when tip_nombre = 'Base Triple' Then 3
+									when tip_nombre = 'Base Cuadruple' Then 4
+									else 5 end
+go
+PRINT 'TiposHabitaciones... OK!'
+
+insert into EN_CASA_ANDABA.Regimenes (reg_desc, reg_precio, reg_habilitado)
+	select distinct Regimen_Descripcion, Regimen_Precio, 1 
+		from gd_esquema.Maestra
+go
+PRINT 'Regimenes... OK!'
+
+insert into EN_CASA_ANDABA.Consumibles (con_id, con_desc, con_precio)
+	select distinct Consumible_Codigo, Consumible_Descripcion, Consumible_Precio 
+		from gd_esquema.Maestra
+		where Consumible_Codigo is not null
+go
+PRINT 'Consumibles... OK!'
+
+insert into EN_CASA_ANDABA.Hoteles (hot_estrellas, hot_calle, hot_calle_nro, hot_ciudad, hot_habilitado)
+	select distinct hotel_cantestrella, hotel_calle, hotel_nro_calle, hotel_ciudad,	1 
+		from gd_esquema.Maestra
+go
+PRINT 'Hoteles... OK!'
+
+insert into EN_CASA_ANDABA.Habitaciones (hab_hot_id, hab_tip_id, hab_numero, hab_piso, hab_vista, hab_habilitado)
+	select distinct H.hot_id, M.habitacion_tipo_codigo, M.Habitacion_Numero, M.Habitacion_Piso, M.Habitacion_Frente, 1 
+		from gd_esquema.Maestra M, EN_CASA_ANDABA.Hoteles H
+		where H.hot_calle = M.hotel_calle and H.hot_calle_nro = M.hotel_nro_calle
+		order by m.habitacion_tipo_codigo, H.hot_id
+go
+PRINT 'Habitaciones... OK!'
+
+PRINT 'Facturas... NO!'
+
+alter table EN_CASA_ANDABA.Items_Facturas NOCHECK CONSTRAINT ALL --quitar al migrar facturas
+insert into EN_CASA_ANDABA.Items_Facturas (iyf_con_id, iyf_fac_id, iyf_cantidad, iyf_monto)
+	select distinct consumible_codigo, factura_nro, sum(item_factura_monto), sum(item_factura_cantidad)
+		from gd_esquema.Maestra
+		where consumible_codigo is not null
+		group by consumible_codigo, factura_nro
+		order by factura_nro,consumible_codigo
+go
+PRINT 'Items_Facturas... OK!'
+
+insert into EN_CASA_ANDABA.Regimenes_Hoteles (ryh_hot_id, ryh_reg_id)
+	select distinct 
+		(select hot_id from EN_CASA_ANDABA.Hoteles where Hotel_Calle = hot_calle and Hotel_Ciudad = hot_ciudad),
+		(select reg_id from EN_CASA_ANDABA.Regimenes where  Regimen_Descripcion = reg_desc and reg_precio = Regimen_Precio )
+		from gd_esquema.Maestra
+go
+PRINT 'Regimenes_Hoteles... OK!'
+
+insert into EN_CASA_ANDABA.Usuarios (usu_nombre, usu_password, usu_estado, usu_apellido, usu_mail, usu_tel, 
+								usu_fecha_nac, usu_documento, usu_intentos, usu_direccion, usu_username, usu_doc_id)
+values
+	('admin', hashbytes('SHA2_256', CAST(12345678 as NVARCHAR(50))), 1, 'admin', 'admin@en_casa_andaba.com', '4000-0000',
+		getdate(), 12345678, 0, 'admin', 'admin', 1)
+-- Rol de admin: SysAdmin
+insert into EN_CASA_ANDABA.Roles_Usuarios (ryu_usu_id, ryu_rol_id)
+	select U.usu_id, R.rol_id
+		from EN_CASA_ANDABA.Usuarios U, EN_CASA_ANDABA.Roles R 
+		where U.usu_username = 'admin' and rol_nombre = 'SysAdmin'
+-- Hoteles del admin: TODOS
+insert into EN_CASA_ANDABA.Hoteles_Usuarios (hyu_usu_id, hyu_hot_id)
+	select U.usu_id, H.hot_id from EN_CASA_ANDABA.Usuarios U, EN_CASA_ANDABA.Hoteles H 
+		where U.usu_username = 'admin'
+go
+PRINT 'Usuarios... OK!'
+
+-- TABLA TEMPORAL DE CLIENTES REPETIDOS
+-- elimina si ya existe
+if OBJECT_ID( N'tempdb..#TemporalClientesRepetidos') is not null drop table #TemporalClientesRepetidos;
+-- crea tabla temporal
+create table #TemporalClientesRepetidos (pasaporte_repetido numeric(18,0))
+-- inserta clientes repetidos 
+insert into #TemporalClientesRepetidos (pasaporte_repetido)
+	select distinct M1.Cliente_Pasaporte_Nro 
+		from gd_esquema.Maestra M1, gd_esquema.Maestra M2 
+		where M1.Cliente_Pasaporte_Nro = M2.Cliente_Pasaporte_Nro and M1.Cliente_Nombre <> M2.Cliente_Nombre 
+		order by M1.Cliente_Pasaporte_Nro
+-- FIN TABLA TEMPORAL DE CLIENTES REPETIDOS
+
+insert into EN_CASA_ANDABA.ClientesErrores
+	select distinct 1, Cliente_Pasaporte_Nro, Cliente_Nombre, Cliente_Apellido, Cliente_Mail,
+		Cliente_Nacionalidad, Cliente_Fecha_Nac, 1, Cliente_Dom_Calle, Cliente_Nro_Calle, Cliente_Piso,
+		Cliente_Depto, null, null, null, 'Pasaporte Repetido'
+		from gd_esquema.Maestra M where M.cliente_pasaporte_nro in (select * from #TemporalClientesRepetidos)
+go
+PRINT 'ClientesErrores... OK!'
+
+insert into EN_CASA_ANDABA.Clientes
+	select distinct Cliente_Pasaporte_Nro, 1, Cliente_Nombre, Cliente_Apellido, Cliente_Mail,
+		Cliente_Nacionalidad, Cliente_Fecha_Nac, 1, Cliente_Dom_Calle, Cliente_Nro_Calle, Cliente_Piso,
+		Cliente_Depto, null, null, null
+		from gd_esquema.Maestra M where M.cliente_pasaporte_nro not in (select * from #TemporalClientesRepetidos)
+go
+PRINT 'Clientes... OK!'
+drop table #TemporalClientesRepetidos
+
+alter table EN_CASA_ANDABA.Reservas NOCHECK CONSTRAINT all --quitar al migrar facturas
+alter table EN_CASA_ANDABA.Reservas
+alter column res_estados_id int NULL
+insert into EN_CASA_ANDABA.Reservas (res_id, res_fecha, res_inicio, res_fin, res_tip_id, res_reg_id, 
+								res_cli_documento, res_usu_id, res_fac_cli_doc_id)
+	select distinct reserva_codigo, getdate(), reserva_fecha_inicio, 
+					dateadd(day, reserva_cant_noches, reserva_fecha_inicio),
+					Habitacion_Tipo_Codigo, reg_id, Cliente_Pasaporte_Nro, usu_id, 1
+		from gd_esquema.Maestra M, EN_CASA_ANDABA.Regimenes R, EN_CASA_ANDABA.Usuarios U
+		where M.regimen_descripcion = R.reg_desc and U.usu_username = 'admin'
+go
+update EN_CASA_ANDABA.Reservas
+	set res_estados_id =
+				case when 
+					(res_id in (select distinct reserva_codigo from gd_esquema.maestra
+										where factura_nro is not null and estadia_fecha_inicio is not null))
+				then
+					(select estados_id from EN_CASA_ANDABA.Estados	
+						where estados_desc='Reserva CON INGRESO')
+				else
+					(select estados_id from EN_CASA_ANDABA.Estados 
+						where estados_desc='Reserva CANCELADA MAESTRA')
+				end
+-- Vuelvo a poner como NOT NULL el estado de la reserva
+alter table EN_CASA_ANDABA.Reservas
+alter column res_estados_id int NOT NULL
+go
+PRINT 'Reservas... OK!'
+
+insert into EN_CASA_ANDABA.Reservas_Habitaciones(ryh_hab_id, ryh_hab_hot_id, ryh_res_id)
+	select distinct Ha.hab_id, Ho.hot_id, M.reserva_codigo
+		from gd_esquema.Maestra M, EN_CASA_ANDABA.Habitaciones Ha, EN_CASA_ANDABA.Hoteles Ho
+		where Ho.hot_calle = M.hotel_calle and Ho.hot_calle_nro = M.hotel_nro_calle
+				and Ha.hab_hot_id = Ho.hot_id and Ha.hab_numero = M.Habitacion_Numero
+				and Ha.hab_piso = M.Habitacion_Piso
+		order by reserva_codigo
+go
+PRINT 'Reservas_Habitaciones... OK!'
+
+insert into EN_CASA_ANDABA.Usuarios_ReservasCancelaciones (urc_res_id, urc_usu_id, urc_fecha, urc_motivo)
+	select distinct res_id, usu_id, res_fecha, 'Cancelación Tabla Maestra'
+		from EN_CASA_ANDABA.Reservas R,	EN_CASA_ANDABA.Usuarios U, EN_CASA_ANDABA.Estados E
+		where R.res_estados_id = E.estados_id and E.estados_desc = 'Reserva CANCELADA MAESTRA'
+				and	U.usu_username = 'admin'
+go
+PRINT 'Usuarios_ReservasCancelaciones... OK!'
+
+/* 
+--SELECTs Prueba
+select * from EN_CASA_ANDABA.Documentos
+select * from EN_CASA_ANDABA.Estados
+select * from EN_CASA_ANDABA.MediosPago
+select * from EN_CASA_ANDABA.Roles
+select * from EN_CASA_ANDABA.Funcionalidades
+select * from EN_CASA_ANDABA.Funcionalidades_Roles
+select * from EN_CASA_ANDABA.TiposHabitaciones
+select * from EN_CASA_ANDABA.Regimenes
+select * from EN_CASA_ANDABA.Consumibles
+select * from EN_CASA_ANDABA.Hoteles
+select * from EN_CASA_ANDABA.Habitaciones
+select * from EN_CASA_ANDABA.Facturas
+select * from EN_CASA_ANDABA.Items_Facturas
+select * from EN_CASA_ANDABA.Regimenes_Hoteles
+select * from #TemporalClientesRepetidos
+select * from EN_CASA_ANDABA.ClientesErrores
+select * from EN_CASA_ANDABA.Clientes
+select * from EN_CASA_ANDABA.Reservas
+select * from EN_CASA_ANDABA.
+*/ /* 
+--DROPs
 drop table EN_CASA_ANDABA.Items_Facturas
+drop table EN_CASA_ANDABA.Consumibles
+drop table EN_CASA_ANDABA.Facturas
 drop table EN_CASA_ANDABA.MediosPago
-drop table EN_CASA_ANDABA.Regimenes
-drop table EN_CASA_ANDABA.Regimenes_Hoteles
-drop table EN_CASA_ANDABA.Reservas
-drop table EN_CASA_ANDABA.Reservas_Habitaciones
-drop table EN_CASA_ANDABA.Roles
-drop table EN_CASA_ANDABA.Roles_Usuarios
 drop table EN_CASA_ANDABA.Tarjetas
-drop table EN_CASA_ANDABA.TiposHabitaciones
-drop table EN_CASA_ANDABA.Usuarios
+drop table EN_CASA_ANDABA.BajasHotel
+drop table EN_CASA_ANDABA.Hoteles_Usuarios
 drop table EN_CASA_ANDABA.Usuarios_ReservasCancelaciones
 drop table EN_CASA_ANDABA.Usuarios_ReservasModificaciones
+drop table EN_CASA_ANDABA.Regimenes_Hoteles
+drop table EN_CASA_ANDABA.Funcionalidades_Roles
+drop table EN_CASA_ANDABA.Funcionalidades
+drop table EN_CASA_ANDABA.Clientes_Estadias
+drop table EN_CASA_ANDABA.Reservas_Habitaciones
+drop table EN_CASA_ANDABA.Habitaciones
+drop table EN_CASA_ANDABA.Hoteles
+drop table EN_CASA_ANDABA.Roles_Usuarios
+drop table EN_CASA_ANDABA.Roles
+drop table EN_CASA_ANDABA.Estadias
+drop table EN_CASA_ANDABA.Reservas
+drop table EN_CASA_ANDABA.Usuarios
+drop table EN_CASA_ANDABA.Clientes
+drop table EN_CASA_ANDABA.ClientesErrores
+drop table EN_CASA_ANDABA.Regimenes
+drop table EN_CASA_ANDABA.Estados
+drop table EN_CASA_ANDABA.TiposHabitaciones
+drop table EN_CASA_ANDABA.Documentos
 drop schema EN_CASA_ANDABA
-GO
 */
