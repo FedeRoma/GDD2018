@@ -1,61 +1,6 @@
 # GDD2018
-<b>Cosas realizadas:</b>
-<br>
-Documentos
-<br>
-Estados
-<br>
-MediosPago
-<br>
-Roles
-<br>
-Funcionalidades
-<br>
-Funcionalidades_Roles
-<br>
-TiposHabitaciones
-<br>
-Regimenes
-<br>
-Consumibles
-<br>
-Hoteles
-<br>
-Habitaciones
-<br>
-Regimenes_Hoteles
-<br>
-Usuarios
-<br>
-Roles_Usuarios
-<br>
-Hoteles_Usuarios
-<br>
-Clientes y Clientes_Errores
-<br>
-Reservas
-<br>
-Reservas_Habitaciones
-<br>
-Usuarios_ReservasCancelaciones
-<br>
-<br>
-Estadias
------- aca irian las Facturas
-<br>
-Items_Facturas
-<br>
-<b>No hay que migrar:</b>
-<br>
-Tarjetas
-<br>
-BajasHotel
-<br>
-Usuarios_ReservasModificaciones
 
-<b>Faltan:</b>
-<br>
-Clientes_Estadias
+<b>Falta migrar la tabla:</b>
 <br>
 Facturas
 
