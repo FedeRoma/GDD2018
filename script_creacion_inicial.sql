@@ -89,7 +89,8 @@ create table EN_CASA_ANDABA.Habitaciones (
 	hab_piso int NOT NULL,
 	hab_vista char(1) NOT NULL,
 	hab_desc varchar(50) NULL,
-	hab_habilitado bit NULL)
+	hab_habilitado bit NULL,
+	hab_tipo_porcentual int NULL)
 
 create table EN_CASA_ANDABA.TiposHabitaciones (
 	tip_id int NOT NULL,
@@ -549,8 +550,10 @@ insert into EN_CASA_ANDABA.Hoteles (hot_estrellas, hot_calle, hot_calle_nro, hot
 go
 PRINT 'Hoteles... OK!'
 
-insert into EN_CASA_ANDABA.Habitaciones (hab_hot_id, hab_tip_id, hab_numero, hab_piso, hab_vista, hab_habilitado)
-	select distinct H.hot_id, M.habitacion_tipo_codigo, M.Habitacion_Numero, M.Habitacion_Piso, M.Habitacion_Frente, 1 
+insert into EN_CASA_ANDABA.Habitaciones (hab_hot_id, hab_tip_id, hab_numero, hab_piso, hab_vista, hab_habilitado,
+									hab_tipo_porcentual)
+	select distinct H.hot_id, M.habitacion_tipo_codigo, M.Habitacion_Numero, M.Habitacion_Piso, 
+						M.Habitacion_Frente, 1, M.Habitacion_Tipo_Porcentual 
 		from gd_esquema.Maestra M, EN_CASA_ANDABA.Hoteles H
 		where H.hot_calle = M.hotel_calle and H.hot_calle_nro = M.hotel_nro_calle
 		order by m.habitacion_tipo_codigo, H.hot_id
