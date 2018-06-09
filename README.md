@@ -23,10 +23,6 @@ Hoteles
 <br>
 Habitaciones
 <br>
------- aca irian las Facturas
-<br>
-Items_Facturas
-<br>
 Regimenes_Hoteles
 <br>
 Usuarios
