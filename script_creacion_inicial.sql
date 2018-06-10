@@ -773,11 +773,3 @@ insert into EN_CASA_ANDABA.Items_Facturas (iyf_con_id, iyf_fac_id, iyf_cantidad,
 		order by factura_nro,consumible_codigo
 go
 PRINT 'Items_Facturas... OK!'
-
-
-
-
-
-
-
-
