@@ -1,0 +1,6 @@
+Que pasa si un mismo cliente realiza una reserva con DNI y luego con su Pasaporte?
+Segun el enunciado y el DER se podría cargar 2 veces y NO debe ser asi.
+
+
+
+Debemos cargar una tabla donde guardemos los datos de las tarjetas de credito o unicamente con un campo de tipo de pago en factura alcanza.
