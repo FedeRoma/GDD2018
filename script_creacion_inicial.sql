@@ -773,3 +773,27 @@ insert into EN_CASA_ANDABA.Items_Facturas (iyf_con_id, iyf_fac_id, iyf_cantidad,
 		order by factura_nro,consumible_codigo
 go
 PRINT 'Items_Facturas... OK!'
+
+insert into EN_CASA_ANDABA.Clientes_Estadias (cye_cli_documento, cye_est_res_id, cye_hab_id, 
+				cye_hab_hot_id, cye_cli_doc_id)
+	select cli_documento, est_res_id, hab_id, hab_hot_id, cli_doc_id
+		from gd_esquema.Maestra M, EN_CASA_ANDABA.Clientes C, EN_CASA_ANDABA.Estadias E, 
+			EN_CASA_ANDABA.Habitaciones H, EN_CASA_ANDABA.Hoteles HO
+		where M.Cliente_Pasaporte_Nro = C.cli_documento and M.reserva_codigo = est_res_id
+			and H.hab_numero = M.Habitacion_Numero and H.hab_piso = M.Habitacion_Piso
+			and H.hab_hot_id = Ho.hot_id and HO.hot_calle = M.Hotel_Calle
+			and HO.hot_calle_nro = M.Hotel_Nro_Calle
+			and M.Estadia_Fecha_Inicio is not null and M.consumible_codigo is null 
+			and M.factura_nro is not null
+insert into EN_CASA_ANDABA.Clientes_Estadias(cye_est_res_id, cye_hab_id, cye_hab_hot_id, cye_cye_id)
+	select est_res_id, hab_id, hab_hot_id, cye_id
+		from gd_esquema.Maestra M, EN_CASA_ANDABA.ClientesErrores C, EN_CASA_ANDABA.Estadias E, 
+			EN_CASA_ANDABA.Habitaciones h, EN_CASA_ANDABA.Hoteles HO
+		where M.Cliente_Pasaporte_Nro = C.cye_documento and M.reserva_codigo = est_res_id
+			and H.hab_numero = M.Habitacion_Numero and H.hab_piso = M.Habitacion_Piso
+			and H.hab_hot_id = HO.hot_id and HO.hot_calle = M.Hotel_Calle
+			and HO.hot_calle_nro = M.Hotel_Nro_Calle and m.Estadia_Fecha_Inicio is not null 
+			and M.consumible_codigo is null and M.factura_nro is not null
+			and C.cye_nombre = M.Cliente_Nombre and C.cye_apellido = M.Cliente_Apellido
+go
+PRINT 'Clientes_Estadias... OK!'
