@@ -1,11 +1,69 @@
 use [GD1C2018]
 go
-
 -------------------------------------------------------------------------------
 ---------- ESQUEMA ------------------------------------------------------------
 -------------------------------------------------------------------------------
 
-create schema [EN_CASA_ANDABA] AUTHORIZATION [gdHotel2018] 
+create schema EN_CASA_ANDABA AUTHORIZATION gdHotel2018
+go
+
+-------------------------------------------------------------------------------				
+---------- STORED PROCEDURES --------------------------------------------------
+-------------------------------------------------------------------------------
+
+create procedure EN_CASA_ANDABA.buscarHoteles
+	@rol_nombre NVARCHAR(50), @usuario int as
+	select H.hot_id from EN_CASA_ANDABA.Hoteles H, EN_CASA_ANDABA.Hoteles_Usuarios HU, 
+		EN_CASA_ANDABA.Roles R, EN_CASA_ANDABA.Roles_Usuarios RU
+		where HU.hyu_usu_id = @usuario and @rol_nombre = R.rol_nombre and R.rol_id = RU.ryu_rol_id
+			and H.hot_id = HU.hyu_hot_id
+go
+
+create procedure EN_CASA_ANDABA.top5_hoteles_reservas_canceladas
+	@trimestre numeric(18,0), @anio numeric(18,0) as
+	begin
+		declare @inicio datetime
+		declare @fin datetime
+		declare @anioAux char(4)
+		set @anioAux = CAST(@anio as CHAR(4))
+		if (@trimestre = 1)
+			begin
+				set @inicio = '01-01-'+@anioAux
+				set @fin = '31-03-'+@anioAux
+			end
+		else if (@trimestre = 2)
+			begin
+				set @inicio = '01-04-'+@anioAux
+				set @fin = '30-06-'+@anioAux
+			end
+		else if (@trimestre = 3)
+			begin 
+				set @inicio = '01-07-'+@anioAux
+				set @fin = '30-09-'+@anioAux
+			end
+		else if (@trimestre = 4)
+			begin
+				set @inicio = '01-10-'+@anioAux
+				set @fin = '31-12-'+@anioAux
+			end
+		else 
+			begin
+				set @inicio = '01-01-'+@anioAux
+				set @fin = '31-12-'+@anioAux
+			end
+		select top 5 HO.hot_id, count(R.res_estados_id) as cancelados
+			from EN_CASA_ANDABA.reservas R, EN_CASA_ANDABA.hoteles HO, EN_CASA_ANDABA.habitaciones HA,
+				EN_CASA_ANDABA.Reservas_habitaciones RH, EN_CASA_ANDABA.Estados E,
+				EN_CASA_ANDABA.Usuarios_ReservasCancelaciones U_RC
+			where R.res_estados_id = E.estados_id and (E.estados_desc = 'Reserva CANCELADA MAESTRA' or
+				E.estados_desc = 'Reserva CANCELADA POR RECEPCION' or
+  				E.estados_desc = 'Reserva CANCELADA POR NO-SHOW' or
+				E.estados_desc = 'Reserva CANCELADA POR CLIENTE') and
+				HA.hab_id = RH.ryh_hab_id and HA.hab_hot_id = HO.hot_id and U_RC.urc_res_id = R.res_id and
+				RH.ryh_res_id = R.res_id and U_RC.urc_fecha between @inicio and @fin
+			group by HO.hot_id
+			order by cancelados desc				
+		end
 go
 
 -------------------------------------------------------------------------------
@@ -622,18 +680,20 @@ insert into EN_CASA_ANDABA.Reservas (res_id, res_fecha, res_inicio, res_fin, res
 								res_cli_documento, res_usu_id, res_cli_doc_id)
 	select distinct reserva_codigo, getdate(), reserva_fecha_inicio, 
 					dateadd(day, reserva_cant_noches, reserva_fecha_inicio),
-					Habitacion_Tipo_Codigo, reg_id, c.cli_documento, usu_id, 1
+					Habitacion_Tipo_Codigo, reg_id, C.cli_documento, usu_id, 1
 		from gd_esquema.Maestra M, EN_CASA_ANDABA.Regimenes R, EN_CASA_ANDABA.Usuarios U, EN_CASA_ANDABA.Clientes C
-		where M.regimen_descripcion = R.reg_desc and U.usu_username = 'admin' and c.cli_documento = m.Cliente_Pasaporte_Nro
+		where M.regimen_descripcion = R.reg_desc and U.usu_username = 'admin' and C.cli_documento = M.Cliente_Pasaporte_Nro
 go
 -- reservas clientesErrores
 insert into EN_CASA_ANDABA.Reservas (res_id, res_fecha, res_inicio, res_fin, res_tip_id, res_reg_id, 
 								res_usu_id, res_cye_id)
 	select distinct reserva_codigo, getdate(), reserva_fecha_inicio, 
 					dateadd(day, reserva_cant_noches, reserva_fecha_inicio),
-					Habitacion_Tipo_Codigo, reg_id, usu_id, c.cye_id
+					Habitacion_Tipo_Codigo, reg_id, usu_id, C.cye_id
 		from gd_esquema.Maestra M, EN_CASA_ANDABA.Regimenes R, EN_CASA_ANDABA.Usuarios U, EN_CASA_ANDABA.ClientesErrores C
-		where M.regimen_descripcion = R.reg_desc and U.usu_username = 'admin' and c.cye_documento = m.Cliente_Pasaporte_Nro and c.cye_apellido = m.Cliente_Apellido and c.cye_nombre = m.Cliente_Nombre
+		where M.regimen_descripcion = R.reg_desc and U.usu_username = 'admin' 
+			and C.cye_documento = M.Cliente_Pasaporte_Nro and C.cye_apellido = m.Cliente_Apellido 
+			and C.cye_nombre = M.Cliente_Nombre
 go
 
 update EN_CASA_ANDABA.Reservas
@@ -698,18 +758,26 @@ insert into EN_CASA_ANDABA.Facturas
 			E.est_res_id, MP.med_id, null, null, C.cye_id
 		from gd_esquema.Maestra M, EN_CASA_ANDABA.ClientesErrores C, EN_CASA_ANDABA.Estadias E, 
 			EN_CASA_ANDABA.MediosPago MP, EN_CASA_ANDABA.Reservas R
-		where M.Factura_Nro is not null and M.Reserva_Codigo = R.res_id and E.est_res_id = R.res_id
-			and MP.med_desc = 'Efectivo' and R.res_cli_documento = C.cye_documento 
-			and R.res_cli_doc_id = C.cye_doc_id and M.Consumible_Codigo is null and M.Cliente_Nombre = cye_nombre
+		where M.Factura_Nro is not null and M.Consumible_Codigo is null and M.Reserva_Codigo = R.res_id 
+			and E.est_res_id = R.res_id and MP.med_desc = 'Efectivo' and R.res_cye_id = C.cye_id 
+			and M.Cliente_Nombre = cye_nombre
 	order by M.Factura_Nro
 go
 PRINT 'Facturas... OK!'
 
 insert into EN_CASA_ANDABA.Items_Facturas (iyf_con_id, iyf_fac_id, iyf_cantidad, iyf_monto)
 	select distinct consumible_codigo, factura_nro, sum(item_factura_monto), sum(item_factura_cantidad)
-		from gd_esquema.Maestra m, EN_CASA_ANDABA.facturas f
-		where consumible_codigo is not null and m.factura_nro = f.fac_id
+		from gd_esquema.Maestra
+		where consumible_codigo is not null
 		group by consumible_codigo, factura_nro
 		order by factura_nro,consumible_codigo
 go
 PRINT 'Items_Facturas... OK!'
+
+
+
+
+
+
+
+
