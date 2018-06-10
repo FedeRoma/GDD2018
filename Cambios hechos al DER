@@ -12,28 +12,5 @@ Nombres tablas modificadas:
 	Status_Habitaciones
 	Estados (ya se llaba Estados, solo modifique los campos est_id y est_desc por estados_id y estados_desc para que no coincida la PK con estadias)
 	
-DROP TABLE [Item_Factura];
-GO
-DROP TABLE [Estadia];
-GO
-DROP TABLE [Factura];
-GO
-DROP TABLE [Usuario];
-GO
-DROP TABLE [Rol_Usuario];
-GO
-DROP TABLE [Rol];
-GO
-DROP TABLE [Funcionalidad_Rol];
-GO
-DROP TABLE [Funcionalidad];
-GO
-DROP TABLE [Regimen_Hotel];
-GO
-DROP TABLE [Inhabilitacion_Hotel];
-GO
-DROP TABLE [Status_Habitacion];
-GO
-DROP TABLE [Estados];
-GO
+	Usuarios (cambie usu_estado de varchar(50) a bit)
 
