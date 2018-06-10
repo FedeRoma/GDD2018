@@ -11,14 +11,6 @@ go
 ---------- STORED PROCEDURES --------------------------------------------------
 -------------------------------------------------------------------------------
 
-create procedure EN_CASA_ANDABA.buscarHoteles
-	@rol_nombre NVARCHAR(50), @usuario int as
-	select H.hot_id from EN_CASA_ANDABA.Hoteles H, EN_CASA_ANDABA.Hoteles_Usuarios HU, 
-		EN_CASA_ANDABA.Roles R, EN_CASA_ANDABA.Roles_Usuarios RU
-		where HU.hyu_usu_id = @usuario and @rol_nombre = R.rol_nombre and R.rol_id = RU.ryu_rol_id
-			and H.hot_id = HU.hyu_hot_id
-go
-
 create procedure EN_CASA_ANDABA.top5_hoteles_reservas_canceladas
 	@trimestre numeric(18,0), @anio numeric(18,0) as
 	begin
@@ -64,6 +56,110 @@ create procedure EN_CASA_ANDABA.top5_hoteles_reservas_canceladas
 			group by HO.hot_id
 			order by cancelados desc				
 		end
+go
+
+create procedure EN_CASA_ANDABA.top5_hoteles_consumibles_facturados
+	@trimestre numeric(18,0), @anio numeric(18,0) as
+	begin
+		declare @inicio datetime
+		declare @fin datetime
+		declare @anioAux char(4)
+		set @anioAux = CAST(@anio as CHAR(4))
+		if (@trimestre = 1)
+			begin
+				set @inicio = '01-01-'+@anioAux
+				set @fin = '31-03-'+@anioAux
+			end
+		else if (@trimestre = 2)
+			begin
+				set @inicio = '01-04-'+@anioAux
+				set @fin = '30-06-'+@anioAux
+			end
+		else if (@trimestre = 3)
+			begin 
+				set @inicio = '01-07-'+@anioAux
+				set @fin = '30-09-'+@anioAux
+			end
+		else if (@trimestre = 4)
+			begin
+				set @inicio = '01-10-'+@anioAux
+				set @fin = '31-12-'+@anioAux
+			end
+		else 
+			begin
+				set @inicio = '01-01-'+@anioAux
+				set @fin = '31-12-'+@anioAux
+			end
+		select top 5 CYE.cye_hab_hot_id as hotel, sum(iyf_cantidad) as consumibles_facturados
+			from EN_CASA_ANDABA.Items_Facturas IYF, EN_CASA_ANDABA.facturas F, EN_CASA_ANDABA.Estadias E,
+				EN_CASA_ANDABA.Clientes_estadias CYE
+			where IYF.iyf_fac_id = F.fac_id and F.fac_est_res_id = E.est_res_id 
+				and CYE.cye_est_res_id = E.est_res_id and F.fac_fecha between @inicio AND @fin
+			group by CYE.cye_hab_hot_id
+			order by consumibles_facturados desc
+				end
+go
+
+create procedure EN_CASA_ANDABA.top5_hoteles_dias_fuera_de_servicio
+	@trimestre numeric(18,0), @anio numeric(18,0) as
+	begin
+		declare @inicio datetime
+		declare @fin datetime
+		declare @anioAux char(4)
+		set @anioAux = CAST(@anio as CHAR(4))
+		if (@trimestre = 1)
+			begin
+				set @inicio = '01-01-'+@anioAux
+				set @fin = '31-03-'+@anioAux
+			end
+		else if (@trimestre = 2)
+			begin
+				set @inicio = '01-04-'+@anioAux
+				set @fin = '30-06-'+@anioAux
+			end
+		else if (@trimestre = 3)
+			begin 
+				set @inicio = '01-07-'+@anioAux
+				set @fin = '30-09-'+@anioAux
+			end
+		else if (@trimestre = 4)
+			begin
+				set @inicio = '01-10-'+@anioAux
+				set @fin = '31-12-'+@anioAux
+			end
+		else 
+			begin
+				set @inicio = '01-01-'+@anioAux
+				set @fin = '31-12-'+@anioAux
+			end
+		select top 5 total.hotel, ho.hot_id ,SUM(total.dias) as dias from  
+			(select * from
+				(select H.hot_id as hotel, SUM(DATEDIFF(day, B.baj_fecha_inicio, B.baj_fecha_fin)) as dias
+					from EN_CASA_ANDABA.BajasHotel B, EN_CASA_ANDABA.Hoteles H
+					where B.baj_hot_id = H.hot_id 
+					and B.baj_fecha_inicio between @inicio and @fin
+					and B.baj_fecha_fin < @fin
+					group by H.hot_id ) as antesFin
+			UNION ALL
+			select * from
+				(select H.hot_id as hotel, SUM(DATEDIFF(day, B.baj_fecha_inicio,@fin)) as dias
+					from EN_CASA_ANDABA.BajasHotel B, EN_CASA_ANDABA.Hoteles H
+					where B.baj_hot_id = H.hot_id 
+					and B.baj_fecha_inicio between @inicio and @fin
+					and B.baj_fecha_fin > @fin
+					group by H.hot_id) as luegoFin) as total, EN_CASA_ANDABA.Hoteles HO
+					where HO.hot_id = total.hotel
+					group by total.hotel, HO.hot_id
+					order by dias desc
+			end
+go
+
+create procedure EN_CASA_ANDABA.buscarHoteles
+	@rol_nombre NVARCHAR(50), @usuario int as
+	select H.hot_id from EN_CASA_ANDABA.Hoteles H, EN_CASA_ANDABA.Hoteles_Usuarios HU, 
+		EN_CASA_ANDABA.Roles R, EN_CASA_ANDABA.Roles_Usuarios RU
+		where HU.hyu_usu_id = @usuario and @rol_nombre = R.rol_nombre and R.rol_id = RU.ryu_rol_id
+			and H.hot_id = HU.hyu_hot_id
 go
 
 -------------------------------------------------------------------------------
