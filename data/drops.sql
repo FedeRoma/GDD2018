@@ -27,11 +27,22 @@ drop table EN_CASA_ANDABA.Estados
 drop table EN_CASA_ANDABA.TiposHabitaciones
 drop table EN_CASA_ANDABA.Documentos
 PRINT 'Chau Tablas!'
+drop procedure EN_CASA_ANDABA.buscarHoteles
+drop procedure EN_CASA_ANDABA.altaUsuario
+drop procedure EN_CASA_ANDABA.altaHabitacion
+drop procedure EN_CASA_ANDABA.modificacionHabitacion
+drop procedure EN_CASA_ANDABA.altaCliente
+drop procedure EN_CASA_ANDABA.modificacionCliente
+drop procedure EN_CASA_ANDABA.altaRol
+drop procedure EN_CASA_ANDABA.altaFuncionalidadRol
+drop procedure EN_CASA_ANDABA.altaReserva
+drop procedure EN_CASA_ANDABA.modificacionReserva
+drop procedure EN_CASA_ANDABA.altaReservaHabitacion
 drop procedure EN_CASA_ANDABA.top5_hoteles_reservas_canceladas
 drop procedure EN_CASA_ANDABA.top5_hoteles_consumibles_facturados
 drop procedure EN_CASA_ANDABA.top5_hoteles_dias_fuera_de_servicio
-drop procedure EN_CASA_ANDABA.buscarHoteles
-drop procedure EN_CASA_ANDABA.altaUsuario
+drop procedure EN_CASA_ANDABA.top5_clientes_puntos
+drop procedure EN_CASA_ANDABA.top5_habitaciones_veces_ocupadas
 PRINT 'Chau Store Procedures!'
 drop schema EN_CASA_ANDABA
 PRINT 'Chau Esquema!'
