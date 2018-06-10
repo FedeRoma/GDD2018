@@ -20,7 +20,7 @@ create table EN_CASA_ANDABA.Clientes (
 	cli_mail varchar(50) NOT NULL,
 	cli_nacionalidad varchar(50) NOT NULL,
 	cli_fecha_nac date NOT NULL,
-	cli_habilitado bit NULL,
+	cli_habilitado bit NOT NULL,
 	cli_calle varchar(50) NULL,
 	cli_calle_nro int NULL,
 	cli_piso nvarchar(10) NULL,
@@ -684,8 +684,8 @@ insert into EN_CASA_ANDABA.Facturas
 		order by M.Factura_Nro
 -- facturas clientesErrores
 insert into EN_CASA_ANDABA.Facturas
-	select distinct M.Factura_Nro, C.cye_documento, M.Factura_Fecha, M.Factura_Total + E.est_precio,
-			E.est_res_id, mp.med_id, null, C.cye_doc_id, C.cye_id
+	select distinct M.Factura_Nro, null, M.Factura_Fecha, M.Factura_Total + E.est_precio,
+			E.est_res_id, MP.med_id, null, null, C.cye_id
 		from gd_esquema.Maestra M, EN_CASA_ANDABA.ClientesErrores C, EN_CASA_ANDABA.Estadias E, 
 			EN_CASA_ANDABA.MediosPago MP, EN_CASA_ANDABA.Reservas R
 		where M.Factura_Nro is not null and M.Reserva_Codigo = R.res_id and E.est_res_id = R.res_id
