@@ -162,6 +162,46 @@ create procedure EN_CASA_ANDABA.buscarHoteles
 			and H.hot_id = HU.hyu_hot_id
 go
 
+create procedure EN_CASA_ANDABA.altaUsuario
+	@rol varchar(50), @hotel varchar(50), @username varchar(50), @password varchar(50), @nombre varchar(50),
+	@apellido varchar(50), @email varchar(50), @tel varchar(50), @tipoDoc varchar(50), @nroDoc bigint,
+	@fechaNac date, @direccion varchar(50), @estado bit as
+	begin
+		declare @tipoDocId int
+		declare @rolId int
+		declare @hotelId int
+		declare @userId int
+		declare @respuesta numeric(18,0)
+		begin tran tAltaUsuario
+			begin try
+				set @tipoDocId = (select doc_id from EN_CASA_ANDABA.Documentos where @tipoDoc = doc_desc)
+				set @hotelId = (select hot_id from EN_CASA_ANDABA.Hoteles where @hotel = hot_nombre)
+				if (not exists (select usu_id from EN_CASA_ANDABA.Usuarios where @username = usu_username))
+				begin
+					insert into EN_CASA_ANDABA.Usuarios (usu_username, usu_password, usu_nombre, 
+						usu_apellido, usu_doc_id, usu_documento, usu_fecha_nac, usu_mail, usu_tel,
+						usu_estado, usu_direccion) 
+					values (@username, @password, @nombre, @apellido, @tipoDocId, @nroDoc, @fechaNac, 
+						@email, @tel, @estado, @direccion)
+				end 
+				set @userId = (select usu_id from EN_CASA_ANDABA.Usuarios where @username = usu_username)
+				insert into EN_CASA_ANDABA.Hoteles_Usuarios (hyu_usu_id, hyu_hot_id)
+				values (@userId, @hotelId)
+				set @rolId = (select rol_id from EN_CASA_ANDABA.Roles where @rol = rol_nombre)
+				insert into EN_CASA_ANDABA.Roles_Usuarios (ryu_usu_id, ryu_rol_id)
+				values (@userId, @rolId)	
+				set @respuesta = 1
+				select @respuesta as respuesta
+				commit tran tAltaUsuario
+			end try
+		begin catch
+			rollback tran tAltaUsuario
+			set @respuesta = 0
+			select @respuesta as respuesta
+		end catch
+	end
+go
+
 -------------------------------------------------------------------------------
 ---------- CREACION TABLAS ----------------------------------------------------
 -------------------------------------------------------------------------------
@@ -336,9 +376,10 @@ create table EN_CASA_ANDABA.Regimenes_Hoteles (
 
 create table EN_CASA_ANDABA.Usuarios (
 	usu_id int identity (1, 1) NOT NULL,
-	usu_nombre varchar(50) NOT NULL,
+	usu_username varchar(50) NOT NULL,
 	usu_password varchar(50) NOT NULL,
-	usu_estado varchar(50) NOT NULL,
+	usu_estado bit NOT NULL,
+	usu_nombre varchar(50) NOT NULL,
 	usu_apellido varchar(50) NOT NULL,
 	usu_mail varchar(50) NOT NULL,
 	usu_tel varchar(50) NOT NULL,
@@ -346,7 +387,6 @@ create table EN_CASA_ANDABA.Usuarios (
 	usu_documento bigint NOT NULL,
 	usu_intentos int NOT NULL,
 	usu_direccion varchar(50) NOT NULL,
-	usu_username varchar(50) NOT NULL,
 	usu_doc_id int NOT NULL)
 
 create table EN_CASA_ANDABA.Roles_Usuarios (
@@ -725,7 +765,7 @@ PRINT 'Regimenes_Hoteles... OK!'
 insert into EN_CASA_ANDABA.Usuarios (usu_nombre, usu_password, usu_estado, usu_apellido, usu_mail, usu_tel, 
 								usu_fecha_nac, usu_documento, usu_intentos, usu_direccion, usu_username, usu_doc_id)
 values
-	('admin', hashbytes('SHA2_256', CAST(12345678 as NVARCHAR(50))), 1, 'admin', 'admin@en_casa_andaba.com', '4000-0000',
+	('admin', hashbytes('SHA2_256', CAST(12345678 as nvarchar(50))), 1, 'admin', 'admin@en_casa_andaba.com', '4000-0000',
 		getdate(), 12345678, 0, 'admin', 'admin', 1)
 -- Rol de admin: SysAdmin
 insert into EN_CASA_ANDABA.Roles_Usuarios (ryu_usu_id, ryu_rol_id)
