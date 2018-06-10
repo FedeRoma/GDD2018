@@ -52,4 +52,5 @@ select * from EN_CASA_ANDABA.Clientes
 select * from EN_CASA_ANDABA.Reservas
 select * from EN_CASA_ANDABA.Reservas_Habitaciones
 select * from EN_CASA_ANDABA.ReservasCancelaciones
+select * from EN_CASA_ANDABA.Estadias
 */
