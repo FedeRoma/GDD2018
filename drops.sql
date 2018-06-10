@@ -31,6 +31,7 @@ drop procedure EN_CASA_ANDABA.top5_hoteles_reservas_canceladas
 drop procedure EN_CASA_ANDABA.top5_hoteles_consumibles_facturados
 drop procedure EN_CASA_ANDABA.top5_hoteles_dias_fuera_de_servicio
 drop procedure EN_CASA_ANDABA.buscarHoteles
+drop procedure EN_CASA_ANDABA.altaUsuario
 PRINT 'Chau Store Procedures!'
 drop schema EN_CASA_ANDABA
 PRINT 'Chau Esquema!'
