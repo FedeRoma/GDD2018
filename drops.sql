@@ -27,30 +27,8 @@ drop table EN_CASA_ANDABA.Estados
 drop table EN_CASA_ANDABA.TiposHabitaciones
 drop table EN_CASA_ANDABA.Documentos
 PRINT 'Chau Tablas!'
+drop procedure EN_CASA_ANDABA.buscarHoteles
+drop procedure EN_CASA_ANDABA.top5_hoteles_reservas_canceladas
+PRINT 'Chau Procedimientos Almacenados!'
 drop schema EN_CASA_ANDABA
-PRINT 'Chau Schema!'
-
-/* 
---SELECTs Prueba
-select * from EN_CASA_ANDABA.Documentos
-select * from EN_CASA_ANDABA.Estados
-select * from EN_CASA_ANDABA.MediosPago
-select * from EN_CASA_ANDABA.Roles
-select * from EN_CASA_ANDABA.Funcionalidades
-select * from EN_CASA_ANDABA.Funcionalidades_Roles
-select * from EN_CASA_ANDABA.TiposHabitaciones
-select * from EN_CASA_ANDABA.Regimenes
-select * from EN_CASA_ANDABA.Consumibles
-select * from EN_CASA_ANDABA.Hoteles
-select * from EN_CASA_ANDABA.Habitaciones
-select * from EN_CASA_ANDABA.Facturas
-select * from EN_CASA_ANDABA.Items_Facturas
-select * from EN_CASA_ANDABA.Regimenes_Hoteles
-select * from #TemporalClientesRepetidos
-select * from EN_CASA_ANDABA.ClientesErrores
-select * from EN_CASA_ANDABA.Clientes
-select * from EN_CASA_ANDABA.Reservas
-select * from EN_CASA_ANDABA.Reservas_Habitaciones
-select * from EN_CASA_ANDABA.ReservasCancelaciones
-select * from EN_CASA_ANDABA.Estadias
-*/
+PRINT 'Chau Esquema!'
