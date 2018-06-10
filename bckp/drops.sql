@@ -1,0 +1,34 @@
+--DROPs
+drop table EN_CASA_ANDABA.Items_Facturas
+drop table EN_CASA_ANDABA.Consumibles
+drop table EN_CASA_ANDABA.Facturas
+drop table EN_CASA_ANDABA.MediosPago
+drop table EN_CASA_ANDABA.Tarjetas
+drop table EN_CASA_ANDABA.BajasHotel
+drop table EN_CASA_ANDABA.Hoteles_Usuarios
+drop table EN_CASA_ANDABA.Usuarios_ReservasCancelaciones
+drop table EN_CASA_ANDABA.Usuarios_ReservasModificaciones
+drop table EN_CASA_ANDABA.Regimenes_Hoteles
+drop table EN_CASA_ANDABA.Funcionalidades_Roles
+drop table EN_CASA_ANDABA.Funcionalidades
+drop table EN_CASA_ANDABA.Clientes_Estadias
+drop table EN_CASA_ANDABA.Reservas_Habitaciones
+drop table EN_CASA_ANDABA.Habitaciones
+drop table EN_CASA_ANDABA.Hoteles
+drop table EN_CASA_ANDABA.Roles_Usuarios
+drop table EN_CASA_ANDABA.Roles
+drop table EN_CASA_ANDABA.Estadias
+drop table EN_CASA_ANDABA.Reservas
+drop table EN_CASA_ANDABA.Usuarios
+drop table EN_CASA_ANDABA.Clientes
+drop table EN_CASA_ANDABA.ClientesErrores
+drop table EN_CASA_ANDABA.Regimenes
+drop table EN_CASA_ANDABA.Estados
+drop table EN_CASA_ANDABA.TiposHabitaciones
+drop table EN_CASA_ANDABA.Documentos
+PRINT 'Chau Tablas!'
+drop procedure EN_CASA_ANDABA.buscarHoteles
+drop procedure EN_CASA_ANDABA.top5_hoteles_reservas_canceladas
+PRINT 'Chau Procedimientos Almacenados!'
+drop schema EN_CASA_ANDABA
+PRINT 'Chau Esquema!'
