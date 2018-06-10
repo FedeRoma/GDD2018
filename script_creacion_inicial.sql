@@ -615,17 +615,27 @@ go
 drop table #TemporalClientesRepetidos
 PRINT 'Clientes... OK!'
 
-alter table EN_CASA_ANDABA.Reservas NOCHECK CONSTRAINT all --quitar al migrar facturas
 alter table EN_CASA_ANDABA.Reservas
 alter column res_estados_id int NULL
+-- reservas clientes
 insert into EN_CASA_ANDABA.Reservas (res_id, res_fecha, res_inicio, res_fin, res_tip_id, res_reg_id, 
 								res_cli_documento, res_usu_id, res_cli_doc_id)
 	select distinct reserva_codigo, getdate(), reserva_fecha_inicio, 
 					dateadd(day, reserva_cant_noches, reserva_fecha_inicio),
-					Habitacion_Tipo_Codigo, reg_id, Cliente_Pasaporte_Nro, usu_id, 1
-		from gd_esquema.Maestra M, EN_CASA_ANDABA.Regimenes R, EN_CASA_ANDABA.Usuarios U
-		where M.regimen_descripcion = R.reg_desc and U.usu_username = 'admin'
+					Habitacion_Tipo_Codigo, reg_id, c.cli_documento, usu_id, 1
+		from gd_esquema.Maestra M, EN_CASA_ANDABA.Regimenes R, EN_CASA_ANDABA.Usuarios U, EN_CASA_ANDABA.Clientes C
+		where M.regimen_descripcion = R.reg_desc and U.usu_username = 'admin' and c.cli_documento = m.Cliente_Pasaporte_Nro
 go
+-- reservas clientesErrores
+insert into EN_CASA_ANDABA.Reservas (res_id, res_fecha, res_inicio, res_fin, res_tip_id, res_reg_id, 
+								res_usu_id, res_cye_id)
+	select distinct reserva_codigo, getdate(), reserva_fecha_inicio, 
+					dateadd(day, reserva_cant_noches, reserva_fecha_inicio),
+					Habitacion_Tipo_Codigo, reg_id, usu_id, c.cye_id
+		from gd_esquema.Maestra M, EN_CASA_ANDABA.Regimenes R, EN_CASA_ANDABA.Usuarios U, EN_CASA_ANDABA.ClientesErrores C
+		where M.regimen_descripcion = R.reg_desc and U.usu_username = 'admin' and c.cye_documento = m.Cliente_Pasaporte_Nro and c.cye_apellido = m.Cliente_Apellido and c.cye_nombre = m.Cliente_Nombre
+go
+
 update EN_CASA_ANDABA.Reservas
 	set res_estados_id =
 				case when 
@@ -697,8 +707,8 @@ PRINT 'Facturas... OK!'
 
 insert into EN_CASA_ANDABA.Items_Facturas (iyf_con_id, iyf_fac_id, iyf_cantidad, iyf_monto)
 	select distinct consumible_codigo, factura_nro, sum(item_factura_monto), sum(item_factura_cantidad)
-		from gd_esquema.Maestra
-		where consumible_codigo is not null
+		from gd_esquema.Maestra m, EN_CASA_ANDABA.facturas f
+		where consumible_codigo is not null and m.factura_nro = f.fac_id
 		group by consumible_codigo, factura_nro
 		order by factura_nro,consumible_codigo
 go
