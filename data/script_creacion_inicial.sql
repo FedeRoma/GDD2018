@@ -677,7 +677,7 @@ create procedure EN_CASA_ANDABA.modificacionClientes_Estadias
 go
 
 create procedure EN_CASA_ANDABA.altaTarjeta 
-	@facturaId int, @banco varchar(50) = NULL, @emisor varchar(50), @numero bigint, @titular varchar(50) as
+	@facturaId int, @banco varchar(50), @emisor varchar(50), @numero bigint, @titular varchar(50) as
 	begin
 		declare @resultado bit
 		begin tran tAltaTarjeta
