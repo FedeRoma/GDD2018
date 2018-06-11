@@ -35,9 +35,12 @@ drop procedure EN_CASA_ANDABA.altaCliente
 drop procedure EN_CASA_ANDABA.modificacionCliente
 drop procedure EN_CASA_ANDABA.altaRol
 drop procedure EN_CASA_ANDABA.altaFuncionalidadRol
+drop procedure EN_CASA_ANDABA.bajaReservasVencidas
 drop procedure EN_CASA_ANDABA.altaReserva
 drop procedure EN_CASA_ANDABA.modificacionReserva
 drop procedure EN_CASA_ANDABA.altaReservaHabitacion
+drop procedure EN_CASA_ANDABA.altaCheckInEstadia
+drop procedure EN_CASA_ANDABA.altaCheckOutEstadia
 drop procedure EN_CASA_ANDABA.top5_hoteles_reservas_canceladas
 drop procedure EN_CASA_ANDABA.top5_hoteles_consumibles_facturados
 drop procedure EN_CASA_ANDABA.top5_hoteles_dias_fuera_de_servicio
