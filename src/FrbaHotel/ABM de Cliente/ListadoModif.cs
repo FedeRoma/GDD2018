@@ -20,7 +20,7 @@ namespace FrbaHotel.ABM_de_Cliente
         public ListadoModif()
         {
             InitializeComponent();
-            consulta = "select distinct descripcion from GESTION_DE_GATOS.TiposDoc";
+            consulta = "select distinct doc_desc from EN_CASA_ANDABA.Documentos";
             resultado = Home.BD.comando(consulta);
             while (resultado.Read() == true)
             {
@@ -32,7 +32,7 @@ namespace FrbaHotel.ABM_de_Cliente
 
         private void ListadoModif_Load(object sender, EventArgs e)
         {
-            string query = "select C.nombre Nombre,C.apellido Apellido,T.descripcion TipoDoc,C.nroDoc NroDoc,C.mail Mail,C.telefono Telefono,P.nombre Nacionalidad,C.direccion Direccion,C.fecha_nac Fecha_Nac,C.habilitado Habilitado from GESTION_DE_GATOS.Cliente C,GESTION_DE_GATOS.Pais P,GESTION_DE_GATOS.TiposDoc T where	C.tipoDoc = T.idTipoDoc and C.nacionalidad = P.idPais";
+            string query = "select Cli.cli_nombre Nombre,Cli.cli_apellido Apellido,doc.doc_desc TipoDoc,Cli.cli_documento NroDoc,Cli.cli_mail Mail,Cli.cli_telefono Telefono,Cli.cli_nacionalidad Nacionalidad,Cli.cli_calle Calle, Cli.cli_calle_nro NumeroCalle,Cli.cli_fecha_nac Fecha_Nac from EN_CASA_ANDABA.Clientes Cli,EN_CASA_ANDABA.Documentos doc where	Cli.cli_documento = doc.doc_id";
             sAdapter = FrbaHotel.Home.BD.dameDataAdapter(query);
             dTable = FrbaHotel.Home.BD.dameDataTable(sAdapter);
             //BindingSource to sync DataTable and DataGridView
@@ -109,7 +109,7 @@ namespace FrbaHotel.ABM_de_Cliente
                 string tipoDoc = dataGridView1.CurrentRow.Cells[4].Value.ToString();
                 string nroDoc = dataGridView1.CurrentRow.Cells[5].Value.ToString();
                 string mail = dataGridView1.CurrentRow.Cells[6].Value.ToString();
-                consulta = "select idCli from GESTION_DE_GATOS.Cliente where mail = '"+mail+"'";
+                consulta = "select cli_doc_id from EN_CASA_ANDABA.Clientes where cli_mail = '"+mail+"'";
                 resultado = Home.BD.comando(consulta);
                 if (resultado.Read() == true)
                 {

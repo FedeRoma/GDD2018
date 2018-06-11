@@ -23,20 +23,20 @@ namespace FrbaHotel.ABM_de_Cliente
             dir = 0;
             textBoxNombre.Focus();
             string consulta;
-            consulta = "select distinct descripcion from GESTION_DE_GATOS.TiposDoc";
+            consulta = "select distinct doc_desc from EN_CASA_ANDABA.Documentos";
             resultado = Home.BD.comando(consulta);
             while (resultado.Read() == true)
             {
                 comboBoxTipoDoc.Items.Add(resultado.GetSqlString(0));
             }
             resultado.Close();
-            consulta = "select distinct nombre from GESTION_DE_GATOS.Pais";
+            /*consulta = "select distinct nombre from EN_CASA_ANDABA.Pais";
             resultado = Home.BD.comando(consulta);
             while (resultado.Read() == true)
             {
                 comboBox1.Items.Add(resultado.GetSqlString(0));
             }
-            resultado.Close();
+            resultado.Close();*/
             dateTimePicker1.Value = Home.fecha;
         }
 
@@ -168,7 +168,7 @@ namespace FrbaHotel.ABM_de_Cliente
             if (a == 0)
             {
                 //INSERTAR VALORES
-                string insert = "EXEC GESTION_DE_GATOS.InsertarCliente ";
+                string insert = "EXEC EN_CASA_ANDABA.InsertarCliente "; //alta cliente
                 
                 insert = insert + "'" + textBoxNombre.Text + "',";
                 insert = insert + "'" + textBoxApellido.Text + "',";
@@ -205,7 +205,7 @@ namespace FrbaHotel.ABM_de_Cliente
                     MessageBox.Show("El cliente fue guardado correctamente");
                     if (abm == "altaReservaCli")
                     {
-                        resultado=Home.BD.comando("select idCli from GESTION_DE_GATOS.Cliente where mail = '" + textBoxMail.Text + "'");
+                        resultado=Home.BD.comando("select cli_doc_id from EN_CASA_ANDABA.Clientes where mail = '" + textBoxMail.Text + "'");
                         if(resultado.Read())
                         {
                             Generar_Modificar_Reserva.AltaCli.cliente = resultado.GetDecimal(0).ToString();
@@ -215,7 +215,7 @@ namespace FrbaHotel.ABM_de_Cliente
                     }
                     if (abm == "altaEstadia")
                     {
-                        resultado = Home.BD.comando("select idCli,nombre,apellido from GESTION_DE_GATOS.Cliente where mail = '" + textBoxMail.Text + "'");
+                        resultado = Home.BD.comando("select cli_doc_id,cli_nombre,cli_apellido from EN_CASA_ANDABA.Clientes where mail = '" + textBoxMail.Text + "'");
                         if (resultado.Read())
                         {
                             string id = resultado.GetDecimal(0).ToString();
@@ -241,7 +241,7 @@ namespace FrbaHotel.ABM_de_Cliente
                     }
                     if (abm == "altaReservaUser")
                     {
-                        resultado = Home.BD.comando("select idCli from GESTION_DE_GATOS.Cliente where mail = '" + textBoxMail.Text + "'");
+                        resultado = Home.BD.comando("select cli_doc_id from EN_CASA_ANDABA.Clientes where mail = '" + textBoxMail.Text + "'");
                         if (resultado.Read())
                         {
                             Generar_Modificar_Reserva.AltaUser.cliente = resultado.GetDecimal(0).ToString();
