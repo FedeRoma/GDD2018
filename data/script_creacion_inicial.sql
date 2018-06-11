@@ -19,29 +19,59 @@ create function EN_CASA_ANDABA.estaReservadaHabitacion
 		if(exists (select RYH.ryh_hab_id from EN_CASA_ANDABA.Reservas_Habitaciones RYH, EN_CASA_ANDABA.Reservas R
 			where R.res_inicio > @desde and R.res_inicio < @hasta and R.res_id = RYH.ryh_res_id and 
 			RYH.ryh_hab_id = @reservaId and R.res_id not in (select urc_res_id 
-			from EN_CASA_ANDABA.Usuarios_ReservasCancelaciones C))) return 1
+			from EN_CASA_ANDABA.Usuarios_ReservasCancelaciones C)))
+			begin
+				return 1
+			end
 -- Fecha fin cae dentro de la solicitada
 		if(exists (select RYH.ryh_hab_id from EN_CASA_ANDABA.Reservas_Habitaciones RYH, EN_CASA_ANDABA.Reservas R
 			where R.res_fin > @desde and R.res_fin < @hasta and R.res_id = RYH.ryh_res_id and 
 			RYH.ryh_hab_id = @reservaId and R.res_id not in (select urc_res_id 
-			from EN_CASA_ANDABA.Usuarios_ReservasCancelaciones C))) return 2
+			from EN_CASA_ANDABA.Usuarios_ReservasCancelaciones C)))
+			begin
+				return 2
+			end
 -- Fecha inicio la reserva pedida, esta entre las fechas de la reserva
 		if(exists (select RYH.ryh_hab_id from EN_CASA_ANDABA.Reservas_Habitaciones RYH, EN_CASA_ANDABA.Reservas R
 			where R.res_inicio < @desde and R.res_fin > @desde and R.res_id = RYH.ryh_res_id and 
 			RYH.ryh_hab_id = @reservaId and R.res_id not in (select urc_res_id 
-			from EN_CASA_ANDABA.Usuarios_ReservasCancelaciones C))) return 3
+			from EN_CASA_ANDABA.Usuarios_ReservasCancelaciones C))) 
+			begin
+				return 3
+			end
 -- Fecha fin reserva pedida, esta entre las fechas de la reserva
 		if(exists (select RYH.ryh_hab_id from EN_CASA_ANDABA.Reservas_Habitaciones RYH, EN_CASA_ANDABA.Reservas R
 			where R.res_inicio < @hasta and R.res_fin > @hasta and R.res_id = RYH.ryh_res_id and 
 			RYH.ryh_hab_id = @reservaId and R.res_id not in (select urc_res_id 
-			from EN_CASA_ANDABA.Usuarios_ReservasCancelaciones C))) return 4
+			from EN_CASA_ANDABA.Usuarios_ReservasCancelaciones C)))
+			begin
+				return 4
+			end
 -- Fechas iguales
 		if(exists (select RYH.ryh_hab_id from EN_CASA_ANDABA.Reservas_Habitaciones RYH, EN_CASA_ANDABA.Reservas R
 			where R.res_inicio = @desde and R.res_fin = @hasta and R.res_id = RYH.ryh_res_id and 
 			RYH.ryh_hab_id = @reservaId and R.res_id not in (select urc_res_id 
-			from EN_CASA_ANDABA.Usuarios_ReservasCancelaciones C))) return 5
-		return 0
+			from EN_CASA_ANDABA.Usuarios_ReservasCancelaciones C))) 
+			begin
+				return 5
+			end
+		RETURN 0
 	end
+go
+
+create function EN_CASA_ANDABA.deudaConsumibles 
+	(@estadiaId int) RETURNS numeric(18,2) as
+	begin
+		declare @deuda numeric(18,2)
+		set @deuda = (select sum(iyf_monto) from EN_CASA_ANDABA.Items_Facturas IYF 
+			where iyf_est_res_id = @estadiaId
+			group by iyf_est_res_id)
+		if(@deuda is null)
+			begin
+				set @deuda = 0
+			end
+		RETURN @deuda
+	end        
 go
 
 -------------------------------------------------------------------------------				
@@ -115,12 +145,23 @@ create procedure EN_CASA_ANDABA.buscarTiposHabitacionesHotel
 	end
 go
 
+create procedure EN_CASA_ANDABA.buscarReservaHabitacion
+	@reservaId int as
+	begin
+		select distinct RYH.ryh_hab_id, (REG.reg_precio * TH.tip_personas) + (HO.hot_estrellas * HO.hot_recarga_estrellas)
+			from EN_CASA_ANDABA.Reservas R, EN_CASA_ANDABA.Regimenes REG, EN_CASA_ANDABA.Habitaciones H, 
+			EN_CASA_ANDABA.Hoteles HO, EN_CASA_ANDABA.Reservas_habitaciones RYH, EN_CASA_ANDABA.TiposHabitaciones TH
+			where R.res_id = @reservaId and R.res_reg_id = REG.reg_id and RYH.ryh_res_id = @reservaId and
+			RYH.ryh_hab_id = H.hab_id and H.hab_hot_id = HO.hot_id and H.hab_tip_id = TH.tip_id
+	end
+go
+
 create procedure EN_CASA_ANDABA.altaUsuario
 	@rol varchar(50), @hotel varchar(50), @username varchar(50), @password varchar(50), @nombre varchar(50),
 	@apellido varchar(50), @email varchar(50), @tel varchar(50), @tipoDocumento varchar(50), @nroDocumento bigint,
 	@fechaNacimiento date, @direccion varchar(50) as
 	begin
-		declare @tipoDocumentoId int, @rolId int, @hotelId int, @usuarioId int, @respuesta smallint
+		declare @tipoDocumentoId int, @rolId int, @hotelId int, @usuarioId int, @respuesta bit
 		begin tran tAltaUsuario
 			begin try
 				set @tipoDocumentoId = (select doc_id from EN_CASA_ANDABA.Documentos where @tipoDocumento = doc_desc)
@@ -155,7 +196,7 @@ create procedure EN_CASA_ANDABA.modificacionUsuario
 	@apellido varchar(50), @email varchar(50), @tel varchar(50), @tipoDocumento varchar(50), @nroDocumento bigint,
 	@fechaNacimiento date, @direccion varchar(50), @estado bit as
 	begin
-		declare @tipoDocId int, @rolId int, @hotelId int, @userId int, @respuesta smallint
+		declare @tipoDocId int, @rolId int, @hotelId int, @userId int, @respuesta bit
 		begin tran tModificacionUsuario
 			begin try
 				set @userId = (select usu_id from EN_CASA_ANDABA.Usuarios where @username = usu_username)
@@ -188,7 +229,7 @@ create procedure EN_CASA_ANDABA.altaHotel
 	@pais varchar(50), @email nvarchar(50), @telefono varchar(50), @fecha datetime,
 	@recargaEstrellas int as
 	begin
-		declare @fechaCreacion datetime, @respuesta smallint
+		declare @fechaCreacion datetime, @respuesta bit
 		set @fechaCreacion = CONVERT(datetime,@fecha,121)
 		begin tran tAltaHotel
 			begin try
@@ -213,7 +254,7 @@ create procedure EN_CASA_ANDABA.modificacionHotel
 	@pais varchar(50), @email varchar(50), @telefono varchar(50), @fecha datetime, @habilitado bit,
 	@recargaEstrellas int as
 	begin
-		declare @fechaCreacion datetime, @respuesta smallint
+		declare @fechaCreacion datetime, @respuesta bit
 		set @fechaCreacion = CONVERT(datetime,@fecha,121)
 		begin tran tModificacionHotel
 			begin try
@@ -238,7 +279,7 @@ create procedure EN_CASA_ANDABA.altaHabitacion
 	@numero int, @piso int, @vista char(1), @tipoHabitacion varchar(50), @hotelId int,
 	@descripcion varchar(50) = NULL as
 	begin
-		declare @tipoHabitacionId int, @respuesta smallint
+		declare @tipoHabitacionId int, @respuesta bit
 		begin tran tAltaHabitacion
 			begin try
 				set @tipoHabitacionId =(select tip_id from EN_CASA_ANDABA.TiposHabitaciones 
@@ -264,7 +305,7 @@ create procedure EN_CASA_ANDABA.modificacionHabitacion
 	@habitacionId int, @numero int, @piso int, @vista char(1), @tipoHabitacion varchar(50), @hotelId int,
 	@descripcion varchar(50) = NULL, @habilitado bit as
 	begin
-		declare @tipoHabitacionId int, @respuesta smallint
+		declare @tipoHabitacionId int, @respuesta bit
 		begin tran tModificacionHabitacion
 			begin try
 				set @tipoHabitacionId = (select tip_id from EN_CASA_ANDABA.TiposHabitaciones 
@@ -293,7 +334,7 @@ create procedure EN_CASA_ANDABA.altaCliente
 		declare @fechaNacimiento date
 		set @fechaNacimiento = CONVERT(date,@fechaNac,121)
 		declare @tipoDocumentoId int
-		declare @respuesta smallint
+		declare @respuesta bit
 		begin tran tAltaCliente
 			begin try
 				set @tipoDocumentoId =(select doc_id from EN_CASA_ANDABA.Documentos
@@ -328,7 +369,7 @@ create procedure EN_CASA_ANDABA.modificacionCliente
 	@nacionalidad varchar(50), @fechaNac date, @calle varchar(50), @numeroCalle int, @piso nvarchar(10),
 	@depto nvarchar(10), @localidad varchar(50), @pais varchar(50), @tel nvarchar(50), @habilitado bit as	
 	begin
-		declare @fechaNacimiento date, @tipoDocumentoId int, @respuesta smallint
+		declare @fechaNacimiento date, @tipoDocumentoId int, @respuesta bit
 		set @fechaNacimiento = CONVERT(date,@fechaNac,121)
 		begin tran tModificacionCliente
 			begin try
@@ -355,7 +396,7 @@ go
 create procedure EN_CASA_ANDABA.altaRol
 	@rol varchar(50) as
 	begin
-		declare @respuesta smallint
+		declare @respuesta bit
 		begin tran tAltaRol
 			begin try
 				insert into EN_CASA_ANDABA.Roles (rol_nombre,rol_estado) 
@@ -375,7 +416,7 @@ go
 create procedure EN_CASA_ANDABA.altaFuncionalidadRol
 	@rol int, @funcionalidad int as
 	begin
-		declare @respuesta smallint
+		declare @respuesta bit
 		begin tran tAltaFuncionalidadRol
 			begin try
 				insert into EN_CASA_ANDABA.Funcionalidades_Roles (fyr_rol_id,fyr_fun_id) 
@@ -392,10 +433,49 @@ create procedure EN_CASA_ANDABA.altaFuncionalidadRol
 	end
 go
 
+create procedure EN_CASA_ANDABA.altaRegimenes_Hoteles
+	@regimenId int, @hotelId int as
+	begin
+		declare @respuesta bit
+		begin tran tAltaRegimenes_Hoteles
+			begin try
+				insert into EN_CASA_ANDABA.Regimenes_Hoteles (ryh_hot_id, ryh_reg_id) 
+				values(@hotelId, @regimenId)
+				set @respuesta = (select SCOPE_IDENTITY())
+				select @respuesta as respuesta
+				commit tran tAltaRegimenes_Hoteles
+			end try
+			begin catch
+				rollback tran tAltaRegimenes_Hoteles
+				set @respuesta = 0
+				select @respuesta as respuesta
+			end catch
+	end
+go
+
+create procedure EN_CASA_ANDABA.bajaRegimenes_Hoteles
+	@regimenId int as
+	begin
+		declare @respuesta bit
+		begin tran tBajaRegimenes_Hoteles
+			begin try
+				delete from EN_CASA_ANDABA.Regimenes_Hoteles where ryh_hot_id = @regimenId
+				set @respuesta = 1
+				select @respuesta as respuesta
+				commit tran tBajaRegimenes_Hoteles
+			end try
+			begin catch
+				rollback tran tBajaRegimenes_Hoteles
+				set @respuesta = 0
+				select @respuesta as respuesta
+			end catch
+	end
+go
+
 create procedure EN_CASA_ANDABA.bajaReservasVencidas
 	@fecha date as
 	begin
-		declare @hoy date, @estadoId int, @respuesta smallint
+		declare @hoy date, @estadoId int, @respuesta bit
 		set @hoy = CONVERT(date,@fecha,121)
 		begin tran tBajaReservasVencidas
 			begin try
@@ -428,7 +508,7 @@ create procedure EN_CASA_ANDABA.altaReserva
 	@documento bigint, @tipoDocumento varchar(50), @usuarioId int as
 	begin
 		declare @fechaInicio date, @fechaFin date, @fechaR datetime, @regimenId int, @tipoHabitacionId int,
-			@estadoId int, @tipoDocumentoId int, @respuesta smallint
+			@estadoId int, @tipoDocumentoId int, @respuesta bit
 		set @fechaInicio = CONVERT(date,@inicio,121)		
 		set @fechaFin = CONVERT(date,@fin,121)
 		set @fechaR = CONVERT(datetime,@fecha,121)
@@ -461,7 +541,7 @@ create procedure EN_CASA_ANDABA.modificacionReserva
 	@documento bigint, @usuarioId int, @tipoDocumento int as
 	begin
 		declare @fechaInicio date, @fechaFin date, @fechaReg datetime, @regimenId int, @tipoHabitacionId int,
-			 @estadoId int, @respuesta smallint
+			 @estadoId int, @respuesta bit
 		set @fechaInicio = CONVERT(date,@inicio,121)
 		set @fechaFin = CONVERT(date,@fin,121)
 		set @fechaReg = CONVERT(datetime,@fecha,121)
@@ -488,14 +568,38 @@ create procedure EN_CASA_ANDABA.modificacionReserva
 	end
 go
 
+create procedure EN_CASA_ANDABA.bajaReserva
+	@reservaId int, @usuarioId int, @estadoId int, @fechaI datetime, @motivo varchar(50) as
+	begin
+		declare @fecha datetime, @respuesta bit
+		set @fecha = CONVERT(datetime,@fechaI,121)
+		begin tran tBajaReserva
+			begin try
+				UPDATE EN_CASA_ANDABA.Reservas 
+				set res_estados_id = @estadoId where res_id = @reservaId;
+				insert into EN_CASA_ANDABA.Usuarios_ReservasCancelaciones (urc_usu_id, urc_res_id, urc_motivo,
+					urc_fecha)
+				values (@usuarioId, @reservaId, @motivo, @fecha)
+				set @respuesta = 1
+				select @respuesta as respuesta
+				commit tran tBajaReserva
+			end try
+			begin catch
+				rollback tran tBajaReserva
+				set @respuesta = 0
+				select @respuesta as respuesta
+			end catch
+	end
+go
+
 create procedure EN_CASA_ANDABA.altaReservaHabitacion
 	@reservaId int, @habitacionId int, @hotelId int as
 	begin
-		declare @respuesta smallint
+		declare @respuesta bit
 		begin tran tAltaReservaHabitacion
 			begin try
 				insert into EN_CASA_ANDABA.Reservas_Habitaciones (ryh_res_id, ryh_hab_id, ryh_hab_hot_id) 
-				values (@reservaId, @habitacionId, @hotelId);
+				values (@reservaId, @habitacionId, @hotelId)
 				set @respuesta = (select ryh_res_id, ryh_hab_id, ryh_hab_hot_id 
 					from EN_CASA_ANDABA.Reservas_Habitaciones 
 					where ryh_res_id = @reservaId and ryh_hab_id = @habitacionId and ryh_hab_hot_id = @hotelId)
@@ -510,10 +614,30 @@ create procedure EN_CASA_ANDABA.altaReservaHabitacion
 	end
 go
 
+create proc EN_CASA_ANDABA.bajaReservaHabitacion
+	@reservaId int, @habitacionId int, @hotelId int as
+	begin
+		declare @respuesta bit
+		begin tran tBajaReservaHabitacion
+			begin try
+				delete from EN_CASA_ANDABA.Reservas_Habitaciones where RYH_res_id = @reservaId and 
+					ryh_hab_id = @habitacionId and RYH_hab_hot_id = @hotelId
+				set @respuesta = 1
+				select @respuesta as respuesta
+				commit tran tBajaReservaHabitacion
+			end try
+			begin catch
+				rollback tran tBajaReservaHabitacion
+				set @respuesta = 0
+				select @respuesta as respuesta
+			end catch
+	end
+go
+
 create procedure EN_CASA_ANDABA.altaClientes_Estadias
 	@documento int, @tipoDocumento int, @estadiaId int, @habitacionId int, @habitacionHotelId int as 
 	begin
-		declare @respuesta smallint
+		declare @respuesta bit
 		begin tran tAltaClientes_Estadias
 			begin try
 				insert into EN_CASA_ANDABA.Clientes_Estadias (cye_cli_documento, cye_est_res_id, cye_hab_id, 
@@ -534,7 +658,7 @@ go
 create procedure EN_CASA_ANDABA.modificacionClientes_Estadias
 	@documento int, @tipoDocumento int, @estadiaId int, @habitacionId int, @habitacionHotelId int as
 	begin
-		declare @respuesta smallint
+		declare @respuesta bit
 		begin tran tModificacionClientes_Estadias
 			begin try
 				UPDATE EN_CASA_ANDABA.Clientes_Estadias
@@ -552,10 +676,31 @@ create procedure EN_CASA_ANDABA.modificacionClientes_Estadias
 	end
 go
 
+create procedure EN_CASA_ANDABA.altaTarjeta 
+	@facturaId int, @banco nvarchar(50) = NULL, @emisor nvarchar(50), @numero bigint, @titular nvarchar(50) as
+	begin
+		declare @resultado bit
+		begin tran tAltaTarjeta
+		begin try
+			insert into EN_CASA_ANDABA.Tarjetas(tar_emisor, tar_numero, tar_banco, tar_titular) 
+			values (@emisor, @numero, @banco, @titular)
+			UPDATE EN_CASA_ANDABA.Facturas set fac_tar_id = (select SCOPE_IDENTITY()) where fac_id = @facturaId
+			set @resultado = 1
+			select @resultado as resultado
+			commit tran tAltaTarjeta
+		end try
+		begin catch
+			rollback tran tAltaTarjeta
+			set @resultado = 0
+			select @resultado as resultado
+		end catch
+	end
+go
+
 create procedure EN_CASA_ANDABA.altaCheckInEstadia
 	@reservaId int, @usuarioId int, @fechaI date as
 	begin
-	declare @fecha date, @estadoId int, @cantidadNoches int, @precio int, @respuesta smallint
+	declare @fecha date, @estadoId int, @cantidadNoches int, @precio int, @respuesta bit
 	set @fecha = CONVERT(date,@fechaI,121)
 		begin tran tAltaCheckInEstadia
 			begin try
@@ -591,7 +736,7 @@ create procedure EN_CASA_ANDABA.altaCheckOutEstadia
 	@estadiaId int, @fechaI date, @usuarioId int as
 	begin
 		declare @fecha date, @cantidadNoches int, @diasSobra int, @numeroReserva int, @finReserva date,
-			 @respuesta smallint 
+			 @respuesta bit 
 		set @fecha = CONVERT(date,@fechaI,121)
 		begin tran tAltaCheckOutEstadia
 			begin try
@@ -612,6 +757,87 @@ create procedure EN_CASA_ANDABA.altaCheckOutEstadia
 				set @respuesta = 0
 				select @respuesta as respuesta
 			end catch
+	end
+go
+
+create procedure EN_CASA_ANDABA.altaFactura 
+	@estadiaId int, @medioPagoId int, @fechaI date as
+	begin
+	declare @fecha date, @regimenId int, @reservaId int, @deuda int, @tipoDocumentoId int, @documento bigint,
+		@resultado bit 
+	set @fecha = CONVERT(date,@fechaI,121)
+	begin tran tAltaFactura
+		begin try
+			set @reservaId = (select est_res_id from EN_CASA_ANDABA.Estadias where est_res_id = @estadiaId)
+			set @tipoDocumentoId = (select res_cli_doc_id from EN_CASA_ANDABA.Reservas where res_id = @reservaId)
+			set @documento = (select res_cli_documento from EN_CASA_ANDABA.Reservas where res_id = @reservaId)
+			set @regimenId = (select res_reg_id from EN_CASA_ANDABA.Reservas where res_id = @reservaId)
+			if (@regimenId != 4)
+				begin
+					set @deuda = (select est_precio from EN_CASA_ANDABA.Estadias 
+						where est_res_id = @estadiaId) + EN_CASA_ANDABA.deudaConsumibles(@estadiaId)
+					insert into EN_CASA_ANDABA.Facturas (fac_est_res_id, fac_med_id, fac_cli_doc_id, 
+						fac_cli_documento, fac_fecha, fac_total)
+					values (@estadiaId, @medioPagoId, @tipoDocumentoId, @documento, @fecha, @deuda)
+				end
+			else
+				begin
+					set @deuda = (select est_precio from EN_CASA_ANDABA.Estadias where est_res_id = @estadiaId)
+					insert into EN_CASA_ANDABA.Facturas (fac_est_res_id, fac_med_id, fac_cli_doc_id, 
+						fac_cli_documento, fac_fecha, fac_total)
+					values (@estadiaId, @medioPagoId, @tipoDocumentoID, @documento, @fecha, @deuda)
+				end
+			set @resultado = (select fac_id from EN_CASA_ANDABA.Facturas where fac_est_res_id = @estadiaId 
+				and fac_fecha = @fecha)
+			select @resultado as resultado
+			commit tran	tAltaFactura
+		end try
+		begin catch
+			rollback tran tAltaFactura
+			set @resultado = 0
+			select @resultado as resultado
+		end catch
+	end
+go
+
+create procedure EN_CASA_ANDABA.modificacionFactura 
+	@estadiaId int, @medioPagoId int, @fechaI date as
+	begin
+	declare @fecha date, @regimenId int, @reservaId int, @deuda int, @tipoDocumentoId int, @documento bigint,
+		@facturaId int, @resultado bit 
+	set @fecha = CONVERT(date,@fechaI,121)
+	begin tran tModificacionFactura
+		begin try
+			set @reservaId = (select est_res_id from EN_CASA_ANDABA.Estadias where est_res_id = @estadiaId)
+			set @tipoDocumentoId = (select res_cli_doc_id from EN_CASA_ANDABA.Reservas where res_id = @reservaId)
+			set @documento = (select res_cli_documento from EN_CASA_ANDABA.Reservas where res_id = @reservaId)
+			set @regimenId = (select res_reg_id from EN_CASA_ANDABA.Reservas where res_id = @reservaId)
+			set @facturaId = (select fac_id from EN_CASA_ANDABA.Facturas where fac_est_res_id = @estadiaId)
+			if (@regimenId != 4)
+				begin
+					set @deuda = (select est_precio from EN_CASA_ANDABA.Estadias 
+						where est_res_id = @estadiaId) + EN_CASA_ANDABA.deudaConsumibles(@estadiaId)
+					UPDATE EN_CASA_ANDABA.Facturas
+					set fac_med_id = @medioPagoId, fac_fecha = @fecha, fac_total = @deuda
+						where fac_id = @facturaId
+				end
+			else
+				begin
+					set @deuda = (select est_precio from EN_CASA_ANDABA.Estadias where est_res_id = @estadiaId)
+					UPDATE EN_CASA_ANDABA.Facturas
+					set fac_med_id =@medioPagoId, fac_fecha = @fecha, fac_total = @deuda
+						where fac_id = @facturaId
+				end
+			set @resultado = (select fac_id from EN_CASA_ANDABA.Facturas where fac_est_res_id = @estadiaId 
+				and fac_fecha = @fecha)
+			select @resultado as resultado
+			commit tran	tModificacionFactura
+		end try
+		begin catch
+			rollback tran tModificacionFactura
+			set @resultado = 0
+			select @resultado as resultado
+		end catch
 	end
 go
 
