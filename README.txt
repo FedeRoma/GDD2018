@@ -1,7 +1,7 @@
-K xxxx y K xxxx (Sábados Turno Mañana)
+K3014 y K xxxx (SÃ¡bados Turno MaÃ±ana)
 EN_CASA_ANDABA
 Maximiliano CARDOZO (147121-1)
-Matías Dodero ()
+MatÃ­as Dodero ()
 Pablo J. MANTEIGA (109173-6)
 Federico ROMANO ()
 
