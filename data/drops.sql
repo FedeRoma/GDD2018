@@ -27,9 +27,12 @@ drop table EN_CASA_ANDABA.Estados
 drop table EN_CASA_ANDABA.TiposHabitaciones
 drop table EN_CASA_ANDABA.Documentos
 PRINT 'Chau Tablas!'
+drop function EN_CASA_ANDABA.estaReservadaHabitacion
+PRINT 'Chau Funciones!'
 drop procedure EN_CASA_ANDABA.buscarHoteles
 drop procedure EN_CASA_ANDABA.buscarRegimenesHotel
 drop procedure EN_CASA_ANDABA.buscarTiposHabitacionesHotel
+drop procedure EN_CASA_ANDABA.buscarHabitacionesDisponibles
 drop procedure EN_CASA_ANDABA.altaUsuario
 drop procedure EN_CASA_ANDABA.modificacionUsuario
 drop procedure EN_CASA_ANDABA.altaHotel

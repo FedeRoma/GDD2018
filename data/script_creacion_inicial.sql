@@ -1,10 +1,47 @@
 ﻿use [GD1C2018]
 go
+
 -------------------------------------------------------------------------------
 ---------- ESQUEMA ------------------------------------------------------------
 -------------------------------------------------------------------------------
 
 create schema EN_CASA_ANDABA AUTHORIZATION gdHotel2018
+go
+
+-------------------------------------------------------------------------------
+---------- FUNCIONES ----------------------------------------------------------
+-------------------------------------------------------------------------------
+
+create function EN_CASA_ANDABA.estaReservadaHabitacion 
+	(@desde datetime, @hasta datetime, @reservaId int) RETURNS bit as
+	begin
+-- Fecha de inicio cae dentro de la solicitada
+		if(exists (select RYH.ryh_hab_id from EN_CASA_ANDABA.Reservas_Habitaciones RYH, EN_CASA_ANDABA.Reservas R
+			where R.res_inicio > @desde and R.res_inicio < @hasta and R.res_id = RYH.ryh_res_id and 
+			RYH.ryh_hab_id = @reservaId and R.res_id not in (select urc_res_id 
+			from EN_CASA_ANDABA.Usuarios_ReservasCancelaciones C))) return 1
+-- Fecha fin cae dentro de la solicitada
+		if(exists (select RYH.ryh_hab_id from EN_CASA_ANDABA.Reservas_Habitaciones RYH, EN_CASA_ANDABA.Reservas R
+			where R.res_fin > @desde and R.res_fin < @hasta and R.res_id = RYH.ryh_res_id and 
+			RYH.ryh_hab_id = @reservaId and R.res_id not in (select urc_res_id 
+			from EN_CASA_ANDABA.Usuarios_ReservasCancelaciones C))) return 2
+-- Fecha inicio la reserva pedida, esta entre las fechas de la reserva
+		if(exists (select RYH.ryh_hab_id from EN_CASA_ANDABA.Reservas_Habitaciones RYH, EN_CASA_ANDABA.Reservas R
+			where R.res_inicio < @desde and R.res_fin > @desde and R.res_id = RYH.ryh_res_id and 
+			RYH.ryh_hab_id = @reservaId and R.res_id not in (select urc_res_id 
+			from EN_CASA_ANDABA.Usuarios_ReservasCancelaciones C))) return 3
+-- Fecha fin reserva pedida, esta entre las fechas de la reserva
+		if(exists (select RYH.ryh_hab_id from EN_CASA_ANDABA.Reservas_Habitaciones RYH, EN_CASA_ANDABA.Reservas R
+			where R.res_inicio < @hasta and R.res_fin > @hasta and R.res_id = RYH.ryh_res_id and 
+			RYH.ryh_hab_id = @reservaId and R.res_id not in (select urc_res_id 
+			from EN_CASA_ANDABA.Usuarios_ReservasCancelaciones C))) return 4
+-- Fechas iguales
+		if(exists (select RYH.ryh_hab_id from EN_CASA_ANDABA.Reservas_Habitaciones RYH, EN_CASA_ANDABA.Reservas R
+			where R.res_inicio = @desde and R.res_fin = @hasta and R.res_id = RYH.ryh_res_id and 
+			RYH.ryh_hab_id = @reservaId and R.res_id not in (select urc_res_id 
+			from EN_CASA_ANDABA.Usuarios_ReservasCancelaciones C))) return 5
+		return 0
+	end
 go
 
 -------------------------------------------------------------------------------				
@@ -26,6 +63,46 @@ create procedure EN_CASA_ANDABA.buscarRegimenesHotel
 		select distinct R.reg_desc from EN_CASA_ANDABA.Hoteles HO, EN_CASA_ANDABA.Regimenes_Hoteles RYH, 
 			EN_CASA_ANDABA.Regimenes R where HO.hot_calle = @calle and HO.hot_calle_nro = @numero and
 			RYH.ryh_hot_id = HO.hot_id and RYH.ryh_reg_id = R.reg_id 
+	end
+go
+
+create procedure EN_CASA_ANDABA.buscarHabitacionesDisponibles
+	@hotel nvarchar(255), @fechaInicio date, @fechaFin date, @regimen nvarchar(255) = null,
+	@tipoHabitacion nvarchar(255) as
+	begin
+		declare @fechaDesde date, @fechaHasta date, @hotelId int, @tipoHabitacionId int
+		set @fechaDesde = CONVERT(date,@fechaInicio,121)
+		set @fechaHasta = CONVERT(date,@fechaFin,121)
+		set @hotelId = (select hot_id from EN_CASA_ANDABA.Hoteles where hot_nombre = @hotel)
+		set @tipoHabitacionId = (select tip_id from EN_CASA_ANDABA.TiposHabitaciones where tip_nombre = @tipoHabitacion)
+		if (@regimen is null)
+			begin
+				select distinct HA.hab_id, HA.hab_vista, (R.reg_precio * TH.tip_personas) + (HO.hot_estrellas * HO.hot_recarga_estrellas) 
+					PrecioPorNoche, R.reg_desc
+					from EN_CASA_ANDABA.Habitaciones HA, EN_CASA_ANDABA.Hoteles HO, EN_CASA_ANDABA.TiposHabitaciones TH, EN_CASA_ANDABA.Regimenes R
+					where HO.hot_id = @hotelId and TH.tip_id = @tipoHabitacionId and HA.hab_hot_id = @hotel and
+					HA.hab_tip_id = @tipoHabitacion and	not exists (select baj_hot_id 
+					from EN_CASA_ANDABA.BajasHotel where baj_hot_id = @hotelId and 
+					baj_fecha_inicio <= @fechaDesde and baj_fecha_fin >= @fechaDesde) and not exists (select baj_hot_id 
+					from EN_CASA_ANDABA.BajasHotel where baj_hot_id = @hotelId and 
+					baj_fecha_inicio <= @fechaHasta and baj_fecha_fin >= @fechaHasta) and
+					(EN_CASA_ANDABA.estaReservadaHabitacion (@fechaDesde, @fechaHasta, HA.hab_id)) < 1
+			end
+		else
+			begin
+				declare @regimenId int
+				set @regimenId = (select reg_id from EN_CASA_ANDABA.Regimenes where reg_desc = @regimen)
+				select distinct HA.hab_id, HA.hab_vista, (R.reg_precio * TH.tip_personas) + (HO.hot_estrellas * HO.hot_recarga_estrellas) 
+					PrecioPorNoche, R.reg_desc
+					from EN_CASA_ANDABA.Habitaciones HA, EN_CASA_ANDABA.Hoteles HO, EN_CASA_ANDABA.TiposHabitaciones TH,
+					EN_CASA_ANDABA.Regimenes R where R.reg_id = @regimenId and HO.hot_id = @hotel and 
+					TH.tip_id = @tipoHabitacionId and HA.hab_hot_id = @hotelId and HA.hab_tip_id = @tipoHabitacionId and
+					not exists (select baj_hot_id from EN_CASA_ANDABA.BajasHotel where baj_hot_id = @hotel and 
+					baj_fecha_inicio <= @fechaDesde and baj_fecha_fin >= @fechaDesde) and 
+					not exists (select baj_hot_id from EN_CASA_ANDABA.BajasHotel where baj_hot_id = @hotel and 
+					baj_fecha_inicio <= @fechaHasta and baj_fecha_fin >= @fechaHasta) and
+					(EN_CASA_ANDABA.estaReservadaHabitacion (@fechaDesde, @fechaHasta, HA.hab_id)) < 1
+			end
 	end
 go
 
@@ -474,9 +551,6 @@ create procedure EN_CASA_ANDABA.modificacionClientes_Estadias
 			end catch
 	end
 go
-
-
-
 
 create procedure EN_CASA_ANDABA.altaCheckInEstadia
 	@reservaId int, @usuarioId int, @fechaI date as
