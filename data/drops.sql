@@ -28,7 +28,12 @@ drop table EN_CASA_ANDABA.TiposHabitaciones
 drop table EN_CASA_ANDABA.Documentos
 PRINT 'Chau Tablas!'
 drop procedure EN_CASA_ANDABA.buscarHoteles
+drop procedure EN_CASA_ANDABA.buscarRegimenesHotel
+drop procedure EN_CASA_ANDABA.buscarTiposHabitacionesHotel
 drop procedure EN_CASA_ANDABA.altaUsuario
+drop procedure EN_CASA_ANDABA.modificacionUsuario
+drop procedure EN_CASA_ANDABA.altaHotel
+drop procedure EN_CASA_ANDABA.modificacionHotel
 drop procedure EN_CASA_ANDABA.altaHabitacion
 drop procedure EN_CASA_ANDABA.modificacionHabitacion
 drop procedure EN_CASA_ANDABA.altaCliente
@@ -39,6 +44,8 @@ drop procedure EN_CASA_ANDABA.bajaReservasVencidas
 drop procedure EN_CASA_ANDABA.altaReserva
 drop procedure EN_CASA_ANDABA.modificacionReserva
 drop procedure EN_CASA_ANDABA.altaReservaHabitacion
+drop procedure EN_CASA_ANDABA.altaClientes_Estadias
+drop procedure EN_CASA_ANDABA.modificacionClientes_Estadias
 drop procedure EN_CASA_ANDABA.altaCheckInEstadia
 drop procedure EN_CASA_ANDABA.altaCheckOutEstadia
 drop procedure EN_CASA_ANDABA.top5_hoteles_reservas_canceladas
