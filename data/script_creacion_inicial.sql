@@ -1165,7 +1165,7 @@ create table EN_CASA_ANDABA.Habitaciones (
 	hab_tipo_porcentual int NULL)
 
 create table EN_CASA_ANDABA.TiposHabitaciones (
-	tip_id int NOT NULL,
+	tip_id int identity (1001,1) NOT NULL,
 	tip_nombre varchar(50) NOT NULL,
 	tip_porcentual int NOT NULL,
 	tip_personas int NOT NULL)
@@ -1206,7 +1206,7 @@ create table EN_CASA_ANDABA.Items_Facturas (
 	iyf_est_res_id int NOT NULL)
 
 create table EN_CASA_ANDABA.Consumibles (
-	con_id int NOT NULL,
+	con_id int identity (2324,1) NOT NULL,
 	con_desc varchar(50) NOT NULL,
 	con_precio int NOT NULL)
 
@@ -1595,6 +1595,7 @@ insert into EN_CASA_ANDABA.Funcionalidades_Roles (fyr_rol_id, fyr_fun_id)
 go
 PRINT 'Funcionalidades_Roles... OK!'
 
+set IDENTITY_INSERT EN_CASA_ANDABA.TiposHabitaciones ON
 insert into EN_CASA_ANDABA.TiposHabitaciones (tip_id, tip_nombre, tip_porcentual, tip_personas)
 	select distinct Habitacion_Tipo_codigo, Habitacion_Tipo_descripcion, Habitacion_Tipo_porcentual, 1 from gd_esquema.Maestra
 		update EN_CASA_ANDABA.TiposHabitaciones
@@ -1603,6 +1604,8 @@ insert into EN_CASA_ANDABA.TiposHabitaciones (tip_id, tip_nombre, tip_porcentual
 									when tip_nombre = 'Base Triple' Then 3
 									when tip_nombre = 'Base Cuadruple' Then 4
 									else 5 end
+
+set IDENTITY_INSERT EN_CASA_ANDABA.TiposHabitaciones OFF
 go
 PRINT 'TiposHabitaciones... OK!'
 
@@ -1612,10 +1615,12 @@ insert into EN_CASA_ANDABA.Regimenes (reg_desc, reg_precio, reg_habilitado)
 go
 PRINT 'Regimenes... OK!'
 
+set IDENTITY_INSERT EN_CASA_ANDABA.Consumibles ON
 insert into EN_CASA_ANDABA.Consumibles (con_id, con_desc, con_precio)
 	select distinct Consumible_Codigo, Consumible_Descripcion, Consumible_Precio 
 		from gd_esquema.Maestra
 		where Consumible_Codigo is not null
+set IDENTITY_INSERT EN_CASA_ANDABA.Consumibles OFF
 go
 PRINT 'Consumibles... OK!'
 
