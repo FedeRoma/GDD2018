@@ -365,7 +365,7 @@ create procedure EN_CASA_ANDABA.altaCliente
 go
 
 create procedure EN_CASA_ANDABA.modificacionCliente
-	@documento bigint, @tipoDocumento varchar(50), @nombre varchar(50), @apellido varchar(50), @email varchar(50),
+	@documento bigint, @nombre varchar(50), @apellido varchar(50), @email varchar(50),
 	@nacionalidad varchar(50), @fechaNac date, @calle varchar(50), @numeroCalle int, @piso nvarchar(10),
 	@depto nvarchar(10), @localidad varchar(50), @pais varchar(50), @tel nvarchar(50), @habilitado bit as	
 	begin
@@ -373,7 +373,7 @@ create procedure EN_CASA_ANDABA.modificacionCliente
 		set @fechaNacimiento = CONVERT(date,@fechaNac,121)
 		begin tran tModificacionCliente
 			begin try
-				set @tipoDocumentoId = (select doc_id from EN_CASA_ANDABA.Documentos where @tipoDocumento = doc_desc)
+				set @tipoDocumentoId = (select cli_doc_id from EN_CASA_ANDABA.Clientes where cli_documento = @documento)
 				UPDATE EN_CASA_ANDABA.Clientes
 				set cli_nombre = @nombre, cli_apellido = @apellido, cli_doc_id = @tipoDocumentoId,
 					cli_documento = @documento, cli_fecha_nac = @fechaNacimiento, cli_mail = @email,
