@@ -1221,7 +1221,7 @@ create table EN_CASA_ANDABA.Estadias (
 	est_dias_sobrantes int NULL)
 
 create table EN_CASA_ANDABA.Reservas (
-	res_id int NOT NULL,
+	res_id int identity (10001,1) NOT NULL,
 	res_estados_id int NOT NULL,
 	res_fecha datetime NOT NULL,
 	res_inicio date NOT NULL,
@@ -1694,6 +1694,7 @@ PRINT 'Clientes... OK!'
 alter table EN_CASA_ANDABA.Reservas
 alter column res_estados_id int NULL
 -- reservas clientes
+set IDENTITY_INSERT EN_CASA_ANDABA.Reservas ON
 insert into EN_CASA_ANDABA.Reservas (res_id, res_fecha, res_inicio, res_fin, res_tip_id, res_reg_id, 
 								res_cli_documento, res_usu_id, res_cli_doc_id)
 	select distinct reserva_codigo, getdate(), reserva_fecha_inicio, 
@@ -1701,8 +1702,10 @@ insert into EN_CASA_ANDABA.Reservas (res_id, res_fecha, res_inicio, res_fin, res
 					Habitacion_Tipo_Codigo, reg_id, C.cli_documento, usu_id, 1
 		from gd_esquema.Maestra M, EN_CASA_ANDABA.Regimenes R, EN_CASA_ANDABA.Usuarios U, EN_CASA_ANDABA.Clientes C
 		where M.regimen_descripcion = R.reg_desc and U.usu_username = 'admin' and C.cli_documento = M.Cliente_Pasaporte_Nro
+set IDENTITY_INSERT EN_CASA_ANDABA.Reservas OFF
 go
 -- reservas clientesErrores
+set IDENTITY_INSERT EN_CASA_ANDABA.Reservas ON
 insert into EN_CASA_ANDABA.Reservas (res_id, res_fecha, res_inicio, res_fin, res_tip_id, res_reg_id, 
 								res_usu_id, res_cye_id)
 	select distinct reserva_codigo, getdate(), reserva_fecha_inicio, 
@@ -1712,6 +1715,7 @@ insert into EN_CASA_ANDABA.Reservas (res_id, res_fecha, res_inicio, res_fin, res
 		where M.regimen_descripcion = R.reg_desc and U.usu_username = 'admin' 
 			and C.cye_documento = M.Cliente_Pasaporte_Nro and C.cye_apellido = m.Cliente_Apellido 
 			and C.cye_nombre = M.Cliente_Nombre
+set IDENTITY_INSERT EN_CASA_ANDABA.Reservas OFF
 go
 
 update EN_CASA_ANDABA.Reservas
