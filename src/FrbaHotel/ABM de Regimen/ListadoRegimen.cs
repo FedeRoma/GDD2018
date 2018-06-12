@@ -37,14 +37,11 @@ namespace FrbaHotel.Regimen
         private void Listado_Load(object sender, EventArgs e)
         {
 
-            string query = "SELECT * FROM GESTION_DE_GATOS.Regimen";
+            string query = "SELECT * FROM EN_CASA_ANDABA.Regimenes";
             sAdapter = FrbaHotel.Home.BD.dameDataAdapter(query);
             dTable = FrbaHotel.Home.BD.dameDataTable(sAdapter);
-            //BindingSource to sync DataTable and DataGridView
             BindingSource bSource = new BindingSource();
-            //set the BindingSource DataSource
             bSource.DataSource = dTable;
-            //set the DataGridView DataSource
             dataGridView1.DataSource = bSource;
         }
 

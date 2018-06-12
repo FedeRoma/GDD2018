@@ -13,7 +13,7 @@ namespace FrbaHotel.Regimen
         private void buttonAlta_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Regimen.Modificacion alta = new Regimen.Modificacion("Agregar", "INSERT INTO GESTION_DE_GATOS.Regimen (descripcion, precio, estado) VALUES ");
+            Regimen.Modificacion alta = new Regimen.Modificacion("Agregar", "INSERT INTO EN_CASA_ANDABA.Regimenes (reg_desc, reg_precio, reg_habilitado) VALUES ");
             alta.ShowDialog();
             this.Show();
         }
@@ -21,7 +21,7 @@ namespace FrbaHotel.Regimen
         private void buttonBaja_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Regimen.Listado baja = new Regimen.Listado("Borrar","DELETE FROM GESTION_DE_GATOS.Regimen WHERE codigo = ");
+            Regimen.Listado baja = new Regimen.Listado("Borrar","DELETE FROM EN_CASA_ANDABA.Regimenes WHERE reg_id = ");
             baja.ShowDialog();
             this.Show();
         }
@@ -29,7 +29,7 @@ namespace FrbaHotel.Regimen
         private void buttonModi_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Regimen.Listado modificacion = new Regimen.Listado("Modificar", "UPDATE GESTION_DE_GATOS.Regimen SET ");
+            Regimen.Listado modificacion = new Regimen.Listado("Modificar", "UPDATE EN_CASA_ANDABA.Regimenes SET ");
             modificacion.ShowDialog();
             this.Show();
         }
