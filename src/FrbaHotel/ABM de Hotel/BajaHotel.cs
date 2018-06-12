@@ -47,11 +47,10 @@ namespace FrbaHotel.ABM_de_Hotel
 
         private void buttonAceptar_Click(object sender, EventArgs e)
         {
-            //Verificar que el hotel se encuentre vacio para esas fechas
-            //Verificar que no se encuentren reservas para el rango de fechas
+            /
             if (this.chequearCamposObligatoriosOK())
             {
-                string verificarQuery = "select GESTION_DE_GATOS.hotelTieneReserva('" + dateTimePickerInicio.Value.Date.ToString("yyyyMMdd HH:mm:ss") + "','"
+                string verificarQuery = "select EN_CASA_ANDABA.hotelTieneReserva('" + dateTimePickerInicio.Value.Date.ToString("yyyyMMdd HH:mm:ss") + "','"
                     + dateTimePickerHasta.Value.Date.ToString("yyyyMMdd HH:mm:ss") + "'," + Login.HomeLogin.hotel + ")";
                 string huboError = FrbaHotel.Home.BD.executeAndReturn(verificarQuery);
                 if (Convert.ToBoolean(huboError))
@@ -60,7 +59,7 @@ namespace FrbaHotel.ABM_de_Hotel
                 }
                 else
                 {
-                    string agregarQuery = "Insert into GESTION_DE_GATOS.BajaHotel (hotel, fecha_ini, fecha_hasta, motivo) Values (" + Login.HomeLogin.hotel + ",'" + dateTimePickerInicio.Value.Date.ToString("yyyyMMdd HH:mm:ss") + "','" + dateTimePickerHasta.Value.Date.ToString("yyyyMMdd HH:mm:ss") + "','" + textBoxMotivo.Text + "')";
+                    string agregarQuery = "Insert into EN_CASA_ANDABA.BajaHotel (hotel, fecha_ini, fecha_hasta, motivo) Values (" + Login.HomeLogin.hotel + ",'" + dateTimePickerInicio.Value.Date.ToString("yyyyMMdd HH:mm:ss") + "','" + dateTimePickerHasta.Value.Date.ToString("yyyyMMdd HH:mm:ss") + "','" + textBoxMotivo.Text + "')";
                     FrbaHotel.Home.BD.executeOnly(agregarQuery);
                     MessageBox.Show("Se genero la baja del hotel en el periodo elegido");
                     this.Close();

@@ -52,10 +52,9 @@ namespace FrbaHotel.ABM_de_Hotel
             tabla2.Columns.Add("Descripcion");
             bSource2 = new BindingSource();
             bSource2.DataSource = tabla2;
-            //set the DataGridView DataSource
-            dataGridView2.DataSource = bSource2;
+             dataGridView2.DataSource = bSource2;
 
-            string consulta = "select R.codigo, R.descripcion from GESTION_DE_GATOS.Regimen R, GESTION_DE_GATOS.RegimenXHotel RH where RH.regimen = R.codigo and RH.hotel = " + idHotel;
+            string consulta = "select Reg.reg_id, Reg.reg_desc from EN_CASA_ANDABA.Regimenes Reg, EN_CASA_ANDABA.Regimenes_Hoteles RH where RH.ryh_id = Reg.reg_id and RH.ryh_hot_id = " + hot_id;
             resultado = Home.BD.comando(consulta);
             while (resultado.Read())
             {
@@ -76,7 +75,7 @@ namespace FrbaHotel.ABM_de_Hotel
             //set the DataGridView DataSource
             dataGridView1.DataSource = bSource1;
 
-            consulta = "select codigo,descripcion from GESTION_DE_GATOS.Regimen where codigo not in " + "(select R.codigo from GESTION_DE_GATOS.Regimen R, GESTION_DE_GATOS.RegimenXHotel RH where RH.regimen = R.codigo and RH.hotel = " + idHotel + ")";
+            consulta = "select reg_id,reg_desc from EN_CASA_ANDABA.Regimenes where reg_id not in " + "(select Reg.reg_id from EN_CASA_ANDABA.Regimenes Reg, EN_CASA_ANDABA.Regimenes_Hoteles RH where RH.ryh_id = Reg.reg_id and RH.ryh_hot_id = " + hot_id + ")";
             resultado = Home.BD.comando(consulta);
             while (resultado.Read())
             {
@@ -164,14 +163,11 @@ namespace FrbaHotel.ABM_de_Hotel
             dateTimePicker1.Value = Home.fecha;
             tabla2.Clear();
             tabla1.Clear();
-            string query = "select distinct codigo Id,descripcion Descripcion from GESTION_DE_GATOS.Regimen";
+            string query = "select distinct reg_id Id,reg_desc Descripcion from EN_CASA_ANDABA.Regimenes";
             SqlDataAdapter sAdapter = FrbaHotel.Home.BD.dameDataAdapter(query);
             tabla1 = FrbaHotel.Home.BD.dameDataTable(sAdapter);
-            //BindingSource to sync DataTable and DataGridView
             BindingSource bSource = new BindingSource();
-            //set the BindingSource DataSource
             bSource.DataSource = tabla1;
-            //set the DataGridView DataSource
             dataGridView1.DataSource = bSource;
         }
 
@@ -213,7 +209,7 @@ namespace FrbaHotel.ABM_de_Hotel
                 return;
             }
 
-            string insert = "EXEC GESTION_DE_GATOS.ModificarHotel ";
+            string insert = "EXEC EN_CASA_ANDABA.modificacionHotel ";
             insert = insert + idHotel + ",";
             insert = insert + "'" + textBox1.Text + "',";
             insert = insert + "'" + textBox2.Text + "',";
@@ -238,7 +234,7 @@ namespace FrbaHotel.ABM_de_Hotel
             }
             resultado.Close();
 
-            string borrado = "EXEC GESTION_DE_GATOS.BorrarRegimenesXHotel " + idHotel;
+            string borrado = "EXEC EN_CASA_ANDABA.bajaRegimenes_Hoteles " + idHotel;
             resultado = Home.BD.comando(borrado);
             resultado.Read();
             if (resultado.GetDecimal(0)==1)
@@ -253,8 +249,8 @@ namespace FrbaHotel.ABM_de_Hotel
 
             foreach (DataRow fila in tabla2.Rows)
             {
-                MessageBox.Show("EXEC GESTION_DE_GATOS.InsertarRegimenXHotel " + fila["Id"].ToString() + "," + idhotel);
-                resultado = Home.BD.comando("EXEC GESTION_DE_GATOS.InsertarRegimenXHotel " + fila["Id"].ToString() + "," + idhotel);
+                MessageBox.Show("EXEC EN_CASA_ANDABA.altaRegimenes_Hoteles " + fila["Id"].ToString() + "," + hot_id);
+                resultado = Home.BD.comando("EXEC EN_CASA_ANDABA.altaRegimenes_Hoteles " + fila["Id"].ToString() + "," + hot_id);
                 if (resultado.Read())
                 {
                     if (resultado.GetDecimal(0) == 0)

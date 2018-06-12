@@ -28,14 +28,11 @@ namespace FrbaHotel.ABM_de_Hotel
 
         private void ListadoModif_Load(object sender, EventArgs e)
         {
-            string query = "select idHotel Id, nombre Nombre,mail Mail,telefono Tel,direccion Direccion,cant_estrellas Estrellas,recarga_estrella RecargaEstrella,fecha_creacion FechaCreacion from	GESTION_DE_GATOS.Hotel where idHotel ="+Login.HomeLogin.hotel;
+            string query = "select hot_id ID, hot_calle+hot_calle_nro Nombre,hot_mail Mail,hot_telefono Tel,hot_calle+hot_calle_nro Direccion,hot_estrellas Estrellas,hot_recarga_estrella RecargaEstrella,hot_fecha_cre FechaCreacion from	EN_CASA_ANDABA.Hoteles where hot_id ="+Login.HomeLogin.hotel;
             sAdapter = FrbaHotel.Home.BD.dameDataAdapter(query);
             dTable = FrbaHotel.Home.BD.dameDataTable(sAdapter);
-            //BindingSource to sync DataTable and DataGridView
             bSource = new BindingSource();
-            //set the BindingSource DataSource
             bSource.DataSource = dTable;
-            //set the DataGridView DataSource
             dataGridView1.DataSource = bSource;
         }
         private string filtrarExactamentePor(string columna, string valor)

@@ -12,7 +12,7 @@ namespace FrbaHotel.ABM_de_Hotel
 {
     public partial class AltaHotel : Form
     {
-        public static string direccion = "";//numero de direccion
+        public static string direccion = "";
         DataTable tabla;
         BindingSource bSource2;
         private SqlDataReader resultado;
@@ -30,7 +30,6 @@ namespace FrbaHotel.ABM_de_Hotel
             tabla.Columns.Add("Descripcion");
             bSource2 = new BindingSource();
             bSource2.DataSource = tabla;
-            //set the DataGridView DataSource
             dataGridView2.DataSource = bSource2;
         }
 
@@ -65,15 +64,12 @@ namespace FrbaHotel.ABM_de_Hotel
         private void AltaHotel_Load(object sender, EventArgs e)
         {
             direccion = "";
-            string query = "select distinct codigo Id,descripcion Descripcion from GESTION_DE_GATOS.Regimen";
+            string query = "select distinct creg_id ID,reg_desc Descripcion from EN_CASA_ANDABA.Regimenes";
 
             sAdapter = FrbaHotel.Home.BD.dameDataAdapter(query);
             dTable = FrbaHotel.Home.BD.dameDataTable(sAdapter);
-            //BindingSource to sync DataTable and DataGridView
             BindingSource bSource = new BindingSource();
-            //set the BindingSource DataSource
             bSource.DataSource = dTable;
-            //set the DataGridView DataSource
             dataGridView1.DataSource = bSource;
         }
 
@@ -148,7 +144,7 @@ namespace FrbaHotel.ABM_de_Hotel
                 return;
             }
 
-            string insert = "EXEC GESTION_DE_GATOS.InsertarHotel ";
+            string insert = "EXEC EN_CASA_ANDABA.altaHotel ";
             insert = insert + "'" + textBox1.Text + "',";
             insert = insert + "'" + textBox2.Text + "',";
             insert = insert  + textBox3.Text + ",";
@@ -171,7 +167,10 @@ namespace FrbaHotel.ABM_de_Hotel
                 return;
             }
             resultado.Close();
-            consulta = "exec GESTION_DE_GATOS.InsertarUserXRolXHotel ";
+
+            //procedure no usado
+
+           /* consulta = "exec EN_CASA_ANDABA.InsertarUserXRolXHotel ";
             consulta = consulta + Login.HomeLogin.idUsuario + ",";
             consulta = consulta + idhotel.ToString() + ",";
             consulta = consulta +"'"+ Login.HomeLogin.rol + "'";
@@ -189,11 +188,13 @@ namespace FrbaHotel.ABM_de_Hotel
                 MessageBox.Show("Ese hotel ya esta ingresado para ese user con ese rol");
                 return;
             }
-            resultado.Close();
+            resultado.Close();*/
+
+
 
             foreach (DataRow fila in tabla.Rows)
             {
-                resultado = Home.BD.comando("EXEC GESTION_DE_GATOS.InsertarRegimenXHotel " + fila["Id"].ToString() + "," + idhotel);
+                resultado = Home.BD.comando("EXEC EN_CASA_ANDABA.altaRegimenes_Hoteles " + fila["Id"].ToString() + "," + idhotel);
                 if (resultado.Read())
                 {
                     if (resultado.GetDecimal(0) == 0)
