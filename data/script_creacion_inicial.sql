@@ -373,9 +373,9 @@ create procedure EN_CASA_ANDABA.modificacionCliente
 		set @fechaNacimiento = CONVERT(date,@fechaNac,121)
 		begin tran tModificacionCliente
 			begin try
-				set @tipoDocumentoId =(select doc_id from EN_CASA_ANDABA.Documentos where @tipoDocumento = doc_desc)
+				set @tipoDocumentoId = (select doc_id from EN_CASA_ANDABA.Documentos where @tipoDocumento = doc_desc)
 				UPDATE EN_CASA_ANDABA.Clientes
-				set cli_nombre = @nombre, cli_apellido = @apellido, cli_doc_id = @tipoDocumento,
+				set cli_nombre = @nombre, cli_apellido = @apellido, cli_doc_id = @tipoDocumentoId,
 					cli_documento = @documento, cli_fecha_nac = @fechaNacimiento, cli_mail = @email,
 					cli_telefono = @tel, cli_nacionalidad = @nacionalidad, cli_calle = @calle,
 					cli_calle_nro = @numeroCalle, cli_piso = @piso, cli_depto = @depto,
@@ -1176,7 +1176,7 @@ create table EN_CASA_ANDABA.Hoteles_Usuarios (
 	hyu_id int identity (1, 1) NOT NULL)
 
 create table EN_CASA_ANDABA.Facturas (
-	fac_id int NOT NULL,
+	fac_id int identity (2396745,1) NOT NULL,
 	fac_cli_documento bigint NULL,
 	fac_fecha date NOT NULL,
 	fac_total int NOT NULL,
@@ -1761,26 +1761,29 @@ insert into EN_CASA_ANDABA.Estadias (est_res_id, est_usu_alta, est_checkin, est_
 PRINT 'Estadias... OK!'
 
 -- facturas clientes
-insert into EN_CASA_ANDABA.Facturas
+set IDENTITY_INSERT EN_CASA_ANDABA.Facturas ON
+insert into EN_CASA_ANDABA.Facturas (fac_id, fac_cli_documento, fac_fecha, fac_total,fac_est_res_id,fac_med_id,fac_cli_doc_id)
 	select distinct M.Factura_Nro, C.cli_documento, M.Factura_Fecha, M.Factura_Total + E.est_precio, 
-			E.est_res_id, mp.med_id, null, c.cli_doc_id, null
+			E.est_res_id, mp.med_id, c.cli_doc_id
 		from gd_esquema.Maestra M, EN_CASA_ANDABA.Clientes C, EN_CASA_ANDABA.Estadias E, 
 			EN_CASA_ANDABA.MediosPago MP, EN_CASA_ANDABA.Reservas R
 		where M.Factura_Nro is not null and M.Reserva_Codigo = R.res_id and E.est_res_id = R.res_id
 			and MP.med_desc = 'Efectivo' and R.res_cli_documento = C.cli_documento 
 			and R.res_cli_doc_id = C.cli_doc_id and M.Consumible_Codigo is null
 		order by M.Factura_Nro
+set IDENTITY_INSERT EN_CASA_ANDABA.Facturas OFF
 -- facturas clientesErrores
-insert into EN_CASA_ANDABA.Facturas
-	select distinct M.Factura_Nro, null, M.Factura_Fecha, M.Factura_Total + E.est_precio,
-			E.est_res_id, MP.med_id, null, null, C.cye_id
+SET IDENTITY_INSERT EN_CASA_ANDABA.Facturas ON
+insert into EN_CASA_ANDABA.Facturas (fac_id, fac_fecha, fac_total,fac_est_res_id,fac_med_id,fac_cye_id)
+	select distinct M.Factura_Nro, M.Factura_Fecha, M.Factura_Total + E.est_precio,
+			E.est_res_id, MP.med_id, C.cye_id
 		from gd_esquema.Maestra M, EN_CASA_ANDABA.ClientesErrores C, EN_CASA_ANDABA.Estadias E, 
 			EN_CASA_ANDABA.MediosPago MP, EN_CASA_ANDABA.Reservas R
 		where M.Factura_Nro is not null and M.Consumible_Codigo is null and M.Reserva_Codigo = R.res_id 
 			and E.est_res_id = R.res_id and MP.med_desc = 'Efectivo' and R.res_cye_id = C.cye_id 
 			and M.Cliente_Nombre = cye_nombre
 	order by M.Factura_Nro
-go
+set IDENTITY_INSERT EN_CASA_ANDABA.Facturas OFF
 PRINT 'Facturas... OK!'
 
 insert into EN_CASA_ANDABA.Items_Facturas (iyf_con_id, iyf_fac_id, iyf_cantidad, iyf_monto, iyf_est_res_id)
