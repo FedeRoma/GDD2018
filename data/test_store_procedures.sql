@@ -19,8 +19,12 @@ exec EN_CASA_ANDABA.altaCliente 123456, 'Libreta de Enrolamiento', 'Cosme', 'Ful
 	'ARGENTINO', '1992-07-19', 'Av. Medrano', '951', '5', 'D', null, null, null
 select * from EN_CASA_ANDABA.Clientes C where C.cli_documento = 123456
 ----------------------------------
---- altaCliente ------------------
+--- modificacionCliente ----------
 ----------------------------------
+exec EN_CASA_ANDABA.modificacionCliente 123456, 'Libreta de Enrolamiento', 'Cosme', 'Modificado', 'cosmefulanito@gmail.com', 
+	'ARGENTINO', '1992-07-19', 'Av. Medrano', '951', '5', 'D', 'CABA', 'Argentina', null, 1
+select * from EN_CASA_ANDABA.Clientes C where C.cli_documento = 123456
+
 
 
 
