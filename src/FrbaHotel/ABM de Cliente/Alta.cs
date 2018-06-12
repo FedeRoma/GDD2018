@@ -168,7 +168,7 @@ namespace FrbaHotel.ABM_de_Cliente
             if (a == 0)
             {
                 //INSERTAR VALORES
-                string insert = "EXEC EN_CASA_ANDABA.InsertarCliente "; //alta cliente
+                string insert = "EXEC EN_CASA_ANDABA.altaCLiente "; //alta cliente
                 
                 insert = insert + "'" + textBoxNombre.Text + "',";
                 insert = insert + "'" + textBoxApellido.Text + "',";
