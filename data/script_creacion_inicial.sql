@@ -1217,8 +1217,8 @@ create table EN_CASA_ANDABA.Estadias (
 	est_checkout date NULL,
 	est_cant_noches int NULL,
 	est_precio int NOT NULL,
-	est_usu_salida int NOT NULL,
-	est_dias_sobrantes int NOT NULL)
+	est_usu_salida int NULL,
+	est_dias_sobrantes int NULL)
 
 create table EN_CASA_ANDABA.Reservas (
 	res_id int NOT NULL,
