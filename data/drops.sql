@@ -37,8 +37,8 @@ drop procedure EN_CASA_ANDABA.buscarHabitacionesDisponibles
 drop procedure EN_CASA_ANDABA.buscarReservaHabitacion
 drop procedure EN_CASA_ANDABA.altaUsuario
 drop procedure EN_CASA_ANDABA.modificacionUsuario
-drop procedure EN_CASA_ANDABA.altaRegimenes_Hoteles
-drop procedure EN_CASA_ANDABA.bajaRegimenes_Hoteles
+drop procedure EN_CASA_ANDABA.altaRegimenesHotel
+drop procedure EN_CASA_ANDABA.bajaRegimenesHotel
 drop procedure EN_CASA_ANDABA.altaHotel
 drop procedure EN_CASA_ANDABA.modificacionHotel
 drop procedure EN_CASA_ANDABA.altaHabitacion

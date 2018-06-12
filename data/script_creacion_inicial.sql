@@ -433,39 +433,39 @@ create procedure EN_CASA_ANDABA.altaFuncionalidadRol
 	end
 go
 
-create procedure EN_CASA_ANDABA.altaRegimenes_Hoteles
+create procedure EN_CASA_ANDABA.altaRegimenesHotel
 	@regimenId int, @hotelId int as
 	begin
 		declare @respuesta bit
-		begin tran tAltaRegimenes_Hoteles
+		begin tran tAltaRegimenesHotel
 			begin try
 				insert into EN_CASA_ANDABA.Regimenes_Hoteles (ryh_hot_id, ryh_reg_id) 
 				values(@hotelId, @regimenId)
 				set @respuesta = (select SCOPE_IDENTITY())
 				select @respuesta as respuesta
-				commit tran tAltaRegimenes_Hoteles
+				commit tran tAltaRegimenesHotel
 			end try
 			begin catch
-				rollback tran tAltaRegimenes_Hoteles
+				rollback tran tAltaRegimenesHotel
 				set @respuesta = 0
 				select @respuesta as respuesta
 			end catch
 	end
 go
 
-create procedure EN_CASA_ANDABA.bajaRegimenes_Hoteles
+create procedure EN_CASA_ANDABA.bajaRegimenesHotel
 	@regimenId int as
 	begin
 		declare @respuesta bit
-		begin tran tBajaRegimenes_Hoteles
+		begin tran tBajaRegimenesHotel
 			begin try
 				delete from EN_CASA_ANDABA.Regimenes_Hoteles where ryh_hot_id = @regimenId
 				set @respuesta = 1
 				select @respuesta as respuesta
-				commit tran tBajaRegimenes_Hoteles
+				commit tran tBajaRegimenesHotel
 			end try
 			begin catch
-				rollback tran tBajaRegimenes_Hoteles
+				rollback tran tBajaRegimenesHotel
 				set @respuesta = 0
 				select @respuesta as respuesta
 			end catch
