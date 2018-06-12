@@ -18,7 +18,7 @@ namespace FrbaHotel.ABM_de_Habitacion
         {
             InitializeComponent();
             idH = id;
-            string consulta = "select nombre from GESTION_DE_GATOS.Hotel where idHotel = " + Login.HomeLogin.hotel;
+            string consulta = "select hot_calle+hot_calle_nro from EN_CASA_ANDABA.Hoteles where hot_id = " + Login.HomeLogin.hotel;
             resultado = Home.BD.comando(consulta);
             if (resultado.Read())
             {
@@ -60,7 +60,7 @@ namespace FrbaHotel.ABM_de_Habitacion
             if (a == 0)
             {
                 //MODIFICAR VALORES
-                string insert = "EXEC GESTION_DE_GATOS.ModificarHabitacion ";
+                string insert = "EXEC EN_CASA_ANDABA.modificacionHabitacion ";
                 insert = insert + idH.ToString()+",";
                 insert = insert + textBox1.Text + ",";
                 insert = insert + textBox2.Text + ",";

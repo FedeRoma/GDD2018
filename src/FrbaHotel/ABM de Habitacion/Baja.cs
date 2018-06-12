@@ -19,14 +19,14 @@ namespace FrbaHotel.ABM_de_Habitacion
         public Baja()
         {
             InitializeComponent();
-            consulta = "select distinct descripcion from GESTION_DE_GATOS.TipoHabitacion";
+            consulta = "select distinct tip_nombre from EN_CASA_ANDABA.TiposHabitaciones";
             resultado = Home.BD.comando(consulta);
             while (resultado.Read() == true)
             {
                 comboBox1.Items.Add(resultado.GetSqlString(0));
             }
             resultado.Close();
-            consulta = "select nombre from GESTION_DE_GATOS.Hotel where idHotel = " + Login.HomeLogin.hotel;
+            consulta = "select hot_calle+hot_calle_nro from GESTION_DE_GATOS.Hoteles where hot_id = " + Login.HomeLogin.hotel;
             resultado = Home.BD.comando(consulta);
             if (resultado.Read())
             {
@@ -38,14 +38,14 @@ namespace FrbaHotel.ABM_de_Habitacion
 
         private void Baja_Load(object sender, EventArgs e)
         {
-            string query = "select Ha.numero Numero,Ha.piso Piso,Ha.ubicacion Ubicacion,T.descripcion Tipo,Ha.descripcion Descripcion,Ha.estado Estado from	GESTION_DE_GATOS.Habitacion Ha,GESTION_DE_GATOS.Hotel H,GESTION_DE_GATOS.TipoHabitacion T where	Ha.hotel = H.idHotel and T.codigo = Ha.tipo and H.idHotel = " + Login.HomeLogin.hotel;
+            string query = "select hab.hab_numero Numero,hab.hab_piso Piso,hab.hab_des Descripcion,hab.hab_habilitado Estado from EN_CASA_ANDABA.Habitaciones hab, EN_CASA_ANDABA.Hoteles hot where hab.hab_hot_id = hot.hot_id and hot.hot_id=" + Login.HomeLogin.hotel;
             sAdapter = FrbaHotel.Home.BD.dameDataAdapter(query);
             dTable = FrbaHotel.Home.BD.dameDataTable(sAdapter);
-            //BindingSource to sync DataTable and DataGridView
+           
             BindingSource bSource = new BindingSource();
-            //set the BindingSource DataSource
+            
             bSource.DataSource = dTable;
-            //set the DataGridView DataSource
+           
             dataGridView1.DataSource = bSource;
         }
         private string filtrarExactamentePor(string columna, string valor)
@@ -120,14 +120,11 @@ namespace FrbaHotel.ABM_de_Habitacion
 
         private void Baja_Activated(object sender, EventArgs e)
         {
-            string query = "select Ha.numero Numero,Ha.piso Piso,Ha.ubicacion Ubicacion,T.descripcion Tipo,Ha.descripcion Descripcion,Ha.estado Estado from	GESTION_DE_GATOS.Habitacion Ha,GESTION_DE_GATOS.Hotel H,GESTION_DE_GATOS.TipoHabitacion T where	Ha.hotel = H.idHotel and T.codigo = Ha.tipo and H.idHotel = " + Login.HomeLogin.hotel;
+            string query = "select hab.hab_numero Numero,hab.hab_piso Piso,hab.hab_des Descripcion,hab.hab_habilitado Estado from EN_CASA_ANDABA.Habitaciones hab, EN_CASA_ANDABA.Hoteles hot where hab.hab_hot_id = hot.hot_id and hot.hot_id= " + Login.HomeLogin.hotel;
             sAdapter = FrbaHotel.Home.BD.dameDataAdapter(query);
-            dTable = FrbaHotel.Home.BD.dameDataTable(sAdapter);
-            //BindingSource to sync DataTable and DataGridView
-            BindingSource bSource = new BindingSource();
-            //set the BindingSource DataSource
-            bSource.DataSource = dTable;
-            //set the DataGridView DataSource
+            dTable = FrbaHotel.Home.BD.dameDataTable(sAdapter);            
+            BindingSource bSource = new BindingSource();            
+            bSource.DataSource = dTable;           
             dataGridView1.DataSource = bSource;
         }
 
@@ -150,14 +147,14 @@ namespace FrbaHotel.ABM_de_Habitacion
                 {
                     decimal id = 0;
                     decimal tipoT = 0;
-                    consulta = "select codigo from GESTION_DE_GATOS.TipoHabitacion where descripcion = '" + tipo + "'";
+                    consulta = "select tip_id from EN_CASA_ANDABA.TiposHabitaciones where tip_nombre = '" + tipo + "'";
                     resultado = Home.BD.comando(consulta);
                     if (resultado.Read())
                     {
                         tipoT = resultado.GetDecimal(0);
                     }
                     resultado.Close();
-                    consulta = "select idHabitacion from GESTION_DE_GATOS.Habitacion where numero = " + numero + " and piso = " + piso + " and hotel = " + Login.HomeLogin.hotel + " and tipo = " + tipoT;
+                    consulta = "select hab_id from EN_CASA_ANDABA.Habitaciones where hab_numero = " + numero + " and hab_piso = " + piso + " and hab_hot_id = " + Login.HomeLogin.hotel + " and hab_tip_id = " + tipoT;
                     resultado = Home.BD.comando(consulta);
                     if (resultado.Read())
                     {
@@ -165,7 +162,7 @@ namespace FrbaHotel.ABM_de_Habitacion
                     }
                     resultado.Close();
 
-                    consulta = "update GESTION_DE_GATOS.Habitacion set estado=0 where idHabitacion = " + id;
+                    consulta = "update EN_CASA_ANDABA.Habitaciones set hab_habilitado=0 where hab_id = " + id;
                     
                     resultado = Home.BD.comando(consulta);
                     if (resultado.Read() == true)

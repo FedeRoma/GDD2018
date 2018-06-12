@@ -19,14 +19,14 @@ namespace FrbaHotel.ABM_de_Habitacion
         public Listado()
         {
             InitializeComponent();
-            consulta = "select distinct descripcion from GESTION_DE_GATOS.TipoHabitacion";
+            consulta = "select distinct tip_nombre from EN_CASA_ANDABA.TiposHabitaciones";
             resultado = Home.BD.comando(consulta);
             while(resultado.Read() == true)
             {
                 comboBox1.Items.Add(resultado.GetSqlString(0));
             }
             resultado.Close();
-            consulta = "select nombre from GESTION_DE_GATOS.Hotel where idHotel = "+Login.HomeLogin.hotel;
+            consulta = "select hot_calle+hot_calle_nro from EN_CASA_ANDABA.Hoteles where hot_id = "+Login.HomeLogin.hotel;
             resultado = Home.BD.comando(consulta);
             if (resultado.Read())
             {
@@ -38,14 +38,11 @@ namespace FrbaHotel.ABM_de_Habitacion
 
         private void Listado_Load(object sender, EventArgs e)
         {
-            string query = "select Ha.numero Numero,Ha.piso Piso,Ha.ubicacion Ubicacion,T.descripcion Tipo,Ha.descripcion Descripcion,Ha.estado Estado from	GESTION_DE_GATOS.Habitacion Ha,GESTION_DE_GATOS.Hotel H,GESTION_DE_GATOS.TipoHabitacion T where	Ha.hotel = H.idHotel and T.codigo = Ha.tipo and H.idHotel = "+Login.HomeLogin.hotel;
+            string query = "select hab.hab_numero Numero,hab.hab_piso Piso,hab.hab_des Descripcion,hab.hab_habilitado Estado from EN_CASA_ANDABA.Habitaciones hab, EN_CASA_ANDABA.Hoteles hot where hab.hab_hot_id = hot.hot_id and hot.hot_id = "+Login.HomeLogin.hotel;
             sAdapter = FrbaHotel.Home.BD.dameDataAdapter(query);
             dTable = FrbaHotel.Home.BD.dameDataTable(sAdapter);
-            //BindingSource to sync DataTable and DataGridView
             BindingSource bSource = new BindingSource();
-            //set the BindingSource DataSource
             bSource.DataSource = dTable;
-            //set the DataGridView DataSource
             dataGridView1.DataSource = bSource;
         }
         private string filtrarExactamentePor(string columna, string valor)

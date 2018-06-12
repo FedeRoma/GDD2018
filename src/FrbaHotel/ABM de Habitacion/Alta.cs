@@ -16,14 +16,14 @@ namespace FrbaHotel.ABM_de_Habitacion
         public Alta()
         {
             InitializeComponent();
-            string consulta = "select nombre from GESTION_DE_GATOS.Hotel where idHotel = " + Login.HomeLogin.hotel;
+            string consulta = "select nombre from EN_CASA_ANDABA.Hoteles where hot_id = " + Login.HomeLogin.hotel;
             resultado = Home.BD.comando(consulta);
             if (resultado.Read())
             {
                 textBox6.Text = resultado.GetString(0);
             }
             resultado.Close();
-            consulta = "select distinct descripcion from GESTION_DE_GATOS.TipoHabitacion";
+            consulta = "select distinct tip_nombre from EN_CASA_ANDABA.TiposHabitaciones";
             resultado = Home.BD.comando(consulta);
             while (resultado.Read() == true)
             {
@@ -61,7 +61,7 @@ namespace FrbaHotel.ABM_de_Habitacion
             if (a == 0)
             {
                 //INSERTAR VALORES
-                string insert = "EXEC GESTION_DE_GATOS.InsertarHabitacion ";
+                string insert = "EXEC EN_CASA_ANDABA.altaHabitacion ";
                 insert = insert + textBox1.Text + ",";
                 insert = insert + textBox2.Text + ",";
                 insert = insert + "'" + textBox3.Text + "',";
