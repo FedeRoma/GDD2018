@@ -1176,7 +1176,7 @@ create table EN_CASA_ANDABA.Hoteles_Usuarios (
 	hyu_id int identity (1, 1) NOT NULL)
 
 create table EN_CASA_ANDABA.Facturas (
-	fac_id int identity (1, 1) NOT NULL,
+	fac_id int NOT NULL,
 	fac_cli_documento bigint NULL,
 	fac_fecha date NOT NULL,
 	fac_total int NOT NULL,
