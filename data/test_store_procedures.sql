@@ -18,6 +18,9 @@ select * from EN_CASA_ANDABA.Clientes C where C.cli_documento = 123456
 exec EN_CASA_ANDABA.altaCliente 123456, 'Libreta de Enrolamiento', 'Cosme', 'Fulanito', 'cosmefulanito@gmail.com', 
 	'ARGENTINO', '1992-07-19', 'Av. Medrano', '951', '5', 'D', null, null, null
 select * from EN_CASA_ANDABA.Clientes C where C.cli_documento = 123456
+----------------------------------
+--- altaCliente ------------------
+----------------------------------
 
 
 
