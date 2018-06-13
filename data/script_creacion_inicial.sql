@@ -13,12 +13,12 @@ go
 -------------------------------------------------------------------------------
 
 create function EN_CASA_ANDABA.estaReservadaHabitacion 
-	(@desde datetime, @hasta datetime, @reservaId int) RETURNS bit as
+	(@desde datetime, @hasta datetime, @habitacionId int) RETURNS bit as
 	begin
 -- Fecha de inicio cae dentro de la solicitada
 		if(exists (select RYH.ryh_hab_id from EN_CASA_ANDABA.Reservas_Habitaciones RYH, EN_CASA_ANDABA.Reservas R
 			where R.res_inicio > @desde and R.res_inicio < @hasta and R.res_id = RYH.ryh_res_id and 
-			RYH.ryh_hab_id = @reservaId and R.res_id not in (select urc_res_id 
+			RYH.ryh_hab_id = @habitacionId and R.res_id not in (select urc_res_id 
 			from EN_CASA_ANDABA.Usuarios_ReservasCancelaciones C)))
 			begin
 				return 1
@@ -26,7 +26,7 @@ create function EN_CASA_ANDABA.estaReservadaHabitacion
 -- Fecha fin cae dentro de la solicitada
 		if(exists (select RYH.ryh_hab_id from EN_CASA_ANDABA.Reservas_Habitaciones RYH, EN_CASA_ANDABA.Reservas R
 			where R.res_fin > @desde and R.res_fin < @hasta and R.res_id = RYH.ryh_res_id and 
-			RYH.ryh_hab_id = @reservaId and R.res_id not in (select urc_res_id 
+			RYH.ryh_hab_id = @habitacionId and R.res_id not in (select urc_res_id 
 			from EN_CASA_ANDABA.Usuarios_ReservasCancelaciones C)))
 			begin
 				return 2
@@ -34,7 +34,7 @@ create function EN_CASA_ANDABA.estaReservadaHabitacion
 -- Fecha inicio la reserva pedida, esta entre las fechas de la reserva
 		if(exists (select RYH.ryh_hab_id from EN_CASA_ANDABA.Reservas_Habitaciones RYH, EN_CASA_ANDABA.Reservas R
 			where R.res_inicio < @desde and R.res_fin > @desde and R.res_id = RYH.ryh_res_id and 
-			RYH.ryh_hab_id = @reservaId and R.res_id not in (select urc_res_id 
+			RYH.ryh_hab_id = @habitacionId and R.res_id not in (select urc_res_id 
 			from EN_CASA_ANDABA.Usuarios_ReservasCancelaciones C))) 
 			begin
 				return 3
@@ -42,7 +42,7 @@ create function EN_CASA_ANDABA.estaReservadaHabitacion
 -- Fecha fin reserva pedida, esta entre las fechas de la reserva
 		if(exists (select RYH.ryh_hab_id from EN_CASA_ANDABA.Reservas_Habitaciones RYH, EN_CASA_ANDABA.Reservas R
 			where R.res_inicio < @hasta and R.res_fin > @hasta and R.res_id = RYH.ryh_res_id and 
-			RYH.ryh_hab_id = @reservaId and R.res_id not in (select urc_res_id 
+			RYH.ryh_hab_id = @habitacionId and R.res_id not in (select urc_res_id 
 			from EN_CASA_ANDABA.Usuarios_ReservasCancelaciones C)))
 			begin
 				return 4
@@ -50,7 +50,7 @@ create function EN_CASA_ANDABA.estaReservadaHabitacion
 -- Fechas iguales
 		if(exists (select RYH.ryh_hab_id from EN_CASA_ANDABA.Reservas_Habitaciones RYH, EN_CASA_ANDABA.Reservas R
 			where R.res_inicio = @desde and R.res_fin = @hasta and R.res_id = RYH.ryh_res_id and 
-			RYH.ryh_hab_id = @reservaId and R.res_id not in (select urc_res_id 
+			RYH.ryh_hab_id = @habitacionId and R.res_id not in (select urc_res_id 
 			from EN_CASA_ANDABA.Usuarios_ReservasCancelaciones C))) 
 			begin
 				return 5
@@ -97,20 +97,20 @@ create procedure EN_CASA_ANDABA.buscarRegimenesHotel
 go
 
 create procedure EN_CASA_ANDABA.buscarHabitacionesDisponibles
-	@hotel nvarchar(255), @fechaInicio date, @fechaFin date, @regimen nvarchar(255) = null,
+	@hotelCalle varchar(50), @hotelNumero int, @fechaInicio date, @fechaFin date, @regimen nvarchar(255) = null,
 	@tipoHabitacion nvarchar(255) as
 	begin
 		declare @fechaDesde date, @fechaHasta date, @hotelId int, @tipoHabitacionId int
 		set @fechaDesde = CONVERT(date,@fechaInicio,121)
 		set @fechaHasta = CONVERT(date,@fechaFin,121)
-		set @hotelId = (select hot_id from EN_CASA_ANDABA.Hoteles where hot_nombre = @hotel)
+		set @hotelId = (select hot_id from EN_CASA_ANDABA.Hoteles where @hotelCalle = hot_calle and @hotelNumero = hot_calle_nro)
 		set @tipoHabitacionId = (select tip_id from EN_CASA_ANDABA.TiposHabitaciones where tip_nombre = @tipoHabitacion)
 		if (@regimen is null)
 			begin
 				select distinct HA.hab_id, HA.hab_vista, (R.reg_precio * TH.tip_personas) + (HO.hot_estrellas * HO.hot_recarga_estrellas) 
 					PrecioPorNoche, R.reg_desc
 					from EN_CASA_ANDABA.Habitaciones HA, EN_CASA_ANDABA.Hoteles HO, EN_CASA_ANDABA.TiposHabitaciones TH, EN_CASA_ANDABA.Regimenes R
-					where HO.hot_id = @hotelId and TH.tip_id = @tipoHabitacionId and HA.hab_hot_id = @hotel and
+					where HO.hot_id = @hotelId and TH.tip_id = @tipoHabitacionId and HA.hab_hot_id = @hotelId and
 					HA.hab_tip_id = @tipoHabitacion and	not exists (select baj_hot_id 
 					from EN_CASA_ANDABA.BajasHotel where baj_hot_id = @hotelId and 
 					baj_fecha_inicio <= @fechaDesde and baj_fecha_fin >= @fechaDesde) and not exists (select baj_hot_id 
@@ -125,11 +125,11 @@ create procedure EN_CASA_ANDABA.buscarHabitacionesDisponibles
 				select distinct HA.hab_id, HA.hab_vista, (R.reg_precio * TH.tip_personas) + (HO.hot_estrellas * HO.hot_recarga_estrellas) 
 					PrecioPorNoche, R.reg_desc
 					from EN_CASA_ANDABA.Habitaciones HA, EN_CASA_ANDABA.Hoteles HO, EN_CASA_ANDABA.TiposHabitaciones TH,
-					EN_CASA_ANDABA.Regimenes R where R.reg_id = @regimenId and HO.hot_id = @hotel and 
+					EN_CASA_ANDABA.Regimenes R where R.reg_id = @regimenId and HO.hot_id = @hotelId and 
 					TH.tip_id = @tipoHabitacionId and HA.hab_hot_id = @hotelId and HA.hab_tip_id = @tipoHabitacionId and
-					not exists (select baj_hot_id from EN_CASA_ANDABA.BajasHotel where baj_hot_id = @hotel and 
+					not exists (select baj_hot_id from EN_CASA_ANDABA.BajasHotel where baj_hot_id = @hotelId and 
 					baj_fecha_inicio <= @fechaDesde and baj_fecha_fin >= @fechaDesde) and 
-					not exists (select baj_hot_id from EN_CASA_ANDABA.BajasHotel where baj_hot_id = @hotel and 
+					not exists (select baj_hot_id from EN_CASA_ANDABA.BajasHotel where baj_hot_id = @hotelId and 
 					baj_fecha_inicio <= @fechaHasta and baj_fecha_fin >= @fechaHasta) and
 					(EN_CASA_ANDABA.estaReservadaHabitacion (@fechaDesde, @fechaHasta, HA.hab_id)) < 1
 			end
@@ -157,7 +157,7 @@ create procedure EN_CASA_ANDABA.buscarReservaHabitacion
 go
 
 create procedure EN_CASA_ANDABA.altaUsuario
-	@rol varchar(50), @hotel varchar(50), @username varchar(50), @password varchar(50), @nombre varchar(50),
+	@rol varchar(50), @hotelCalle varchar(50), @hotelNumero int, @username varchar(50), @password varchar(50), @nombre varchar(50),
 	@apellido varchar(50), @email varchar(50), @tel varchar(50), @tipoDocumento varchar(50), @nroDocumento bigint,
 	@fechaNacimiento date, @direccion varchar(50) as
 	begin
@@ -165,13 +165,14 @@ create procedure EN_CASA_ANDABA.altaUsuario
 		begin tran tAltaUsuario
 			begin try
 				set @tipoDocumentoId = (select doc_id from EN_CASA_ANDABA.Documentos where @tipoDocumento = doc_desc)
-				set @hotelId = (select hot_id from EN_CASA_ANDABA.Hoteles where @hotel = hot_nombre)
+				set @hotelId = (select hot_id from EN_CASA_ANDABA.Hoteles where @hotelCalle = hot_calle and @hotelNumero = hot_calle_nro)
 				if (not exists (select usu_id from EN_CASA_ANDABA.Usuarios where @username = usu_username))
 				begin
 					insert into EN_CASA_ANDABA.Usuarios (usu_username, usu_password, usu_nombre, usu_apellido, 
-						usu_doc_id, usu_documento, usu_fecha_nac, usu_mail, usu_tel, usu_estado, usu_direccion) 
+						usu_doc_id, usu_documento, usu_fecha_nac, usu_mail, usu_tel, usu_estado, usu_direccion,
+						usu_intentos) 
 					values (@username, @password, @nombre, @apellido, @tipoDocumentoId, @nroDocumento, @fechaNacimiento,
-						@email, @tel, 1, @direccion)
+						@email, @tel, 1, @direccion, 0)
 				end 
 				set @usuarioId = (select usu_id from EN_CASA_ANDABA.Usuarios where @username = usu_username)
 				insert into EN_CASA_ANDABA.Hoteles_Usuarios (hyu_usu_id, hyu_hot_id)
@@ -192,7 +193,7 @@ create procedure EN_CASA_ANDABA.altaUsuario
 go
 
 create procedure EN_CASA_ANDABA.modificacionUsuario
-	@rol varchar(50), @hotel varchar(50), @username varchar(50), @password varchar(50), @nombre varchar(50),
+	@rol varchar(50), @hotelCalle varchar(50), @hotelNumero int, @username varchar(50), @password varchar(50), @nombre varchar(50),
 	@apellido varchar(50), @email varchar(50), @tel varchar(50), @tipoDocumento varchar(50), @nroDocumento bigint,
 	@fechaNacimiento date, @direccion varchar(50), @estado bit as
 	begin
@@ -202,7 +203,7 @@ create procedure EN_CASA_ANDABA.modificacionUsuario
 				set @userId = (select usu_id from EN_CASA_ANDABA.Usuarios where @username = usu_username)
 				set @rolId = (select rol_id from EN_CASA_ANDABA.Roles where @rol = rol_nombre)
 				set @tipoDocId = (select doc_id from EN_CASA_ANDABA.Documentos where @tipoDocumento = doc_desc)
-				set @hotelId = (select hot_id from EN_CASA_ANDABA.Hoteles where @hotel = hot_nombre)
+				set @hotelId = (select hot_id from EN_CASA_ANDABA.Hoteles where @hotelCalle = hot_calle and @hotelNumero = hot_calle_nro)
 				UPDATE EN_CASA_ANDABA.Usuarios        
 				set usu_username = @username, usu_password = @password, usu_estado = @estado, usu_nombre = @nombre,
 					usu_apellido = @apellido, usu_mail = @email, usu_tel = @tel, usu_fecha_nac = @fechaNacimiento,
@@ -454,12 +455,12 @@ create procedure EN_CASA_ANDABA.altaRegimenesHotel
 go
 
 create procedure EN_CASA_ANDABA.bajaRegimenesHotel
-	@regimenId int as
+	@hotelId int as
 	begin
 		declare @respuesta bit
 		begin tran tBajaRegimenesHotel
 			begin try
-				delete from EN_CASA_ANDABA.Regimenes_Hoteles where ryh_hot_id = @regimenId
+				delete from EN_CASA_ANDABA.Regimenes_Hoteles where ryh_hot_id = @hotelId
 				set @respuesta = 1
 				select @respuesta as respuesta
 				commit tran tBajaRegimenesHotel
@@ -614,7 +615,7 @@ create procedure EN_CASA_ANDABA.altaReservaHabitacion
 	end
 go
 
-create proc EN_CASA_ANDABA.bajaReservaHabitacion
+create procedure EN_CASA_ANDABA.bajaReservaHabitacion
 	@reservaId int, @habitacionId int, @hotelId int as
 	begin
 		declare @respuesta bit
@@ -1555,7 +1556,7 @@ values
 	('Administrador', 1),
 	('Recepcionista', 1),
 	('Guest', 1),
-	('SysAdmin', 1)
+	('Administrador General', 1)
 go
 PRINT 'Roles... OK!'
 
@@ -1579,7 +1580,7 @@ PRINT 'Funcionalidades... OK!'
 insert into EN_CASA_ANDABA.Funcionalidades_Roles (fyr_rol_id, fyr_fun_id)
 	select distinct R.rol_id, F.fun_id 
 		from EN_CASA_ANDABA.Roles R, EN_CASA_ANDABA.Funcionalidades F
-		where R.rol_nombre = 'SysAdmin';
+		where R.rol_nombre = 'Administrador General';
 insert into EN_CASA_ANDABA.Funcionalidades_Roles (fyr_rol_id, fyr_fun_id)
 	select distinct R.rol_id, F.fun_id 
 		from EN_CASA_ANDABA.Roles R, EN_CASA_ANDABA.Funcionalidades F
@@ -1652,7 +1653,7 @@ PRINT 'Regimenes_Hoteles... OK!'
 insert into EN_CASA_ANDABA.Usuarios (usu_nombre, usu_password, usu_estado, usu_apellido, usu_mail, usu_tel, 
 								usu_fecha_nac, usu_documento, usu_intentos, usu_direccion, usu_username, usu_doc_id)
 values
-	('admin', hashbytes('SHA2_256', CAST(12345678 as nvarchar(50))), 1, 'admin', 'admin@en_casa_andaba.com', '4000-0000',
+	('admin', hashbytes('SHA2_256', CAST(w23e as nvarchar(50))), 1, 'admin', 'admin@enCasaAndaba.com', '4000-0000',
 		getdate(), 12345678, 0, 'admin', 'admin', 1)
 -- Rol de admin: SysAdmin
 insert into EN_CASA_ANDABA.Roles_Usuarios (ryu_usu_id, ryu_rol_id)
