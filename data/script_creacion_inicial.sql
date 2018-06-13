@@ -1677,6 +1677,12 @@ insert into #TemporalClientesRepetidos (pasaporte_repetido)
 	select distinct M1.Cliente_Pasaporte_Nro 
 		from gd_esquema.Maestra M1, gd_esquema.Maestra M2 
 		where M1.Cliente_Pasaporte_Nro = M2.Cliente_Pasaporte_Nro and M1.Cliente_Nombre <> M2.Cliente_Nombre 
+
+-- inserta clientes repetidos POR EMAIL
+insert into #TemporalClientesRepetidos (pasaporte_repetido)
+	select distinct M1.Cliente_Pasaporte_Nro
+		from gd_esquema.Maestra M1, gd_esquema.Maestra M2 
+		where M1.Cliente_Mail = M2.Cliente_Mail and M1.Cliente_Pasaporte_Nro <> M2.Cliente_Pasaporte_Nro 
 		order by M1.Cliente_Pasaporte_Nro
 -- FIN TABLA TEMPORAL DE CLIENTES REPETIDOS
 
