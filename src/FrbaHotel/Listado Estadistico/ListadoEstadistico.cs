@@ -70,29 +70,26 @@ namespace FrbaHotel.Listado_Estadistico
             switch (tipoListado.SelectedIndex)
             {
                 case 0:
-                    tipoSeleccionado = "EXEC GESTION_DE_GATOS.lista_hoteles_maxResCancel " + trimestre.Text + ", "+anio.Text;
+                    tipoSeleccionado = "EXEC EN_CASA_ANDABA.top5_hoteles_reservas_canceladas " + trimestre.Text + ", " + anio.Text;
                     break;
                 case 1:
-                    tipoSeleccionado = "EXEC GESTION_DE_GATOS.lista_hoteles_maxConFacturados " + trimestre.Text + ", " + anio.Text ;
+                    tipoSeleccionado = "EXEC EN_CASA_ANDABA.top5_hoteles_consumibles_facturados " + trimestre.Text + ", " + anio.Text;
                     break;
                 case 2:
-                    tipoSeleccionado = "EXEC GESTION_DE_GATOS.lista_Hotel_DiasFueraServ " + trimestre.Text + ", " + anio.Text;
+                    tipoSeleccionado = "EXEC EN_CASA_ANDABA.top5_hoteles_dias_fuera_de_servicio " + trimestre.Text + ", " + anio.Text;
                     break;
                 case 3:
-                    tipoSeleccionado = "EXEC GESTION_DE_GATOS.listaMaximosPuntajes " + (trimestre.Text) + ", " + anio.Text ;
+                    tipoSeleccionado = "EXEC EN_CASA_ANDABA.top5_clientes_puntos " + (trimestre.Text) + ", " + anio.Text;
                     break;
                 case 4:
-                    tipoSeleccionado = "EXEC GESTION_DE_GATOS.listaHabitacionesVecesOcupada " + (trimestre.Text) + "," + anio.Text ;
+                    tipoSeleccionado = "EXEC EN_CASA_ANDABA.top5_habitaciones_veces_ocupadas " + (trimestre.Text) + "," + anio.Text;
                     break;
             }
             
             sAdapter = FrbaHotel.Home.BD.dameDataAdapter(tipoSeleccionado);
             dTable = FrbaHotel.Home.BD.dameDataTable(sAdapter);
-            //BindingSource to sync DataTable and DataGridView
             BindingSource bSource = new BindingSource();
-            //set the BindingSource DataSource
             bSource.DataSource = dTable;
-            //set the DataGridView DataSource
             dataGridView1.DataSource = bSource;
         }
 
