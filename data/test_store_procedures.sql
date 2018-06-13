@@ -25,8 +25,15 @@ exec EN_CASA_ANDABA.modificacionCliente 123456, 'Cosme', 'Modificado', 'cosmeful
 	'ARGENTINO', '1992-07-19', 'Av. Medrano', '951', '5', 'D', 'CABA', 'Argentina', null, 1
 select * from EN_CASA_ANDABA.Clientes C where C.cli_documento = 123456
 
+----------------------------------
+--- ModificacionUsuario ----------
+----------------------------------
+exec EN_CASA_ANDABA.modificacionUsuario 1,'Administrador General','Avenida Córdoba',10482,'admin',PASSWORD,admin,admin,'admin@enCasaAndaba.com','4000-0000',1,12345678,'2018-06-13','admin',1
 
+'Administrador General','Avenida Córdoba',10482,admin1,PASSWORD1,adminn,admina,'adminc@enCasaAndaba.com','4100-0000',1,123456789,'2018-03-22','admin',1
 
+@rol,@hotelCalle,@hotelNumero,@username,@password,@nombre,@apellido,@email,@tel,@tipoDocumento,@nroDocumento,@fechaNacimiento, @direccion, @estado
+	
 
 
 
