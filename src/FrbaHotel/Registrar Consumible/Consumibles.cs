@@ -38,14 +38,11 @@ namespace FrbaHotel.Registrar_Consumible
 
         private void Consumibles_Load(object sender, EventArgs e)
         {
-            string query = "select idConsumible,precio,descripcion from GESTION_DE_GATOS.Consumibles";
+            string query = "select con_id,con_precio,con_desc from EN_CASA_ANDABA.Consumibles";
             sAdapter = FrbaHotel.Home.BD.dameDataAdapter(query);
             tablaConsu = FrbaHotel.Home.BD.dameDataTable(sAdapter);
-            //BindingSource to sync DataTable and DataGridView
             BindingSource bSource = new BindingSource();
-            //set the BindingSource DataSource
             bSource.DataSource = tablaConsu;
-            //set the DataGridView DataSource
             dataGridView1.DataSource = bSource;
         }
 
@@ -88,7 +85,7 @@ namespace FrbaHotel.Registrar_Consumible
             }
             foreach (DataRow fila in tablaReg.Rows)
             {
-                resultado = Home.BD.comando("EXEC GESTION_DE_GATOS.RegistrarConsXEstadiaXHab "+ textBox1.Text +","+ fila["Id"].ToString() + "," +textBox2.Text);
+              //  resultado = Home.BD.comando("EXEC EN_CASA_ANDABA.RegistrarConsXEstadiaXHab "+ textBox1.Text +","+ fila["Id"].ToString() + "," +textBox2.Text);
                 if (resultado.Read())
                 {
                     if (resultado.GetDecimal(0) == 0)

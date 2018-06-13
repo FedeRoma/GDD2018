@@ -33,14 +33,11 @@ namespace FrbaHotel.Registrar_Consumible
 
         private void RegistrarConsumibles_Load(object sender, EventArgs e)
         {
-            string query = "select distinct CE.estadia idEstadia,CE.habitacion idHabitacion,H.numero Numero,H.piso Piso from GESTION_DE_GATOS.Estadia E, GESTION_DE_GATOS.ClienteXEstadia CE, GESTION_DE_GATOS.Habitacion H where E.salida is null and E.ingreso <= '" + Home.fecha.Date + "' and CE.estadia = E.idEstadia and CE.habitacion = H.idHabitacion and H.hotel = " + Login.HomeLogin.hotel;
+            string query = "select distinct CE.cye_cye_id idEstadia,CE.cye_hab_id idHabitacion,Hab.hab_numero Numero,Hab.hab_piso Piso from EN_CASA_ANDABA.Estadias Est, EN_CASA_ANDABA.Clientes_Estadias CE, EN_CASA_ANDABA.Habitaciones Hab where Est.est_checkout is null and Est.est_ingreso <= '" + Home.fecha.Date + "' and CE.cye_cye_id = E.est_res_id and CE.cye_hab_id = Hab.hab_id and Hab.hab_hot_id = " + Login.HomeLogin.hotel;
             sAdapter = FrbaHotel.Home.BD.dameDataAdapter(query);
             dTable = FrbaHotel.Home.BD.dameDataTable(sAdapter);
-            //BindingSource to sync DataTable and DataGridView
             BindingSource bSource = new BindingSource();
-            //set the BindingSource DataSource
             bSource.DataSource = dTable;
-            //set the DataGridView DataSource
             dataGridView1.DataSource = bSource;
         }
 
