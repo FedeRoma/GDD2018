@@ -21,19 +21,19 @@ namespace FrbaHotel.Facturar_Estadia
         {
             InitializeComponent();
             textBox1.Text = idEstadia;
-            consulta = "select reserva from GESTION_DE_GATOS.Estadia where idEstadia = " + idEstadia;
+            consulta = "select est_res_id from EN_CASA_ANDABA.Estadias where est_res_id = " + idEstadia;
             resultado = Home.BD.comando(consulta);
             resultado.Read();
             textBox2.Text = resultado.GetDecimal(0).ToString();
             resultado.Close();
-            consulta = "select distinct descripcion from GESTION_DE_GATOS.FormaDePago";
+            consulta = "select distinct med_desc from EN_CASA_ANDABA.MediosPago";
             resultado = Home.BD.comando(consulta);
             while (resultado.Read() == true)
             {
                 comboBox1.Items.Add(resultado.GetSqlString(0));
             }
             resultado.Close();
-            consulta = "select ingreso,salida,dias_sobran,cantidadNoches,precioPorNoche from GESTION_DE_GATOS.Estadia where idEstadia = " + idEstadia;
+            consulta = "select est_checkin,est_checkout,est_dias_sobrantes,est_cant_noches,est_precio from EN_CASA_ANDABA.Estadias where est_res_id = " + idEstadia;
             resultado = Home.BD.comando(consulta);
             resultado.Read();
             DateTime ingreso = resultado.GetDateTime(0);
@@ -76,29 +76,22 @@ namespace FrbaHotel.Facturar_Estadia
             }
             bSource2 = new BindingSource();
             bSource2.DataSource = tablaDias;
-            //set the DataGridView DataSource
             dataGridView1.DataSource = bSource2;
             textBox7.Text = (precio * (auxdiassobran + auxcantnoches)).ToString();
 
-
-            //aca iria lo de los consumibles, que hay que utilizar itemFactura
-
-            string query = "select I.cantidad Cantidad, I.descripcion Descripcion, I.monto Monto from GESTION_DE_GATOS.ItemFactura I,GESTION_DE_GATOS.Factura F where I.factura = F.numero and I.descripcion != 'Estadia' and F.estadia = "+idEstadia;
+            string query = "select It.iyf_cantidad Cantidad, It.iyf_monto Monto from EN_CASA_ANDABA.Items_Facturas it,EN_CASA_ANDABA.Facturas Fact where It.iyf_fac_id = Fact.fac_id  and Fact.fac_est_res_id = "+idEstadia;
             SqlDataAdapter sAdapter = FrbaHotel.Home.BD.dameDataAdapter(query);
             consumibles = FrbaHotel.Home.BD.dameDataTable(sAdapter);
-            //BindingSource to sync DataTable and DataGridView
             BindingSource bSource = new BindingSource();
-            //set the BindingSource DataSource
             bSource.DataSource = consumibles;
-            //set the DataGridView DataSource
             dataGridView2.DataSource = bSource;
 
-            consulta = "select C.precio from GESTION_DE_GATOS.ConsumibleXEstadia CE, GESTION_DE_GATOS.Consumibles C where CE.consumible = C.idConsumible and CE.estadia = " + idEstadia;
+            consulta = "select Con.con_precio from EN_CASA_ANDABA.Consumibles Ccon, where Con.con_id= " + idEstadia;
             resultado = Home.BD.comando(consulta);
             if (resultado.Read()==true)
             {
                 resultado.Close();
-                consulta = "select sum(C.precio) from GESTION_DE_GATOS.ConsumibleXEstadia CE, GESTION_DE_GATOS.Consumibles C where CE.consumible = C.idConsumible and CE.estadia = " + idEstadia;
+                consulta = "select sum(Con.con_precio) from EN_CASA_ANDABA.Consumibles Ccon, GESTION_DE_GATOS.Consumibles C where Con.con_id = " + idEstadia;
                 resultado = Home.BD.comando(consulta);
                 resultado.Read();
                 textBox9.Text = resultado.GetDecimal(0).ToString();
@@ -109,7 +102,7 @@ namespace FrbaHotel.Facturar_Estadia
             }
             resultado.Close();
 
-            consulta = "select R.regimen from GESTION_DE_GATOS.Reserva R, GESTION_DE_GATOS.Estadia E where E.reserva= R.idReserva and E.idEstadia = " + idEstadia;
+            consulta = "select Res.reg_id from EN_CASA_ANDABA.Reservas Res, EN_CASA_ANDABA.Estadias Est where Est_res_id= Res.res_id and Est.est_id = " + idEstadia;
             resultado = Home.BD.comando(consulta);
             resultado.Read();
             decimal regimen = resultado.GetDecimal(0);
@@ -142,12 +135,12 @@ namespace FrbaHotel.Facturar_Estadia
                 MessageBox.Show("Debe seleccionar una Forma de pago");
                 return;
             }
-            consulta = "select idFormaDePago from GESTION_DE_GATOS.FormaDePago where descripcion = '" + comboBox1.Text +"'";
+            consulta = "select med_id from EN_CASA_ANDABA.MediosPago where med_desc = '" + comboBox1.Text +"'";
             resultado = Home.BD.comando(consulta);
             resultado.Read();
             decimal fp = resultado.GetDecimal(0);
             resultado.Close();
-            consulta = "EXEC GESTION_DE_GATOS.ModificarFactura " + textBox1.Text +","+fp.ToString()+",'"+Home.fecha.Date+"'";
+            consulta = "EXEC EN_CASA_ANDABA.modificacionFactura " + textBox1.Text +","+fp.ToString()+",'"+Home.fecha.Date+"'";
             resultado = Home.BD.comando(consulta);
             resultado.Read();
             decimal factura = resultado.GetDecimal(0);
@@ -160,7 +153,6 @@ namespace FrbaHotel.Facturar_Estadia
             resultado.Close();
             if (fp == 2)
             {
-                //tarjeta de credito
                 Tarjeta tarj = new Tarjeta(factura.ToString());
                 tarj.Show();
             }

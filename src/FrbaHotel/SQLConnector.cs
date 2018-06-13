@@ -20,7 +20,7 @@ namespace FrbaHotel
         {
             try
             {
-                connection = new SqlConnection("Data Source=.\\SQLSERVER2008;Initial Catalog=GD2C2014;user=gd;password=gd2014");
+                connection = new SqlConnection("Data Source=.\\SQLSERVER2012;Initial Catalog=GD1C2018;user=gdHotel2018;password=gd2018");
                 connection.Open();
                 
             }
@@ -54,6 +54,10 @@ namespace FrbaHotel
             queryCommand.Dispose();
             queryCommand = null;
         }
+
+
+
+        
         public DataTable consulta(string consulta)
         {
             SqlCommand sqlCommand = new SqlCommand();

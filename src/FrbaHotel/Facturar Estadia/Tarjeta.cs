@@ -67,7 +67,7 @@ namespace FrbaHotel.Facturar_Estadia
             }
             if (string.IsNullOrEmpty(comboBox2.Text))
             {
-                string consulta = "EXEC GESTION_DE_GATOS.registrarTarjeta '" + comboBox1.Text + "'," + textBox1.Text + ",null,'" + textBox2.Text + "'";
+                string consulta = "EXEC EN_CASA_ANDABA.altaTarjeta '" + comboBox1.Text + "'," + textBox1.Text + ",null,'" + textBox2.Text + "'";
                 SqlDataReader resultado = Home.BD.comando(consulta);
                 resultado.Read();
                 if (resultado.GetDecimal(0) != 0)
@@ -85,7 +85,7 @@ namespace FrbaHotel.Facturar_Estadia
             }
             else
             {
-                string consulta = "EXEC GESTION_DE_GATOS.registrarTarjeta "+factura+",'" + comboBox1.Text + "'," + textBox1.Text + ",'" +comboBox2.Text+"','" + textBox2.Text + "'";
+                string consulta = "EXEC EN_CASA_ANDABA.altaTarjeta "+factura+",'" + comboBox1.Text + "'," + textBox1.Text + ",'" +comboBox2.Text+"','" + textBox2.Text + "'";
                 SqlDataReader resultado = Home.BD.comando(consulta);
                 resultado.Read();
                 if (resultado.GetDecimal(0) != 0)
