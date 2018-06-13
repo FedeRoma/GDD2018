@@ -13,7 +13,7 @@ namespace FrbaHotel.Login
     public partial class HomeLogin : Form
     {
         public static IntermediaCliente intCli;
-        public static string hotel; //es un numero, "1" por ej
+        public static string hotel; 
         public static decimal idUsuario;
         public static string rol="";
         public static MainFuncionalidades mainFun;
@@ -29,10 +29,9 @@ namespace FrbaHotel.Login
             cerrate = 0;
             intentos = 0;
             SqlDataReader resultado;
-            resultado = Home.BD.comando("EXEC GESTION_DE_GATOS.EliminarReservasAnteriores '" + Home.fecha.Date.ToString("yyyyMMdd HH:mm:ss") + "'");
+            resultado = Home.BD.comando("EXEC EN_CASA_ANDABA.bajaReservasVencidas '" + Home.fecha.Date.ToString("yyyyMMdd HH:mm:ss") + "'");
             if (resultado.Read())
             {
-                //se eliminaron las reservas anteriores
             }
             resultado.Close();
         }
@@ -40,13 +39,13 @@ namespace FrbaHotel.Login
         private void GUEST_Click(object sender, EventArgs e)
         {
             SqlDataReader resultado;
-            resultado = Home.BD.comando("SELECT idUsuario FROM GESTION_DE_GATOS.Usuario where userName = 'Guest'");
+            resultado = Home.BD.comando("SELECT usu_id FROM EN_CASA_ANDABA.Usuarios where usu_username = 'Guest'");
             if (resultado.Read())
             {
                 idUsuario = resultado.GetDecimal(0);
             }
             resultado.Close();
-            string consulta = "select distinct R.descripcion from GESTION_DE_GATOS.UserXRolXHotel U,GESTION_DE_GATOS.Rol R where U.rol = R.idRol and R.estado = 1 and U.usuario = " + idUsuario.ToString() + ";";
+            string consulta = "select distinct Rol.rol_nombre from EN_CASA_ANDABA.Roles Rol where Rol.rol_estado = 1 = " + idUsuario.ToString() + ";";
             resultado = Home.BD.comando(consulta);
             resultado.Read();
             Login.HomeLogin.rol = resultado.GetString(0);
@@ -79,7 +78,7 @@ namespace FrbaHotel.Login
         {   
             intentos++;
             SqlDataReader resultado;
-            resultado = Home.BD.comando("SELECT estado,idUsuario FROM GESTION_DE_GATOS.Usuario where userName = '" + usuario.Text + "'and clave = '" + dameHash(clave.Text) + "'");
+            resultado = Home.BD.comando("SELECT usu_estado,usu_id FROM EN_CASA_ANDABA.Usuarios where usu_username = '" + usuario.Text + "'and usu_password = '" + dameHash(clave.Text) + "'");
             if (resultado.Read() == true && intentos<=4)
             {
                 if (resultado.GetBoolean(0) == true)
@@ -88,7 +87,7 @@ namespace FrbaHotel.Login
                     idUsuario = resultado.GetDecimal(1);
                     intentos = 0;
                     resultado.Close();
-                    string consulta = "select COUNT(distinct UR.rol) from GESTION_DE_GATOS.UserXRolXHotel UR, GESTION_DE_GATOS.Rol R where R.estado = 1 and R.idRol = UR.rol and UR.usuario = " + idUsuario.ToString()+";";
+                   // string consulta = "select COUNT(distinct UR.rol) from EN_CASA_ANDABA.UserXRolXHotel UR, EN_CASA_ANDABA.Rol R where R.estado = 1 and R.idRol = UR.rol and UR.usuario = " + idUsuario.ToString()+";";
                     resultado = Home.BD.comando(consulta);
                     resultado.Read();
                     int cant = resultado.GetInt32(0);
@@ -105,7 +104,7 @@ namespace FrbaHotel.Login
                     if (cant == 1)
                     {
                         //tiene un solo rol
-                        consulta = "select distinct R.descripcion from GESTION_DE_GATOS.UserXRolXHotel U,GESTION_DE_GATOS.Rol R where U.rol = R.idRol and R.estado = 1 and U.usuario = " + idUsuario.ToString() + ";";
+                        consulta = "select distinct Rol.rol_nombre from EN_CASA_ANDABA.Roles Rol Rol.rol_estado = 1 = " + idUsuario.ToString() + ";";
                         resultado = Home.BD.comando(consulta);
                         resultado.Read();
                         Login.HomeLogin.rol = resultado.GetString(0);

@@ -21,7 +21,7 @@ namespace FrbaHotel.Login
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string consulta="exec GESTION_DE_GATOS.BuscarHotelDeUser '"+comboBox1.SelectedItem+"' , "+Login.HomeLogin.idUsuario.ToString()+";";
+            string consulta = "exec EN_CASA_ANDABA.buscarHoteles '" + comboBox1.SelectedItem + "' , " + Login.HomeLogin.idUsuario.ToString() + ";";
             resultado = Home.BD.comando(consulta);
             comboBox2.Items.Clear();
             while (resultado.Read() == true)
@@ -60,14 +60,14 @@ namespace FrbaHotel.Login
 
         private void IntermediaUsuarioConRoles_Load(object sender, EventArgs e)
         {
-            string consulta = "select distinct R.descripcion from GESTION_DE_GATOS.UserXRolXHotel U,GESTION_DE_GATOS.Rol R where U.rol=R.idRol and R.estado = 1 and U.usuario = " + Login.HomeLogin.idUsuario.ToString();
+            string consulta = "select distinct Rol.rol_nombre from EN_CASA_ANDABA.Roles Rol where Rol.rol_estado = 1 " + Login.HomeLogin.idUsuario.ToString();
             resultado = Home.BD.comando(consulta);
             while (resultado.Read() == true)
             {
                 comboBox1.Items.Add(resultado.GetSqlString(0));
             }
             resultado.Close();
-            consulta = "select distinct H.idHotel Id, H.nombre Nombre from GESTION_DE_GATOS.UserXRolXHotel U,GESTION_DE_GATOS.Hotel H where U.hotel=H.idHotel and U.usuario = " + Login.HomeLogin.idUsuario.ToString();
+            consulta = "select distinct Hot.hot_Id Id, Hot.hot_calle+ Hot.hot_calle_nro Nombre from EN_CASA_ANDABA.Hoteles Hot = " + Login.HomeLogin.idUsuario.ToString();
             DataTable result = Home.BD.consulta(consulta);
             dataGridView1.DataSource = result;
         }

@@ -37,7 +37,7 @@ namespace FrbaHotel.Login
                 return;
             }
             string claveVieja=string.Empty;
-            string consulta = "select clave from GESTION_DE_GATOS.Usuario where idUsuario = " + Login.HomeLogin.idUsuario.ToString();
+            string consulta = "select usu_password from EN_CASA_ANDABA.Usuarios where usu_id = " + Login.HomeLogin.idUsuario.ToString();
             resultado = Home.BD.comando(consulta);
             if (resultado.Read())
             {
@@ -46,7 +46,7 @@ namespace FrbaHotel.Login
             resultado.Close();
             if (claveVieja == Login.HomeLogin.dameHash(textBox1.Text))
             {
-                consulta = "update GESTION_DE_GATOS.Usuario set clave = '" + Login.HomeLogin.dameHash(textBox2.Text) + "' where idUsuario = " + Login.HomeLogin.idUsuario.ToString();
+                consulta = "update EN_CASA_ANDABA.Usuarios set usu_password = '" + Login.HomeLogin.dameHash(textBox2.Text) + "' where usu_id = " + Login.HomeLogin.idUsuario.ToString();
                 resultado = Home.BD.comando(consulta);
                 resultado.Read();
                 MessageBox.Show("Clave cambiada correctamente");

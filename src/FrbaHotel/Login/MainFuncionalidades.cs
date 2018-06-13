@@ -22,14 +22,14 @@ namespace FrbaHotel.Login
         private void MainFuncionalidades_Load(object sender, EventArgs e)
         {
 
-            string consulta = "select distinct F.denominacion from GESTION_DE_GATOS.UserXRolXHotel U,GESTION_DE_GATOS.FuncXRol FR, GESTION_DE_GATOS.Funcionalidad F,GESTION_DE_GATOS.Rol R where R.descripcion='" + Login.HomeLogin.rol + "' and R.idRol = U.rol and U.rol=FR.rol and FR.funcionalidad = F.idFuncionalidad and U.usuario = " + Login.HomeLogin.idUsuario.ToString() + " and U.hotel='" + Login.HomeLogin.hotel+"'";
+            string consulta = "select distinct Fun.fun_descfrom EN_CASA_ANDABA.Funcionalidades Fun, EN_CASA_ANDABA.Roles Rol where Rol.rol_nombre='" + Login.HomeLogin.rol;
             resultado = Home.BD.comando(consulta);
             while (resultado.Read() == true)
             {
                 comboBox1.Items.Add(resultado.GetSqlString(0));
             }
             resultado.Close();
-            consulta = "select distinct H.nombre from GESTION_DE_GATOS.Hotel H where H.idHotel = " + Login.HomeLogin.hotel.ToString();
+            consulta = "select distinct Hot.hot_calle+Hot.hot_calle_nro from EN_CASA_ANDABA.Hoteles Hot where Hot.hot_id = " + Login.HomeLogin.hotel.ToString();
             resultado = Home.BD.comando(consulta);
             resultado.Read();
             listBox1.Items.Add(resultado.GetSqlString(0));
