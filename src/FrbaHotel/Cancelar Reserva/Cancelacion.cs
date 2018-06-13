@@ -22,17 +22,17 @@ namespace FrbaHotel.Cancelar_Reserva
             textBox1.Clear();
             textBox1.Focus();
             noshow = 0;
-            resultado = Home.BD.comando("Select idEstado from GESTION_DE_GATOS.Estado where descripcion = 'RESERVA CANCELADA POR NO-SHOW'");
+            resultado = Home.BD.comando("Select estados_id from EN_CASA_ANDABA.Estados where estados_desc = 'RESERVA CANCELADA POR NO-SHOW'");
             resultado.Read();
             noshow = resultado.GetDecimal(0);
             resultado.Close();
             canceUser = 0;
-            resultado = Home.BD.comando("Select idEstado from GESTION_DE_GATOS.Estado where descripcion = 'RESERVA CANCELADA POR RECEPCION'");
+            resultado = Home.BD.comando("Select estados_id from EN_CASA_ANDABA.Estados where estados_desc = 'RESERVA CANCELADA POR RECEPCION'");
             resultado.Read();
             canceUser = resultado.GetDecimal(0);
             resultado.Close();
             cancelCli = 0;
-            resultado = Home.BD.comando("Select idEstado from GESTION_DE_GATOS.Estado where descripcion = 'RESERVA CANCELADA POR CLIENTE'");
+            resultado = Home.BD.comando("Select estados_id from EN_CASA_ANDABA.Estados where estados_desc= 'RESERVA CANCELADA POR CLIENTE'");
             resultado.Read();
             cancelCli = resultado.GetDecimal(0);
             resultado.Close();
@@ -58,7 +58,7 @@ namespace FrbaHotel.Cancelar_Reserva
                 MessageBox.Show("Debe ingresar un numero de reserva");
                 return;
             }
-            resultado = Home.BD.comando("Select idReserva,estado,fecha_inicio from GESTION_DE_GATOS.Reserva where idReserva = " + textBox1.Text);
+            resultado = Home.BD.comando("Select res_id,res_estados_id,res_fecha from EN_CASA_ANDABA.Reservas where res_id = " + textBox1.Text);
             if (resultado.Read() == true)
             {   
                 decimal estado = resultado.GetDecimal(1);
@@ -79,8 +79,7 @@ namespace FrbaHotel.Cancelar_Reserva
                 string cancelacion = "";
                 if (Login.HomeLogin.idUsuario == 1)
                 {
-                    //cancelo la reserva con estado cliente
-                    cancelacion = "exec GESTION_DE_GATOS.CancelarReserva ";
+                    cancelacion = "exec EN_CASA_ANDABA.bajaReserva ";
                     cancelacion = cancelacion + textBox1.Text + ",";
                     cancelacion = cancelacion + cancelCli + ",";
                     cancelacion = cancelacion + Login.HomeLogin.idUsuario + ",";
@@ -89,8 +88,7 @@ namespace FrbaHotel.Cancelar_Reserva
                 }
                 else
                 {
-                    //cancelo la reserva con estado user
-                    cancelacion = "exec GESTION_DE_GATOS.CancelarReserva ";
+                    cancelacion = "exec EN_CASA_ANDABA.bajaReserva ";
                     cancelacion = cancelacion + textBox1.Text + ",";
                     cancelacion = cancelacion + canceUser+ ",";
                     cancelacion = cancelacion + Login.HomeLogin.idUsuario + ",";
