@@ -23,21 +23,21 @@ namespace FrbaHotel.ABM_de_Usuario
         {
             InitializeComponent();
             textBoxUser.Focus();
-            consulta = "select distinct descripcion from GESTION_DE_GATOS.TiposDoc";
+            consulta = "select distinct doc_desc from EN_CASA_ANDABA.Documentos";
             resultado = Home.BD.comando(consulta);
             while (resultado.Read() == true)
             {
                 comboBoxTipoDoc.Items.Add(resultado.GetSqlString(0));
             }
             resultado.Close();
-            consulta = "select nombre from GESTION_DE_GATOS.Hotel WHERE idHotel=" + Login.HomeLogin.hotel;
+            consulta = "select hot_calle+hot_calle_nro from EN_CASA_ANDABA.Hoteles WHERE hot_id=" + Login.HomeLogin.hotel;
             resultado = Home.BD.comando(consulta);
             while (resultado.Read() == true)
             {
                 comboBoxHotel.Items.Add(resultado.GetSqlString(0));
             }
             resultado.Close();
-            consulta = "select descripcion from GESTION_DE_GATOS.Rol";
+            consulta = "select rol_nombre from EN_CASA_ANDABA.Roles";
             resultado = Home.BD.comando(consulta);
             while (resultado.Read() == true)
             {
@@ -64,14 +64,11 @@ namespace FrbaHotel.ABM_de_Usuario
 
         private void ListadoModif_Load(object sender, EventArgs e)
         {
-            string query = "select U.userName Usuario,R.descripcion Rol,U.nombre Nombre,U.apellido Apellido,U.telefono Tel,U.mail Mail,U.nroDoc Nro_Doc,T.descripcion Tipo_Doc,D.calle Calle,D.numero Numero,D.piso Piso,D.depto Depto,D.idDir Direccion,H.nombre Hotel,U.fecha_nac Fecha_Nac,U.estado Estado from	GESTION_DE_GATOS.Usuario U,GESTION_DE_GATOS.Rol R,GESTION_DE_GATOS.UserXRolXHotel UR,GESTION_DE_GATOS.Hotel H,GESTION_DE_GATOS.Direccion D,GESTION_DE_GATOS.TiposDoc T where	U.direccion = D.idDir and	U.idUsuario = UR.usuario and UR.rol = R.idRol and UR.Hotel = H.idHotel and	U.tipoDoc = T.idTipoDoc and H.idHotel=" + Login.HomeLogin.hotel;
+            string query = "select User.usu_nombre Usuario,Rol.rol_nombre Rol,User.usu_nombre Nombre,User.usu_apellido Apellido,User.usu_telefono Tel,User.usu_mail Mail,User.usu_documento Nro_Doc,User.usu_estado Estado,doc.doc_desc Tipo_Doc,Hot.hot_calle+Hot.hot_calle_nro Hotel,User.usu_fecha_nac Fecha_Nac,from	EN_CASA_ANDABA.Usuarios User,EN_CASA_ANDABA.Roles Rol,EN_CASA_ANDABA.Hoteles Hot,EN_CASA_ANDABA.Documentos doc where User.usu_documento = doc.doc_id and Hot.hot_id=" + Login.HomeLogin.hotel;
             sAdapter = FrbaHotel.Home.BD.dameDataAdapter(query);
             dTable = FrbaHotel.Home.BD.dameDataTable(sAdapter);
-            //BindingSource to sync DataTable and DataGridView
             BindingSource bSource = new BindingSource();
-            //set the BindingSource DataSource
             bSource.DataSource = dTable;
-            //set the DataGridView DataSource
             dataGridView1.DataSource = bSource;
         }
         private string filtrarExactamentePor(string columna, string valor)
@@ -154,14 +151,11 @@ namespace FrbaHotel.ABM_de_Usuario
             {
                 textBoxDir.Text = direccion.ToString();
             }
-            string query = "select U.userName Usuario,R.descripcion Rol,U.nombre Nombre,U.apellido Apellido,U.telefono Tel,U.mail Mail,U.nroDoc Nro_Doc,T.descripcion Tipo_Doc,D.calle Calle,D.numero Numero,D.piso Piso,D.depto Depto,D.idDir Direccion,H.nombre Hotel,U.fecha_nac Fecha_Nac,U.estado Estado from	GESTION_DE_GATOS.Usuario U,GESTION_DE_GATOS.Rol R,GESTION_DE_GATOS.UserXRolXHotel UR,GESTION_DE_GATOS.Hotel H,GESTION_DE_GATOS.Direccion D,GESTION_DE_GATOS.TiposDoc T where	U.direccion = D.idDir and	U.idUsuario = UR.usuario and UR.rol = R.idRol and UR.Hotel = H.idHotel and	U.tipoDoc = T.idTipoDoc and H.idHotel=" + Login.HomeLogin.hotel;
+            string query = "select User.usu_nombre Usuario,Rol.rol_nombre Rol,User.usu_nombre Nombre,User.usu_apellido Apellido,User.usu_telefono Tel,User.usu_mail Mail,User.usu_documento Nro_Doc,User.usu_estado Estado,doc.doc_desc Tipo_Doc,Hot.hot_calle+Hot.hot_calle_nro Hotel,User.usu_fecha_nac Fecha_Nac,from	EN_CASA_ANDABA.Usuarios User,EN_CASA_ANDABA.Roles Rol,EN_CASA_ANDABA.Hoteles Hot,EN_CASA_ANDABA.Documentos doc where User.usu_documento = doc.doc_id and Hot.hot_id=" + Login.HomeLogin.hotel;
             sAdapter = FrbaHotel.Home.BD.dameDataAdapter(query);
             dTable = FrbaHotel.Home.BD.dameDataTable(sAdapter);
-            //BindingSource to sync DataTable and DataGridView
             BindingSource bSource = new BindingSource();
-            //set the BindingSource DataSource
             bSource.DataSource = dTable;
-            //set the DataGridView DataSource
             dataGridView1.DataSource = bSource;
         }
 
@@ -220,7 +214,7 @@ namespace FrbaHotel.ABM_de_Usuario
                 decimal id=0;
                 decimal idUXR = 0;
                 string username = dataGridView1.CurrentRow.Cells[1].Value.ToString();
-                consulta = "select idUsuario descripcion from GESTION_DE_GATOS.Usuario where userName = '"+username+"'";
+                consulta = "select usu_id  from EN_CASA_ANDABA.Usuarios where usu_username = '"+username+"'";
                 resultado = Home.BD.comando(consulta);
                 if (resultado.Read() == true)
                 {
@@ -229,7 +223,7 @@ namespace FrbaHotel.ABM_de_Usuario
                 resultado.Close();
                 string hotel = dataGridView1.CurrentRow.Cells[14].Value.ToString();
                 string rol = dataGridView1.CurrentRow.Cells[2].Value.ToString();
-                consulta = "select UR.idUserXRol from GESTION_DE_GATOS.UserXRolXHotel UR, GESTION_DE_GATOS.Hotel H, GESTION_DE_GATOS.Rol R where UR.usuario = " + id + "and R.descripcion = '" + rol + "' and R.idRol = UR.rol and H.nombre = '"+hotel+"' and H.idHotel = UR.hotel";
+               // consulta = "select UR.idUserXRol from EN_CASA_ANDABA.UserXRolXHotel UR, EN_CASA_ANDABA.Hoteles Hot, EN_CASA_ANDABA.Roles R  " + id + "and R.descripcion = '" + rol + "' and R.idRol = UR.rol and H.nombre = '"+hotel+"' and H.idHotel = UR.hotel"; // no hay USERXROLXHOTEL
                 resultado = Home.BD.comando(consulta);
                 if (resultado.Read() == true)
                 {

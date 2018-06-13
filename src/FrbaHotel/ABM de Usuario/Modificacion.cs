@@ -24,21 +24,21 @@ namespace FrbaHotel.ABM_de_Usuario
             dir = 0;
             textBoxUser.Focus();
             string consulta;
-            consulta = "select distinct descripcion from GESTION_DE_GATOS.TiposDoc";
+            consulta = "select distinct doc_desc from EN_CASA_ANDABA.Documentos";
             resultado = Home.BD.comando(consulta);
             while (resultado.Read() == true)
             {
                 comboBoxTipoDoc.Items.Add(resultado.GetSqlString(0));
             }
             resultado.Close();
-            consulta = "select nombre from GESTION_DE_GATOS.Hotel where idHotel=" + Login.HomeLogin.hotel;
+            consulta = "select hot_calle+hot_calle_nro from EN_CASA_ANDABA.Hoteles where hot_id=" + Login.HomeLogin.hotel;
             resultado = Home.BD.comando(consulta);
             while (resultado.Read() == true)
             {
                 comboBoxHotel.Items.Add(resultado.GetSqlString(0));
             }
             resultado.Close();
-            consulta = "select descripcion from GESTION_DE_GATOS.Rol";
+            consulta = "select rol_nombre from GESTION_DE_GATOS.Roles";
             resultado = Home.BD.comando(consulta);
             while (resultado.Read() == true)
             {
@@ -123,7 +123,7 @@ namespace FrbaHotel.ABM_de_Usuario
             if (a == 0)
             {
                 //MODIFICAR VALORES
-                string insert = "EXEC GESTION_DE_GATOS.ModificarUser ";
+                string insert = "EXEC EN_CASA_ANDABA.ModificarUsuario ";
                 insert = insert + iduser.ToString()+","+idLoco.ToString();
                 insert = insert + ",'" + textBoxUser.Text + "',";
                 insert = insert + "'" + Login.HomeLogin.dameHash(textBoxClave.Text) + "',";
