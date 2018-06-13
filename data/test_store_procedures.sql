@@ -32,8 +32,12 @@ exec EN_CASA_ANDABA.modificacionUsuario 1,'Administrador General','Avenida Córdo
 
 'Administrador General','Avenida Córdoba',10482,admin1,PASSWORD1,adminn,admina,'adminc@enCasaAndaba.com','4100-0000',1,123456789,'2018-03-22','admin',1
 
-@rol,@hotelCalle,@hotelNumero,@username,@password,@nombre,@apellido,@email,@tel,@tipoDocumento,@nroDocumento,@fechaNacimiento, @direccion, @estado
-	
+--@rol,@hotelCalle,@hotelNumero,@username,@password,@nombre,@apellido,@email,@tel,@tipoDocumento,@nroDocumento,@fechaNacimiento, @direccion, @estado
+select rol_nombre, hot_calle, hot_calle_nro, usu_username, usu_password,usu_nombre, usu_apellido, usu_mail, usu_tel, usu_doc_id, usu_documento,
+	usu_fecha_nac,usu_direccion, usu_estado
+	 from EN_CASA_ANDABA.Usuarios,EN_CASA_ANDABA.Roles_Usuarios,EN_CASA_ANDABA.Roles,EN_CASA_ANDABA.Hoteles_Usuarios,
+	EN_CASA_ANDABA.Hoteles
+	where usu_id = ryu_usu_id and ryu_rol_id = rol_id and usu_id = hyu_usu_id and hot_id = hyu_hot_id	
 
 
 
