@@ -29,7 +29,7 @@ namespace FrbaHotel.ABM_de_Rol
             {
                 comboBox1.Text = "Inactivo";
             }
-            string consulta = "select F.denominacion from GESTION_DE_GATOS.FuncXRol FR,GESTION_DE_GATOS.Funcionalidad F where F.idFuncionalidad =FR.funcionalidad and FR.rol = " + id;
+            string consulta = "select Fun.fun_desc from EN_CASA_ANDABA.Funccionalidades_Roles FR,EN_CASA_ANDABA.Funcionalidades Fun where Fun.fun_id=FR.fyr_fun_id and FR.fyr_rol_id = " + id;
             resultado = Home.BD.comando(consulta);
             comboBox3.Items.Add("Ninguna");
             comboBox2.Items.Add("Ninguna");
@@ -38,7 +38,7 @@ namespace FrbaHotel.ABM_de_Rol
                 comboBox3.Items.Add(resultado.GetString(0));
             }
             resultado.Close();
-            consulta = "select distinct denominacion from GESTION_DE_GATOS.Funcionalidad except select F.denominacion from GESTION_DE_GATOS.FuncXRol FR,GESTION_DE_GATOS.Funcionalidad F where F.idFuncionalidad =FR.funcionalidad and FR.rol =" + id;
+            consulta = "select distinct fun_desc from EN_CASA_ANDABA.Funcionalidades except select Fun.fun_desc from EN_CASA_ANDABA.Funcionalidades_ROles FR,EN_CASA_ANDABA.Funcionalidades Fun where Fun.fun_id=FR.fyr_fun_id and FR.fyr_rol_id =" + id;
             resultado = Home.BD.comando(consulta);
             while (resultado.Read())
             {
@@ -78,14 +78,14 @@ namespace FrbaHotel.ABM_de_Rol
             string consulta;
             if (comboBox1.Text == "Activo")
             {
-                consulta = "update GESTION_DE_GATOS.Rol set descripcion = '" + textBox1.Text + "', estado=1 where idRol= " + ID;
+                consulta = "update EN_CASA_ANDABA.Roles set rol_nombre = '" + textBox1.Text + "', rol_estado=1 where rol_id= " + ID;
                 resultado = Home.BD.comando(consulta);
                 resultado.Read();
                 resultado.Close();
             }
             else
             {
-                consulta = "update GESTION_DE_GATOS.Rol set descripcion = '" + textBox1.Text + "', estado=0 where idRol= " + ID;
+                consulta = "update EN_CASA_ANDABA.Roles set rol_nombre = '" + textBox1.Text + "', rol_estado=0 where rol_id= " + ID;
                 resultado = Home.BD.comando(consulta);
                 resultado.Read();
                 resultado.Close();
@@ -94,14 +94,14 @@ namespace FrbaHotel.ABM_de_Rol
             if (!string.IsNullOrEmpty(comboBox2.Text) && (comboBox2.Text!="Ninguna"))
             {
                 //agregar func, insert
-                consulta = "select idFuncionalidad from GESTION_DE_GATOS.Funcionalidad where denominacion = '"+comboBox2.Text+"'";
+                consulta = "select fun_id from GESTION_DE_GATOS.Funcionalidades where fun_desc = '"+comboBox2.Text+"'";
                 resultado = Home.BD.comando(consulta);
                 if (resultado.Read())
                 {
                     idF = resultado.GetDecimal(0);
                 }
                 resultado.Close();
-                consulta = "EXEC GESTION_DE_GATOS.InsertarFuncXRol "+ ID + "," + idF;
+                consulta = "EXEC EN_CASA_ANDABA.altaFuncionalidadRol " + ID + "," + idF;
                 resultado = Home.BD.comando(consulta);
                 decimal resu =0;
                 if (resultado.Read())
@@ -121,14 +121,14 @@ namespace FrbaHotel.ABM_de_Rol
             if (!string.IsNullOrEmpty(comboBox3.Text) && (comboBox3.Text != "Ninguna"))
             {
                 //delete
-                consulta = "select idFuncionalidad from GESTION_DE_GATOS.Funcionalidad where denominacion = '"+comboBox3.Text+"'";
+                consulta = "select fun_id from GESTION_DE_GATOS.Funcionalidades where fun_desc = '"+comboBox3.Text+"'";
                 resultado = Home.BD.comando(consulta);
                 if (resultado.Read())
                 {
                     idF = resultado.GetDecimal(0);
                 }
                 resultado.Close();
-                consulta = "delete from GESTION_DE_GATOS.FuncXRol where funcionalidad = " + idF + " and rol = " + ID;
+                consulta = "delete from EN_CASA_ANDABA.Funcionalidades_Roles where fyr_fun_id = " + idF + " and fyr_rol_id = " + ID;
                 resultado = Home.BD.comando(consulta);
                 resultado.Read();
                 resultado.Close();

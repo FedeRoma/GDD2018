@@ -27,15 +27,12 @@ namespace FrbaHotel.ABM_de_Rol
 
         private void Alta_Load(object sender, EventArgs e)
         {
-            string query = "select distinct F.idFuncionalidad ID,F.denominacion Denominacion from GESTION_DE_GATOS.Funcionalidad F" ;
+            string query = "select distinct Fun.fun_id ID,Fun.fun_desc Denominacion from EN_CASA_ANDABA.Funcionalidades Fun" ;
 
             sAdapter = FrbaHotel.Home.BD.dameDataAdapter(query);
             dTable = FrbaHotel.Home.BD.dameDataTable(sAdapter);
-            //BindingSource to sync DataTable and DataGridView
             BindingSource bSource = new BindingSource();
-            //set the BindingSource DataSource
             bSource.DataSource = dTable;
-            //set the DataGridView DataSource
             dataGridView1.DataSource = bSource;
 
             tabla = new DataTable();
@@ -43,7 +40,6 @@ namespace FrbaHotel.ABM_de_Rol
             tabla.Columns.Add("Denominacion");
             bSource2 = new BindingSource();
             bSource2.DataSource = tabla ;
-            //set the DataGridView DataSource
             dataGridView2.DataSource = bSource2;
             
         }
@@ -90,7 +86,7 @@ namespace FrbaHotel.ABM_de_Rol
             }
           
             decimal id = 0;
-            string insert = "EXEC GESTION_DE_GATOS.InsertarRol '" + textBox1.Text + "',";
+            string insert = "EXEC EN_CASA_ANDABA.altaRol '" + textBox1.Text + "',";
             if (checkBox1.Checked)
             {
                 insert = insert + "1";
@@ -114,7 +110,7 @@ namespace FrbaHotel.ABM_de_Rol
                 return; 
             }
 
-            string comand = "EXEC GESTION_DE_GATOS.InsertarFuncXRol "+id.ToString()+",";
+            string comand = "EXEC EN_CASA_ANDABA.altaFuncionalidadRol " + id.ToString() + ",";
 
             string[] strArr = null;
             int count = 0;
@@ -148,15 +144,12 @@ namespace FrbaHotel.ABM_de_Rol
             textBox1.Clear();
             textBox1.Focus();
             checkBox1.Checked = false;
-            string query = "select distinct F.idFuncionalidad ID,F.denominacion Denominacion from GESTION_DE_GATOS.Funcionalidad F";
+            string query = "select distinct Fun.fun_id ID,Fun.fun_desc Denominacion from EN_CASA_ANDABA.Funcionalidades Fun";
             sAdapter = FrbaHotel.Home.BD.dameDataAdapter(query);
             dTable = FrbaHotel.Home.BD.dameDataTable(sAdapter);
-            //BindingSource to sync DataTable and DataGridView
             BindingSource bSource = new BindingSource();
-            //set the BindingSource DataSource
             tabla.Clear();
             bSource.DataSource = dTable;
-            //set the DataGridView DataSource
             dataGridView1.DataSource = bSource;
             dataGridView2.DataSource = bSource2;
             funciones = "";

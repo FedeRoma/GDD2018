@@ -26,15 +26,12 @@ namespace FrbaHotel.ABM_de_Rol
 
         private void Listado_Load(object sender, EventArgs e)
         {
-            string query = "select idRol ID,descripcion Descripcion, estado Estado from GESTION_DE_GATOS.Rol";
+            string query = "select rol_Id ID,rol_nombre Descripcion, rol_estado Estado from EN_CASA_ANDABA.Roles";
             
             sAdapter = FrbaHotel.Home.BD.dameDataAdapter(query);
             dTable = FrbaHotel.Home.BD.dameDataTable(sAdapter);
-            //BindingSource to sync DataTable and DataGridView
             BindingSource bSource = new BindingSource();
-            //set the BindingSource DataSource
             bSource.DataSource = dTable;
-            //set the DataGridView DataSource
             dataGridView1.DataSource = bSource;
         }
 
@@ -88,16 +85,13 @@ namespace FrbaHotel.ABM_de_Rol
         {
             if (e.ColumnIndex == 0)
             {
-                string query = "select F.idFuncionalidad ID,F.denominacion Denominacion from GESTION_DE_GATOS.Funcionalidad F, GESTION_DE_GATOS.FuncXRol FR where F.idFuncionalidad = FR.funcionalidad and FR.rol = " + dataGridView1.CurrentRow.Cells[1].Value.ToString(); ;
+                string query = "select Fun.fun_id ID,Fun.fun_desc Denominacion from EN_CASA_ANDABA.Funcionalidades Fun, EN_CASA_ANDABA.Funcionalidades_Rol FR where Fun.fun_id = FR.fyr_rol_id and FR.fyr_rol_id = " + dataGridView1.CurrentRow.Cells[1].Value.ToString(); ;
                 SqlDataAdapter sAdapter2;
                 DataTable dTable2;
                 sAdapter2 = FrbaHotel.Home.BD.dameDataAdapter(query);
                 dTable2 = FrbaHotel.Home.BD.dameDataTable(sAdapter2);
-                //BindingSource to sync DataTable and DataGridView
                 BindingSource bSource = new BindingSource();
-                //set the BindingSource DataSource
                 bSource.DataSource = dTable2;
-                //set the DataGridView DataSource
                 dataGridView2.DataSource = bSource;
             }
         }
