@@ -10,13 +10,13 @@ using System.Data.SqlClient;
 
 namespace FrbaHotel.ABM_de_Habitacion
 {
-    public partial class ListadoModif : Form
+    public partial class Baja : Form
     {
         string consulta;
         SqlDataReader resultado;
         SqlDataAdapter sAdapter;
         DataTable dTable;
-        public ListadoModif()
+        public Baja()
         {
             InitializeComponent();
             consulta = "select distinct tip_nombre from EN_CASA_ANDABA.TiposHabitaciones";
@@ -26,7 +26,7 @@ namespace FrbaHotel.ABM_de_Habitacion
                 comboBox1.Items.Add(resultado.GetSqlString(0));
             }
             resultado.Close();
-            consulta = "select hot_calle + hot_calle_nro from EN_CASA_ANDABA.Hoteles where hot_id = " + Login.HomeLogin.hotel;
+            consulta = "select hot_calle+hot_calle_nro from GESTION_DE_GATOS.Hoteles where hot_id = " + Login.HomeLogin.hotel;
             resultado = Home.BD.comando(consulta);
             if (resultado.Read())
             {
@@ -36,13 +36,16 @@ namespace FrbaHotel.ABM_de_Habitacion
             textBox1.Focus();
         }
 
-        private void ListadoModif_Load(object sender, EventArgs e)
+        private void Baja_Load(object sender, EventArgs e)
         {
-            string query = "select hab.hab_numero Numero,hab.hab_piso Piso,hab.hab_des Descripcion,hab.hab_habilitado Estado from EN_CASA_ANDABA.Habitaciones hab, EN_CASA_ANDABA.Hoteles hot where hab.hab_hot_id = hot.hot_id and hot.hot_id = " + Login.HomeLogin.hotel;
+            string query = "select hab.hab_numero Numero,hab.hab_piso Piso,hab.hab_des Descripcion,hab.hab_habilitado Estado from EN_CASA_ANDABA.Habitaciones hab, EN_CASA_ANDABA.Hoteles hot where hab.hab_hot_id = hot.hot_id and hot.hot_id=" + Login.HomeLogin.hotel;
             sAdapter = FrbaHotel.Home.BD.dameDataAdapter(query);
             dTable = FrbaHotel.Home.BD.dameDataTable(sAdapter);
+           
             BindingSource bSource = new BindingSource();
+            
             bSource.DataSource = dTable;
+           
             dataGridView1.DataSource = bSource;
         }
         private string filtrarExactamentePor(string columna, string valor)
@@ -115,48 +118,63 @@ namespace FrbaHotel.ABM_de_Habitacion
             dataGridView1.DataSource = dvData;
         }
 
+        private void Baja_Activated(object sender, EventArgs e)
+        {
+            string query = "select hab.hab_numero Numero,hab.hab_piso Piso,hab.hab_des Descripcion,hab.hab_habilitado Estado from EN_CASA_ANDABA.Habitaciones hab, EN_CASA_ANDABA.Hoteles hot where hab.hab_hot_id = hot.hot_id and hot.hot_id= " + Login.HomeLogin.hotel;
+            sAdapter = FrbaHotel.Home.BD.dameDataAdapter(query);
+            dTable = FrbaHotel.Home.BD.dameDataTable(sAdapter);            
+            BindingSource bSource = new BindingSource();            
+            bSource.DataSource = dTable;           
+            dataGridView1.DataSource = bSource;
+        }
+
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex == 0)
             {
-                
+               
                 string numero = dataGridView1.CurrentRow.Cells[1].Value.ToString();
                 string piso = dataGridView1.CurrentRow.Cells[2].Value.ToString();
-                string ubicacion = dataGridView1.CurrentRow.Cells[3].Value.ToString();
                 string tipo = dataGridView1.CurrentRow.Cells[4].Value.ToString();
-                string descripcion = dataGridView1.CurrentRow.Cells[5].Value.ToString();
                 string estado = dataGridView1.CurrentRow.Cells[6].Value.ToString();
-                decimal id = 0;
-                decimal tipoT = 0;
-                consulta = "select tip_id from EN_CASA_ANDABA.TiposHabitaciones where tip_nombre = '" + tipo + "'";
-                resultado = Home.BD.comando(consulta);
-                if (resultado.Read())
+                if (estado == "False")
                 {
-                    tipoT = resultado.GetDecimal(0);
+                    MessageBox.Show("No se puede eliminar porque ya esta en estado inactivo");
+                    return;
                 }
-                resultado.Close();
-                consulta = "select hab_id from EN_CASA_ANDABA.Habitaciones where hab_numero = " + numero + " and hab_piso = "+piso+" and hab_hotel = "+Login.HomeLogin.hotel+" and tip_nombre = "+tipoT;
-                resultado = Home.BD.comando(consulta);
-                if (resultado.Read())
+                
+                if (MessageBox.Show("Estas seguro que desea eliminar?", "AVISO", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    id = resultado.GetDecimal(0);
-                }
-                resultado.Close();
+                    decimal id = 0;
+                    decimal tipoT = 0;
+                    consulta = "select tip_id from EN_CASA_ANDABA.TiposHabitaciones where tip_nombre = '" + tipo + "'";
+                    resultado = Home.BD.comando(consulta);
+                    if (resultado.Read())
+                    {
+                        tipoT = resultado.GetDecimal(0);
+                    }
+                    resultado.Close();
+                    consulta = "select hab_id from EN_CASA_ANDABA.Habitaciones where hab_numero = " + numero + " and hab_piso = " + piso + " and hab_hot_id = " + Login.HomeLogin.hotel + " and hab_tip_id = " + tipoT;
+                    resultado = Home.BD.comando(consulta);
+                    if (resultado.Read())
+                    {
+                        id = resultado.GetDecimal(0);
+                    }
+                    resultado.Close();
 
-                Modificacion modif = new Modificacion(id,numero, piso,ubicacion,tipo,descripcion, estado);
-                modif.Show();
+                    consulta = "update EN_CASA_ANDABA.Habitaciones set hab_habilitado=0 where hab_id = " + id;
+                    
+                    resultado = Home.BD.comando(consulta);
+                    if (resultado.Read() == true)
+                    {
+                    }
+                    resultado.Close();
+                }
+                Baja_Load(null, null);
+                
             }
         }
-
-        private void ListadoModif_Activated(object sender, EventArgs e)
-        {
-            string query = "select hab.hab_numero Numero,hab.hab_piso Piso,hab.hab_des Descripcion,hab.hab_habilitado Estado from EN_CASA_ANDABA.Habitaciones hab, EN_CASA_ANDABA.Hoteles hot where hab.hab_hot_id = hot.hot_id and hot.hot_id = " + Login.HomeLogin.hotel;
-            sAdapter = FrbaHotel.Home.BD.dameDataAdapter(query);
-            dTable = FrbaHotel.Home.BD.dameDataTable(sAdapter);
-            BindingSource bSource = new BindingSource();
-            bSource.DataSource = dTable;
-            dataGridView1.DataSource = bSource;
-        }
+    
 
 
     }

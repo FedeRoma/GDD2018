@@ -10,35 +10,35 @@ using System.Data.SqlClient;
 
 namespace FrbaHotel.ABM_de_Habitacion
 {
-    public partial class Modificacion : Form
+    public partial class Alta : Form
     {
-        decimal idH;
         private SqlDataReader resultado;
-        public Modificacion(decimal id,string numero,string piso,string ubicacion,string tipo,string descripcion,string estado )
+        public Alta()
         {
             InitializeComponent();
-            idH = id;
-            string consulta = "select hot_calle+hot_calle_nro from EN_CASA_ANDABA.Hoteles where hot_id = " + Login.HomeLogin.hotel;
+            string consulta = "select nombre from EN_CASA_ANDABA.Hoteles where hot_id = " + Login.HomeLogin.hotel;
             resultado = Home.BD.comando(consulta);
             if (resultado.Read())
             {
                 textBox6.Text = resultado.GetString(0);
             }
             resultado.Close();
-            textBox1.Text = numero;
-            textBox2.Text = piso;
-            textBox3.Text = ubicacion;
-            textBox4.Text = descripcion;
-            textBox5.Text = tipo;
-            if (estado == "True")
+            consulta = "select distinct tip_nombre from EN_CASA_ANDABA.TiposHabitaciones";
+            resultado = Home.BD.comando(consulta);
+            while (resultado.Read() == true)
             {
-                checkBox1.Checked = true;
-
+                comboBox1.Items.Add(resultado.GetSqlString(0));
             }
+            resultado.Close();
             textBox1.Focus();
         }
 
-        private void Modificacion_Load(object sender, EventArgs e)
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Alta_Load(object sender, EventArgs e)
         {
 
         }
@@ -50,6 +50,7 @@ namespace FrbaHotel.ABM_de_Habitacion
             textBox3.Clear();
             textBox4.Clear();
             checkBox1.Checked = false;
+            comboBox1.ResetText();
             textBox1.Focus();
             
         }
@@ -59,13 +60,12 @@ namespace FrbaHotel.ABM_de_Habitacion
             int a = checkearCamposVacios();
             if (a == 0)
             {
-                //MODIFICAR VALORES
-                string insert = "EXEC EN_CASA_ANDABA.modificacionHabitacion ";
-                insert = insert + idH.ToString()+",";
+                //INSERTAR VALORES
+                string insert = "EXEC EN_CASA_ANDABA.altaHabitacion ";
                 insert = insert + textBox1.Text + ",";
                 insert = insert + textBox2.Text + ",";
                 insert = insert + "'" + textBox3.Text + "',";
-                insert = insert + "'" + textBox5.Text + "',";
+                insert = insert + "'" + comboBox1.Text + "',";
                 insert = insert + Login.HomeLogin.hotel + ",";
                 if (!string.IsNullOrEmpty(textBox4.Text))
                 {
@@ -75,6 +75,7 @@ namespace FrbaHotel.ABM_de_Habitacion
                 {
                     insert = insert + "NULL,";
                 }
+                
                 if (checkBox1.Checked)
                 {
                     insert = insert + "1";
@@ -94,13 +95,33 @@ namespace FrbaHotel.ABM_de_Habitacion
                 if (resu != 0)
                 {
                     MessageBox.Show("La habitacion fue guardada correctamente");
-                    ListadoModif.ActiveForm.Show();
                     this.Close();
                 }
                 else
                 {
                     MessageBox.Show("Error al guardar, la habitacion ya existe con ese numero,piso,tipo y hotel");
                 }
+            }
+        }
+
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
             }
         }
         private int checkearCamposVacios()
@@ -127,12 +148,12 @@ namespace FrbaHotel.ABM_de_Habitacion
                 a = 1;
                 mensaje = mensaje + "El campo hotel es obligatorio\n";
             }
-            if (string.IsNullOrEmpty(textBox5.Text))
+            if (string.IsNullOrEmpty(comboBox1.Text))
             {
                 a = 1;
                 mensaje = mensaje + "El campo tipo es obligatorio\n";
             }
-
+                
 
             if (a == 1)
             {
@@ -141,25 +162,5 @@ namespace FrbaHotel.ABM_de_Habitacion
             return a;
         }
 
-        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void Modificacion_KeyPress(object sender, KeyPressEventArgs e)
-        {
-
-        }
     }
 }
