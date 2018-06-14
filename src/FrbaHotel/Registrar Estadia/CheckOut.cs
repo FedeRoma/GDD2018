@@ -45,14 +45,11 @@ namespace FrbaHotel.Registrar_Estadia
 
         private void CheckOut_Load(object sender, EventArgs e)
         {
-            string query = "select distinct CE.estadia idEstadia,CE.habitacion idHabitacion,H.numero Numero,H.piso Piso from GESTION_DE_GATOS.Estadia E, GESTION_DE_GATOS.ClienteXEstadia CE, GESTION_DE_GATOS.Habitacion H where E.salida is null and E.ingreso <= '"+Home.fecha.Date+"' and CE.estadia = E.idEstadia and CE.habitacion = H.idHabitacion and H.hotel = "+Login.HomeLogin.hotel;
+            string query = "select distinct CE.cye_cye_id idEstadia,CE.cye_hab_i idHabitacion,Hab.hab_numero Numero,Hab.hab_piso Piso from EN_CASA_ANDABA.Estadias Est, EN_CASA_ANDABA.Clientes_Estadias CE, EN_CASA_ANDABA.Habitaciones Hab where Est.est_checkout is null and Est.est_checkin<= '" + Home.fecha.Date + "' and CE.cye_cye_id = Est.est_res_id and CE.cye_hab_id = Hab.hab_id and Hab.hab_hot_id = " + Login.HomeLogin.hotel;
             sAdapter = FrbaHotel.Home.BD.dameDataAdapter(query);
             dTable = FrbaHotel.Home.BD.dameDataTable(sAdapter);
-            //BindingSource to sync DataTable and DataGridView
             BindingSource bSource = new BindingSource();
-            //set the BindingSource DataSource
             bSource.DataSource = dTable;
-            //set the DataGridView DataSource
             dataGridView1.DataSource = bSource;
         }
 
@@ -107,8 +104,7 @@ namespace FrbaHotel.Registrar_Estadia
         {
             if (e.ColumnIndex == 0)
             {
-                //generar facturacion
-                consulta = "EXEC GESTION_DE_GATOS.registrarCheckoutEstadia ";
+                consulta = "EXEC EN_CASA_ANDABA.altaCheckoutEstadia ";
                 consulta = consulta + dataGridView1.CurrentRow.Cells[1].Value.ToString();
                 consulta = consulta + ",'" + Home.fecha.Date.ToString("yyyyMMdd HH:mm:ss") + "',";
                 consulta = consulta + Login.HomeLogin.idUsuario;
@@ -118,7 +114,6 @@ namespace FrbaHotel.Registrar_Estadia
                 {
                     
                     resultado.Close();
-                    //aca va lo de facturacion
                     Facturar_Estadia.Facturacion factu = new FrbaHotel.Facturar_Estadia.Facturacion(dataGridView1.CurrentRow.Cells[1].Value.ToString());
                     MessageBox.Show("El checkout se ha realizado correctamente. Se procede a la facturacion");
                     factu.Show();

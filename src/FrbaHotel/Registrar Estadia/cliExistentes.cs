@@ -21,7 +21,7 @@ namespace FrbaHotel.Registrar_Estadia
         public cliExistentes()
         {
             InitializeComponent();
-            consulta = "select distinct descripcion from GESTION_DE_GATOS.TiposDoc";
+            consulta = "select distinct doc_desc from EN_CASA_ANDABA.Documentos";
             resultado = Home.BD.comando(consulta);
             while (resultado.Read() == true)
             {
@@ -33,14 +33,11 @@ namespace FrbaHotel.Registrar_Estadia
 
         private void cliExistentes_Load(object sender, EventArgs e)
         {
-            string query = "select C.idCli Id ,C.nombre Nombre,C.apellido Apellido,T.descripcion TipoDoc,C.nroDoc NroDoc,C.mail Mail from GESTION_DE_GATOS.Cliente C,GESTION_DE_GATOS.TiposDoc T where T.idTipoDoc=C.tipoDoc";
+            string query = "select Cli.cli_doc_id Id ,C.cli_nombre Nombre,Cli.cli_apellido Apellido,Doc.doc_desc TipoDoc,Cli.cli_documento NroDoc,Cli.cli_mail Mail from EN_CASA_ANDABA.Clientes Cli,EN_CASA_ANDABA.Documentos Doc where Doc.doc_id=Cli.cli_documento";
             sAdapter = FrbaHotel.Home.BD.dameDataAdapter(query);
             dTable = FrbaHotel.Home.BD.dameDataTable(sAdapter);
-            //BindingSource to sync DataTable and DataGridView
             BindingSource bSource = new BindingSource();
-            //set the BindingSource DataSource
             bSource.DataSource = dTable;
-            //set the DataGridView DataSource
             dataGridView1.DataSource = bSource;
         }
         private string filtrarExactamentePor(string columna, string valor)

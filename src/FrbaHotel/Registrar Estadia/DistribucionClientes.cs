@@ -22,7 +22,7 @@ namespace FrbaHotel.Registrar_Estadia
             tabla = tablaP;
             estadia = nroEstadia;
             dataGridView1.DataSource = tabla;
-            consulta= "select habitacion from GESTION_DE_GATOS.ReservaXHabitacion where reserva = "+nroReserva;
+            consulta = "select ryh_hab_id from EN_CASA_ANDABA.Reservas_Habitaciones where ryh_res_id = " + nroReserva;
             resultado = Home.BD.comando(consulta);
             while( resultado.Read())
             {
@@ -41,7 +41,7 @@ namespace FrbaHotel.Registrar_Estadia
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            consulta= "select H.numero,H.piso,T.descripcion,T.cantPersonas from GESTION_DE_GATOS.Habitacion H, GESTION_DE_GATOS.TipoHabitacion T where H.tipo = T.codigo and H.idHabitacion = "+comboBox1.Text;
+            consulta = "select Hab.hab_numero,Hab.hab_piso,T.tip_nombre,T.tip_personas from EN_CASA_ANDABA.Habitaciones Hab, EN_CASA_ANDABA.TipsoHabitaciones T where Hab.hab_tip_id = T.tip_id and Hab.hab_id = " + comboBox1.Text;
             resultado = Home.BD.comando(consulta);
             if( resultado.Read())
             {
@@ -68,14 +68,14 @@ namespace FrbaHotel.Registrar_Estadia
 
                 }
                 int index = dataGridView1.CurrentRow.Index;
-                consulta = "select count(*) from GESTION_DE_GATOS.ClienteXEstadia where estadia = "+estadia +" and habitacion = "+comboBox1.Text;
+                consulta = "select count(*) from EN_CASA_ANDABA.Clients_Estadias where cye_est_res_id = " + estadia + " and cye_hab_id = " + comboBox1.Text;
                 resultado = Home.BD.comando(consulta);
                 resultado.Read();
                 int aux = resultado.GetInt32(0);
                 resultado.Close();
                 if(aux < Convert.ToInt32(textBox4.Text))
                 {
-                    consulta = "EXEC GESTION_DE_GATOS.ModificarClienteXEstadia "+comboBox1.Text+ ","+dataGridView1.CurrentRow.Cells[1].Value.ToString()+","+estadia;
+                    consulta = "EXEC EN_CASA_ANDABA.modificacionClientes_Estadias " + comboBox1.Text + "," + dataGridView1.CurrentRow.Cells[1].Value.ToString() + "," + estadia;
                     resultado = Home.BD.comando(consulta);
                     resultado.Read();
                     if(resultado.GetDecimal(0)==1)

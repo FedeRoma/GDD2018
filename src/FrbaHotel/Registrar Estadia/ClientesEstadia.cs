@@ -36,9 +36,8 @@ namespace FrbaHotel.Registrar_Estadia
             tabla.Columns.Add("Apellido");
             bSource2 = new BindingSource();
             bSource2.DataSource = tabla;
-            //set the DataGridView DataSource
             dataGridView1.DataSource = bSource2;
-            consulta = "select sum(T.cantPersonas) from GESTION_DE_GATOS.ReservaXHabitacion RH,GESTION_DE_GATOS.Habitacion H,GESTION_DE_GATOS.TipoHabitacion T where RH.habitacion = H.idHabitacion and T.codigo=H.tipo and RH.reserva = " + nroReserva;
+           // consulta = "select sum(T.cantPersonas) from EN_CASA_ANDABA.Reservas_Habitaciones RH,EN_CASA_ANDABA.Habitacion H,EN_CASA_ANDABA.TipoHabitacion T where RH.habitacion = H.idHabitacion and T.codigo=H.tipo and RH.reserva = " + nroReserva;
             resultado = Home.BD.comando(consulta);
             if (resultado.Read())
             {
@@ -52,7 +51,7 @@ namespace FrbaHotel.Registrar_Estadia
                 MessageBox.Show("La reserva no tiene habitaciones");
                 this.Close();
             }
-            consulta = "select C.idCli,C.nombre,C.apellido from GESTION_DE_GATOS.Reserva R,GESTION_DE_GATOS.Cliente C where R.cliente = C.idCli and R.idReserva = " + nroReserva;
+            consulta = "select Cli.cli_id,Cli.cli_nombre,Cli.cli_apellido from EN_CASA_ANDABA.Reservas Res,EN_CASA_ANDABA.Clientes Cli where Res.res_cli_doc_id = Cli.cli_doc_id and Res.res_id = " + nroReserva;
             resultado = Home.BD.comando(consulta);
             resultado.Read();          
             textBox3.Text = resultado.GetString(1) + " " + resultado.GetString(2);
@@ -132,7 +131,7 @@ namespace FrbaHotel.Registrar_Estadia
             
             foreach (DataRow fila in tabla.Rows)
             {
-                resultado = Home.BD.comando("EXEC GESTION_DE_GATOS.RegistrarEstadiaXCliente " + fila["Id"].ToString() + ","+nroEstadia);
+                resultado = Home.BD.comando("EXEC EN_CASA_ANDABA.altaClientes_Estadias " + fila["Id"].ToString() + "," + nroEstadia);
                 if (resultado.Read())
                 {
                     if (resultado.GetDecimal(0) == 0)
