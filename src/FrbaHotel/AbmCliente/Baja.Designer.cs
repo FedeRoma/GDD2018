@@ -1,4 +1,4 @@
-﻿namespace FrbaHotel.ABM_de_Cliente
+﻿namespace FrbaHotel.AbmCliente
 {
     partial class Baja
     {

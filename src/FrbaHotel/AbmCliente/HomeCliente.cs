@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace FrbaHotel.ABM_de_Cliente
+namespace FrbaHotel.AbmCliente
 {
     public partial class HomeCliente : Form
     {

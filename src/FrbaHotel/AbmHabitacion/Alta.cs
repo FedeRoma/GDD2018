@@ -8,7 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 
-namespace FrbaHotel.ABM_de_Habitacion
+namespace FrbaHotel.AbmHabitacion
 {
     public partial class Alta : Form
     {
