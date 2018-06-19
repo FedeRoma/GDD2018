@@ -6,3 +6,6 @@
 \\VBOXSVR\Hotel_Frba_1C2018\src\FrbaHotel\obj\Debug\FrbaHotel.csproj.GenerateResource.Cache
 \\VBOXSVR\Hotel_Frba_1C2018\src\FrbaHotel\obj\Debug\FrbaHotel.exe
 \\VBOXSVR\Hotel_Frba_1C2018\src\FrbaHotel\obj\Debug\FrbaHotel.pdb
+C:\Users\DdeS\GDD2018\src\2018\FrbaHotel\bin\Debug\FrbaHotel.exe.config
+C:\Users\DdeS\GDD2018\src\2018\FrbaHotel\obj\Debug\FrbaHotel.exe
+C:\Users\DdeS\GDD2018\src\2018\FrbaHotel\obj\Debug\FrbaHotel.pdb
