@@ -7,11 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace FrbaHotel.AbmCliente
 {
     public partial class AltaCliente : Form
     {
+        private SqlDataReader resultado;
         public AltaCliente()
         {
             InitializeComponent();
