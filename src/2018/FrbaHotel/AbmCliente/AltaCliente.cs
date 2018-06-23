@@ -10,11 +10,21 @@ using System.Windows.Forms;
 
 namespace FrbaHotel.AbmCliente
 {
-    public partial class Form1 : Form
+    public partial class AltaCliente : Form
     {
-        public Form1()
+        public AltaCliente()
         {
             InitializeComponent();
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
