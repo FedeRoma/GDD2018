@@ -17,17 +17,7 @@ namespace FrbaHotel.ListadoEstadistico
             InitializeComponent();
         }
 
-        private void Form2_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click_1(object sender, EventArgs e)
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
