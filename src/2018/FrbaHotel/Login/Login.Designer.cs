@@ -86,7 +86,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Franklin Gothic Medium", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Crimson;
-            this.label2.Location = new System.Drawing.Point(204, 9);
+            this.label2.Location = new System.Drawing.Point(204, 55);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(296, 43);
             this.label2.TabIndex = 13;
@@ -105,6 +105,7 @@
             this.cancelar.TabIndex = 23;
             this.cancelar.Text = "Cancelar";
             this.cancelar.UseVisualStyleBackColor = false;
+            this.cancelar.Click += new System.EventHandler(this.cancelar_Click);
             // 
             // ingresar
             // 
@@ -118,7 +119,7 @@
             this.ingresar.TabIndex = 22;
             this.ingresar.Text = "Ingresar";
             this.ingresar.UseVisualStyleBackColor = false;
-            this.ingresar.Click += new System.EventHandler(this.button1_Click);
+            this.ingresar.Click += new System.EventHandler(this.ingresar_Click);
             // 
             // Login
             // 
@@ -152,5 +153,7 @@
         private System.Windows.Forms.Button cancelar;
         private System.Windows.Forms.Button ingresar;
 
+
+        public System.EventHandler ingresar_Click { get; set; }
     }
 }
