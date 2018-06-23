@@ -17,8 +17,8 @@ namespace FrbaHotel
         public static FuncionalidadesClientes funCli;
         public static Login.Login Login;
         public static SQLConnector BD = new SQLConnector();
-        public static decimal usuarioId;
-        public static string rol = "";
+        public static int usuarioId;
+        public static int rol = 0;
         public Index()
         {
             InitializeComponent();
@@ -36,17 +36,18 @@ namespace FrbaHotel
         {
             SqlDataReader resultado;
             resultado = Index.BD.comando("SELECT usu_id FROM EN_CASA_ANDABA.Usuarios where usu_username = 'Guest'");
-            if (resultado.Read())
-            {
-                usuarioId = resultado.GetDecimal(0);
-            }
+            resultado.Read();
+            usuarioId = resultado.GetInt32(0);
             resultado.Close();
-            string consulta = "select distinct Rol.rol_nombre from EN_CASA_ANDABA.Roles Rol where Rol.rol_estado = 1 = " + usuarioId.ToString() + ";";
+
+
+            string consulta = "select ryu_rol_id from EN_CASA_ANDABA.Roles_Usuarios where ryu_usu_id = " + usuarioId + ";";
+            
             resultado = Index.BD.comando(consulta);
             resultado.Read();
-            FrbaHotel.Index.rol = resultado.GetString(0);
+            FrbaHotel.Index.rol = resultado.GetInt32(0);
             resultado.Close();
-            if (rol != "")
+            if (rol >0)
             {
                 funCli = new FuncionalidadesClientes();
                 funCli.Show();
