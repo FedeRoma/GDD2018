@@ -28,5 +28,10 @@ namespace FrbaHotel.AbmCliente
         {
 
         }
+
+        private void limpiar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
