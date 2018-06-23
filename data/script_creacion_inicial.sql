@@ -1666,6 +1666,27 @@ insert into EN_CASA_ANDABA.Hoteles_Usuarios (hyu_usu_id, hyu_hot_id)
 	select U.usu_id, H.hot_id from EN_CASA_ANDABA.Usuarios U, EN_CASA_ANDABA.Hoteles H 
 		where U.usu_username = 'admin'
 go
+
+
+insert into EN_CASA_ANDABA.Usuarios (usu_nombre, usu_password, usu_estado, usu_apellido, usu_mail, usu_tel, 
+								usu_fecha_nac, usu_documento, usu_intentos, usu_direccion, usu_username, usu_doc_id)
+values
+	('Guest', hashbytes('SHA2_256', ''), 1, 'Guest', 'Guest@enCasaAndaba.com', '4000-0000',
+		getdate(), 12345679, 0, 'guest', 'guest', 1)
+-- Rol de Guest: Guest
+insert into EN_CASA_ANDABA.Roles_Usuarios (ryu_usu_id, ryu_rol_id)
+	select U.usu_id, R.rol_id
+		from EN_CASA_ANDABA.Usuarios U, EN_CASA_ANDABA.Roles R 
+		where U.usu_username = 'guest' and rol_nombre = 'Guest'
+-- Hoteles del admin: TODOS
+insert into EN_CASA_ANDABA.Hoteles_Usuarios (hyu_usu_id, hyu_hot_id)
+	select U.usu_id, H.hot_id from EN_CASA_ANDABA.Usuarios U, EN_CASA_ANDABA.Hoteles H 
+		where U.usu_username = 'guest'
+go
+
+
+
+
 PRINT 'Usuarios... OK!'
 
 -- TABLA TEMPORAL DE CLIENTES REPETIDOS
