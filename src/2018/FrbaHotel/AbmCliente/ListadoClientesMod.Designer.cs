@@ -1,6 +1,6 @@
 ﻿namespace FrbaHotel.AbmCliente
 {
-    partial class ListadoClientes
+    partial class ListadoClientesMod
     {
         /// <summary>
         /// Required designer variable.
@@ -94,7 +94,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(71, 212);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(566, 168);
-            this.dataGridView1.TabIndex = 42;
+            this.dataGridView1.TabIndex = 7;
             // 
             // cancelar
             // 
@@ -105,7 +105,7 @@
             this.cancelar.Location = new System.Drawing.Point(12, 386);
             this.cancelar.Name = "cancelar";
             this.cancelar.Size = new System.Drawing.Size(101, 44);
-            this.cancelar.TabIndex = 41;
+            this.cancelar.TabIndex = 8;
             this.cancelar.Text = "Cancelar";
             this.cancelar.UseVisualStyleBackColor = false;
             this.cancelar.Click += new System.EventHandler(this.cancelar_Click);
@@ -119,7 +119,7 @@
             this.limpiar.Location = new System.Drawing.Point(119, 386);
             this.limpiar.Name = "limpiar";
             this.limpiar.Size = new System.Drawing.Size(101, 44);
-            this.limpiar.TabIndex = 40;
+            this.limpiar.TabIndex = 9;
             this.limpiar.Text = "Limpiar Datos";
             this.limpiar.UseVisualStyleBackColor = false;
             this.limpiar.Click += new System.EventHandler(this.limpiar_Click);
@@ -133,7 +133,7 @@
             this.buscar.Location = new System.Drawing.Point(451, 156);
             this.buscar.Name = "buscar";
             this.buscar.Size = new System.Drawing.Size(101, 44);
-            this.buscar.TabIndex = 39;
+            this.buscar.TabIndex = 6;
             this.buscar.Text = "Buscar";
             this.buscar.UseVisualStyleBackColor = false;
             this.buscar.Click += new System.EventHandler(this.buscar_Click);
@@ -147,7 +147,7 @@
             this.label1.Location = new System.Drawing.Point(202, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(301, 41);
-            this.label1.TabIndex = 38;
+            this.label1.TabIndex = 53;
             this.label1.Text = "LISTADO CLIENTES";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -168,7 +168,7 @@
             this.label7.Location = new System.Drawing.Point(68, 156);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(42, 14);
-            this.label7.TabIndex = 36;
+            this.label7.TabIndex = 52;
             this.label7.Text = "eMAIL";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -198,7 +198,7 @@
             this.label5.Location = new System.Drawing.Point(354, 104);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(60, 14);
-            this.label5.TabIndex = 33;
+            this.label5.TabIndex = 51;
             this.label5.Text = "APELLIDO";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -210,7 +210,7 @@
             this.label4.Location = new System.Drawing.Point(68, 104);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(52, 14);
-            this.label4.TabIndex = 32;
+            this.label4.TabIndex = 50;
             this.label4.Text = "NOMBRE";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -231,7 +231,7 @@
             this.label3.Location = new System.Drawing.Point(354, 50);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(116, 14);
-            this.label3.TabIndex = 29;
+            this.label3.TabIndex = 49;
             this.label3.Text = "NRO DE DOCUMENTO";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -243,7 +243,7 @@
             this.label2.Location = new System.Drawing.Point(68, 50);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(119, 14);
-            this.label2.TabIndex = 28;
+            this.label2.TabIndex = 48;
             this.label2.Text = "TIPO DE DOCUMENTO";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -361,7 +361,7 @@
             this.clitelefonoDataGridViewTextBoxColumn.HeaderText = "cli_telefono";
             this.clitelefonoDataGridViewTextBoxColumn.Name = "clitelefonoDataGridViewTextBoxColumn";
             // 
-            // ListadoClientes
+            // ListadoClientesMod
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -385,12 +385,12 @@
             this.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
-            this.Name = "ListadoClientes";
+            this.Name = "ListadoClientesMod";
             this.ShowIcon = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FRBA Hotel 2018";
-            this.Load += new System.EventHandler(this.ListadoClientes_Load);
+            this.Load += new System.EventHandler(this.ListadoClientesMod_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gD1C2018DataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientesBindingSource)).EndInit();

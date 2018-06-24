@@ -11,17 +11,17 @@ using System.Data.SqlClient;
 
 namespace FrbaHotel.AbmCliente
 {
-    public partial class ListadoClientes : Form
+    public partial class ListadoClientesMod : Form
     {
         private SqlDataReader resultado;
         public static AbmCliente AbmCli;
 
-        public ListadoClientes()
+        public ListadoClientesMod()
         {
             InitializeComponent();
         }
 
-        private void ListadoClientes_Load(object sender, EventArgs e)
+        private void ListadoClientesMod_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'gD1C2018DataSet.Clientes' table. You can move, or remove it, as needed.
             this.clientesTableAdapter.Fill(this.gD1C2018DataSet.Clientes);
@@ -49,6 +49,5 @@ namespace FrbaHotel.AbmCliente
             AbmCli = new AbmCliente();
             AbmCli.Show();
         }
-
     }
 }
