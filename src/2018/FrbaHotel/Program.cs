@@ -16,7 +16,7 @@ namespace FrbaHotel
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Index());
+            Application.Run(new FrbaHotel.AbmCliente.AbmCliente()); //CAMBIAR PARA PROBAR VENTANAS
         }
     }
 }
