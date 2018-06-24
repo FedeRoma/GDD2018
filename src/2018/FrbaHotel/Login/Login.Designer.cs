@@ -32,9 +32,9 @@
             this.label5 = new System.Windows.Forms.Label();
             this.nombreUsuario = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.cancelar = new System.Windows.Forms.Button();
             this.ingresar = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // password
@@ -80,19 +80,6 @@
             this.label3.Text = "Nombre de Usuario";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label2
-            // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Franklin Gothic Medium", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.Crimson;
-            this.label2.Location = new System.Drawing.Point(204, 55);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(296, 43);
-            this.label2.TabIndex = 13;
-            this.label2.Text = "FRBA Hotel 2018";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // cancelar
             // 
             this.cancelar.BackColor = System.Drawing.Color.DimGray;
@@ -103,23 +90,37 @@
             this.cancelar.Name = "cancelar";
             this.cancelar.Size = new System.Drawing.Size(101, 44);
             this.cancelar.TabIndex = 23;
-            this.cancelar.Text = "Cancelar";
+            this.cancelar.Text = "cancelar";
             this.cancelar.UseVisualStyleBackColor = false;
             this.cancelar.Click += new System.EventHandler(this.cancelar_Click);
             // 
             // ingresar
             // 
             this.ingresar.BackColor = System.Drawing.Color.Crimson;
+            this.ingresar.CausesValidation = false;
             this.ingresar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ingresar.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ingresar.ForeColor = System.Drawing.Color.White;
-            this.ingresar.Location = new System.Drawing.Point(500, 240);
+            this.ingresar.Location = new System.Drawing.Point(500, 235);
             this.ingresar.Name = "ingresar";
-            this.ingresar.Size = new System.Drawing.Size(79, 34);
+            this.ingresar.Size = new System.Drawing.Size(101, 44);
             this.ingresar.TabIndex = 22;
-            this.ingresar.Text = "Ingresar";
+            this.ingresar.Text = "ingresar";
             this.ingresar.UseVisualStyleBackColor = false;
             this.ingresar.Click += new System.EventHandler(this.ingresar_Click);
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Franklin Gothic Medium", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.Crimson;
+            this.label2.Location = new System.Drawing.Point(237, 55);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(231, 43);
+            this.label2.TabIndex = 13;
+            this.label2.Text = "Iniciar Sesión";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Login
             // 
@@ -149,11 +150,9 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox nombreUsuario;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button cancelar;
         private System.Windows.Forms.Button ingresar;
+        private System.Windows.Forms.Label label2;
 
-
-        public System.EventHandler ingresar_Click { get; set; }
     }
 }
