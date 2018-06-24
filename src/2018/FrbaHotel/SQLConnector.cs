@@ -154,7 +154,7 @@ namespace FrbaHotel
             }
             catch (Exception excepcion)
             {
-                ventanaInformarErrorDatabase(excepcion);
+             //   ventanaInformarErrorDatabase(excepcion);
             }
             return dataSet;
         }
