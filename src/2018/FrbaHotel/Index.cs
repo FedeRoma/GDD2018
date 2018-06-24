@@ -14,11 +14,12 @@ namespace FrbaHotel
 {
     public partial class Index : Form
     {
-        public static FuncionalidadesClientes funCli;
-        public static Login.Login Login;
+        public static FuncionalidadesUsuarios funcionalidadesUsuarios;
+        public static Login.Login login;
         public static SQLConnector BD = new SQLConnector();
         public static int usuarioId;
         public static int rol = 0;
+       
         public Index()
         {
             InitializeComponent();
@@ -28,8 +29,8 @@ namespace FrbaHotel
         private void iniciarSesion_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Login = new Login.Login();
-            Login.Show();
+            login = new Login.Login();
+            login.Show();
         }
 
         private void invitado_Click(object sender, EventArgs e)
@@ -40,17 +41,16 @@ namespace FrbaHotel
             usuarioId = resultado.GetInt32(0);
             resultado.Close();
 
-
             string consulta = "select ryu_rol_id from EN_CASA_ANDABA.Roles_Usuarios where ryu_usu_id = " + usuarioId + ";";
             
             resultado = Index.BD.comando(consulta);
             resultado.Read();
             FrbaHotel.Index.rol = resultado.GetInt32(0);
             resultado.Close();
-            if (rol >0)
+            if (rol > 0)
             {
-                funCli = new FuncionalidadesClientes();
-                funCli.Show();
+                funcionalidadesUsuarios = new FuncionalidadesUsuarios();
+                funcionalidadesUsuarios.Show();
                 this.Hide();
             }
             else
@@ -58,5 +58,6 @@ namespace FrbaHotel
                 MessageBox.Show("Rol de Guest inhabilitado");
             }            
         }
+
     }
 }
