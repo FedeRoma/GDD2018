@@ -12,14 +12,48 @@ namespace FrbaHotel.AbmCliente
 {
     public partial class AbmCliente : Form
     {
+        public static ListadoClientes ListadoCli;
+        public static AltaCliente AltaCli;
+        public static BajaCliente BajaCli;
+        public static ModificacionCliente ModificacionCli;
+        
         public AbmCliente()
         {
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void listadoClientes_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
+            ListadoCli = new ListadoClientes();
+            ListadoCli.Show();
         }
+
+        private void altaCliente_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            AltaCli = new AltaCliente();
+            AltaCli.Show();
+        }
+
+        private void bajaCliente_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            BajaCli = new BajaCliente();
+            BajaCli.Show();
+        }
+
+        private void modificacionCliente_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            ModificacionCli = new ModificacionCliente();
+            ModificacionCli.Show();
+        }
+
+        private void atras_Click(object sender, EventArgs e)
+        {
+            // #Issue02
+        }
+
     }
 }

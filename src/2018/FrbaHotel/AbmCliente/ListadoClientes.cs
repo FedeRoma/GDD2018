@@ -11,12 +11,12 @@ using System.Data.SqlClient;
 
 namespace FrbaHotel.AbmCliente
 {
-    public partial class BajaCliente : Form
+    public partial class ListadoClientes : Form
     {
         private SqlDataReader resultado;
         public static AbmCliente AbmCli;
 
-        public BajaCliente()
+        public ListadoClientes()
         {
             InitializeComponent();
         }
