@@ -7,14 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SqlClient;
 
 namespace FrbaHotel.AbmCliente
 {
     public partial class BajaCliente : Form
     {
-        private SqlDataReader resultado;
-        public static AbmCliente AbmCli;
+        public static MenuAbmCliente AbmCli;
 
         public BajaCliente()
         {
@@ -39,8 +37,15 @@ namespace FrbaHotel.AbmCliente
         private void cancelar_Click(object sender, EventArgs e)
         {
             this.Hide();
-            AbmCli = new AbmCliente();
+            AbmCli = new MenuAbmCliente();
             AbmCli.Show();
+        }
+
+        private void BajaCliente_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'gD1C2018DataSet.Documentos' table. You can move, or remove it, as needed.
+            this.documentosTableAdapter.Fill(this.gD1C2018DataSet.Documentos);
+
         }
 
     }

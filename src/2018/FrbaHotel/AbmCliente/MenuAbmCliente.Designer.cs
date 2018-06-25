@@ -1,6 +1,6 @@
 ﻿namespace FrbaHotel.AbmCliente
 {
-    partial class AbmCliente
+    partial class MenuAbmCliente
     {
         /// <summary>
         /// Required designer variable.
@@ -57,7 +57,7 @@
             this.listadoClientes.Location = new System.Drawing.Point(193, 80);
             this.listadoClientes.Name = "listadoClientes";
             this.listadoClientes.Size = new System.Drawing.Size(318, 69);
-            this.listadoClientes.TabIndex = 8;
+            this.listadoClientes.TabIndex = 1;
             this.listadoClientes.Text = "LISTADO";
             this.listadoClientes.UseVisualStyleBackColor = false;
             this.listadoClientes.Click += new System.EventHandler(this.listadoClientes_Click);
@@ -71,7 +71,7 @@
             this.altaCliente.Location = new System.Drawing.Point(193, 155);
             this.altaCliente.Name = "altaCliente";
             this.altaCliente.Size = new System.Drawing.Size(156, 131);
-            this.altaCliente.TabIndex = 9;
+            this.altaCliente.TabIndex = 2;
             this.altaCliente.Text = "ALTA";
             this.altaCliente.UseVisualStyleBackColor = false;
             this.altaCliente.Click += new System.EventHandler(this.altaCliente_Click);
@@ -85,7 +85,7 @@
             this.bajaCliente.Location = new System.Drawing.Point(355, 155);
             this.bajaCliente.Name = "bajaCliente";
             this.bajaCliente.Size = new System.Drawing.Size(156, 131);
-            this.bajaCliente.TabIndex = 12;
+            this.bajaCliente.TabIndex = 3;
             this.bajaCliente.Text = "BAJA";
             this.bajaCliente.UseVisualStyleBackColor = false;
             this.bajaCliente.Click += new System.EventHandler(this.bajaCliente_Click);
@@ -99,7 +99,7 @@
             this.modificacionCliente.Location = new System.Drawing.Point(193, 293);
             this.modificacionCliente.Name = "modificacionCliente";
             this.modificacionCliente.Size = new System.Drawing.Size(318, 69);
-            this.modificacionCliente.TabIndex = 13;
+            this.modificacionCliente.TabIndex = 4;
             this.modificacionCliente.Text = "MODIFICACION";
             this.modificacionCliente.UseVisualStyleBackColor = false;
             this.modificacionCliente.Click += new System.EventHandler(this.modificacionCliente_Click);
@@ -113,12 +113,12 @@
             this.atras.Location = new System.Drawing.Point(12, 386);
             this.atras.Name = "atras";
             this.atras.Size = new System.Drawing.Size(101, 44);
-            this.atras.TabIndex = 14;
-            this.atras.Text = "Atrás";
+            this.atras.TabIndex = 5;
+            this.atras.Text = "atrás";
             this.atras.UseVisualStyleBackColor = false;
             this.atras.Click += new System.EventHandler(this.atras_Click);
             // 
-            // AbmCliente
+            // MenuAbmCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -133,13 +133,14 @@
             this.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
-            this.Name = "AbmCliente";
+            this.Name = "MenuAbmCliente";
             this.ShowIcon = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FRBA Hotel 2018";
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         #endregion

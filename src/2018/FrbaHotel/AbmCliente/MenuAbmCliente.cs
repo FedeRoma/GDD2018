@@ -10,14 +10,14 @@ using System.Windows.Forms;
 
 namespace FrbaHotel.AbmCliente
 {
-    public partial class AbmCliente : Form
+    public partial class MenuAbmCliente : Form
     {
         public static ListadoClientes ListadoCli;
         public static AltaCliente AltaCli;
         public static BajaCliente BajaCli;
         public static ListadoClientesMod ListadoModificacionCli;
         
-        public AbmCliente()
+        public MenuAbmCliente()
         {
             InitializeComponent();
         }

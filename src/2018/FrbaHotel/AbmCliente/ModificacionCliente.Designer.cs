@@ -265,8 +265,8 @@
             this.cancelar.Location = new System.Drawing.Point(12, 386);
             this.cancelar.Name = "cancelar";
             this.cancelar.Size = new System.Drawing.Size(101, 44);
-            this.cancelar.TabIndex = 39;
-            this.cancelar.Text = "Cancelar";
+            this.cancelar.TabIndex = 12;
+            this.cancelar.Text = "cancelar";
             this.cancelar.UseVisualStyleBackColor = false;
             this.cancelar.Click += new System.EventHandler(this.cancelar_Click);
             // 
@@ -279,8 +279,8 @@
             this.limpiar.Location = new System.Drawing.Point(119, 386);
             this.limpiar.Name = "limpiar";
             this.limpiar.Size = new System.Drawing.Size(101, 44);
-            this.limpiar.TabIndex = 38;
-            this.limpiar.Text = "Limpiar Datos";
+            this.limpiar.TabIndex = 11;
+            this.limpiar.Text = "limpiar datos";
             this.limpiar.UseVisualStyleBackColor = false;
             this.limpiar.Click += new System.EventHandler(this.limpiar_Click);
             // 
@@ -293,8 +293,8 @@
             this.guardar.Location = new System.Drawing.Point(591, 386);
             this.guardar.Name = "guardar";
             this.guardar.Size = new System.Drawing.Size(101, 44);
-            this.guardar.TabIndex = 37;
-            this.guardar.Text = "Guardar";
+            this.guardar.TabIndex = 10;
+            this.guardar.Text = "guardar";
             this.guardar.UseVisualStyleBackColor = false;
             this.guardar.Click += new System.EventHandler(this.guardar_Click);
             // 
@@ -302,7 +302,7 @@
             // 
             this.checkBoxEstado.AutoSize = true;
             this.checkBoxEstado.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxEstado.Location = new System.Drawing.Point(303, 362);
+            this.checkBoxEstado.Location = new System.Drawing.Point(316, 366);
             this.checkBoxEstado.Name = "checkBoxEstado";
             this.checkBoxEstado.Size = new System.Drawing.Size(98, 19);
             this.checkBoxEstado.TabIndex = 10;

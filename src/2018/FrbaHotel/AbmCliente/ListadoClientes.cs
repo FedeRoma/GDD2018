@@ -7,14 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SqlClient;
 
 namespace FrbaHotel.AbmCliente
 {
     public partial class ListadoClientes : Form
     {
-        private SqlDataReader resultado;
-        public static AbmCliente AbmCli;
+        public static MenuAbmCliente AbmCli;
 
         public ListadoClientes()
         {
@@ -46,7 +44,7 @@ namespace FrbaHotel.AbmCliente
         private void cancelar_Click(object sender, EventArgs e)
         {
             this.Hide();
-            AbmCli = new AbmCliente();
+            AbmCli = new MenuAbmCliente();
             AbmCli.Show();
         }
 

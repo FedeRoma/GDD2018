@@ -30,23 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.cancelar = new System.Windows.Forms.Button();
-            this.limpiar = new System.Windows.Forms.Button();
-            this.buscar = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBoxEmail = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.textBoxApellido = new System.Windows.Forms.TextBox();
-            this.textBoxNombre = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.textBoxNroDoc = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.comboBoxTipoDoc = new System.Windows.Forms.ComboBox();
-            this.gD1C2018DataSet = new FrbaHotel.GD1C2018DataSet();
-            this.clientesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.clientesTableAdapter = new FrbaHotel.GD1C2018DataSetTableAdapters.ClientesTableAdapter();
             this.clidocumentoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clidocidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clinombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -62,9 +45,26 @@
             this.clidirlocalidadDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clidirpaisDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clitelefonoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clientesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.gD1C2018DataSet = new FrbaHotel.GD1C2018DataSet();
+            this.cancelar = new System.Windows.Forms.Button();
+            this.limpiar = new System.Windows.Forms.Button();
+            this.buscar = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBoxEmail = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.textBoxApellido = new System.Windows.Forms.TextBox();
+            this.textBoxNombre = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.textBoxNroDoc = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.comboBoxTipoDoc = new System.Windows.Forms.ComboBox();
+            this.clientesTableAdapter = new FrbaHotel.GD1C2018DataSetTableAdapters.ClientesTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gD1C2018DataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientesBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gD1C2018DataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -96,6 +96,106 @@
             this.dataGridView1.Size = new System.Drawing.Size(566, 168);
             this.dataGridView1.TabIndex = 42;
             // 
+            // clidocumentoDataGridViewTextBoxColumn
+            // 
+            this.clidocumentoDataGridViewTextBoxColumn.DataPropertyName = "cli_documento";
+            this.clidocumentoDataGridViewTextBoxColumn.HeaderText = "cli_documento";
+            this.clidocumentoDataGridViewTextBoxColumn.Name = "clidocumentoDataGridViewTextBoxColumn";
+            // 
+            // clidocidDataGridViewTextBoxColumn
+            // 
+            this.clidocidDataGridViewTextBoxColumn.DataPropertyName = "cli_doc_id";
+            this.clidocidDataGridViewTextBoxColumn.HeaderText = "cli_doc_id";
+            this.clidocidDataGridViewTextBoxColumn.Name = "clidocidDataGridViewTextBoxColumn";
+            // 
+            // clinombreDataGridViewTextBoxColumn
+            // 
+            this.clinombreDataGridViewTextBoxColumn.DataPropertyName = "cli_nombre";
+            this.clinombreDataGridViewTextBoxColumn.HeaderText = "cli_nombre";
+            this.clinombreDataGridViewTextBoxColumn.Name = "clinombreDataGridViewTextBoxColumn";
+            // 
+            // cliapellidoDataGridViewTextBoxColumn
+            // 
+            this.cliapellidoDataGridViewTextBoxColumn.DataPropertyName = "cli_apellido";
+            this.cliapellidoDataGridViewTextBoxColumn.HeaderText = "cli_apellido";
+            this.cliapellidoDataGridViewTextBoxColumn.Name = "cliapellidoDataGridViewTextBoxColumn";
+            // 
+            // climailDataGridViewTextBoxColumn
+            // 
+            this.climailDataGridViewTextBoxColumn.DataPropertyName = "cli_mail";
+            this.climailDataGridViewTextBoxColumn.HeaderText = "cli_mail";
+            this.climailDataGridViewTextBoxColumn.Name = "climailDataGridViewTextBoxColumn";
+            // 
+            // clinacionalidadDataGridViewTextBoxColumn
+            // 
+            this.clinacionalidadDataGridViewTextBoxColumn.DataPropertyName = "cli_nacionalidad";
+            this.clinacionalidadDataGridViewTextBoxColumn.HeaderText = "cli_nacionalidad";
+            this.clinacionalidadDataGridViewTextBoxColumn.Name = "clinacionalidadDataGridViewTextBoxColumn";
+            // 
+            // clifechanacDataGridViewTextBoxColumn
+            // 
+            this.clifechanacDataGridViewTextBoxColumn.DataPropertyName = "cli_fecha_nac";
+            this.clifechanacDataGridViewTextBoxColumn.HeaderText = "cli_fecha_nac";
+            this.clifechanacDataGridViewTextBoxColumn.Name = "clifechanacDataGridViewTextBoxColumn";
+            // 
+            // clihabilitadoDataGridViewCheckBoxColumn
+            // 
+            this.clihabilitadoDataGridViewCheckBoxColumn.DataPropertyName = "cli_habilitado";
+            this.clihabilitadoDataGridViewCheckBoxColumn.HeaderText = "cli_habilitado";
+            this.clihabilitadoDataGridViewCheckBoxColumn.Name = "clihabilitadoDataGridViewCheckBoxColumn";
+            // 
+            // clicalleDataGridViewTextBoxColumn
+            // 
+            this.clicalleDataGridViewTextBoxColumn.DataPropertyName = "cli_calle";
+            this.clicalleDataGridViewTextBoxColumn.HeaderText = "cli_calle";
+            this.clicalleDataGridViewTextBoxColumn.Name = "clicalleDataGridViewTextBoxColumn";
+            // 
+            // clicallenroDataGridViewTextBoxColumn
+            // 
+            this.clicallenroDataGridViewTextBoxColumn.DataPropertyName = "cli_calle_nro";
+            this.clicallenroDataGridViewTextBoxColumn.HeaderText = "cli_calle_nro";
+            this.clicallenroDataGridViewTextBoxColumn.Name = "clicallenroDataGridViewTextBoxColumn";
+            // 
+            // clipisoDataGridViewTextBoxColumn
+            // 
+            this.clipisoDataGridViewTextBoxColumn.DataPropertyName = "cli_piso";
+            this.clipisoDataGridViewTextBoxColumn.HeaderText = "cli_piso";
+            this.clipisoDataGridViewTextBoxColumn.Name = "clipisoDataGridViewTextBoxColumn";
+            // 
+            // clideptoDataGridViewTextBoxColumn
+            // 
+            this.clideptoDataGridViewTextBoxColumn.DataPropertyName = "cli_depto";
+            this.clideptoDataGridViewTextBoxColumn.HeaderText = "cli_depto";
+            this.clideptoDataGridViewTextBoxColumn.Name = "clideptoDataGridViewTextBoxColumn";
+            // 
+            // clidirlocalidadDataGridViewTextBoxColumn
+            // 
+            this.clidirlocalidadDataGridViewTextBoxColumn.DataPropertyName = "cli_dir_localidad";
+            this.clidirlocalidadDataGridViewTextBoxColumn.HeaderText = "cli_dir_localidad";
+            this.clidirlocalidadDataGridViewTextBoxColumn.Name = "clidirlocalidadDataGridViewTextBoxColumn";
+            // 
+            // clidirpaisDataGridViewTextBoxColumn
+            // 
+            this.clidirpaisDataGridViewTextBoxColumn.DataPropertyName = "cli_dir_pais";
+            this.clidirpaisDataGridViewTextBoxColumn.HeaderText = "cli_dir_pais";
+            this.clidirpaisDataGridViewTextBoxColumn.Name = "clidirpaisDataGridViewTextBoxColumn";
+            // 
+            // clitelefonoDataGridViewTextBoxColumn
+            // 
+            this.clitelefonoDataGridViewTextBoxColumn.DataPropertyName = "cli_telefono";
+            this.clitelefonoDataGridViewTextBoxColumn.HeaderText = "cli_telefono";
+            this.clitelefonoDataGridViewTextBoxColumn.Name = "clitelefonoDataGridViewTextBoxColumn";
+            // 
+            // clientesBindingSource
+            // 
+            this.clientesBindingSource.DataMember = "Clientes";
+            this.clientesBindingSource.DataSource = this.gD1C2018DataSet;
+            // 
+            // gD1C2018DataSet
+            // 
+            this.gD1C2018DataSet.DataSetName = "GD1C2018DataSet";
+            this.gD1C2018DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // cancelar
             // 
             this.cancelar.BackColor = System.Drawing.Color.DimGray;
@@ -105,8 +205,8 @@
             this.cancelar.Location = new System.Drawing.Point(12, 386);
             this.cancelar.Name = "cancelar";
             this.cancelar.Size = new System.Drawing.Size(101, 44);
-            this.cancelar.TabIndex = 41;
-            this.cancelar.Text = "Cancelar";
+            this.cancelar.TabIndex = 8;
+            this.cancelar.Text = "cancelar";
             this.cancelar.UseVisualStyleBackColor = false;
             this.cancelar.Click += new System.EventHandler(this.cancelar_Click);
             // 
@@ -119,8 +219,8 @@
             this.limpiar.Location = new System.Drawing.Point(119, 386);
             this.limpiar.Name = "limpiar";
             this.limpiar.Size = new System.Drawing.Size(101, 44);
-            this.limpiar.TabIndex = 40;
-            this.limpiar.Text = "Limpiar Datos";
+            this.limpiar.TabIndex = 7;
+            this.limpiar.Text = "limpiar datos";
             this.limpiar.UseVisualStyleBackColor = false;
             this.limpiar.Click += new System.EventHandler(this.limpiar_Click);
             // 
@@ -133,8 +233,8 @@
             this.buscar.Location = new System.Drawing.Point(451, 156);
             this.buscar.Name = "buscar";
             this.buscar.Size = new System.Drawing.Size(101, 44);
-            this.buscar.TabIndex = 39;
-            this.buscar.Text = "Buscar";
+            this.buscar.TabIndex = 6;
+            this.buscar.Text = "buscar";
             this.buscar.UseVisualStyleBackColor = false;
             this.buscar.Click += new System.EventHandler(this.buscar_Click);
             // 
@@ -257,109 +357,9 @@
             this.comboBoxTipoDoc.Size = new System.Drawing.Size(280, 24);
             this.comboBoxTipoDoc.TabIndex = 1;
             // 
-            // gD1C2018DataSet
-            // 
-            this.gD1C2018DataSet.DataSetName = "GD1C2018DataSet";
-            this.gD1C2018DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // clientesBindingSource
-            // 
-            this.clientesBindingSource.DataMember = "Clientes";
-            this.clientesBindingSource.DataSource = this.gD1C2018DataSet;
-            // 
             // clientesTableAdapter
             // 
             this.clientesTableAdapter.ClearBeforeFill = true;
-            // 
-            // clidocumentoDataGridViewTextBoxColumn
-            // 
-            this.clidocumentoDataGridViewTextBoxColumn.DataPropertyName = "cli_documento";
-            this.clidocumentoDataGridViewTextBoxColumn.HeaderText = "cli_documento";
-            this.clidocumentoDataGridViewTextBoxColumn.Name = "clidocumentoDataGridViewTextBoxColumn";
-            // 
-            // clidocidDataGridViewTextBoxColumn
-            // 
-            this.clidocidDataGridViewTextBoxColumn.DataPropertyName = "cli_doc_id";
-            this.clidocidDataGridViewTextBoxColumn.HeaderText = "cli_doc_id";
-            this.clidocidDataGridViewTextBoxColumn.Name = "clidocidDataGridViewTextBoxColumn";
-            // 
-            // clinombreDataGridViewTextBoxColumn
-            // 
-            this.clinombreDataGridViewTextBoxColumn.DataPropertyName = "cli_nombre";
-            this.clinombreDataGridViewTextBoxColumn.HeaderText = "cli_nombre";
-            this.clinombreDataGridViewTextBoxColumn.Name = "clinombreDataGridViewTextBoxColumn";
-            // 
-            // cliapellidoDataGridViewTextBoxColumn
-            // 
-            this.cliapellidoDataGridViewTextBoxColumn.DataPropertyName = "cli_apellido";
-            this.cliapellidoDataGridViewTextBoxColumn.HeaderText = "cli_apellido";
-            this.cliapellidoDataGridViewTextBoxColumn.Name = "cliapellidoDataGridViewTextBoxColumn";
-            // 
-            // climailDataGridViewTextBoxColumn
-            // 
-            this.climailDataGridViewTextBoxColumn.DataPropertyName = "cli_mail";
-            this.climailDataGridViewTextBoxColumn.HeaderText = "cli_mail";
-            this.climailDataGridViewTextBoxColumn.Name = "climailDataGridViewTextBoxColumn";
-            // 
-            // clinacionalidadDataGridViewTextBoxColumn
-            // 
-            this.clinacionalidadDataGridViewTextBoxColumn.DataPropertyName = "cli_nacionalidad";
-            this.clinacionalidadDataGridViewTextBoxColumn.HeaderText = "cli_nacionalidad";
-            this.clinacionalidadDataGridViewTextBoxColumn.Name = "clinacionalidadDataGridViewTextBoxColumn";
-            // 
-            // clifechanacDataGridViewTextBoxColumn
-            // 
-            this.clifechanacDataGridViewTextBoxColumn.DataPropertyName = "cli_fecha_nac";
-            this.clifechanacDataGridViewTextBoxColumn.HeaderText = "cli_fecha_nac";
-            this.clifechanacDataGridViewTextBoxColumn.Name = "clifechanacDataGridViewTextBoxColumn";
-            // 
-            // clihabilitadoDataGridViewCheckBoxColumn
-            // 
-            this.clihabilitadoDataGridViewCheckBoxColumn.DataPropertyName = "cli_habilitado";
-            this.clihabilitadoDataGridViewCheckBoxColumn.HeaderText = "cli_habilitado";
-            this.clihabilitadoDataGridViewCheckBoxColumn.Name = "clihabilitadoDataGridViewCheckBoxColumn";
-            // 
-            // clicalleDataGridViewTextBoxColumn
-            // 
-            this.clicalleDataGridViewTextBoxColumn.DataPropertyName = "cli_calle";
-            this.clicalleDataGridViewTextBoxColumn.HeaderText = "cli_calle";
-            this.clicalleDataGridViewTextBoxColumn.Name = "clicalleDataGridViewTextBoxColumn";
-            // 
-            // clicallenroDataGridViewTextBoxColumn
-            // 
-            this.clicallenroDataGridViewTextBoxColumn.DataPropertyName = "cli_calle_nro";
-            this.clicallenroDataGridViewTextBoxColumn.HeaderText = "cli_calle_nro";
-            this.clicallenroDataGridViewTextBoxColumn.Name = "clicallenroDataGridViewTextBoxColumn";
-            // 
-            // clipisoDataGridViewTextBoxColumn
-            // 
-            this.clipisoDataGridViewTextBoxColumn.DataPropertyName = "cli_piso";
-            this.clipisoDataGridViewTextBoxColumn.HeaderText = "cli_piso";
-            this.clipisoDataGridViewTextBoxColumn.Name = "clipisoDataGridViewTextBoxColumn";
-            // 
-            // clideptoDataGridViewTextBoxColumn
-            // 
-            this.clideptoDataGridViewTextBoxColumn.DataPropertyName = "cli_depto";
-            this.clideptoDataGridViewTextBoxColumn.HeaderText = "cli_depto";
-            this.clideptoDataGridViewTextBoxColumn.Name = "clideptoDataGridViewTextBoxColumn";
-            // 
-            // clidirlocalidadDataGridViewTextBoxColumn
-            // 
-            this.clidirlocalidadDataGridViewTextBoxColumn.DataPropertyName = "cli_dir_localidad";
-            this.clidirlocalidadDataGridViewTextBoxColumn.HeaderText = "cli_dir_localidad";
-            this.clidirlocalidadDataGridViewTextBoxColumn.Name = "clidirlocalidadDataGridViewTextBoxColumn";
-            // 
-            // clidirpaisDataGridViewTextBoxColumn
-            // 
-            this.clidirpaisDataGridViewTextBoxColumn.DataPropertyName = "cli_dir_pais";
-            this.clidirpaisDataGridViewTextBoxColumn.HeaderText = "cli_dir_pais";
-            this.clidirpaisDataGridViewTextBoxColumn.Name = "clidirpaisDataGridViewTextBoxColumn";
-            // 
-            // clitelefonoDataGridViewTextBoxColumn
-            // 
-            this.clitelefonoDataGridViewTextBoxColumn.DataPropertyName = "cli_telefono";
-            this.clitelefonoDataGridViewTextBoxColumn.HeaderText = "cli_telefono";
-            this.clitelefonoDataGridViewTextBoxColumn.Name = "clitelefonoDataGridViewTextBoxColumn";
             // 
             // ListadoClientes
             // 
@@ -392,8 +392,8 @@
             this.Text = "FRBA Hotel 2018";
             this.Load += new System.EventHandler(this.ListadoClientes_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gD1C2018DataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientesBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gD1C2018DataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

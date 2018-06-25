@@ -28,8 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.comboBoxTipoDoc = new System.Windows.Forms.ComboBox();
+            this.documentosBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.gD1C2018DataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.gD1C2018DataSet = new FrbaHotel.GD1C2018DataSet();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.textBoxNroDoc = new System.Windows.Forms.TextBox();
@@ -51,6 +55,10 @@
             this.limpiar = new System.Windows.Forms.Button();
             this.cancelar = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
+            this.documentosTableAdapter = new FrbaHotel.GD1C2018DataSetTableAdapters.DocumentosTableAdapter();
+            ((System.ComponentModel.ISupportInitialize)(this.documentosBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gD1C2018DataSetBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gD1C2018DataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -68,6 +76,8 @@
             // 
             // comboBoxTipoDoc
             // 
+            this.comboBoxTipoDoc.DataSource = this.documentosBindingSource;
+            this.comboBoxTipoDoc.DisplayMember = "doc_desc";
             this.comboBoxTipoDoc.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxTipoDoc.ForeColor = System.Drawing.Color.DimGray;
             this.comboBoxTipoDoc.FormattingEnabled = true;
@@ -75,6 +85,22 @@
             this.comboBoxTipoDoc.Name = "comboBoxTipoDoc";
             this.comboBoxTipoDoc.Size = new System.Drawing.Size(280, 24);
             this.comboBoxTipoDoc.TabIndex = 1;
+            this.comboBoxTipoDoc.ValueMember = "doc_id";
+            // 
+            // documentosBindingSource
+            // 
+            this.documentosBindingSource.DataMember = "Documentos";
+            this.documentosBindingSource.DataSource = this.gD1C2018DataSetBindingSource;
+            // 
+            // gD1C2018DataSetBindingSource
+            // 
+            this.gD1C2018DataSetBindingSource.DataSource = this.gD1C2018DataSet;
+            this.gD1C2018DataSetBindingSource.Position = 0;
+            // 
+            // gD1C2018DataSet
+            // 
+            this.gD1C2018DataSet.DataSetName = "GD1C2018DataSet";
+            this.gD1C2018DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // label2
             // 
@@ -265,8 +291,8 @@
             this.guardar.Location = new System.Drawing.Point(591, 386);
             this.guardar.Name = "guardar";
             this.guardar.Size = new System.Drawing.Size(101, 44);
-            this.guardar.TabIndex = 19;
-            this.guardar.Text = "Guardar";
+            this.guardar.TabIndex = 10;
+            this.guardar.Text = "guardar";
             this.guardar.UseVisualStyleBackColor = false;
             this.guardar.Click += new System.EventHandler(this.guardar_Click);
             // 
@@ -279,23 +305,22 @@
             this.limpiar.Location = new System.Drawing.Point(119, 386);
             this.limpiar.Name = "limpiar";
             this.limpiar.Size = new System.Drawing.Size(101, 44);
-            this.limpiar.TabIndex = 20;
-            this.limpiar.Text = "Limpiar Datos";
+            this.limpiar.TabIndex = 11;
+            this.limpiar.Text = "limpiar datos";
             this.limpiar.UseVisualStyleBackColor = false;
             this.limpiar.Click += new System.EventHandler(this.limpiar_Click);
             // 
             // cancelar
             // 
             this.cancelar.BackColor = System.Drawing.Color.DimGray;
-            this.cancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cancelar.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cancelar.ForeColor = System.Drawing.Color.White;
             this.cancelar.Location = new System.Drawing.Point(12, 386);
             this.cancelar.Name = "cancelar";
             this.cancelar.Size = new System.Drawing.Size(101, 44);
-            this.cancelar.TabIndex = 21;
-            this.cancelar.Text = "Cancelar";
+            this.cancelar.TabIndex = 12;
+            this.cancelar.Text = "cancelar";
             this.cancelar.UseVisualStyleBackColor = false;
             this.cancelar.Click += new System.EventHandler(this.cancelar_Click);
             // 
@@ -311,6 +336,10 @@
             this.label11.TabIndex = 22;
             this.label11.Text = "todos los campos son obligatorios";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // documentosTableAdapter
+            // 
+            this.documentosTableAdapter.ClearBeforeFill = true;
             // 
             // AltaCliente
             // 
@@ -349,8 +378,13 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FRBA Hotel 2018";
+            this.Load += new System.EventHandler(this.AltaCliente_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.documentosBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gD1C2018DataSetBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gD1C2018DataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         #endregion
@@ -378,5 +412,9 @@
         private System.Windows.Forms.Button limpiar;
         private System.Windows.Forms.Button cancelar;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.BindingSource gD1C2018DataSetBindingSource;
+        private GD1C2018DataSet gD1C2018DataSet;
+        private System.Windows.Forms.BindingSource documentosBindingSource;
+        private GD1C2018DataSetTableAdapters.DocumentosTableAdapter documentosTableAdapter;
     }
 }

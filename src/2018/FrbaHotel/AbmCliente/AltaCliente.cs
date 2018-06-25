@@ -14,7 +14,7 @@ namespace FrbaHotel.AbmCliente
     public partial class AltaCliente : Form
     {
         private SqlDataReader resultado;
-        public static AbmCliente AbmCli;
+        public static MenuAbmCliente AbmCli;
 
         public AltaCliente()
         {
@@ -158,8 +158,15 @@ namespace FrbaHotel.AbmCliente
         private void cancelar_Click(object sender, EventArgs e)
         {
             this.Hide();
-            AbmCli = new AbmCliente();
+            AbmCli = new MenuAbmCliente();
             AbmCli.Show();
+        }
+
+        private void AltaCliente_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'gD1C2018DataSet.Documentos' table. You can move, or remove it, as needed.
+            this.documentosTableAdapter.Fill(this.gD1C2018DataSet.Documentos);
+
         }
 
     }
