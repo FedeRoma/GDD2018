@@ -17,3 +17,8 @@ where fyr_rol_id = (select ryu_rol_id
 from EN_CASA_ANDABA.Roles_Usuarios 
 where ryu_usu_id = 1)
 -- oK!
+
+--AbmHabitacion
+--Alta.CS
+
+select hot_calle+hot_calle_nro from EN_CASA_ANDABA.Hoteles where hot_id = " /*+ aca iria el abm login del hotel*/
