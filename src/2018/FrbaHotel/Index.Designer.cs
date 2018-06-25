@@ -69,7 +69,7 @@
             this.iniciarSesion.Location = new System.Drawing.Point(170, 246);
             this.iniciarSesion.Name = "iniciarSesion";
             this.iniciarSesion.Size = new System.Drawing.Size(364, 44);
-            this.iniciarSesion.TabIndex = 20;
+            this.iniciarSesion.TabIndex = 1;
             this.iniciarSesion.Text = "Iniciar Sesión";
             this.iniciarSesion.UseVisualStyleBackColor = false;
             this.iniciarSesion.Click += new System.EventHandler(this.iniciarSesion_Click);
@@ -83,7 +83,7 @@
             this.invitado.Location = new System.Drawing.Point(170, 296);
             this.invitado.Name = "invitado";
             this.invitado.Size = new System.Drawing.Size(364, 44);
-            this.invitado.TabIndex = 22;
+            this.invitado.TabIndex = 2;
             this.invitado.Text = "Continuar como Invitado";
             this.invitado.UseVisualStyleBackColor = false;
             this.invitado.Click += new System.EventHandler(this.invitado_Click);
