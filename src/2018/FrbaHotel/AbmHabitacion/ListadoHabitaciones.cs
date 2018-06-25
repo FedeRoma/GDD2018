@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace FrbaHotel.AbmHabitacion
 {
-    public partial class Form1 : Form
+    public partial class ListadoHabitaciones : Form
     {
-        public Form1()
+        public ListadoHabitaciones()
         {
             InitializeComponent();
         }
