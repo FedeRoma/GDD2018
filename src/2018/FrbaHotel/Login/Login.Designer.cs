@@ -39,7 +39,7 @@
             // 
             // password
             // 
-            this.password.BackColor = System.Drawing.Color.Gainsboro;
+            this.password.BackColor = System.Drawing.Color.White;
             this.password.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.password.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.password.ForeColor = System.Drawing.Color.DimGray;
@@ -63,7 +63,7 @@
             // 
             // nombreUsuario
             // 
-            this.nombreUsuario.BackColor = System.Drawing.Color.Gainsboro;
+            this.nombreUsuario.BackColor = System.Drawing.Color.White;
             this.nombreUsuario.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.nombreUsuario.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nombreUsuario.ForeColor = System.Drawing.Color.DimGray;
@@ -115,13 +115,12 @@
             // 
             // label2
             // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Franklin Gothic Medium", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Franklin Gothic Medium", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Crimson;
-            this.label2.Location = new System.Drawing.Point(237, 55);
+            this.label2.Location = new System.Drawing.Point(194, 76);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(231, 43);
+            this.label2.Size = new System.Drawing.Size(317, 61);
             this.label2.TabIndex = 13;
             this.label2.Text = "Iniciar Sesión";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -130,7 +129,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(704, 442);
             this.Controls.Add(this.cancelar);
             this.Controls.Add(this.ingresar);
