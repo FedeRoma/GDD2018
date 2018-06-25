@@ -39,6 +39,8 @@
             // 
             // password
             // 
+            this.password.BackColor = System.Drawing.Color.Gainsboro;
+            this.password.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.password.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.password.ForeColor = System.Drawing.Color.DimGray;
             this.password.Location = new System.Drawing.Point(214, 246);
@@ -61,6 +63,8 @@
             // 
             // nombreUsuario
             // 
+            this.nombreUsuario.BackColor = System.Drawing.Color.Gainsboro;
+            this.nombreUsuario.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.nombreUsuario.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nombreUsuario.ForeColor = System.Drawing.Color.DimGray;
             this.nombreUsuario.Location = new System.Drawing.Point(214, 192);
@@ -126,6 +130,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(704, 442);
             this.Controls.Add(this.cancelar);
             this.Controls.Add(this.ingresar);
@@ -135,8 +140,11 @@
             this.Controls.Add(this.nombreUsuario);
             this.Controls.Add(this.label3);
             this.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "Login";
             this.ShowIcon = false;
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FRBA Hotel 2018";
             this.ResumeLayout(false);
