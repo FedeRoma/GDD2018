@@ -126,14 +126,14 @@ namespace FrbaHotel.AbmCliente
                 decimal ok = 0;
                 decimal email = 0;
 
-                resultado = Index.BD.comando(insert);
+                resultado = Index.BD.ejecutarQueryTraePuntero(insert);
                 if (resultado.Read())
                 {
                     ok = resultado.GetDecimal(0);
                 }
                 resultado.Close();
 
-                resultado = Index.BD.comando("select count (*) from EN_CASA_ANDABA.Clientes where mail = '" + textBoxEmail.Text + "'");
+                resultado = Index.BD.ejecutarQueryTraePuntero("select count (*) from EN_CASA_ANDABA.Clientes where mail = '" + textBoxEmail.Text + "'");
                 if (resultado.Read())
                 {
                     email = resultado.GetDecimal(0);
