@@ -13,11 +13,13 @@ namespace FrbaHotel.Login
 {
     public partial class Login : Form
     {
-        public static FuncionalidadesUsuarios funcionalidadesUsuarios;
+        public static Index index;
+        public static RolesUsuario rolesUsuario;
+        public static Funcionalidades_Usuarios funcionalidadesUsuarios;
         private int cantIntentos = 0;
         public static int usuarioId;
-        public static int rol = 0;
-        public static Index index;
+        public static string rol = "";
+        public static string hotel = "";
 
         public Login()
         {
@@ -32,12 +34,12 @@ namespace FrbaHotel.Login
         {
             cantIntentos++;
             SqlDataReader resultado;
-            resultado = Index.BD.comando("select usu_estado, usu_id from EN_CASA_ANDABA.Usuarios where usu_username = '"+ nombreUsuario.Text +"' and usu_password = hashbytes('SHA2_256', '"+ password.Text +"')");
+            resultado = Index.BD.ejecutarQueryTraePuntero("select usu_estado, usu_id from EN_CASA_ANDABA.Usuarios where usu_username = '"+ nombreUsuario.Text +"' and usu_password = hashbytes('SHA2_256', '"+ password.Text +"')");
             
             if (nombreUsuario.Text == "guest" || nombreUsuario.Text == "Guest")
             {
                 MessageBox.Show("Continuando como invitado...");
-                funcionalidadesUsuarios = new FuncionalidadesUsuarios();
+                funcionalidadesUsuarios = new Funcionalidades_Usuarios();
                 funcionalidadesUsuarios.Show();
                 this.Hide();
             }
@@ -47,26 +49,32 @@ namespace FrbaHotel.Login
                 {
                     if (resultado.GetBoolean(0) == true)
                     {
-                        string mensaje = "BIENVENIDO " + nombreUsuario.Text;
-                        MessageBox.Show(mensaje);
                         usuarioId = resultado.GetInt32(1);
                         cantIntentos = 0;
                         resultado.Close();
 
-                        resultado = Index.BD.comando("select count (*) ryu_rol_id from EN_CASA_ANDABA.Roles_Usuarios where ryu_usu_id = " + usuarioId + "");
+                        string consulta = "select count (*) ryu_rol_id from EN_CASA_ANDABA.Roles_Usuarios where ryu_usu_id = " + usuarioId + "";
+                        resultado = Index.BD.ejecutarQueryTraePuntero(consulta);
                         resultado.Read();
-                        rol = resultado.GetInt32(0);
+                        int cantRoles = resultado.GetInt32(0);
                         resultado.Close();
 
-                        if (rol > 0)
+                        if (cantRoles > 1)
                         {
-                            
-                        }
-                        if (rol == 1)
-                        {
-                            funcionalidadesUsuarios = new FuncionalidadesUsuarios();
-                            funcionalidadesUsuarios.Show();
                             this.Hide();
+                            rolesUsuario = new RolesUsuario();
+                            rolesUsuario.Show();
+                        }
+                        if (cantRoles == 1)
+                        {
+                            consulta = "select rol_nombre from EN_CASA_ANDABA.Roles where rol_id = (select ryu_rol_id from EN_CASA_ANDABA.Roles_Usuarios where ryu_usu_id = " + usuarioId + ")";
+                            resultado = Index.BD.ejecutarQueryTraePuntero(consulta);
+                            resultado.Read();
+                            Login.rol = resultado.GetString(0);
+                            resultado.Close();
+                            this.Hide();
+                            RolesUsuario rolesUsuario = new RolesUsuario();
+                            rolesUsuario.Show();
                         }
                         else
                         {
@@ -78,7 +86,7 @@ namespace FrbaHotel.Login
                     }
                     else
                     {
-                        MessageBox.Show("Error: El usuario seleccionado se encuentra inhabilitado");
+                        MessageBox.Show("#error: El usuario seleccionado se encuentra inhabilitado");
                         nombreUsuario.Clear();
                         password.Clear();
                         nombreUsuario.Focus();

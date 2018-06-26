@@ -1,6 +1,6 @@
 ﻿namespace FrbaHotel.Login
 {
-    partial class FuncionalidadesUsuarios
+    partial class Funcionalidades_Usuarios
     {
         /// <summary>
         /// Required designer variable.
