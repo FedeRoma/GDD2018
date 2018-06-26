@@ -14,7 +14,7 @@ namespace FrbaHotel
 {
     public partial class Index : Form
     {
-        public static FuncionalidadesUsuarios funcionalidadesUsuarios;
+        public static Funcionalidades_Usuarios funcionalidadesUsuarios;
         public static Login.Login login;
         public static SQLConnector BD = new SQLConnector();
         public static int usuarioId;
@@ -36,20 +36,20 @@ namespace FrbaHotel
         private void invitado_Click(object sender, EventArgs e)
         {
             SqlDataReader resultado;
-            resultado = Index.BD.comando("SELECT usu_id FROM EN_CASA_ANDABA.Usuarios where usu_username = 'Guest'");
+            resultado = Index.BD.ejecutarQueryTraePuntero("select usu_id FROM EN_CASA_ANDABA.Usuarios where usu_username = 'Guest'");
             resultado.Read();
             usuarioId = resultado.GetInt32(0);
             resultado.Close();
 
             string consulta = "select ryu_rol_id from EN_CASA_ANDABA.Roles_Usuarios where ryu_usu_id = " + usuarioId + ";";
             
-            resultado = Index.BD.comando(consulta);
+            resultado = Index.BD.ejecutarQueryTraePuntero(consulta);
             resultado.Read();
             FrbaHotel.Index.rol = resultado.GetInt32(0);
             resultado.Close();
             if (rol > 0)
             {
-                funcionalidadesUsuarios = new FuncionalidadesUsuarios();
+                funcionalidadesUsuarios = new Funcionalidades_Usuarios();
                 funcionalidadesUsuarios.Show();
                 this.Hide();
             }
