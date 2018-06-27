@@ -5,234 +5,116 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 
 namespace FrbaHotel.Login
 {
-    public partial class HomeLogin : Form
+    public partial class Login : Form
     {
-        public static IntermediaCliente intCli;
-        public static string hotel; 
-        public static decimal idUsuario;
-        public static string rol="";
-        public static MainFuncionalidades mainFun;
-        private int cerrate = 0;
-        private int intentos = 0;
-        public HomeLogin()
+        public static Index index;
+        public static RolesUsuario rolesUsuario;
+        public static MenuFuncionalidades funcionalidadesUsuarios;
+        private int cantIntentos = 0;
+        public static int usuarioId;
+        public static string rol = "";
+        public static string hotel = "";
+
+        public Login()
         {
             InitializeComponent();
-            idUsuario = 0;
-            usuario.Clear();
-            clave.Clear();
-            usuario.Focus();
-            cerrate = 0;
-            intentos = 0;
-            SqlDataReader resultado;
-            resultado = Home.BD.comando("EXEC EN_CASA_ANDABA.bajaReservasVencidas '" + Home.fecha.Date.ToString("yyyyMMdd HH:mm:ss") + "'");
-            if (resultado.Read())
-            {
-            }
-            resultado.Close();
+            nombreUsuario.Clear();
+            password.Clear();
+            nombreUsuario.Focus();
+            usuarioId = 0;
         }
 
-        private void GUEST_Click(object sender, EventArgs e)
+        private void ingresar_Click(object sender, EventArgs e)
         {
+            cantIntentos++;
             SqlDataReader resultado;
-            resultado = Home.BD.comando("SELECT usu_id FROM EN_CASA_ANDABA.Usuarios where usu_username = 'Guest'");
-            if (resultado.Read())
+            resultado = Index.BD.consultaGetPuntero("select usu_estado, usu_id from EN_CASA_ANDABA.Usuarios where usu_username = '"+ nombreUsuario.Text +"' and usu_password = hashbytes('SHA2_256', '"+ password.Text +"')");
+            
+            if (nombreUsuario.Text == "guest" || nombreUsuario.Text == "Guest")
             {
-                idUsuario = resultado.GetDecimal(0);
-            }
-            resultado.Close();
-            string consulta = "select distinct Rol.rol_nombre from EN_CASA_ANDABA.Roles Rol where Rol.rol_estado = 1 = " + idUsuario.ToString() + ";";
-            resultado = Home.BD.comando(consulta);
-            resultado.Read();
-            Login.HomeLogin.rol = resultado.GetString(0);
-            resultado.Close();
-            if (rol != "")
-            {
-
-                intCli = new IntermediaCliente();
-                intCli.Show();
+                MessageBox.Show("Continuando como invitado...");
+                funcionalidadesUsuarios = new MenuFuncionalidades();
+                funcionalidadesUsuarios.Show();
                 this.Hide();
             }
             else
             {
-                MessageBox.Show("Rol de guest inhabilitado");
-            }
-        }
-
-        private void HomeLogin_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (cerrate == 1)
-            {
-
-            }
-            else
-            {
-                Application.Exit();
-            }
-         }
-        public void checkearUser()
-        {   
-            intentos++;
-            SqlDataReader resultado;
-            resultado = Home.BD.comando("SELECT usu_estado,usu_id FROM EN_CASA_ANDABA.Usuarios where usu_username = '" + usuario.Text + "'and usu_password = '" + dameHash(clave.Text) + "'");
-            if (resultado.Read() == true && intentos<=4)
-            {
-                if (resultado.GetBoolean(0) == true)
+                if (resultado.Read() == true && cantIntentos <= 4)
                 {
-                    MessageBox.Show("LOGIN CONCRETADO");
-                    idUsuario = resultado.GetDecimal(1);
-                    intentos = 0;
-                    resultado.Close();
-                   // string consulta = "select COUNT(distinct UR.rol) from EN_CASA_ANDABA.UserXRolXHotel UR, EN_CASA_ANDABA.Rol R where R.estado = 1 and R.idRol = UR.rol and UR.usuario = " + idUsuario.ToString()+";";
-                    resultado = Home.BD.comando(consulta);
-                    resultado.Read();
-                    int cant = resultado.GetInt32(0);
-                    resultado.Close();
-                    if(cant>1)
+                    if (resultado.GetBoolean(0) == true)
                     {
-                        //tiene mas de un rol
-                        
-                        this.Hide();
-                        IntermediaUsuarioConRoles intUser = new IntermediaUsuarioConRoles();
-                        intUser.Show();
-                        return;
-                    }
-                    if (cant == 1)
-                    {
-                        //tiene un solo rol
-                        consulta = "select distinct Rol.rol_nombre from EN_CASA_ANDABA.Roles Rol Rol.rol_estado = 1 = " + idUsuario.ToString() + ";";
-                        resultado = Home.BD.comando(consulta);
-                        resultado.Read();
-                        Login.HomeLogin.rol = resultado.GetString(0);
+                        usuarioId = resultado.GetInt32(1);
+                        cantIntentos = 0;
                         resultado.Close();
-                        this.Hide();
-                        IntermediaUsuarioConRol intUser = new IntermediaUsuarioConRol();
-                        intUser.Show();
+
+                        string consulta = "select count (*) ryu_rol_id from EN_CASA_ANDABA.Roles_Usuarios where ryu_usu_id = " + usuarioId + "";
+                        resultado = Index.BD.consultaGetPuntero(consulta);
+                        resultado.Read();
+                        int cantRoles = resultado.GetInt32(0);
+                        resultado.Close();
+
+                        if (cantRoles > 1)
+                        {
+                            this.Hide();
+                            rolesUsuario = new RolesUsuario();
+                            rolesUsuario.Show();
+                        }
+                        if (cantRoles == 1)
+                        {
+                            consulta = "select rol_nombre from EN_CASA_ANDABA.Roles where rol_id = (select ryu_rol_id from EN_CASA_ANDABA.Roles_Usuarios where ryu_usu_id = " + usuarioId + ")";
+                            resultado = Index.BD.consultaGetPuntero(consulta);
+                            resultado.Read();
+                            Login.rol = resultado.GetString(0);
+                            resultado.Close();
+                            this.Hide();
+                            RolesUsuario rolesUsuario = new RolesUsuario();
+                            rolesUsuario.Show();
+                        }
+                        else
+                        {
+                            MessageBox.Show("#error: El usuario seleccionado no tiene ningún Rol asignado");
+                            nombreUsuario.Clear();
+                            password.Clear();
+                            nombreUsuario.Focus();
+                        }
                     }
                     else
                     {
-                        MessageBox.Show("No tiene roles disponibles activos para ingresar");
-                        usuario.Clear();
-                        clave.Clear();
-                        usuario.Focus();
+                        MessageBox.Show("#error: El usuario seleccionado se encuentra inhabilitado");
+                        nombreUsuario.Clear();
+                        password.Clear();
+                        nombreUsuario.Focus();
                     }
                 }
                 else
                 {
-                    MessageBox.Show("USUARIO INHABILITADO");
-                    usuario.Clear();
-                    clave.Clear();
-                    usuario.Focus();
+                    MessageBox.Show("#error: Nombre de Usuario o Contraseña incorrectos");
+                    nombreUsuario.Clear();
+                    password.Clear();
+                    nombreUsuario.Focus();
+                    if (cantIntentos > 3)
+                    {
+                        MessageBox.Show("#error: Ha sobrepasado la cantidad de intentos fallidos");
+                        this.Hide();
+                        index = new Index();
+                        index.Show();
+                    }
                 }
+                resultado.Close();
             }
-            else
-            {
-                MessageBox.Show("Datos Incorrectos");
-                usuario.Clear();
-                clave.Clear();
-                usuario.Focus();
-                if (intentos > 3)
-                {
-                    MessageBox.Show("INGRESO INHABILITADO POR CANTIDAD DE INTENTOS");
-                    cerrate = 1;
-                    Program.inicial.Show();
-                    this.Close();
-                }
-            }
-            resultado.Close();
         }
 
-        private void Aceptar_Click(object sender, EventArgs e)
+        private void cancelar_Click(object sender, EventArgs e)
         {
-            if (usuario.Text == "guest")
-            {
-                MessageBox.Show("El guest no se loguea");
-                return;
-            }
-            checkearUser();
-
-
-        }
-
-        private void HomeLogin_Load(object sender, EventArgs e)
-        {
-            usuario.Clear();
-            clave.Clear();
-            usuario.Focus();
-            cerrate = 0;
-            intentos = 0;
-        }
-
-        private void Cancelar_Click(object sender, EventArgs e)
-        {
-            cerrate = 1;
-            Program.inicial.Show();
-            this.Close();
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void HomeLogin_Shown(object sender, EventArgs e)
-        {
-            usuario.Clear();
-            clave.Clear();
-            usuario.Focus();
-            cerrate = 0;
-            intentos = 0;
-        }
-
-        private void HomeLogin_Activated(object sender, EventArgs e)
-        {
-            usuario.Clear();
-            clave.Clear();
-            usuario.Focus();
-            cerrate = 0;
-            intentos = 0;
-        }
-
-        public static String ByteArrayToHexString(byte[] ba)
-        {
-            StringBuilder hex = new StringBuilder(ba.Length * 2);
-            foreach (byte b in ba)
-            {
-                hex.AppendFormat("{0:x2}",b);
-            }
-            return hex.ToString();
-        }
-        public static byte[] HexStringToBytearray(String hex)
-        {
-            int NumberChars = hex.Length;
-            byte[] bytes = new byte[NumberChars / 2];
-            for (int i = 0; i < NumberChars; i += 2)
-            {
-                bytes[1 / 2] = Convert.ToByte(hex.Substring(i, 2), 16);
-            }
-            return bytes;
-        }
-        public static string dameHash(string clave)
-        {
-            byte[] bytes = Encoding.UTF8.GetBytes(clave);
-            
-            System.Security.Cryptography.SHA256Managed sha256hashstring = new System.Security.Cryptography.SHA256Managed();
-            byte[] hash = sha256hashstring.ComputeHash(bytes);
-            string hashstring = string.Empty;
-            foreach(byte x in hash)
-            {
-                hashstring += String.Format("{0:x2}",x);
-            }
-            return hashstring;
-        }
-
-        private void clave_TextChanged(object sender, EventArgs e)
-        {
-
+            this.Hide();
+            index = new Index();
+            index.Show();
         }
 
     }

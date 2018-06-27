@@ -22,16 +22,5 @@ namespace FrbaHotel.Properties {
                 return defaultInstance;
             }
         }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DDES-PC\\SQLSERVER2012;Initial Catalog=GD1C2018;Persist Security Info=" +
-            "True;User ID=gdHotel2018;Password=gd2018")]
-        public string GD1C2018ConnectionString {
-            get {
-                return ((string)(this["GD1C2018ConnectionString"]));
-            }
-        }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace FrbaHotel.Login
 {
-    partial class HomeLogin
+    partial class Login
     {
         /// <summary>
         /// Required designer variable.
@@ -28,131 +28,124 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.Cancelar = new System.Windows.Forms.Button();
-            this.Aceptar = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.password = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.nombreUsuario = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cancelar = new System.Windows.Forms.Button();
+            this.ingresar = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.usuario = new System.Windows.Forms.TextBox();
-            this.clave = new System.Windows.Forms.TextBox();
-            this.Guest = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
-            this.splitter1 = new System.Windows.Forms.Splitter();
             this.SuspendLayout();
             // 
-            // Cancelar
+            // password
             // 
-            this.Cancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.Cancelar.Location = new System.Drawing.Point(355, 248);
-            this.Cancelar.Name = "Cancelar";
-            this.Cancelar.Size = new System.Drawing.Size(133, 34);
-            this.Cancelar.TabIndex = 2;
-            this.Cancelar.Text = "CANCELAR";
-            this.Cancelar.UseVisualStyleBackColor = true;
-            this.Cancelar.Click += new System.EventHandler(this.Cancelar_Click);
+            this.password.BackColor = System.Drawing.Color.White;
+            this.password.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.password.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.password.ForeColor = System.Drawing.Color.DimGray;
+            this.password.Location = new System.Drawing.Point(214, 246);
+            this.password.Name = "password";
+            this.password.PasswordChar = '*';
+            this.password.Size = new System.Drawing.Size(280, 22);
+            this.password.TabIndex = 12;
             // 
-            // Aceptar
+            // label5
             // 
-            this.Aceptar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.Aceptar.Location = new System.Drawing.Point(540, 248);
-            this.Aceptar.Name = "Aceptar";
-            this.Aceptar.Size = new System.Drawing.Size(133, 34);
-            this.Aceptar.TabIndex = 0;
-            this.Aceptar.Text = "ACEPTAR";
-            this.Aceptar.UseVisualStyleBackColor = true;
-            this.Aceptar.Click += new System.EventHandler(this.Aceptar_Click);
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.Black;
+            this.label5.Location = new System.Drawing.Point(211, 229);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(71, 14);
+            this.label5.TabIndex = 11;
+            this.label5.Text = "Contraseña";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label1
+            // nombreUsuario
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Navy;
-            this.label1.Location = new System.Drawing.Point(390, 70);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(98, 24);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "USUARIO:";
+            this.nombreUsuario.BackColor = System.Drawing.Color.White;
+            this.nombreUsuario.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.nombreUsuario.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nombreUsuario.ForeColor = System.Drawing.Color.DimGray;
+            this.nombreUsuario.Location = new System.Drawing.Point(214, 192);
+            this.nombreUsuario.Name = "nombreUsuario";
+            this.nombreUsuario.Size = new System.Drawing.Size(280, 22);
+            this.nombreUsuario.TabIndex = 10;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.Black;
+            this.label3.Location = new System.Drawing.Point(211, 175);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(113, 14);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Nombre de Usuario";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // cancelar
+            // 
+            this.cancelar.BackColor = System.Drawing.Color.DimGray;
+            this.cancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cancelar.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cancelar.ForeColor = System.Drawing.Color.White;
+            this.cancelar.Location = new System.Drawing.Point(12, 386);
+            this.cancelar.Name = "cancelar";
+            this.cancelar.Size = new System.Drawing.Size(101, 44);
+            this.cancelar.TabIndex = 23;
+            this.cancelar.Text = "cancelar";
+            this.cancelar.UseVisualStyleBackColor = false;
+            this.cancelar.Click += new System.EventHandler(this.cancelar_Click);
+            // 
+            // ingresar
+            // 
+            this.ingresar.BackColor = System.Drawing.Color.Crimson;
+            this.ingresar.CausesValidation = false;
+            this.ingresar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ingresar.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ingresar.ForeColor = System.Drawing.Color.White;
+            this.ingresar.Location = new System.Drawing.Point(500, 235);
+            this.ingresar.Name = "ingresar";
+            this.ingresar.Size = new System.Drawing.Size(101, 44);
+            this.ingresar.TabIndex = 22;
+            this.ingresar.Text = "ingresar";
+            this.ingresar.UseVisualStyleBackColor = false;
+            this.ingresar.Click += new System.EventHandler(this.ingresar_Click);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.Navy;
-            this.label2.Location = new System.Drawing.Point(340, 128);
+            this.label2.Font = new System.Drawing.Font("Franklin Gothic Medium", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.Crimson;
+            this.label2.Location = new System.Drawing.Point(194, 76);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(147, 24);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "CONTRASEÑA:";
+            this.label2.Size = new System.Drawing.Size(317, 61);
+            this.label2.TabIndex = 13;
+            this.label2.Text = "Iniciar Sesión";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // usuario
+            // Login
             // 
-            this.usuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.usuario.Location = new System.Drawing.Point(503, 65);
-            this.usuario.Name = "usuario";
-            this.usuario.Size = new System.Drawing.Size(154, 29);
-            this.usuario.TabIndex = 5;
-            // 
-            // clave
-            // 
-            this.clave.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.clave.Location = new System.Drawing.Point(503, 128);
-            this.clave.Name = "clave";
-            this.clave.Size = new System.Drawing.Size(154, 29);
-            this.clave.TabIndex = 6;
-            this.clave.UseSystemPasswordChar = true;
-            this.clave.TextChanged += new System.EventHandler(this.clave_TextChanged);
-            // 
-            // Guest
-            // 
-            this.Guest.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.Guest.Location = new System.Drawing.Point(90, 248);
-            this.Guest.Name = "Guest";
-            this.Guest.Size = new System.Drawing.Size(133, 34);
-            this.Guest.TabIndex = 1;
-            this.Guest.Text = "GUEST";
-            this.Guest.UseVisualStyleBackColor = true;
-            this.Guest.Click += new System.EventHandler(this.GUEST_Click);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Lucida Console", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.Navy;
-            this.label4.Location = new System.Drawing.Point(40, 97);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(249, 38);
-            this.label4.TabIndex = 2;
-            this.label4.Text = "Si es un Cliente,\r\nPor favor click aqui";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
-            // 
-            // splitter1
-            // 
-            this.splitter1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.splitter1.Location = new System.Drawing.Point(0, 0);
-            this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(334, 349);
-            this.splitter1.TabIndex = 7;
-            this.splitter1.TabStop = false;
-            // 
-            // HomeLogin
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(699, 349);
-            this.Controls.Add(this.Guest);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.splitter1);
-            this.Controls.Add(this.clave);
-            this.Controls.Add(this.usuario);
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.ClientSize = new System.Drawing.Size(704, 442);
+            this.Controls.Add(this.cancelar);
+            this.Controls.Add(this.ingresar);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.Aceptar);
-            this.Controls.Add(this.Cancelar);
-            this.Name = "HomeLogin";
-            this.Text = "LOGIN";
-            this.Load += new System.EventHandler(this.HomeLogin_Load);
-            this.Shown += new System.EventHandler(this.HomeLogin_Shown);
-            this.Activated += new System.EventHandler(this.HomeLogin_Activated);
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.HomeLogin_FormClosing);
+            this.Controls.Add(this.password);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.nombreUsuario);
+            this.Controls.Add(this.label3);
+            this.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.Name = "Login";
+            this.ShowIcon = false;
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "FRBA Hotel 2018";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -160,15 +153,13 @@
 
         #endregion
 
-        private System.Windows.Forms.Button Cancelar;
-        private System.Windows.Forms.Button Aceptar;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox password;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox nombreUsuario;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button cancelar;
+        private System.Windows.Forms.Button ingresar;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox usuario;
-        private System.Windows.Forms.TextBox clave;
-        private System.Windows.Forms.Button Guest;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Splitter splitter1;
 
     }
 }

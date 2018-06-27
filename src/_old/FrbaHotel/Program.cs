@@ -1,22 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace FrbaHotel
-{
+{   
+    
     static class Program
     {
+        public static Home inicial;
         /// <summary>
-        /// Punto de entrada principal para la aplicación.
+        /// The main entry point for the application.
         /// </summary>
         [STAThread]
         static void Main()
         {
+            
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrbaHotel.Index()); //CAMBIAR PARA PROBAR VENTANAS
+            inicial = new Home();
+            Application.Run(inicial);
+
         }
     }
 }
