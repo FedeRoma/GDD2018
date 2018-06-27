@@ -13,7 +13,7 @@ namespace FrbaHotel.Login
 {
     public partial class MenuFuncionalidades : Form
     {
-        private SqlDataReader resultado;
+        private SqlDataReader qry;
         private bool cerrarFormulario = false;
  
         public MenuFuncionalidades()
@@ -23,22 +23,18 @@ namespace FrbaHotel.Login
 
         private void MenuFuncionalidades_Load(object sender, EventArgs e)
         {
-            resultado = Index.BD.consultaGetPuntero("select distinct F.fun_desc from EN_CASA_ANDABA.Funcionalidades F, EN_CASA_ANDABA.Roles R where R.rol_nombre = '" + Login.rol + "'");
-            while (resultado.Read() == true)
+            qry = Index.BD.consultaGetPuntero("select distinct F.fun_desc from EN_CASA_ANDABA.Funcionalidades F, EN_CASA_ANDABA.Roles R where R.rol_nombre = " + Login.rol.ToString());
+            while (qry.Read() == true)
             {
-                comboBoxFuncionalidad.Items.Add(resultado.GetSqlString(0));
+                comboBoxFuncionalidad.Items.Add(qry.GetSqlString(0));
             }
-            resultado.Close();
-
-            resultado = Index.BD.consultaGetPuntero("select distinct hot_calle from EN_CASA_ANDABA.Hoteles where hot_id = " + Login.hotel.ToString());
-            resultado.Read();
-            listBoxHotel.Items.Add(resultado.GetSqlString(0));
-            resultado.Close();
+            qry.Close();
+            listBoxHotel.Items.Add(Login.hotel.ToString());
         }
 
         private void SeleccionarFuncionalidad(string funcionalidad)
         {
-            switch (funcionalidad)
+ /*           switch (funcionalidad)
             {
                 case "ABM Rol":
                     //this.Hide();
@@ -89,7 +85,7 @@ namespace FrbaHotel.Login
                     MessageBox.Show("#error!");
                     Application.Exit();
                     break;
-            }
+            }*/
         }
 
         private void aceptar_Click(object sender, EventArgs e)

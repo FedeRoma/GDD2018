@@ -13,7 +13,7 @@ namespace FrbaHotel.Login
 {
     public partial class RolesUsuario : Form
     {
-        private SqlDataReader resultado;
+        private SqlDataReader qry;
         public static Index index;
         private bool cerrarFormulario = false; 
 
@@ -24,25 +24,25 @@ namespace FrbaHotel.Login
 
         private void RolesUsuario_Load(object sender, EventArgs e)
         {
-            resultado = Index.BD.consultaGetPuntero("select distinct R.rol_nombre from EN_CASA_ANDABA.Roles_Usuarios RU, EN_CASA_ANDABA.Roles R where RU.ryu_rol_id = R.rol_id and RU.ryu_usu_id = " + Login.usuarioId.ToString() + " and R.rol_estado = 1");
-            while (resultado.Read() == true)
+            qry = Index.BD.consultaGetPuntero("select distinct R.rol_nombre from EN_CASA_ANDABA.Roles_Usuarios RU, EN_CASA_ANDABA.Roles R where RU.ryu_rol_id = R.rol_id and RU.ryu_usu_id = " + Login.usuarioId.ToString() + " and R.rol_estado = 1");
+            while (qry.Read() == true)
             {
-                comboBoxRol.Items.Add(resultado.GetSqlString(0));
+                comboBoxRol.Items.Add(qry.GetSqlString(0));
             }
-            resultado.Close();
+            qry.Close();
         }
 
         private void comboBoxRol_SelectedIndexChanged(object sender, EventArgs e)
         {
-            resultado = Index.BD.consultaGetPuntero("exec EN_CASA_ANDABA.buscarHoteles '" + comboBoxRol.SelectedItem + "' , " + Login.usuarioId.ToString());
+            qry = Index.BD.consultaGetPuntero("exec EN_CASA_ANDABA.buscarHoteles '" + comboBoxRol.SelectedItem + "' , " + Login.usuarioId.ToString());
             comboBoxHotel.Items.Clear();
-            List<int> hoteles = new List<int>();
-            while (resultado.Read() == true)
+            List<int> hotelesRol = new List<int>();
+            while (qry.Read() == true)
             {
-                hoteles.Add(resultado.GetInt32(0));
+                hotelesRol.Add(qry.GetInt32(0));
             }
-            resultado.Close();
-            foreach (int id in hoteles)
+            qry.Close();
+            foreach (int id in hotelesRol)
             {
                 string hotel = Index.BD.consultaGetDato("select hot_calle from EN_CASA_ANDABA.Hoteles where hot_id =" + id.ToString());
                 comboBoxHotel.Items.Add(hotel);
@@ -88,8 +88,6 @@ namespace FrbaHotel.Login
                 Application.Exit();
             }
         }
-
-
 
     }
 }

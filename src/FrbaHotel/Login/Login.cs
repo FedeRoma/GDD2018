@@ -33,8 +33,8 @@ namespace FrbaHotel.Login
         private void ingresar_Click(object sender, EventArgs e)
         {
             cantIntentos++;
-            SqlDataReader resultado;
-            resultado = Index.BD.consultaGetPuntero("select usu_estado, usu_id from EN_CASA_ANDABA.Usuarios where usu_username = '"+ nombreUsuario.Text +"' and usu_password = hashbytes('SHA2_256', '"+ password.Text +"')");
+            SqlDataReader qry;
+            qry = Index.BD.consultaGetPuntero("select usu_estado, usu_id from EN_CASA_ANDABA.Usuarios where usu_username = '"+ nombreUsuario.Text +"' and usu_password = hashbytes('SHA2_256', '"+ password.Text +"')");
             
             if (nombreUsuario.Text == "guest" || nombreUsuario.Text == "Guest")
             {
@@ -45,19 +45,19 @@ namespace FrbaHotel.Login
             }
             else
             {
-                if (resultado.Read() == true && cantIntentos <= 4)
+                if (qry.Read() == true && cantIntentos <= 4)
                 {
-                    if (resultado.GetBoolean(0) == true)
+                    if (qry.GetBoolean(0) == true)
                     {
-                        usuarioId = resultado.GetInt32(1);
+                        usuarioId = qry.GetInt32(1);
                         cantIntentos = 0;
-                        resultado.Close();
+                        qry.Close();
 
                         string consulta = "select count (*) ryu_rol_id from EN_CASA_ANDABA.Roles_Usuarios where ryu_usu_id = " + usuarioId + "";
-                        resultado = Index.BD.consultaGetPuntero(consulta);
-                        resultado.Read();
-                        int cantRoles = resultado.GetInt32(0);
-                        resultado.Close();
+                        qry = Index.BD.consultaGetPuntero(consulta);
+                        qry.Read();
+                        int cantRoles = qry.GetInt32(0);
+                        qry.Close();
 
                         if (cantRoles > 1)
                         {
@@ -68,10 +68,10 @@ namespace FrbaHotel.Login
                         if (cantRoles == 1)
                         {
                             consulta = "select rol_nombre from EN_CASA_ANDABA.Roles where rol_id = (select ryu_rol_id from EN_CASA_ANDABA.Roles_Usuarios where ryu_usu_id = " + usuarioId + ")";
-                            resultado = Index.BD.consultaGetPuntero(consulta);
-                            resultado.Read();
-                            Login.rol = resultado.GetString(0);
-                            resultado.Close();
+                            qry = Index.BD.consultaGetPuntero(consulta);
+                            qry.Read();
+                            Login.rol = qry.GetString(0);
+                            qry.Close();
                             this.Hide();
                             RolesUsuario rolesUsuario = new RolesUsuario();
                             rolesUsuario.Show();
@@ -106,7 +106,7 @@ namespace FrbaHotel.Login
                         index.Show();
                     }
                 }
-                resultado.Close();
+                qry.Close();
             }
         }
 
