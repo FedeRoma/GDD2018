@@ -17,13 +17,12 @@ namespace FrbaHotel
         public static MenuFuncionalidades funcionalidadesUsuarios;
         public static Login.Login login;
         public static SQLConnector BD = new SQLConnector();
-        public static int usuarioId;
-        public static int rol = 0;
+        private SqlDataReader qry;
+        public static int usuarioId = 0;
        
         public Index()
         {
             InitializeComponent();
-            usuarioId = 0;
         }
 
         private void iniciarSesion_Click(object sender, EventArgs e)
@@ -35,28 +34,24 @@ namespace FrbaHotel
 
         private void invitado_Click(object sender, EventArgs e)
         {
-            SqlDataReader resultado;
-            resultado = Index.BD.consultaGetPuntero("select usu_id FROM EN_CASA_ANDABA.Usuarios where usu_username = 'Guest'");
-            resultado.Read();
-            usuarioId = resultado.GetInt32(0);
-            resultado.Close();
-
-            string consulta = "select ryu_rol_id from EN_CASA_ANDABA.Roles_Usuarios where ryu_usu_id = " + usuarioId + ";";
-            
-            resultado = Index.BD.consultaGetPuntero(consulta);
-            resultado.Read();
-            FrbaHotel.Index.rol = resultado.GetInt32(0);
-            resultado.Close();
-            if (rol > 0)
+            qry = Index.BD.consultaGetPuntero("select usu_id FROM EN_CASA_ANDABA.Usuarios where usu_username = 'Guest'");
+            qry.Read();
+            usuarioId = qry.GetInt32(0);
+            qry.Close();
+            qry = Index.BD.consultaGetPuntero("select distinct R.rol_nombre from EN_CASA_ANDABA.Roles_Usuarios RU, EN_CASA_ANDABA.Roles R where RU.ryu_rol_id = R.rol_id and RU.ryu_usu_id = " + usuarioId.ToString() + " and R.rol_estado = 1");
+            if (qry.Read() == true)
             {
-                funcionalidadesUsuarios = new MenuFuncionalidades();
-                funcionalidadesUsuarios.Show();
+                Login.Login.rol = "Guest";
+                Login.Login.hotel = "";
+                Login.Login.funcionalidadesUsuarios = new MenuFuncionalidades();
+                Login.Login.funcionalidadesUsuarios.Show();
                 this.Hide();
             }
             else
             {
                 MessageBox.Show("Rol de Guest inhabilitado");
-            }            
+            }
+            qry.Close();
         }
 
     }
