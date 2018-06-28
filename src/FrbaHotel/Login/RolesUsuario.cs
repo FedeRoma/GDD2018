@@ -13,8 +13,8 @@ namespace FrbaHotel.Login
 {
     public partial class RolesUsuario : Form
     {
-        private SqlDataReader qry;
         public static Index index;
+        private SqlDataReader qry;
         private bool cerrarFormulario = false; 
 
         public RolesUsuario()
@@ -30,23 +30,19 @@ namespace FrbaHotel.Login
                 comboBoxRol.Items.Add(qry.GetSqlString(0));
             }
             qry.Close();
+            DataTable hoteles = Index.BD.consultaGetTabla("select distinct hot_id ID, hot_calle NOMBRE from EN_CASA_ANDABA.Hoteles H, EN_CASA_ANDABA.Hoteles_Usuarios HU where H.hot_id = HU.hyu_hot_id and HU.hyu_usu_id = 1");
+            dataGridViewHoteles.DataSource = hoteles;
         }
 
         private void comboBoxRol_SelectedIndexChanged(object sender, EventArgs e)
         {
             qry = Index.BD.consultaGetPuntero("exec EN_CASA_ANDABA.buscarHoteles '" + comboBoxRol.SelectedItem + "' , " + Login.usuarioId.ToString());
             comboBoxHotel.Items.Clear();
-            List<int> hotelesRol = new List<int>();
             while (qry.Read() == true)
             {
-                hotelesRol.Add(qry.GetInt32(0));
+                comboBoxHotel.Items.Add(qry.GetInt32(0));
             }
             qry.Close();
-            foreach (int id in hotelesRol)
-            {
-                string hotel = Index.BD.consultaGetDato("select hot_calle from EN_CASA_ANDABA.Hoteles where hot_id =" + id.ToString());
-                comboBoxHotel.Items.Add(hotel);
-            }
         }
   
         private void aceptar_Click(object sender, EventArgs e)
@@ -76,9 +72,10 @@ namespace FrbaHotel.Login
 
         private void cancelar_Click(object sender, EventArgs e)
         {
-            this.Hide();
             index = new Index();
             index.Show();
+            cerrarFormulario = true;
+            this.Close();
         }
 
         private void RolesUsuario_FormClosing(object sender, EventArgs e)

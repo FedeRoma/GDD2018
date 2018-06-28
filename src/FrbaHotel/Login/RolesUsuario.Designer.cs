@@ -35,6 +35,8 @@
             this.cancelar = new System.Windows.Forms.Button();
             this.limpiar = new System.Windows.Forms.Button();
             this.aceptar = new System.Windows.Forms.Button();
+            this.dataGridViewHoteles = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewHoteles)).BeginInit();
             this.SuspendLayout();
             // 
             // label2
@@ -42,7 +44,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(211, 174);
+            this.label2.Location = new System.Drawing.Point(363, 130);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(29, 14);
             this.label2.TabIndex = 4;
@@ -54,7 +56,7 @@
             this.comboBoxRol.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxRol.ForeColor = System.Drawing.Color.DimGray;
             this.comboBoxRol.FormattingEnabled = true;
-            this.comboBoxRol.Location = new System.Drawing.Point(214, 191);
+            this.comboBoxRol.Location = new System.Drawing.Point(366, 147);
             this.comboBoxRol.Name = "comboBoxRol";
             this.comboBoxRol.Size = new System.Drawing.Size(280, 24);
             this.comboBoxRol.TabIndex = 1;
@@ -65,7 +67,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(211, 227);
+            this.label3.Location = new System.Drawing.Point(363, 183);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(42, 14);
             this.label3.TabIndex = 6;
@@ -77,7 +79,7 @@
             this.comboBoxHotel.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxHotel.ForeColor = System.Drawing.Color.DimGray;
             this.comboBoxHotel.FormattingEnabled = true;
-            this.comboBoxHotel.Location = new System.Drawing.Point(214, 244);
+            this.comboBoxHotel.Location = new System.Drawing.Point(366, 200);
             this.comboBoxHotel.Name = "comboBoxHotel";
             this.comboBoxHotel.Size = new System.Drawing.Size(280, 24);
             this.comboBoxHotel.TabIndex = 2;
@@ -124,12 +126,24 @@
             this.aceptar.UseVisualStyleBackColor = false;
             this.aceptar.Click += new System.EventHandler(this.aceptar_Click);
             // 
+            // dataGridViewHoteles
+            // 
+            this.dataGridViewHoteles.AllowUserToOrderColumns = true;
+            this.dataGridViewHoteles.BackgroundColor = System.Drawing.Color.White;
+            this.dataGridViewHoteles.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dataGridViewHoteles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewHoteles.Location = new System.Drawing.Point(12, 12);
+            this.dataGridViewHoteles.Name = "dataGridViewHoteles";
+            this.dataGridViewHoteles.Size = new System.Drawing.Size(348, 368);
+            this.dataGridViewHoteles.TabIndex = 6;
+            // 
             // RolesUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(704, 442);
+            this.Controls.Add(this.dataGridViewHoteles);
             this.Controls.Add(this.cancelar);
             this.Controls.Add(this.limpiar);
             this.Controls.Add(this.aceptar);
@@ -146,6 +160,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FRBA Hotel 2018";
             this.Load += new System.EventHandler(this.RolesUsuario_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewHoteles)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -160,5 +175,6 @@
         private System.Windows.Forms.Button cancelar;
         private System.Windows.Forms.Button limpiar;
         private System.Windows.Forms.Button aceptar;
+        private System.Windows.Forms.DataGridView dataGridViewHoteles;
     }
 }

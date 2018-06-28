@@ -13,6 +13,7 @@ namespace FrbaHotel.Login
 {
     public partial class MenuFuncionalidades : Form
     {
+        public static Index index;
         private SqlDataReader qry;
         private bool cerrarFormulario = false;
  
@@ -23,13 +24,17 @@ namespace FrbaHotel.Login
 
         private void MenuFuncionalidades_Load(object sender, EventArgs e)
         {
-            qry = Index.BD.consultaGetPuntero("select distinct F.fun_desc from EN_CASA_ANDABA.Funcionalidades F, EN_CASA_ANDABA.Roles R where R.rol_nombre = " + Login.rol.ToString());
+            qry = Index.BD.consultaGetPuntero("select distinct F.fun_desc from EN_CASA_ANDABA.Funcionalidades F, EN_CASA_ANDABA.Roles R, EN_CASA_ANDABA.Roles_Usuarios RyU, EN_CASA_ANDABA.Funcionalidades_Roles FyR, EN_CASA_ANDABA.Hoteles_Usuarios HyU where R.rol_nombre = '" + Login.rol + "' and R.rol_id = RyU.ryu_rol_id and R.rol_id = FyR.fyr_rol_id and FyR.fyr_fun_id = F.fun_id and RyU.ryu_usu_id =" + Index.usuarioId.ToString() + "and HyU.hyu_usu_id = RyU.ryu_usu_id and HyU.hyu_hot_id = " + Login.hotel);
             while (qry.Read() == true)
             {
                 comboBoxFuncionalidad.Items.Add(qry.GetSqlString(0));
             }
             qry.Close();
-            listBoxHotel.Items.Add(Login.hotel.ToString());
+
+            qry = Index.BD.consultaGetPuntero("select distinct hot_calle from EN_CASA_ANDABA.Hoteles where hot_id = " + Login.hotel);
+            qry.Read();
+            listBoxHotel.Items.Add(qry.GetSqlString(0));
+            qry.Close();
         }
 
         private void SeleccionarFuncionalidad(string funcionalidad)
@@ -103,12 +108,13 @@ namespace FrbaHotel.Login
 
         private void cambiarContraseña_Click(object sender, EventArgs e)
         {
-
+            MessageBox.Show(Login.rol);
         }
 
         private void cancelar_Click(object sender, EventArgs e)
         {
-            Index.login.Show();
+            index = new Index();
+            index.Show();
             cerrarFormulario = true;
             this.Close();
         }

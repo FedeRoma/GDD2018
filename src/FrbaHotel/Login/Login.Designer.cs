@@ -32,7 +32,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.nombreUsuario = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.cancelar = new System.Windows.Forms.Button();
+            this.atras = new System.Windows.Forms.Button();
             this.ingresar = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -84,19 +84,19 @@
             this.label3.Text = "Nombre de Usuario";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // cancelar
+            // atras
             // 
-            this.cancelar.BackColor = System.Drawing.Color.DimGray;
-            this.cancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cancelar.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cancelar.ForeColor = System.Drawing.Color.White;
-            this.cancelar.Location = new System.Drawing.Point(12, 386);
-            this.cancelar.Name = "cancelar";
-            this.cancelar.Size = new System.Drawing.Size(101, 44);
-            this.cancelar.TabIndex = 23;
-            this.cancelar.Text = "cancelar";
-            this.cancelar.UseVisualStyleBackColor = false;
-            this.cancelar.Click += new System.EventHandler(this.cancelar_Click);
+            this.atras.BackColor = System.Drawing.Color.DimGray;
+            this.atras.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.atras.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.atras.ForeColor = System.Drawing.Color.White;
+            this.atras.Location = new System.Drawing.Point(12, 386);
+            this.atras.Name = "atras";
+            this.atras.Size = new System.Drawing.Size(101, 44);
+            this.atras.TabIndex = 23;
+            this.atras.Text = "atrás";
+            this.atras.UseVisualStyleBackColor = false;
+            this.atras.Click += new System.EventHandler(this.atras_Click);
             // 
             // ingresar
             // 
@@ -131,7 +131,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(704, 442);
-            this.Controls.Add(this.cancelar);
+            this.Controls.Add(this.atras);
             this.Controls.Add(this.ingresar);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.password);
@@ -157,7 +157,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox nombreUsuario;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button cancelar;
+        private System.Windows.Forms.Button atras;
         private System.Windows.Forms.Button ingresar;
         private System.Windows.Forms.Label label2;
 
