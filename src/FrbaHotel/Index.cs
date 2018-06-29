@@ -14,11 +14,13 @@ namespace FrbaHotel
 {
     public partial class Index : Form
     {
-        public static MenuFuncionalidades funcionalidadesUsuarios;
-        public static Login.Login login;
         public static SQLConnector BD = new SQLConnector();
         private SqlDataReader qry;
-        public static int usuarioId = 0;
+        public static Login.Login login;
+        public static RolesUsuario rolesUsuario;
+        public static int usuarioID = 0;
+        public static string rol = "";
+        public static string hotel = "";
        
         public Index()
         {
@@ -36,22 +38,22 @@ namespace FrbaHotel
         {
             qry = Index.BD.consultaGetPuntero("select usu_id FROM EN_CASA_ANDABA.Usuarios where usu_username = 'Guest'");
             qry.Read();
-            usuarioId = qry.GetInt32(0);
+            usuarioID = qry.GetInt32(0);
             qry.Close();
-            qry = Index.BD.consultaGetPuntero("select distinct R.rol_nombre from EN_CASA_ANDABA.Roles_Usuarios RU, EN_CASA_ANDABA.Roles R where RU.ryu_rol_id = R.rol_id and RU.ryu_usu_id = " + usuarioId.ToString() + " and R.rol_estado = 1");
+
+            qry = Index.BD.consultaGetPuntero("select distinct R.rol_nombre from EN_CASA_ANDABA.Roles_Usuarios RU, EN_CASA_ANDABA.Roles R where RU.ryu_rol_id = R.rol_id and RU.ryu_usu_id = " + usuarioID.ToString() + " and R.rol_estado = 1");
             if (qry.Read() == true)
             {
-                Login.Login.rol = "Guest";
-                Login.Login.hotel = "";
-                Login.Login.funcionalidadesUsuarios = new MenuFuncionalidades();
-                Login.Login.funcionalidadesUsuarios.Show();
+                rol = qry.GetString(0);
+                qry.Close();
                 this.Hide();
+                rolesUsuario = new RolesUsuario();
+                rolesUsuario.Show();            
             }
             else
             {
-                MessageBox.Show("Rol de Guest inhabilitado");
+                MessageBox.Show("#error: Rol de Guest inhabilitado");
             }
-            qry.Close();
         }
 
     }
