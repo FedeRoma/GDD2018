@@ -13,14 +13,11 @@ namespace FrbaHotel.Login
 {
     public partial class Login : Form
     {
+        private SqlDataReader qry;
         public static Index index;
         public static RolesUsuario rolesUsuario;
         public static MenuFuncionalidades funcionalidadesUsuarios;
-        private SqlDataReader qry;
         private int cantIntentos = 0;
-        public static int usuarioId;
-        public static string rol = "";
-        public static string hotel = "";
 
         public Login()
         {
@@ -28,7 +25,9 @@ namespace FrbaHotel.Login
             nombreUsuario.Clear();
             password.Clear();
             nombreUsuario.Focus();
-            usuarioId = 0;
+            Index.usuarioID = 0;
+            Index.rol = "";
+            Index.hotel = "";
         }
 
         private void ingresar_Click(object sender, EventArgs e)
@@ -49,11 +48,11 @@ namespace FrbaHotel.Login
                 {
                     if (qry.GetBoolean(0) == true)
                     {
-                        usuarioId = qry.GetInt32(1);
+                        Index.usuarioID = qry.GetInt32(1);
                         cantIntentos = 0;
                         qry.Close();
 
-                        qry = Index.BD.consultaGetPuntero("select count (*) ryu_rol_id from EN_CASA_ANDABA.Roles_Usuarios where ryu_usu_id = " + usuarioId.ToString());
+                        qry = Index.BD.consultaGetPuntero("select count (*) ryu_rol_id from EN_CASA_ANDABA.Roles_Usuarios where ryu_usu_id = " + Index.usuarioID.ToString());
                         qry.Read();
                         int cantRoles = qry.GetInt32(0);
                         qry.Close();
@@ -66,9 +65,9 @@ namespace FrbaHotel.Login
                         }
                         if (cantRoles == 1)
                         {
-                            Login.rol = Index.BD.consultaGetDato("select rol_nombre from EN_CASA_ANDABA.Roles where rol_id = (select ryu_rol_id from EN_CASA_ANDABA.Roles_Usuarios where ryu_usu_id = " + usuarioId.ToString() + ")");
+                            Index.rol = Index.BD.consultaGetDato("select rol_nombre from EN_CASA_ANDABA.Roles where rol_id = (select ryu_rol_id from EN_CASA_ANDABA.Roles_Usuarios where ryu_usu_id = " + Index.usuarioID.ToString() + ")");
                             this.Hide();
-                            RolesUsuario rolesUsuario = new RolesUsuario();
+                            rolesUsuario = new RolesUsuario();
                             rolesUsuario.Show();
                         }
                         else

@@ -14,6 +14,7 @@ namespace FrbaHotel.Login
     public partial class RolesUsuario : Form
     {
         public static Index index;
+        public static MenuFuncionalidades funcionalidadesUsuarios;
         private SqlDataReader qry;
         private bool cerrarFormulario = false; 
 
@@ -24,35 +25,38 @@ namespace FrbaHotel.Login
 
         private void RolesUsuario_Load(object sender, EventArgs e)
         {
-            qry = Index.BD.consultaGetPuntero("select distinct R.rol_nombre from EN_CASA_ANDABA.Roles_Usuarios RU, EN_CASA_ANDABA.Roles R where RU.ryu_rol_id = R.rol_id and RU.ryu_usu_id = " + Login.usuarioId.ToString() + " and R.rol_estado = 1");
+            qry = Index.BD.consultaGetPuntero("select distinct R.rol_nombre from EN_CASA_ANDABA.Roles_Usuarios RU, EN_CASA_ANDABA.Roles R where RU.ryu_rol_id = R.rol_id and RU.ryu_usu_id = " + Index.usuarioID.ToString() + " and R.rol_estado = 1");
             while (qry.Read() == true)
             {
                 comboBoxRol.Items.Add(qry.GetSqlString(0));
             }
             qry.Close();
-            DataTable hoteles = Index.BD.consultaGetTabla("select distinct hot_id ID, hot_calle NOMBRE from EN_CASA_ANDABA.Hoteles H, EN_CASA_ANDABA.Hoteles_Usuarios HU where H.hot_id = HU.hyu_hot_id and HU.hyu_usu_id = 1");
+            comboBoxRol.SelectedIndex = 0;
+
+            DataTable hoteles = Index.BD.consultaGetTabla("select distinct hot_id ID, hot_calle NOMBRE from EN_CASA_ANDABA.Hoteles H, EN_CASA_ANDABA.Hoteles_Usuarios HU where H.hot_id = HU.hyu_hot_id and HU.hyu_usu_id = " + Index.usuarioID.ToString());
             dataGridViewHoteles.DataSource = hoteles;
         }
 
         private void comboBoxRol_SelectedIndexChanged(object sender, EventArgs e)
         {
-            qry = Index.BD.consultaGetPuntero("exec EN_CASA_ANDABA.buscarHoteles '" + comboBoxRol.SelectedItem + "' , " + Login.usuarioId.ToString());
+            qry = Index.BD.consultaGetPuntero("exec EN_CASA_ANDABA.buscarHoteles '" + comboBoxRol.SelectedItem + "' , " + Index.usuarioID.ToString());
             comboBoxHotel.Items.Clear();
             while (qry.Read() == true)
             {
                 comboBoxHotel.Items.Add(qry.GetInt32(0));
             }
             qry.Close();
+            comboBoxHotel.SelectedIndex = 0;
         }
   
         private void aceptar_Click(object sender, EventArgs e)
         {
             if (Convert.ToInt32(comboBoxRol.SelectedIndex) != -1 && Convert.ToInt32(comboBoxHotel.SelectedIndex) != -1)
             {
-                Login.rol = comboBoxRol.SelectedItem.ToString();
-                Login.hotel = comboBoxHotel.SelectedItem.ToString();
-                Login.funcionalidadesUsuarios = new MenuFuncionalidades();
-                Login.funcionalidadesUsuarios.Show();
+                Index.rol = comboBoxRol.SelectedItem.ToString();
+                Index.hotel = comboBoxHotel.SelectedItem.ToString();
+                funcionalidadesUsuarios = new MenuFuncionalidades();
+                funcionalidadesUsuarios.Show();
                 cerrarFormulario = true;
                 this.Close();
             }
