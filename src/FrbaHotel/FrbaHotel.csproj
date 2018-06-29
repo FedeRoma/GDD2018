@@ -165,11 +165,11 @@
     <Compile Include="ListadoEstadistico\ListadosEstadisticos.Designer.cs">
       <DependentUpon>ListadosEstadisticos.cs</DependentUpon>
     </Compile>
-    <Compile Include="Login\Roles-Hoteles_Usuario.cs">
+    <Compile Include="Login\RolesUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Login\Roles-Hoteles_Usuario.Designer.cs">
-      <DependentUpon>Roles-Hoteles_Usuario.cs</DependentUpon>
+    <Compile Include="Login\RolesUsuario.Designer.cs">
+      <DependentUpon>RolesUsuario.cs</DependentUpon>
     </Compile>
     <Compile Include="Login\MenuFuncionalidades.cs">
       <SubType>Form</SubType>
@@ -246,8 +246,8 @@
     <EmbeddedResource Include="Login\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Login\Roles-Hoteles_Usuario.resx">
-      <DependentUpon>Roles-Hoteles_Usuario.cs</DependentUpon>
+    <EmbeddedResource Include="Login\RolesUsuario.resx">
+      <DependentUpon>RolesUsuario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
