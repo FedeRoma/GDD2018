@@ -1,3 +1,10 @@
+select *
+from EN_CASA_ANDABA.Usuarios
+where usu_id = 2
+
+select R.rol_nombre 
+from EN_CASA_ANDABA.Roles_Usuarios RU, EN_CASA_ANDABA.Roles R 
+where RU.ryu_rol_id = R.rol_id and RU.ryu_usu_id = 2 and R.rol_estado = 1
 
 select distinct hot_calle from EN_CASA_ANDABA.Hoteles where hot_id = 1
 
