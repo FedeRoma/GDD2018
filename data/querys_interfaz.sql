@@ -1,3 +1,5 @@
+exec EN_CASA_ANDABA.buscarHoteles 'Administrador General' ,1
+
 select *
 from EN_CASA_ANDABA.Usuarios
 where usu_id = 2
