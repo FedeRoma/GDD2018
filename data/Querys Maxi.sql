@@ -187,11 +187,11 @@ select C.cli_nombre,C.cli_apellido,T.doc_id,C.cli_documento,C.cli_mail,C.cli_tel
 select res_id,res_inicio from EN_CASA_ANDABA.Reservas where res_id = 1 
 
 -- Listado Estadistico
-EXEC EN_CASA_ANDABA.top5_hoteles_reservas_canceladas
-EXEC EN_CASA_ANDABA.top5_hoteles_consumibles_facturados
-EXEC EN_CASA_ANDABA.top5_hoteles_dias_fuera_de_servicio
-EXEC EN_CASA_ANDABA.top5_clientes_puntos
-EXEC EN_CASA_ANDABA.top5_habitaciones_veces_ocupadas
+EXEC EN_CASA_ANDABA.top5_hoteles_reservas_canceladas 3, 2009
+EXEC EN_CASA_ANDABA.top5_hoteles_consumibles_facturados 3, 2009
+EXEC EN_CASA_ANDABA.top5_hoteles_dias_fuera_de_servicio 3, 2009
+EXEC EN_CASA_ANDABA.top5_clientes_puntos 3, 2009
+EXEC EN_CASA_ANDABA.top5_habitaciones_veces_ocupadas 3, 2009
 
 
 -- Falta carpeta Facturar Estadia, Registrar Consumibles y Registrar Estadia
