@@ -59,7 +59,19 @@ namespace FrbaHotel
             return dataTable;
         }
 
-        public string consultaGetDato(string consulta)
+        public int consultaGetInt(string consulta)
+        {
+            SqlCommand queryCommand = new SqlCommand();
+            queryCommand.CommandTimeout = 999999999;
+
+            queryCommand.Connection = this.connection;
+            queryCommand.CommandText = consulta;
+
+            queryCommand.CommandType = CommandType.StoredProcedure;
+            return (int)queryCommand.ExecuteScalar();
+        }
+
+        public string consultaGetString(string consulta)
         {
             SqlCommand queryCommand = new SqlCommand();
             queryCommand.CommandTimeout = 999999999;
@@ -73,13 +85,28 @@ namespace FrbaHotel
             return retorno;
         }
 
+
     }
 }
 /*
  * 
  * 
  * 
- *         public int consultaGetCampo(string consulta)
+ *         public string consultaGetDato(string consulta)
+        {
+            SqlCommand queryCommand = new SqlCommand();
+            queryCommand.CommandTimeout = 999999999;
+
+            queryCommand.Connection = this.connection;
+            queryCommand.CommandText = consulta;
+
+            string retorno = Convert.ToString(queryCommand.ExecuteScalar());
+            queryCommand.Dispose();
+            queryCommand = null;
+            return retorno;
+        }        
+ * 
+ * public int consultaGetCampo(string consulta)
         {
             SqlCommand queryCommand = new SqlCommand(consulta, connection);
 
