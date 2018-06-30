@@ -72,10 +72,10 @@ namespace FrbaHotel.ListadoEstadistico
                     sp = "exec EN_CASA_ANDABA.top5_hoteles_dias_fuera_de_servicio " + trimestre.Text + "," + anio.Text;
                     break;
                 case 3:
-                    sp = "exec EN_CASA_ANDABA.top5_clientes_puntos " + trimestre.Text + "," + anio.Text;
+                    sp = "exec EN_CASA_ANDABA.top5_habitaciones_veces_ocupadas " + trimestre.Text + "," + anio.Text;
                     break;
                 case 4:
-                    sp = "exec EN_CASA_ANDABA.top5_habitaciones_veces_ocupadas " + trimestre.Text + "," + anio.Text;
+                    sp = "exec EN_CASA_ANDABA.top5_clientes_puntos " + trimestre.Text + "," + anio.Text;
                     break;
             }
 
