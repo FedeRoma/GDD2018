@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.password = new System.Windows.Forms.TextBox();
+            this.contrasenia = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.nombreUsuario = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -37,17 +37,17 @@
             this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // password
+            // contrasenia
             // 
-            this.password.BackColor = System.Drawing.Color.White;
-            this.password.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.password.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.password.ForeColor = System.Drawing.Color.DimGray;
-            this.password.Location = new System.Drawing.Point(214, 246);
-            this.password.Name = "password";
-            this.password.PasswordChar = '*';
-            this.password.Size = new System.Drawing.Size(280, 22);
-            this.password.TabIndex = 12;
+            this.contrasenia.BackColor = System.Drawing.Color.White;
+            this.contrasenia.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.contrasenia.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.contrasenia.ForeColor = System.Drawing.Color.DimGray;
+            this.contrasenia.Location = new System.Drawing.Point(214, 246);
+            this.contrasenia.Name = "contrasenia";
+            this.contrasenia.PasswordChar = '*';
+            this.contrasenia.Size = new System.Drawing.Size(280, 22);
+            this.contrasenia.TabIndex = 12;
             // 
             // label5
             // 
@@ -134,7 +134,7 @@
             this.Controls.Add(this.atras);
             this.Controls.Add(this.ingresar);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.password);
+            this.Controls.Add(this.contrasenia);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.nombreUsuario);
             this.Controls.Add(this.label3);
@@ -153,7 +153,7 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox password;
+        private System.Windows.Forms.TextBox contrasenia;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox nombreUsuario;
         private System.Windows.Forms.Label label3;

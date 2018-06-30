@@ -23,7 +23,7 @@ namespace FrbaHotel.Login
         {
             InitializeComponent();
             nombreUsuario.Clear();
-            password.Clear();
+            contrasenia.Clear();
             nombreUsuario.Focus();
             Index.usuarioID = 0;
             Index.rol = "";
@@ -33,7 +33,7 @@ namespace FrbaHotel.Login
         private void ingresar_Click(object sender, EventArgs e)
         {
             cantIntentos++;
-            qry = Index.BD.consultaGetPuntero("select usu_estado, usu_id from EN_CASA_ANDABA.Usuarios where usu_username = '"+ nombreUsuario.Text +"' and usu_password = hashbytes('SHA2_256', '"+ password.Text +"')");
+            qry = Index.BD.consultaGetPuntero("select usu_estado, usu_id from EN_CASA_ANDABA.Usuarios where usu_username = '"+ nombreUsuario.Text +"' and usu_password = hashbytes('SHA2_256', '"+ contrasenia.Text +"')");
             
             if (nombreUsuario.Text == "guest" || nombreUsuario.Text == "Guest")
             {
@@ -65,7 +65,7 @@ namespace FrbaHotel.Login
                         }
                         if (cantRoles == 1)
                         {
-                            Index.rol = Index.BD.consultaGetDato("select rol_nombre from EN_CASA_ANDABA.Roles where rol_id = (select ryu_rol_id from EN_CASA_ANDABA.Roles_Usuarios where ryu_usu_id = " + Index.usuarioID.ToString() + ")");
+                            Index.rol = Index.BD.consultaGetString("select rol_nombre from EN_CASA_ANDABA.Roles where rol_id = (select ryu_rol_id from EN_CASA_ANDABA.Roles_Usuarios where ryu_usu_id = " + Index.usuarioID.ToString() + ")");
                             this.Hide();
                             rolesUsuario = new RolesUsuario();
                             rolesUsuario.Show();
@@ -74,7 +74,7 @@ namespace FrbaHotel.Login
                         {
                             MessageBox.Show("#error: El usuario seleccionado no tiene ningún Rol asignado");
                             nombreUsuario.Clear();
-                            password.Clear();
+                            contrasenia.Clear();
                             nombreUsuario.Focus();
                         }
                     }
@@ -82,7 +82,7 @@ namespace FrbaHotel.Login
                     {
                         MessageBox.Show("#error: El usuario seleccionado se encuentra inhabilitado");
                         nombreUsuario.Clear();
-                        password.Clear();
+                        contrasenia.Clear();
                         nombreUsuario.Focus();
                     }
                 }
@@ -90,7 +90,7 @@ namespace FrbaHotel.Login
                 {
                     MessageBox.Show("#error: Nombre de Usuario o Contraseña incorrectos");
                     nombreUsuario.Clear();
-                    password.Clear();
+                    contrasenia.Clear();
                     nombreUsuario.Focus();
                     if (cantIntentos > 3)
                     {

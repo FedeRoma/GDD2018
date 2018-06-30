@@ -15,6 +15,7 @@ namespace FrbaHotel.Login
     {
         private SqlDataReader qry;
         public static Index index;
+        public static CambiarContrasenia cambiarContrasenia;
         private bool cerrarFormulario = false;
  
         public MenuFuncionalidades()
@@ -109,7 +110,17 @@ namespace FrbaHotel.Login
 
         private void cambiarContraseña_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(Index.rol);
+            if (Index.rol == "Guest")
+            {
+                MessageBox.Show("#error: Acción inválida para el invitado");
+            }
+            else
+            {
+                cambiarContrasenia = new CambiarContrasenia();
+                cambiarContrasenia.Show();
+                cerrarFormulario = true;
+                this.Close();
+            }
         }
 
         private void cancelar_Click(object sender, EventArgs e)

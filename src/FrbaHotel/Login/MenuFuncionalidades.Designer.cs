@@ -44,9 +44,9 @@
             this.label2.ForeColor = System.Drawing.Color.Black;
             this.label2.Location = new System.Drawing.Point(211, 203);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(93, 14);
+            this.label2.Size = new System.Drawing.Size(82, 14);
             this.label2.TabIndex = 6;
-            this.label2.Text = "FUNCIONALIDAD";
+            this.label2.Text = "Funcionalidad";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // cancelar
@@ -121,9 +121,9 @@
             this.label1.ForeColor = System.Drawing.Color.Black;
             this.label1.Location = new System.Drawing.Point(211, 150);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(42, 14);
+            this.label1.Size = new System.Drawing.Size(35, 14);
             this.label1.TabIndex = 7;
-            this.label1.Text = "HOTEL";
+            this.label1.Text = "Hotel";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // MenuFuncionalidades

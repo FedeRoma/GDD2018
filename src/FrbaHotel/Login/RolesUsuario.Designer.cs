@@ -46,9 +46,9 @@
             this.label2.ForeColor = System.Drawing.Color.Black;
             this.label2.Location = new System.Drawing.Point(363, 130);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(29, 14);
+            this.label2.Size = new System.Drawing.Size(24, 14);
             this.label2.TabIndex = 4;
-            this.label2.Text = "ROL";
+            this.label2.Text = "Rol";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // comboBoxRol
@@ -69,9 +69,9 @@
             this.label3.ForeColor = System.Drawing.Color.Black;
             this.label3.Location = new System.Drawing.Point(363, 183);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(42, 14);
+            this.label3.Size = new System.Drawing.Size(35, 14);
             this.label3.TabIndex = 6;
-            this.label3.Text = "HOTEL";
+            this.label3.Text = "Hotel";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // comboBoxHotel

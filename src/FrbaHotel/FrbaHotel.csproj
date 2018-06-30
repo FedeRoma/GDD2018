@@ -165,6 +165,12 @@
     <Compile Include="ListadoEstadistico\ListadosEstadisticos.Designer.cs">
       <DependentUpon>ListadosEstadisticos.cs</DependentUpon>
     </Compile>
+    <Compile Include="Login\CambiarContrasenia.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login\CambiarContrasenia.Designer.cs">
+      <DependentUpon>CambiarContrasenia.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login\RolesUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -239,6 +245,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ListadoEstadistico\ListadosEstadisticos.resx">
       <DependentUpon>ListadosEstadisticos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login\CambiarContrasenia.resx">
+      <DependentUpon>CambiarContrasenia.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\MenuFuncionalidades.resx">
       <DependentUpon>MenuFuncionalidades.cs</DependentUpon>
