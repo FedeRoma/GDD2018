@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             this.label2 = new System.Windows.Forms.Label();
-            this.comboBoxRol = new System.Windows.Forms.ComboBox();
+            this.rol = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.comboBoxHotel = new System.Windows.Forms.ComboBox();
+            this.hotel = new System.Windows.Forms.ComboBox();
             this.cancelar = new System.Windows.Forms.Button();
             this.limpiar = new System.Windows.Forms.Button();
             this.aceptar = new System.Windows.Forms.Button();
-            this.dataGridViewHoteles = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewHoteles)).BeginInit();
+            this.listaHoteles = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.listaHoteles)).BeginInit();
             this.SuspendLayout();
             // 
             // label2
@@ -51,16 +51,16 @@
             this.label2.Text = "Rol";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // comboBoxRol
+            // rol
             // 
-            this.comboBoxRol.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBoxRol.ForeColor = System.Drawing.Color.DimGray;
-            this.comboBoxRol.FormattingEnabled = true;
-            this.comboBoxRol.Location = new System.Drawing.Point(366, 147);
-            this.comboBoxRol.Name = "comboBoxRol";
-            this.comboBoxRol.Size = new System.Drawing.Size(280, 24);
-            this.comboBoxRol.TabIndex = 1;
-            this.comboBoxRol.SelectedIndexChanged += new System.EventHandler(this.comboBoxRol_SelectedIndexChanged);
+            this.rol.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rol.ForeColor = System.Drawing.Color.DimGray;
+            this.rol.FormattingEnabled = true;
+            this.rol.Location = new System.Drawing.Point(366, 147);
+            this.rol.Name = "rol";
+            this.rol.Size = new System.Drawing.Size(280, 24);
+            this.rol.TabIndex = 1;
+            this.rol.SelectedIndexChanged += new System.EventHandler(this.comboBoxRol_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -74,15 +74,15 @@
             this.label3.Text = "Hotel";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // comboBoxHotel
+            // hotel
             // 
-            this.comboBoxHotel.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBoxHotel.ForeColor = System.Drawing.Color.DimGray;
-            this.comboBoxHotel.FormattingEnabled = true;
-            this.comboBoxHotel.Location = new System.Drawing.Point(366, 200);
-            this.comboBoxHotel.Name = "comboBoxHotel";
-            this.comboBoxHotel.Size = new System.Drawing.Size(280, 24);
-            this.comboBoxHotel.TabIndex = 2;
+            this.hotel.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.hotel.ForeColor = System.Drawing.Color.DimGray;
+            this.hotel.FormattingEnabled = true;
+            this.hotel.Location = new System.Drawing.Point(366, 200);
+            this.hotel.Name = "hotel";
+            this.hotel.Size = new System.Drawing.Size(280, 24);
+            this.hotel.TabIndex = 2;
             // 
             // cancelar
             // 
@@ -126,16 +126,16 @@
             this.aceptar.UseVisualStyleBackColor = false;
             this.aceptar.Click += new System.EventHandler(this.aceptar_Click);
             // 
-            // dataGridViewHoteles
+            // listaHoteles
             // 
-            this.dataGridViewHoteles.AllowUserToOrderColumns = true;
-            this.dataGridViewHoteles.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridViewHoteles.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.dataGridViewHoteles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewHoteles.Location = new System.Drawing.Point(12, 12);
-            this.dataGridViewHoteles.Name = "dataGridViewHoteles";
-            this.dataGridViewHoteles.Size = new System.Drawing.Size(348, 368);
-            this.dataGridViewHoteles.TabIndex = 6;
+            this.listaHoteles.AllowUserToOrderColumns = true;
+            this.listaHoteles.BackgroundColor = System.Drawing.Color.White;
+            this.listaHoteles.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.listaHoteles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.listaHoteles.Location = new System.Drawing.Point(12, 12);
+            this.listaHoteles.Name = "listaHoteles";
+            this.listaHoteles.Size = new System.Drawing.Size(348, 368);
+            this.listaHoteles.TabIndex = 6;
             // 
             // RolesUsuario
             // 
@@ -143,14 +143,14 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(704, 442);
-            this.Controls.Add(this.dataGridViewHoteles);
+            this.Controls.Add(this.listaHoteles);
             this.Controls.Add(this.cancelar);
             this.Controls.Add(this.limpiar);
             this.Controls.Add(this.aceptar);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.comboBoxHotel);
+            this.Controls.Add(this.hotel);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.comboBoxRol);
+            this.Controls.Add(this.rol);
             this.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -160,7 +160,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FRBA Hotel 2018";
             this.Load += new System.EventHandler(this.RolesUsuario_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewHoteles)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.listaHoteles)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -169,12 +169,12 @@
         #endregion
 
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboBoxRol;
+        private System.Windows.Forms.ComboBox rol;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox comboBoxHotel;
+        private System.Windows.Forms.ComboBox hotel;
         private System.Windows.Forms.Button cancelar;
         private System.Windows.Forms.Button limpiar;
         private System.Windows.Forms.Button aceptar;
-        private System.Windows.Forms.DataGridView dataGridViewHoteles;
+        private System.Windows.Forms.DataGridView listaHoteles;
     }
 }

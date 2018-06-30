@@ -28,14 +28,14 @@ namespace FrbaHotel.Login
             qry = Index.BD.consultaGetPuntero("select distinct F.fun_desc from EN_CASA_ANDABA.Funcionalidades F, EN_CASA_ANDABA.Roles R, EN_CASA_ANDABA.Roles_Usuarios RyU, EN_CASA_ANDABA.Funcionalidades_Roles FyR, EN_CASA_ANDABA.Hoteles_Usuarios HyU where R.rol_nombre = '" + Index.rol + "' and R.rol_id = RyU.ryu_rol_id and R.rol_id = FyR.fyr_rol_id and FyR.fyr_fun_id = F.fun_id and RyU.ryu_usu_id = " + Index.usuarioID.ToString() + " and HyU.hyu_usu_id = RyU.ryu_usu_id and HyU.hyu_hot_id = " + Index.hotel);
             while (qry.Read() == true)
             {
-                comboBoxFuncionalidad.Items.Add(qry.GetSqlString(0));
+                funcionalidad.Items.Add(qry.GetSqlString(0));
             }
             qry.Close();
-            comboBoxFuncionalidad.SelectedIndex = 0;
+            funcionalidad.SelectedIndex = 0;
 
             qry = Index.BD.consultaGetPuntero("select distinct hot_calle from EN_CASA_ANDABA.Hoteles where hot_id = " + Index.hotel);
             qry.Read();
-            listBoxHoteles.Items.Add(qry.GetSqlString(0));
+            hoteles.Items.Add(qry.GetSqlString(0));
             qry.Close();
         }
 
@@ -97,14 +97,14 @@ namespace FrbaHotel.Login
 
         private void aceptar_Click(object sender, EventArgs e)
         {
-            if (Convert.ToInt32(comboBoxFuncionalidad.SelectedIndex) != -1)
+            if (Convert.ToInt32(funcionalidad.SelectedIndex) != -1)
             {
-                SeleccionarFuncionalidad(comboBoxFuncionalidad.SelectedItem.ToString());
+                SeleccionarFuncionalidad(funcionalidad.SelectedItem.ToString());
             }
             else
             {
                 MessageBox.Show("#error: Debe seleccionar una funcionalidad para continuar");
-                comboBoxFuncionalidad.Focus();
+                funcionalidad.Focus();
             }
         }
 

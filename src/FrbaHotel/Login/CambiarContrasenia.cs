@@ -38,11 +38,13 @@ namespace FrbaHotel.Login
             if (string.IsNullOrEmpty(contraseniaActual.Text))
             {
                 MessageBox.Show("#error: debe ingresar su clave actual para continuar");
+                contraseniaActual.Focus();
                 return;
             }
             if (string.IsNullOrEmpty(contraseniaNueva.Text))
             {
                 MessageBox.Show("#error: debe ingresar su nueva clave para continuar");
+                contraseniaNueva.Focus();
                 return;
             }
             qry = Index.BD.consultaGetPuntero("select usu_id from EN_CASA_ANDABA.Usuarios where usu_username = '" + usuario + "' and usu_password = hashbytes('SHA2_256', '" + contraseniaActual.Text + "')");

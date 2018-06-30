@@ -32,8 +32,8 @@
             this.cancelar = new System.Windows.Forms.Button();
             this.aceptar = new System.Windows.Forms.Button();
             this.cambiarContraseña = new System.Windows.Forms.Button();
-            this.comboBoxFuncionalidad = new System.Windows.Forms.ComboBox();
-            this.listBoxHoteles = new System.Windows.Forms.ListBox();
+            this.funcionalidad = new System.Windows.Forms.ComboBox();
+            this.hoteles = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -91,28 +91,28 @@
             this.cambiarContraseña.UseVisualStyleBackColor = false;
             this.cambiarContraseña.Click += new System.EventHandler(this.cambiarContraseña_Click);
             // 
-            // comboBoxFuncionalidad
+            // funcionalidad
             // 
-            this.comboBoxFuncionalidad.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBoxFuncionalidad.ForeColor = System.Drawing.Color.DimGray;
-            this.comboBoxFuncionalidad.FormattingEnabled = true;
-            this.comboBoxFuncionalidad.Location = new System.Drawing.Point(214, 220);
-            this.comboBoxFuncionalidad.Name = "comboBoxFuncionalidad";
-            this.comboBoxFuncionalidad.Size = new System.Drawing.Size(280, 24);
-            this.comboBoxFuncionalidad.TabIndex = 2;
+            this.funcionalidad.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.funcionalidad.ForeColor = System.Drawing.Color.DimGray;
+            this.funcionalidad.FormattingEnabled = true;
+            this.funcionalidad.Location = new System.Drawing.Point(214, 220);
+            this.funcionalidad.Name = "funcionalidad";
+            this.funcionalidad.Size = new System.Drawing.Size(280, 24);
+            this.funcionalidad.TabIndex = 2;
             // 
-            // listBoxHoteles
+            // hoteles
             // 
-            this.listBoxHoteles.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.listBoxHoteles.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.listBoxHoteles.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listBoxHoteles.ForeColor = System.Drawing.Color.Crimson;
-            this.listBoxHoteles.FormattingEnabled = true;
-            this.listBoxHoteles.ItemHeight = 18;
-            this.listBoxHoteles.Location = new System.Drawing.Point(214, 167);
-            this.listBoxHoteles.Name = "listBoxHoteles";
-            this.listBoxHoteles.Size = new System.Drawing.Size(280, 20);
-            this.listBoxHoteles.TabIndex = 1;
+            this.hoteles.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.hoteles.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.hoteles.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.hoteles.ForeColor = System.Drawing.Color.Crimson;
+            this.hoteles.FormattingEnabled = true;
+            this.hoteles.ItemHeight = 18;
+            this.hoteles.Location = new System.Drawing.Point(214, 167);
+            this.hoteles.Name = "hoteles";
+            this.hoteles.Size = new System.Drawing.Size(280, 20);
+            this.hoteles.TabIndex = 1;
             // 
             // label1
             // 
@@ -133,8 +133,8 @@
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(704, 442);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.listBoxHoteles);
-            this.Controls.Add(this.comboBoxFuncionalidad);
+            this.Controls.Add(this.hoteles);
+            this.Controls.Add(this.funcionalidad);
             this.Controls.Add(this.cambiarContraseña);
             this.Controls.Add(this.cancelar);
             this.Controls.Add(this.aceptar);
@@ -159,8 +159,8 @@
         private System.Windows.Forms.Button cancelar;
         private System.Windows.Forms.Button aceptar;
         private System.Windows.Forms.Button cambiarContraseña;
-        private System.Windows.Forms.ComboBox comboBoxFuncionalidad;
-        private System.Windows.Forms.ListBox listBoxHoteles;
+        private System.Windows.Forms.ComboBox funcionalidad;
+        private System.Windows.Forms.ListBox hoteles;
         private System.Windows.Forms.Label label1;
     }
 }
