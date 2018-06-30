@@ -44,6 +44,7 @@ namespace FrbaHotel.Login
             while (qry.Read() == true)
             {
                 hotel.Items.Add(qry.GetInt32(0));
+
             }
             qry.Close();
             hotel.SelectedIndex = 0;
