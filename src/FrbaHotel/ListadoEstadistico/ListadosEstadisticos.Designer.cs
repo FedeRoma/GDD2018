@@ -31,21 +31,18 @@
             this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.comboBoxAño = new System.Windows.Forms.ComboBox();
-            this.comboBoxTRIMESTRE = new System.Windows.Forms.ComboBox();
+            this.anio = new System.Windows.Forms.ComboBox();
+            this.trimestre = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.top5 = new System.Windows.Forms.ComboBox();
             this.aceptar = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.gD1C2018DataSet = new FrbaHotel.GD1C2018DataSet();
-            this.top5clientespuntosBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.top5_clientes_puntosTableAdapter = new FrbaHotel.GD1C2018DataSetTableAdapters.top5_clientes_puntosTableAdapter();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gD1C2018DataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.top5clientespuntosBindingSource)).BeginInit();
+            this.atras = new System.Windows.Forms.Button();
+            this.limpiar = new System.Windows.Forms.Button();
+            this.topFive = new System.Windows.Forms.DataGridView();
+            this.bindingSourceTop5 = new System.Windows.Forms.BindingSource(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.topFive)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceTop5)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -68,33 +65,32 @@
             this.label2.ForeColor = System.Drawing.Color.Black;
             this.label2.Location = new System.Drawing.Point(67, 62);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(30, 14);
+            this.label2.Size = new System.Drawing.Size(29, 14);
             this.label2.TabIndex = 1;
-            this.label2.Text = "AÑO";
+            this.label2.Text = "Año";
             this.label2.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             // 
-            // comboBoxAño
+            // anio
             // 
-            this.comboBoxAño.BackColor = System.Drawing.Color.White;
-            this.comboBoxAño.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBoxAño.ForeColor = System.Drawing.Color.DimGray;
-            this.comboBoxAño.FormattingEnabled = true;
-            this.comboBoxAño.Location = new System.Drawing.Point(70, 79);
-            this.comboBoxAño.Name = "comboBoxAño";
-            this.comboBoxAño.Size = new System.Drawing.Size(240, 24);
-            this.comboBoxAño.TabIndex = 2;
+            this.anio.BackColor = System.Drawing.Color.White;
+            this.anio.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.anio.ForeColor = System.Drawing.Color.DimGray;
+            this.anio.FormattingEnabled = true;
+            this.anio.Location = new System.Drawing.Point(70, 79);
+            this.anio.Name = "anio";
+            this.anio.Size = new System.Drawing.Size(240, 24);
+            this.anio.TabIndex = 1;
             // 
-            // comboBoxTRIMESTRE
+            // trimestre
             // 
-            this.comboBoxTRIMESTRE.BackColor = System.Drawing.Color.White;
-            this.comboBoxTRIMESTRE.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBoxTRIMESTRE.ForeColor = System.Drawing.Color.DimGray;
-            this.comboBoxTRIMESTRE.FormattingEnabled = true;
-            this.comboBoxTRIMESTRE.Location = new System.Drawing.Point(398, 79);
-            this.comboBoxTRIMESTRE.Name = "comboBoxTRIMESTRE";
-            this.comboBoxTRIMESTRE.Size = new System.Drawing.Size(240, 24);
-            this.comboBoxTRIMESTRE.TabIndex = 3;
-            this.comboBoxTRIMESTRE.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
+            this.trimestre.BackColor = System.Drawing.Color.White;
+            this.trimestre.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.trimestre.ForeColor = System.Drawing.Color.DimGray;
+            this.trimestre.FormattingEnabled = true;
+            this.trimestre.Location = new System.Drawing.Point(398, 79);
+            this.trimestre.Name = "trimestre";
+            this.trimestre.Size = new System.Drawing.Size(240, 24);
+            this.trimestre.TabIndex = 2;
             // 
             // label3
             // 
@@ -103,9 +99,9 @@
             this.label3.ForeColor = System.Drawing.Color.Black;
             this.label3.Location = new System.Drawing.Point(395, 62);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(67, 14);
+            this.label3.Size = new System.Drawing.Size(62, 14);
             this.label3.TabIndex = 4;
-            this.label3.Text = "TRIMESTRE";
+            this.label3.Text = "Trimestre";
             this.label3.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             // 
             // label4
@@ -115,21 +111,21 @@
             this.label4.ForeColor = System.Drawing.Color.Black;
             this.label4.Location = new System.Drawing.Point(67, 106);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(38, 14);
+            this.label4.Size = new System.Drawing.Size(36, 14);
             this.label4.TabIndex = 5;
-            this.label4.Text = "TOP 5";
+            this.label4.Text = "Top 5";
             this.label4.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             // 
-            // comboBox3
+            // top5
             // 
-            this.comboBox3.BackColor = System.Drawing.Color.White;
-            this.comboBox3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox3.ForeColor = System.Drawing.Color.DimGray;
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(70, 123);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(461, 24);
-            this.comboBox3.TabIndex = 6;
+            this.top5.BackColor = System.Drawing.Color.White;
+            this.top5.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.top5.ForeColor = System.Drawing.Color.Crimson;
+            this.top5.FormattingEnabled = true;
+            this.top5.Location = new System.Drawing.Point(70, 123);
+            this.top5.Name = "top5";
+            this.top5.Size = new System.Drawing.Size(461, 24);
+            this.top5.TabIndex = 3;
             // 
             // aceptar
             // 
@@ -140,89 +136,77 @@
             this.aceptar.Location = new System.Drawing.Point(537, 112);
             this.aceptar.Name = "aceptar";
             this.aceptar.Size = new System.Drawing.Size(101, 44);
-            this.aceptar.TabIndex = 7;
+            this.aceptar.TabIndex = 4;
             this.aceptar.Text = "aceptar";
             this.aceptar.UseVisualStyleBackColor = false;
+            this.aceptar.Click += new System.EventHandler(this.aceptar_Click);
             // 
-            // dataGridView1
+            // atras
             // 
-            this.dataGridView1.AllowUserToOrderColumns = true;
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(70, 162);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(568, 218);
-            this.dataGridView1.TabIndex = 8;
+            this.atras.BackColor = System.Drawing.Color.DimGray;
+            this.atras.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.atras.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.atras.ForeColor = System.Drawing.Color.White;
+            this.atras.Location = new System.Drawing.Point(12, 386);
+            this.atras.Name = "atras";
+            this.atras.Size = new System.Drawing.Size(101, 44);
+            this.atras.TabIndex = 6;
+            this.atras.Text = "atrás";
+            this.atras.UseVisualStyleBackColor = false;
+            this.atras.Click += new System.EventHandler(this.atras_Click);
             // 
-            // button2
+            // limpiar
             // 
-            this.button2.BackColor = System.Drawing.Color.DimGray;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(12, 386);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(101, 44);
-            this.button2.TabIndex = 9;
-            this.button2.Text = "salir";
-            this.button2.UseVisualStyleBackColor = false;
+            this.limpiar.BackColor = System.Drawing.Color.White;
+            this.limpiar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.limpiar.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.limpiar.ForeColor = System.Drawing.Color.Crimson;
+            this.limpiar.Location = new System.Drawing.Point(119, 386);
+            this.limpiar.Name = "limpiar";
+            this.limpiar.Size = new System.Drawing.Size(101, 44);
+            this.limpiar.TabIndex = 5;
+            this.limpiar.Text = "limpiar datos";
+            this.limpiar.UseVisualStyleBackColor = false;
+            this.limpiar.Click += new System.EventHandler(this.limpiar_Click);
             // 
-            // button3
+            // topFive
             // 
-            this.button3.BackColor = System.Drawing.Color.White;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.ForeColor = System.Drawing.Color.Crimson;
-            this.button3.Location = new System.Drawing.Point(119, 386);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(101, 44);
-            this.button3.TabIndex = 10;
-            this.button3.Text = "limpiar datos";
-            this.button3.UseVisualStyleBackColor = false;
+            this.topFive.AllowUserToOrderColumns = true;
+            this.topFive.BackgroundColor = System.Drawing.Color.White;
+            this.topFive.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.topFive.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.topFive.Location = new System.Drawing.Point(70, 162);
+            this.topFive.Name = "topFive";
+            this.topFive.Size = new System.Drawing.Size(568, 218);
+            this.topFive.TabIndex = 7;
             // 
-            // gD1C2018DataSet
-            // 
-            this.gD1C2018DataSet.DataSetName = "GD1C2018DataSet";
-            this.gD1C2018DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // top5clientespuntosBindingSource
-            // 
-            this.top5clientespuntosBindingSource.DataMember = "top5_clientes_puntos";
-            this.top5clientespuntosBindingSource.DataSource = this.gD1C2018DataSet;
-            // 
-            // top5_clientes_puntosTableAdapter
-            // 
-            this.top5_clientes_puntosTableAdapter.ClearBeforeFill = true;
-            // 
-            // ListadoEstadistico
+            // ListadosEstadisticos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(704, 442);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.limpiar);
+            this.Controls.Add(this.atras);
+            this.Controls.Add(this.topFive);
             this.Controls.Add(this.aceptar);
-            this.Controls.Add(this.comboBox3);
+            this.Controls.Add(this.top5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.comboBoxTRIMESTRE);
-            this.Controls.Add(this.comboBoxAño);
+            this.Controls.Add(this.trimestre);
+            this.Controls.Add(this.anio);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
-            this.Name = "ListadoEstadistico";
+            this.Name = "ListadosEstadisticos";
             this.ShowIcon = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FRBA Hotel 2018";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gD1C2018DataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.top5clientespuntosBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.topFive)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceTop5)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -232,17 +216,15 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboBoxAño;
-        private System.Windows.Forms.ComboBox comboBoxTRIMESTRE;
+        private System.Windows.Forms.ComboBox anio;
+        private System.Windows.Forms.ComboBox trimestre;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.ComboBox top5;
         private System.Windows.Forms.Button aceptar;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private GD1C2018DataSet gD1C2018DataSet;
-        private System.Windows.Forms.BindingSource top5clientespuntosBindingSource;
-        private GD1C2018DataSetTableAdapters.top5_clientes_puntosTableAdapter top5_clientes_puntosTableAdapter;
+        private System.Windows.Forms.Button atras;
+        private System.Windows.Forms.Button limpiar;
+        private System.Windows.Forms.DataGridView topFive;
+        private System.Windows.Forms.BindingSource bindingSourceTop5;
     }
 }
