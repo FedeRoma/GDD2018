@@ -33,5 +33,16 @@ namespace FrbaHotel.Properties {
                 return ((string)(this["GD1C2018ConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-A4NFFRC\\SQLSERVER2012;Initial Catalog=GD1C2018;User ID=gdHote" +
+            "l2018;Password=gd2018")]
+        public string GD1C2018 {
+            get {
+                return ((string)(this["GD1C2018"]));
+            }
+        }
     }
 }

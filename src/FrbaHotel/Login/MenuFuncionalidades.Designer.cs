@@ -44,7 +44,7 @@
             this.label2.ForeColor = System.Drawing.Color.Black;
             this.label2.Location = new System.Drawing.Point(211, 203);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(82, 14);
+            this.label2.Size = new System.Drawing.Size(107, 16);
             this.label2.TabIndex = 6;
             this.label2.Text = "Funcionalidad";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -98,8 +98,9 @@
             this.comboBoxFuncionalidad.FormattingEnabled = true;
             this.comboBoxFuncionalidad.Location = new System.Drawing.Point(214, 220);
             this.comboBoxFuncionalidad.Name = "comboBoxFuncionalidad";
-            this.comboBoxFuncionalidad.Size = new System.Drawing.Size(280, 24);
+            this.comboBoxFuncionalidad.Size = new System.Drawing.Size(280, 26);
             this.comboBoxFuncionalidad.TabIndex = 2;
+            this.comboBoxFuncionalidad.SelectedIndexChanged += new System.EventHandler(this.comboBoxFuncionalidad_SelectedIndexChanged);
             // 
             // listBoxHoteles
             // 
@@ -108,10 +109,10 @@
             this.listBoxHoteles.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBoxHoteles.ForeColor = System.Drawing.Color.Crimson;
             this.listBoxHoteles.FormattingEnabled = true;
-            this.listBoxHoteles.ItemHeight = 18;
+            this.listBoxHoteles.ItemHeight = 23;
             this.listBoxHoteles.Location = new System.Drawing.Point(214, 167);
             this.listBoxHoteles.Name = "listBoxHoteles";
-            this.listBoxHoteles.Size = new System.Drawing.Size(280, 20);
+            this.listBoxHoteles.Size = new System.Drawing.Size(280, 2);
             this.listBoxHoteles.TabIndex = 1;
             // 
             // label1
@@ -121,14 +122,14 @@
             this.label1.ForeColor = System.Drawing.Color.Black;
             this.label1.Location = new System.Drawing.Point(211, 150);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 14);
+            this.label1.Size = new System.Drawing.Size(45, 16);
             this.label1.TabIndex = 7;
             this.label1.Text = "Hotel";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // MenuFuncionalidades
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(704, 442);

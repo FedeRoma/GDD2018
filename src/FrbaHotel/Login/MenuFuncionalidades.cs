@@ -139,5 +139,10 @@ namespace FrbaHotel.Login
             }
         }
 
+        private void comboBoxFuncionalidad_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

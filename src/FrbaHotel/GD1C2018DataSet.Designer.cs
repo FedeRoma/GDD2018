@@ -30157,7 +30157,7 @@ SELECT baj_id, baj_hot_id, baj_fecha_inicio, baj_fecha_fin, baj_motivo FROM EN_C
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018ConnectionString;
+            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -30588,7 +30588,7 @@ SELECT cli_documento, cli_doc_id, cli_nombre, cli_apellido, cli_mail, cli_nacion
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018ConnectionString;
+            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -31238,7 +31238,7 @@ SELECT cli_documento, cli_doc_id, cli_nombre, cli_apellido, cli_mail, cli_nacion
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018ConnectionString;
+            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -31614,7 +31614,7 @@ SELECT cye_doc_id, cye_documento, cye_nombre, cye_apellido, cye_mail, cye_nacion
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018ConnectionString;
+            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -32369,7 +32369,7 @@ SELECT con_id, con_desc, con_precio FROM EN_CASA_ANDABA.Consumibles WHERE (con_i
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018ConnectionString;
+            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -32692,7 +32692,7 @@ SELECT con_id, con_desc, con_precio FROM EN_CASA_ANDABA.Consumibles WHERE (con_i
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018ConnectionString;
+            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -33049,7 +33049,7 @@ SELECT est_res_id, est_usu_alta, est_checkin, est_checkout, est_cant_noches, est
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018ConnectionString;
+            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -33511,7 +33511,7 @@ SELECT est_res_id, est_usu_alta, est_checkin, est_checkout, est_cant_noches, est
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018ConnectionString;
+            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -33870,7 +33870,7 @@ SELECT fac_id, fac_cli_documento, fac_fecha, fac_total, fac_est_res_id, fac_med_
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018ConnectionString;
+            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -34329,7 +34329,7 @@ SELECT fac_id, fac_cli_documento, fac_fecha, fac_total, fac_est_res_id, fac_med_
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018ConnectionString;
+            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -34631,7 +34631,7 @@ SELECT fac_id, fac_cli_documento, fac_fecha, fac_total, fac_est_res_id, fac_med_
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018ConnectionString;
+            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -34913,7 +34913,7 @@ SELECT hab_id, hab_hot_id, hab_tip_id, hab_numero, hab_piso, hab_vista, hab_desc
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018ConnectionString;
+            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -35457,7 +35457,7 @@ SELECT hot_id, hot_nombre, hot_estrellas, hot_calle, hot_calle_nro, hot_ciudad, 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018ConnectionString;
+            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -36114,7 +36114,7 @@ SELECT hyu_usu_id, hyu_hot_id, hyu_id FROM EN_CASA_ANDABA.Hoteles_Usuarios WHERE
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018ConnectionString;
+            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -36442,7 +36442,7 @@ SELECT iyf_id, iyf_con_id, iyf_fac_id, iyf_cantidad, iyf_monto, iyf_est_res_id F
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018ConnectionString;
+            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -36923,7 +36923,7 @@ SELECT iyf_id, iyf_con_id, iyf_fac_id, iyf_cantidad, iyf_monto, iyf_est_res_id F
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018ConnectionString;
+            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -37417,7 +37417,7 @@ SELECT iyf_id, iyf_con_id, iyf_fac_id, iyf_cantidad, iyf_monto, iyf_est_res_id F
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018ConnectionString;
+            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -37747,7 +37747,7 @@ SELECT reg_id, reg_desc, reg_precio, reg_habilitado FROM EN_CASA_ANDABA.Regimene
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018ConnectionString;
+            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -38104,7 +38104,7 @@ SELECT ryh_hot_id, ryh_reg_id, ryh_id FROM EN_CASA_ANDABA.Regimenes_Hoteles WHER
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018ConnectionString;
+            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -38455,7 +38455,7 @@ SELECT res_id, res_estados_id, res_fecha, res_inicio, res_fin, res_tip_id, res_r
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018ConnectionString;
+            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -38892,7 +38892,7 @@ SELECT res_id, res_estados_id, res_fecha, res_inicio, res_fin, res_tip_id, res_r
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018ConnectionString;
+            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -39142,7 +39142,7 @@ SELECT rol_id, rol_nombre, rol_estado FROM EN_CASA_ANDABA.Roles WHERE (rol_id = 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018ConnectionString;
+            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -39448,7 +39448,7 @@ SELECT rol_id, rol_nombre, rol_estado FROM EN_CASA_ANDABA.Roles WHERE (rol_id = 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018ConnectionString;
+            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -39707,7 +39707,7 @@ SELECT tar_id, tar_emisor, tar_banco, tar_numero, tar_titular FROM EN_CASA_ANDAB
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018ConnectionString;
+            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -40088,7 +40088,7 @@ SELECT tip_id, tip_nombre, tip_porcentual, tip_personas FROM EN_CASA_ANDABA.Tipo
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018ConnectionString;
+            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -40468,7 +40468,7 @@ SELECT usu_id, usu_username, usu_password, usu_estado, usu_nombre, usu_apellido,
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018ConnectionString;
+            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -41016,7 +41016,7 @@ SELECT urc_id, urc_res_id, urc_usu_id, urc_fecha, urc_motivo FROM EN_CASA_ANDABA
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018ConnectionString;
+            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -41357,7 +41357,7 @@ SELECT urm_id, urm_res_id, urm_usu_id, urm_fecha FROM EN_CASA_ANDABA.Usuarios_Re
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018ConnectionString;
+            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -41640,7 +41640,7 @@ SELECT urm_id, urm_res_id, urm_usu_id, urm_fecha FROM EN_CASA_ANDABA.Usuarios_Re
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018ConnectionString;
+            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -41847,7 +41847,7 @@ SELECT urm_id, urm_res_id, urm_usu_id, urm_fecha FROM EN_CASA_ANDABA.Usuarios_Re
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018ConnectionString;
+            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -42054,7 +42054,7 @@ SELECT urm_id, urm_res_id, urm_usu_id, urm_fecha FROM EN_CASA_ANDABA.Usuarios_Re
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018ConnectionString;
+            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -42404,7 +42404,7 @@ SELECT urm_id, urm_res_id, urm_usu_id, urm_fecha FROM EN_CASA_ANDABA.Usuarios_Re
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018ConnectionString;
+            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -42637,7 +42637,7 @@ SELECT urm_id, urm_res_id, urm_usu_id, urm_fecha FROM EN_CASA_ANDABA.Usuarios_Re
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018ConnectionString;
+            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -42844,7 +42844,7 @@ SELECT urm_id, urm_res_id, urm_usu_id, urm_fecha FROM EN_CASA_ANDABA.Usuarios_Re
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018ConnectionString;
+            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -43038,7 +43038,7 @@ SELECT urm_id, urm_res_id, urm_usu_id, urm_fecha FROM EN_CASA_ANDABA.Usuarios_Re
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018ConnectionString;
+            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -43284,7 +43284,7 @@ SELECT urm_id, urm_res_id, urm_usu_id, urm_fecha FROM EN_CASA_ANDABA.Usuarios_Re
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018ConnectionString;
+            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -43582,7 +43582,7 @@ SELECT urm_id, urm_res_id, urm_usu_id, urm_fecha FROM EN_CASA_ANDABA.Usuarios_Re
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018ConnectionString;
+            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -43776,7 +43776,7 @@ SELECT urm_id, urm_res_id, urm_usu_id, urm_fecha FROM EN_CASA_ANDABA.Usuarios_Re
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018ConnectionString;
+            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -44048,7 +44048,7 @@ SELECT urm_id, urm_res_id, urm_usu_id, urm_fecha FROM EN_CASA_ANDABA.Usuarios_Re
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018ConnectionString;
+            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -44229,7 +44229,7 @@ SELECT urm_id, urm_res_id, urm_usu_id, urm_fecha FROM EN_CASA_ANDABA.Usuarios_Re
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018ConnectionString;
+            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -44462,7 +44462,7 @@ SELECT urm_id, urm_res_id, urm_usu_id, urm_fecha FROM EN_CASA_ANDABA.Usuarios_Re
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018ConnectionString;
+            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -44799,7 +44799,7 @@ SELECT urm_id, urm_res_id, urm_usu_id, urm_fecha FROM EN_CASA_ANDABA.Usuarios_Re
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018ConnectionString;
+            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -44980,7 +44980,7 @@ SELECT urm_id, urm_res_id, urm_usu_id, urm_fecha FROM EN_CASA_ANDABA.Usuarios_Re
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018ConnectionString;
+            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -45213,7 +45213,7 @@ SELECT urm_id, urm_res_id, urm_usu_id, urm_fecha FROM EN_CASA_ANDABA.Usuarios_Re
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018ConnectionString;
+            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -45420,7 +45420,7 @@ SELECT urm_id, urm_res_id, urm_usu_id, urm_fecha FROM EN_CASA_ANDABA.Usuarios_Re
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018ConnectionString;
+            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -45604,7 +45604,7 @@ SELECT urm_id, urm_res_id, urm_usu_id, urm_fecha FROM EN_CASA_ANDABA.Usuarios_Re
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018ConnectionString;
+            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -45850,7 +45850,7 @@ SELECT urm_id, urm_res_id, urm_usu_id, urm_fecha FROM EN_CASA_ANDABA.Usuarios_Re
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018ConnectionString;
+            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -46044,7 +46044,7 @@ SELECT urm_id, urm_res_id, urm_usu_id, urm_fecha FROM EN_CASA_ANDABA.Usuarios_Re
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018ConnectionString;
+            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -46239,7 +46239,7 @@ SELECT urm_id, urm_res_id, urm_usu_id, urm_fecha FROM EN_CASA_ANDABA.Usuarios_Re
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018ConnectionString;
+            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -46420,7 +46420,7 @@ SELECT urm_id, urm_res_id, urm_usu_id, urm_fecha FROM EN_CASA_ANDABA.Usuarios_Re
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018ConnectionString;
+            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -46614,7 +46614,7 @@ SELECT urm_id, urm_res_id, urm_usu_id, urm_fecha FROM EN_CASA_ANDABA.Usuarios_Re
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018ConnectionString;
+            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -46964,7 +46964,7 @@ SELECT urm_id, urm_res_id, urm_usu_id, urm_fecha FROM EN_CASA_ANDABA.Usuarios_Re
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018ConnectionString;
+            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -47197,7 +47197,7 @@ SELECT urm_id, urm_res_id, urm_usu_id, urm_fecha FROM EN_CASA_ANDABA.Usuarios_Re
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018ConnectionString;
+            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -47404,7 +47404,7 @@ SELECT urm_id, urm_res_id, urm_usu_id, urm_fecha FROM EN_CASA_ANDABA.Usuarios_Re
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018ConnectionString;
+            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -47676,7 +47676,7 @@ SELECT urm_id, urm_res_id, urm_usu_id, urm_fecha FROM EN_CASA_ANDABA.Usuarios_Re
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018ConnectionString;
+            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -48000,7 +48000,7 @@ SELECT urm_id, urm_res_id, urm_usu_id, urm_fecha FROM EN_CASA_ANDABA.Usuarios_Re
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018ConnectionString;
+            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -48285,7 +48285,7 @@ SELECT urm_id, urm_res_id, urm_usu_id, urm_fecha FROM EN_CASA_ANDABA.Usuarios_Re
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018ConnectionString;
+            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -48668,7 +48668,7 @@ SELECT urm_id, urm_res_id, urm_usu_id, urm_fecha FROM EN_CASA_ANDABA.Usuarios_Re
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018ConnectionString;
+            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -48866,7 +48866,7 @@ SELECT urm_id, urm_res_id, urm_usu_id, urm_fecha FROM EN_CASA_ANDABA.Usuarios_Re
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018ConnectionString;
+            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -49061,7 +49061,7 @@ SELECT urm_id, urm_res_id, urm_usu_id, urm_fecha FROM EN_CASA_ANDABA.Usuarios_Re
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018ConnectionString;
+            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -49257,7 +49257,7 @@ SELECT urm_id, urm_res_id, urm_usu_id, urm_fecha FROM EN_CASA_ANDABA.Usuarios_Re
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018ConnectionString;
+            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -49452,7 +49452,7 @@ SELECT urm_id, urm_res_id, urm_usu_id, urm_fecha FROM EN_CASA_ANDABA.Usuarios_Re
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018ConnectionString;
+            this._connection.ConnectionString = global::FrbaHotel.Properties.Settings.Default.GD1C2018;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -49546,7 +49546,7 @@ SELECT urm_id, urm_res_id, urm_usu_id, urm_fecha FROM EN_CASA_ANDABA.Usuarios_Re
         private void InitCommandCollection() {
             this._commandCollection = new global::System.Data.IDbCommand[3];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
-            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[0])).Connection = new global::System.Data.SqlClient.SqlConnection(global::FrbaHotel.Properties.Settings.Default.GD1C2018ConnectionString);
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[0])).Connection = new global::System.Data.SqlClient.SqlConnection(global::FrbaHotel.Properties.Settings.Default.GD1C2018);
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[0])).CommandText = "EN_CASA_ANDABA.altaReservaHabitacion";
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[0])).CommandType = global::System.Data.CommandType.StoredProcedure;
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[0])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -49554,13 +49554,13 @@ SELECT urm_id, urm_res_id, urm_usu_id, urm_fecha FROM EN_CASA_ANDABA.Usuarios_Re
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[0])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@habitacionId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[0])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@hotelId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
-            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[1])).Connection = new global::System.Data.SqlClient.SqlConnection(global::FrbaHotel.Properties.Settings.Default.GD1C2018ConnectionString);
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[1])).Connection = new global::System.Data.SqlClient.SqlConnection(global::FrbaHotel.Properties.Settings.Default.GD1C2018);
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[1])).CommandText = "EN_CASA_ANDABA.deudaConsumibles";
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[1])).CommandType = global::System.Data.CommandType.StoredProcedure;
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[1])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.ReturnValue, 18, 2, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[1])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@estadiaId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
-            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[2])).Connection = new global::System.Data.SqlClient.SqlConnection(global::FrbaHotel.Properties.Settings.Default.GD1C2018ConnectionString);
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[2])).Connection = new global::System.Data.SqlClient.SqlConnection(global::FrbaHotel.Properties.Settings.Default.GD1C2018);
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[2])).CommandText = "EN_CASA_ANDABA.estaReservadaHabitacion";
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[2])).CommandType = global::System.Data.CommandType.StoredProcedure;
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[2])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Bit, 1, global::System.Data.ParameterDirection.ReturnValue, 1, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
