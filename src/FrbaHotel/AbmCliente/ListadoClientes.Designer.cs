@@ -29,172 +29,38 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.clidocumentoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clidocidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clinombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cliapellidoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.climailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clinacionalidadDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clifechanacDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clihabilitadoDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.clicalleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clicallenroDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clipisoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clideptoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clidirlocalidadDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clidirpaisDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clitelefonoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clientesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.gD1C2018DataSet = new FrbaHotel.GD1C2018DataSet();
+            this.listaClientes = new System.Windows.Forms.DataGridView();
             this.cancelar = new System.Windows.Forms.Button();
             this.limpiar = new System.Windows.Forms.Button();
             this.buscar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBoxEmail = new System.Windows.Forms.TextBox();
+            this.eMail = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBoxApellido = new System.Windows.Forms.TextBox();
-            this.textBoxNombre = new System.Windows.Forms.TextBox();
+            this.apellido = new System.Windows.Forms.TextBox();
+            this.nombre = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBoxNroDoc = new System.Windows.Forms.TextBox();
+            this.nroDocumento = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.comboBoxTipoDoc = new System.Windows.Forms.ComboBox();
-            this.clientesTableAdapter = new FrbaHotel.GD1C2018DataSetTableAdapters.ClientesTableAdapter();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.clientesBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gD1C2018DataSet)).BeginInit();
+            this.tipoDocumento = new System.Windows.Forms.ComboBox();
+            this.bindingSourceListaClientes = new System.Windows.Forms.BindingSource(this.components);
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            ((System.ComponentModel.ISupportInitialize)(this.listaClientes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceListaClientes)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // listaClientes
             // 
-            this.dataGridView1.AllowUserToOrderColumns = true;
-            this.dataGridView1.AutoGenerateColumns = false;
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.clidocumentoDataGridViewTextBoxColumn,
-            this.clidocidDataGridViewTextBoxColumn,
-            this.clinombreDataGridViewTextBoxColumn,
-            this.cliapellidoDataGridViewTextBoxColumn,
-            this.climailDataGridViewTextBoxColumn,
-            this.clinacionalidadDataGridViewTextBoxColumn,
-            this.clifechanacDataGridViewTextBoxColumn,
-            this.clihabilitadoDataGridViewCheckBoxColumn,
-            this.clicalleDataGridViewTextBoxColumn,
-            this.clicallenroDataGridViewTextBoxColumn,
-            this.clipisoDataGridViewTextBoxColumn,
-            this.clideptoDataGridViewTextBoxColumn,
-            this.clidirlocalidadDataGridViewTextBoxColumn,
-            this.clidirpaisDataGridViewTextBoxColumn,
-            this.clitelefonoDataGridViewTextBoxColumn});
-            this.dataGridView1.DataSource = this.clientesBindingSource;
-            this.dataGridView1.Location = new System.Drawing.Point(71, 212);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(566, 168);
-            this.dataGridView1.TabIndex = 42;
-            // 
-            // clidocumentoDataGridViewTextBoxColumn
-            // 
-            this.clidocumentoDataGridViewTextBoxColumn.DataPropertyName = "cli_documento";
-            this.clidocumentoDataGridViewTextBoxColumn.HeaderText = "cli_documento";
-            this.clidocumentoDataGridViewTextBoxColumn.Name = "clidocumentoDataGridViewTextBoxColumn";
-            // 
-            // clidocidDataGridViewTextBoxColumn
-            // 
-            this.clidocidDataGridViewTextBoxColumn.DataPropertyName = "cli_doc_id";
-            this.clidocidDataGridViewTextBoxColumn.HeaderText = "cli_doc_id";
-            this.clidocidDataGridViewTextBoxColumn.Name = "clidocidDataGridViewTextBoxColumn";
-            // 
-            // clinombreDataGridViewTextBoxColumn
-            // 
-            this.clinombreDataGridViewTextBoxColumn.DataPropertyName = "cli_nombre";
-            this.clinombreDataGridViewTextBoxColumn.HeaderText = "cli_nombre";
-            this.clinombreDataGridViewTextBoxColumn.Name = "clinombreDataGridViewTextBoxColumn";
-            // 
-            // cliapellidoDataGridViewTextBoxColumn
-            // 
-            this.cliapellidoDataGridViewTextBoxColumn.DataPropertyName = "cli_apellido";
-            this.cliapellidoDataGridViewTextBoxColumn.HeaderText = "cli_apellido";
-            this.cliapellidoDataGridViewTextBoxColumn.Name = "cliapellidoDataGridViewTextBoxColumn";
-            // 
-            // climailDataGridViewTextBoxColumn
-            // 
-            this.climailDataGridViewTextBoxColumn.DataPropertyName = "cli_mail";
-            this.climailDataGridViewTextBoxColumn.HeaderText = "cli_mail";
-            this.climailDataGridViewTextBoxColumn.Name = "climailDataGridViewTextBoxColumn";
-            // 
-            // clinacionalidadDataGridViewTextBoxColumn
-            // 
-            this.clinacionalidadDataGridViewTextBoxColumn.DataPropertyName = "cli_nacionalidad";
-            this.clinacionalidadDataGridViewTextBoxColumn.HeaderText = "cli_nacionalidad";
-            this.clinacionalidadDataGridViewTextBoxColumn.Name = "clinacionalidadDataGridViewTextBoxColumn";
-            // 
-            // clifechanacDataGridViewTextBoxColumn
-            // 
-            this.clifechanacDataGridViewTextBoxColumn.DataPropertyName = "cli_fecha_nac";
-            this.clifechanacDataGridViewTextBoxColumn.HeaderText = "cli_fecha_nac";
-            this.clifechanacDataGridViewTextBoxColumn.Name = "clifechanacDataGridViewTextBoxColumn";
-            // 
-            // clihabilitadoDataGridViewCheckBoxColumn
-            // 
-            this.clihabilitadoDataGridViewCheckBoxColumn.DataPropertyName = "cli_habilitado";
-            this.clihabilitadoDataGridViewCheckBoxColumn.HeaderText = "cli_habilitado";
-            this.clihabilitadoDataGridViewCheckBoxColumn.Name = "clihabilitadoDataGridViewCheckBoxColumn";
-            // 
-            // clicalleDataGridViewTextBoxColumn
-            // 
-            this.clicalleDataGridViewTextBoxColumn.DataPropertyName = "cli_calle";
-            this.clicalleDataGridViewTextBoxColumn.HeaderText = "cli_calle";
-            this.clicalleDataGridViewTextBoxColumn.Name = "clicalleDataGridViewTextBoxColumn";
-            // 
-            // clicallenroDataGridViewTextBoxColumn
-            // 
-            this.clicallenroDataGridViewTextBoxColumn.DataPropertyName = "cli_calle_nro";
-            this.clicallenroDataGridViewTextBoxColumn.HeaderText = "cli_calle_nro";
-            this.clicallenroDataGridViewTextBoxColumn.Name = "clicallenroDataGridViewTextBoxColumn";
-            // 
-            // clipisoDataGridViewTextBoxColumn
-            // 
-            this.clipisoDataGridViewTextBoxColumn.DataPropertyName = "cli_piso";
-            this.clipisoDataGridViewTextBoxColumn.HeaderText = "cli_piso";
-            this.clipisoDataGridViewTextBoxColumn.Name = "clipisoDataGridViewTextBoxColumn";
-            // 
-            // clideptoDataGridViewTextBoxColumn
-            // 
-            this.clideptoDataGridViewTextBoxColumn.DataPropertyName = "cli_depto";
-            this.clideptoDataGridViewTextBoxColumn.HeaderText = "cli_depto";
-            this.clideptoDataGridViewTextBoxColumn.Name = "clideptoDataGridViewTextBoxColumn";
-            // 
-            // clidirlocalidadDataGridViewTextBoxColumn
-            // 
-            this.clidirlocalidadDataGridViewTextBoxColumn.DataPropertyName = "cli_dir_localidad";
-            this.clidirlocalidadDataGridViewTextBoxColumn.HeaderText = "cli_dir_localidad";
-            this.clidirlocalidadDataGridViewTextBoxColumn.Name = "clidirlocalidadDataGridViewTextBoxColumn";
-            // 
-            // clidirpaisDataGridViewTextBoxColumn
-            // 
-            this.clidirpaisDataGridViewTextBoxColumn.DataPropertyName = "cli_dir_pais";
-            this.clidirpaisDataGridViewTextBoxColumn.HeaderText = "cli_dir_pais";
-            this.clidirpaisDataGridViewTextBoxColumn.Name = "clidirpaisDataGridViewTextBoxColumn";
-            // 
-            // clitelefonoDataGridViewTextBoxColumn
-            // 
-            this.clitelefonoDataGridViewTextBoxColumn.DataPropertyName = "cli_telefono";
-            this.clitelefonoDataGridViewTextBoxColumn.HeaderText = "cli_telefono";
-            this.clitelefonoDataGridViewTextBoxColumn.Name = "clitelefonoDataGridViewTextBoxColumn";
-            // 
-            // clientesBindingSource
-            // 
-            this.clientesBindingSource.DataMember = "Clientes";
-            this.clientesBindingSource.DataSource = this.gD1C2018DataSet;
-            // 
-            // gD1C2018DataSet
-            // 
-            this.gD1C2018DataSet.DataSetName = "GD1C2018DataSet";
-            this.gD1C2018DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.listaClientes.AllowUserToOrderColumns = true;
+            this.listaClientes.BackgroundColor = System.Drawing.Color.White;
+            this.listaClientes.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.listaClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.listaClientes.Location = new System.Drawing.Point(71, 206);
+            this.listaClientes.Name = "listaClientes";
+            this.listaClientes.Size = new System.Drawing.Size(566, 174);
+            this.listaClientes.TabIndex = 9;
             // 
             // cancelar
             // 
@@ -230,7 +96,7 @@
             this.buscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buscar.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buscar.ForeColor = System.Drawing.Color.White;
-            this.buscar.Location = new System.Drawing.Point(451, 156);
+            this.buscar.Location = new System.Drawing.Point(591, 386);
             this.buscar.Name = "buscar";
             this.buscar.Size = new System.Drawing.Size(101, 44);
             this.buscar.TabIndex = 6;
@@ -251,55 +117,55 @@
             this.label1.Text = "LISTADO CLIENTES";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // textBoxEmail
+            // eMail
             // 
-            this.textBoxEmail.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxEmail.ForeColor = System.Drawing.Color.DimGray;
-            this.textBoxEmail.Location = new System.Drawing.Point(71, 173);
-            this.textBoxEmail.Name = "textBoxEmail";
-            this.textBoxEmail.Size = new System.Drawing.Size(280, 22);
-            this.textBoxEmail.TabIndex = 5;
+            this.eMail.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.eMail.ForeColor = System.Drawing.Color.DimGray;
+            this.eMail.Location = new System.Drawing.Point(9, 119);
+            this.eMail.Name = "eMail";
+            this.eMail.Size = new System.Drawing.Size(280, 22);
+            this.eMail.TabIndex = 5;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.Black;
-            this.label7.Location = new System.Drawing.Point(68, 156);
+            this.label7.Location = new System.Drawing.Point(6, 102);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(42, 14);
+            this.label7.Size = new System.Drawing.Size(36, 14);
             this.label7.TabIndex = 36;
-            this.label7.Text = "eMAIL";
+            this.label7.Text = "eMail";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // textBoxApellido
+            // apellido
             // 
-            this.textBoxApellido.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxApellido.ForeColor = System.Drawing.Color.DimGray;
-            this.textBoxApellido.Location = new System.Drawing.Point(357, 121);
-            this.textBoxApellido.Name = "textBoxApellido";
-            this.textBoxApellido.Size = new System.Drawing.Size(280, 22);
-            this.textBoxApellido.TabIndex = 4;
+            this.apellido.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.apellido.ForeColor = System.Drawing.Color.DimGray;
+            this.apellido.Location = new System.Drawing.Point(298, 77);
+            this.apellido.Name = "apellido";
+            this.apellido.Size = new System.Drawing.Size(262, 22);
+            this.apellido.TabIndex = 4;
             // 
-            // textBoxNombre
+            // nombre
             // 
-            this.textBoxNombre.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxNombre.ForeColor = System.Drawing.Color.DimGray;
-            this.textBoxNombre.Location = new System.Drawing.Point(71, 121);
-            this.textBoxNombre.Name = "textBoxNombre";
-            this.textBoxNombre.Size = new System.Drawing.Size(280, 22);
-            this.textBoxNombre.TabIndex = 3;
+            this.nombre.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nombre.ForeColor = System.Drawing.Color.DimGray;
+            this.nombre.Location = new System.Drawing.Point(9, 77);
+            this.nombre.Name = "nombre";
+            this.nombre.Size = new System.Drawing.Size(280, 22);
+            this.nombre.TabIndex = 3;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(354, 104);
+            this.label5.Location = new System.Drawing.Point(295, 60);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(60, 14);
+            this.label5.Size = new System.Drawing.Size(52, 14);
             this.label5.TabIndex = 33;
-            this.label5.Text = "APELLIDO";
+            this.label5.Text = "Apellido";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label4
@@ -307,32 +173,32 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(68, 104);
+            this.label4.Location = new System.Drawing.Point(6, 60);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(52, 14);
+            this.label4.Size = new System.Drawing.Size(51, 14);
             this.label4.TabIndex = 32;
-            this.label4.Text = "NOMBRE";
+            this.label4.Text = "Nombre";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // textBoxNroDoc
+            // nroDocumento
             // 
-            this.textBoxNroDoc.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxNroDoc.ForeColor = System.Drawing.Color.DimGray;
-            this.textBoxNroDoc.Location = new System.Drawing.Point(357, 67);
-            this.textBoxNroDoc.Name = "textBoxNroDoc";
-            this.textBoxNroDoc.Size = new System.Drawing.Size(280, 22);
-            this.textBoxNroDoc.TabIndex = 2;
+            this.nroDocumento.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nroDocumento.ForeColor = System.Drawing.Color.DimGray;
+            this.nroDocumento.Location = new System.Drawing.Point(298, 33);
+            this.nroDocumento.Name = "nroDocumento";
+            this.nroDocumento.Size = new System.Drawing.Size(262, 22);
+            this.nroDocumento.TabIndex = 2;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(354, 50);
+            this.label3.Location = new System.Drawing.Point(295, 16);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(116, 14);
+            this.label3.Size = new System.Drawing.Size(112, 14);
             this.label3.TabIndex = 29;
-            this.label3.Text = "NRO DE DOCUMENTO";
+            this.label3.Text = "Nro. de documento";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label2
@@ -340,26 +206,41 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(68, 50);
+            this.label2.Location = new System.Drawing.Point(6, 16);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(119, 14);
+            this.label2.Size = new System.Drawing.Size(114, 14);
             this.label2.TabIndex = 28;
-            this.label2.Text = "TIPO DE DOCUMENTO";
+            this.label2.Text = "Tipo de documento";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // comboBoxTipoDoc
+            // tipoDocumento
             // 
-            this.comboBoxTipoDoc.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBoxTipoDoc.ForeColor = System.Drawing.Color.DimGray;
-            this.comboBoxTipoDoc.FormattingEnabled = true;
-            this.comboBoxTipoDoc.Location = new System.Drawing.Point(71, 67);
-            this.comboBoxTipoDoc.Name = "comboBoxTipoDoc";
-            this.comboBoxTipoDoc.Size = new System.Drawing.Size(280, 24);
-            this.comboBoxTipoDoc.TabIndex = 1;
+            this.tipoDocumento.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tipoDocumento.ForeColor = System.Drawing.Color.DimGray;
+            this.tipoDocumento.FormattingEnabled = true;
+            this.tipoDocumento.Location = new System.Drawing.Point(9, 33);
+            this.tipoDocumento.Name = "tipoDocumento";
+            this.tipoDocumento.Size = new System.Drawing.Size(280, 24);
+            this.tipoDocumento.TabIndex = 1;
             // 
-            // clientesTableAdapter
+            // groupBox1
             // 
-            this.clientesTableAdapter.ClearBeforeFill = true;
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.tipoDocumento);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.nroDocumento);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.nombre);
+            this.groupBox1.Controls.Add(this.eMail);
+            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.apellido);
+            this.groupBox1.Location = new System.Drawing.Point(71, 53);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(566, 147);
+            this.groupBox1.TabIndex = 39;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "FILTRAR BUSQUEDA POR:";
             // 
             // ListadoClientes
             // 
@@ -367,21 +248,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(704, 442);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.listaClientes);
             this.Controls.Add(this.cancelar);
             this.Controls.Add(this.limpiar);
             this.Controls.Add(this.buscar);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBoxEmail);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.textBoxApellido);
-            this.Controls.Add(this.textBoxNombre);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.textBoxNroDoc);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.comboBoxTipoDoc);
             this.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -391,9 +263,10 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FRBA Hotel 2018";
             this.Load += new System.EventHandler(this.ListadoClientes_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.clientesBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gD1C2018DataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.listaClientes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceListaClientes)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -401,38 +274,22 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView listaClientes;
         private System.Windows.Forms.Button cancelar;
         private System.Windows.Forms.Button limpiar;
         private System.Windows.Forms.Button buscar;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBoxEmail;
+        private System.Windows.Forms.TextBox eMail;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBoxApellido;
-        private System.Windows.Forms.TextBox textBoxNombre;
+        private System.Windows.Forms.TextBox apellido;
+        private System.Windows.Forms.TextBox nombre;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBoxNroDoc;
+        private System.Windows.Forms.TextBox nroDocumento;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboBoxTipoDoc;
-        private GD1C2018DataSet gD1C2018DataSet;
-        private System.Windows.Forms.BindingSource clientesBindingSource;
-        private GD1C2018DataSetTableAdapters.ClientesTableAdapter clientesTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clidocumentoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clidocidDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clinombreDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cliapellidoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn climailDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clinacionalidadDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clifechanacDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn clihabilitadoDataGridViewCheckBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clicalleDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clicallenroDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clipisoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clideptoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clidirlocalidadDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clidirpaisDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clitelefonoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.ComboBox tipoDocumento;
+        private System.Windows.Forms.BindingSource bindingSourceListaClientes;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }
