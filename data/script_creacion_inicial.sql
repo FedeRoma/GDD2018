@@ -80,7 +80,7 @@ go
 
 create procedure EN_CASA_ANDABA.buscarHoteles
 	@rolNombre varchar(50), @usuarioId int as
-	select H.hot_id 
+	select H.hot_id, H.hot_calle, H.hot_calle_nro 
 	from EN_CASA_ANDABA.Hoteles H, EN_CASA_ANDABA.Hoteles_Usuarios HU, EN_CASA_ANDABA.Roles R, 
 		EN_CASA_ANDABA.Roles_Usuarios RU
 	where HU.hyu_usu_id = @usuarioId and @rolNombre = R.rol_nombre and R.rol_id = RU.ryu_rol_id 
