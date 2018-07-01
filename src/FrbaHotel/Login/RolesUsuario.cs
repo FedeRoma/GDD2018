@@ -16,7 +16,23 @@ namespace FrbaHotel.Login
         public static Index index;
         public static MenuFuncionalidades funcionalidadesUsuarios;
         private SqlDataReader qry;
-        private bool cerrarFormulario = false; 
+        private bool cerrarFormulario = false;
+
+        private class Hotel
+        {
+            public int Valor;
+            public string Nombre;
+
+            public Hotel(int valor, string calle, int calle_nro)
+            {
+                Nombre = calle + " " + calle_nro.ToString();
+                Valor = valor;
+            }
+            public override string ToString()
+            {
+                return Nombre;
+            }
+        }
 
         public RolesUsuario()
         {
@@ -32,9 +48,6 @@ namespace FrbaHotel.Login
             }
             qry.Close();
             rol.SelectedIndex = 0;
-
-            DataTable hoteles = Index.BD.consultaGetTabla("select distinct hot_id ID, hot_calle NOMBRE from EN_CASA_ANDABA.Hoteles H, EN_CASA_ANDABA.Hoteles_Usuarios HU where H.hot_id = HU.hyu_hot_id and HU.hyu_usu_id = " + Index.usuarioID.ToString());
-            listaHoteles.DataSource = hoteles;
         }
 
         private void comboBoxRol_SelectedIndexChanged(object sender, EventArgs e)
@@ -42,9 +55,8 @@ namespace FrbaHotel.Login
             qry = Index.BD.consultaGetPuntero("exec EN_CASA_ANDABA.buscarHoteles '" + rol.SelectedItem + "' , " + Index.usuarioID.ToString());
             hotel.Items.Clear();
             while (qry.Read() == true)
-            {
-                hotel.Items.Add(qry.GetInt32(0));
-
+            {            
+                hotel.Items.Add(new Hotel(qry.GetInt32(0), qry.GetString(1), qry.GetInt32(2)));
             }
             qry.Close();
             hotel.SelectedIndex = 0;
@@ -55,7 +67,8 @@ namespace FrbaHotel.Login
             if (Convert.ToInt32(rol.SelectedIndex) != -1 && Convert.ToInt32(hotel.SelectedIndex) != -1)
             {
                 Index.rol = rol.SelectedItem.ToString();
-                Index.hotel = hotel.SelectedItem.ToString();
+                Hotel hotelSeleccionado = (Hotel)hotel.SelectedItem;
+                Index.hotel = hotelSeleccionado.Valor.ToString();
                 funcionalidadesUsuarios = new MenuFuncionalidades();
                 funcionalidadesUsuarios.Show();
                 cerrarFormulario = true;

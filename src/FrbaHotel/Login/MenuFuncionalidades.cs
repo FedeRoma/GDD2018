@@ -17,7 +17,23 @@ namespace FrbaHotel.Login
         public static Index index;
         public static CambiarContrasenia cambiarContrasenia;
         private bool cerrarFormulario = false;
- 
+/*
+        private class Hotel
+        {
+            public string Valor;
+            public string Nombre;
+
+            public Hotel(string valor, string calle, int calle_nro)
+            {
+                Nombre = calle + " " + calle_nro.ToString();
+                Valor = valor;
+            }
+            public override string ToString()
+            {
+                return Nombre;
+            }
+        }
+ */
         public MenuFuncionalidades()
         {
             InitializeComponent();
@@ -25,6 +41,11 @@ namespace FrbaHotel.Login
 
         private void MenuFuncionalidades_Load(object sender, EventArgs e)
         {
+            qry = Index.BD.consultaGetPuntero("select distinct hot_calle, hot_calle_nro from EN_CASA_ANDABA.Hoteles where hot_id = " + Index.hotel);
+            qry.Read();
+            hoteles.Items.Add(qry.GetString(0) + " " + qry.GetInt32(1).ToString());
+            qry.Close();
+
             qry = Index.BD.consultaGetPuntero("select distinct F.fun_desc from EN_CASA_ANDABA.Funcionalidades F, EN_CASA_ANDABA.Roles R, EN_CASA_ANDABA.Roles_Usuarios RyU, EN_CASA_ANDABA.Funcionalidades_Roles FyR, EN_CASA_ANDABA.Hoteles_Usuarios HyU where R.rol_nombre = '" + Index.rol + "' and R.rol_id = RyU.ryu_rol_id and R.rol_id = FyR.fyr_rol_id and FyR.fyr_fun_id = F.fun_id and RyU.ryu_usu_id = " + Index.usuarioID.ToString() + " and HyU.hyu_usu_id = RyU.ryu_usu_id and HyU.hyu_hot_id = " + Index.hotel);
             while (qry.Read() == true)
             {
@@ -32,11 +53,6 @@ namespace FrbaHotel.Login
             }
             qry.Close();
             funcionalidad.SelectedIndex = 0;
-
-            qry = Index.BD.consultaGetPuntero("select distinct hot_calle from EN_CASA_ANDABA.Hoteles where hot_id = " + Index.hotel);
-            qry.Read();
-            hoteles.Items.Add(qry.GetSqlString(0));
-            qry.Close();
         }
 
         private void SeleccionarFuncionalidad(string funcionalidad)
