@@ -17132,6 +17132,10 @@ namespace FrbaHotel {
             
             private global::System.Data.DataColumn columnhot_id;
             
+            private global::System.Data.DataColumn columnhot_calle;
+            
+            private global::System.Data.DataColumn columnhot_calle_nro;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public buscarHotelesDataTable() {
@@ -17175,6 +17179,22 @@ namespace FrbaHotel {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn hot_calleColumn {
+                get {
+                    return this.columnhot_calle;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn hot_calle_nroColumn {
+                get {
+                    return this.columnhot_calle_nro;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -17210,10 +17230,12 @@ namespace FrbaHotel {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public buscarHotelesRow AddbuscarHotelesRow() {
+            public buscarHotelesRow AddbuscarHotelesRow(string hot_calle, int hot_calle_nro) {
                 buscarHotelesRow rowbuscarHotelesRow = ((buscarHotelesRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        null};
+                        null,
+                        hot_calle,
+                        hot_calle_nro};
                 rowbuscarHotelesRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowbuscarHotelesRow);
                 return rowbuscarHotelesRow;
@@ -17244,6 +17266,8 @@ namespace FrbaHotel {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
                 this.columnhot_id = base.Columns["hot_id"];
+                this.columnhot_calle = base.Columns["hot_calle"];
+                this.columnhot_calle_nro = base.Columns["hot_calle_nro"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -17251,12 +17275,17 @@ namespace FrbaHotel {
             private void InitClass() {
                 this.columnhot_id = new global::System.Data.DataColumn("hot_id", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnhot_id);
+                this.columnhot_calle = new global::System.Data.DataColumn("hot_calle", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnhot_calle);
+                this.columnhot_calle_nro = new global::System.Data.DataColumn("hot_calle_nro", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnhot_calle_nro);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnhot_id}, true));
                 this.columnhot_id.AutoIncrement = true;
                 this.columnhot_id.AllowDBNull = false;
                 this.columnhot_id.ReadOnly = true;
                 this.columnhot_id.Unique = true;
+                this.columnhot_calle.MaxLength = 50;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -27081,6 +27110,62 @@ namespace FrbaHotel {
                 set {
                     this[this.tablebuscarHoteles.hot_idColumn] = value;
                 }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string hot_calle {
+                get {
+                    try {
+                        return ((string)(this[this.tablebuscarHoteles.hot_calleColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'hot_calle\' in table \'buscarHoteles\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablebuscarHoteles.hot_calleColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int hot_calle_nro {
+                get {
+                    try {
+                        return ((int)(this[this.tablebuscarHoteles.hot_calle_nroColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'hot_calle_nro\' in table \'buscarHoteles\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablebuscarHoteles.hot_calle_nroColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Ishot_calleNull() {
+                return this.IsNull(this.tablebuscarHoteles.hot_calleColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Sethot_calleNull() {
+                this[this.tablebuscarHoteles.hot_calleColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Ishot_calle_nroNull() {
+                return this.IsNull(this.tablebuscarHoteles.hot_calle_nroColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Sethot_calle_nroNull() {
+                this[this.tablebuscarHoteles.hot_calle_nroColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -45843,6 +45928,8 @@ SELECT urm_id, urm_res_id, urm_usu_id, urm_fecha FROM EN_CASA_ANDABA.Usuarios_Re
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "buscarHoteles";
             tableMapping.ColumnMappings.Add("hot_id", "hot_id");
+            tableMapping.ColumnMappings.Add("hot_calle", "hot_calle");
+            tableMapping.ColumnMappings.Add("hot_calle_nro", "hot_calle_nro");
             this._adapter.TableMappings.Add(tableMapping);
         }
         

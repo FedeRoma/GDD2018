@@ -2330,6 +2330,8 @@ SELECT urm_id, urm_res_id, urm_usu_id, urm_fecha FROM EN_CASA_ANDABA.Usuarios_Re
             </MainSource>
             <Mappings>
               <Mapping SourceColumn="hot_id" DataSetColumn="hot_id" />
+              <Mapping SourceColumn="hot_calle" DataSetColumn="hot_calle" />
+              <Mapping SourceColumn="hot_calle_nro" DataSetColumn="hot_calle_nro" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -3618,6 +3620,14 @@ SELECT urm_id, urm_res_id, urm_usu_id, urm_fecha FROM EN_CASA_ANDABA.Usuarios_Re
           <xs:complexType>
             <xs:sequence>
               <xs:element name="hot_id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:Generator_ColumnVarNameInTable="columnhot_id" msprop:Generator_ColumnPropNameInRow="hot_id" msprop:Generator_ColumnPropNameInTable="hot_idColumn" msprop:Generator_UserColumnName="hot_id" type="xs:int" />
+              <xs:element name="hot_calle" msprop:Generator_ColumnVarNameInTable="columnhot_calle" msprop:Generator_ColumnPropNameInRow="hot_calle" msprop:Generator_ColumnPropNameInTable="hot_calleColumn" msprop:Generator_UserColumnName="hot_calle" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="hot_calle_nro" msprop:Generator_ColumnVarNameInTable="columnhot_calle_nro" msprop:Generator_ColumnPropNameInRow="hot_calle_nro" msprop:Generator_ColumnPropNameInTable="hot_calle_nroColumn" msprop:Generator_UserColumnName="hot_calle_nro" type="xs:int" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
