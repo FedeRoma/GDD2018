@@ -13,146 +13,215 @@ namespace FrbaHotel.AbmCliente
 {
     public partial class AltaCliente : Form
     {
-        private SqlDataReader resultado;
+        private SqlDataReader qry;
         public static MenuAbmCliente AbmCli;
+        bool hayCamposVacios = false;
+        string insert = "";
+
+        private class TipoDocumento
+        {
+            public string Nombre;
+            public int Valor;
+            public TipoDocumento(int valor, string nombre)
+            {
+                Nombre = nombre;
+                Valor = valor;
+            }
+            public override string ToString()
+            {
+                return Nombre;
+            }
+        }
 
         public AltaCliente()
         {
             InitializeComponent();
+
+            qry = Index.BD.consultaGetPuntero("select distinct doc_id, doc_desc from EN_CASA_ANDABA.Documentos");
+            while (qry.Read())
+            {
+                tipoDocumento.Items.Add(new TipoDocumento(qry.GetInt32(0), qry.GetString(1)));
+            }
+            qry.Close();
+            
+            fechaNacimiento.Value = DateTime.Today;
         }
 
-        private void limpiar_Click(object sender, EventArgs e)
+        private bool checkCampos()
         {
-            textBoxDireccion.Text = string.Empty;
-            textBoxNombre.Text = string.Empty;
-            textBoxApellido.Text = string.Empty;
-            textBoxTelefono.Text = string.Empty;
-            textBoxEmail.Text = string.Empty;
-            textBoxNacionalidad.Text = string.Empty;
-            textBoxNroDoc.Text = string.Empty;
-            comboBoxTipoDoc.ResetText();
-            dateTimePickerFechaNac.ResetText();
-            comboBoxTipoDoc.Focus();
+            hayCamposVacios = false;
+            string alerta = "";
+
+            if (string.IsNullOrEmpty(tipoDocumento.Text))
+            {
+                alerta = alerta + "Debe ingresar un Tipo de Documento válido\n";
+                hayCamposVacios = true;
+            }
+            if (string.IsNullOrEmpty(nroDocumento.Text))
+            {
+                alerta = alerta + "Debe ingresar un Número de Documento válido\n";
+                hayCamposVacios = true;
+            }
+            if (string.IsNullOrEmpty(nombre.Text))
+            {
+                alerta = alerta + "Debe ingresar un Nombre válido\n";
+                hayCamposVacios = true;
+            }
+            if (string.IsNullOrEmpty(apellido.Text))
+            {
+                alerta = alerta + "Debe ingresar un Apellido válido\n";
+                hayCamposVacios = true;
+            }
+            if (string.IsNullOrEmpty(eMail.Text))
+            {
+                alerta = alerta + "Debe ingresar un eMail válido\n";
+                hayCamposVacios = true;
+            }
+            if (string.IsNullOrEmpty(nacionalidad.Text))
+            {
+                alerta = alerta + "Debe ingresar una Nacionalidad válida\n";
+                hayCamposVacios = true;
+            }
+            if (string.IsNullOrEmpty(calle.Text) || string.IsNullOrEmpty(calleNumero.Text))
+            {
+                alerta = alerta + "Debe ingresar una Dirección válida\n";
+                hayCamposVacios = true;
+            }
+            if (string.IsNullOrEmpty(telefono.Text))
+            {
+                alerta = alerta + "Debe ingresar un Teléfono válido\n";
+                hayCamposVacios = true;
+            }
+            if (string.IsNullOrEmpty(localidad.Text) || string.IsNullOrEmpty(pais.Text))
+            {
+                alerta = alerta + "Debe ingresar una Localidad y/o Pais válidos\n";
+                hayCamposVacios = true;
+            }
+            if (string.IsNullOrEmpty(fechaNacimiento.Text))
+            {
+                alerta = alerta + "Debe ingresar un nombre válido\n";
+                hayCamposVacios = true;
+            }
+
+            DateTime fechaNac, hoy;
+            fechaNac = Convert.ToDateTime(fechaNacimiento.Value);
+            hoy = DateTime.Today;
+
+            if (DateTime.Compare(fechaNac, hoy) >= 0)
+            {
+                alerta = alerta + "Debe ingresar una Fecha de Nacimiento válida\n";
+                hayCamposVacios = true;
+            }
+
+            if (hayCamposVacios)
+            {
+                MessageBox.Show(alerta);
+            }
+            return hayCamposVacios;
         }
 
-        private int checkVacios()
+        private string insertString(string campo)
         {
-            int a = 0;
-            string mensaje = "";
+            if (string.IsNullOrEmpty(campo))
+            {
+                insert = insert + "null,";
+            }
+            else
+            {
+                insert = insert + "'" + campo + "',";
+            }
+            return insert;
+        }
 
-            if (string.IsNullOrEmpty(textBoxNombre.Text))
+        private string insertInt(string campo)
+        {
+            if (string.IsNullOrEmpty(campo))
             {
-                a = 1;
-                mensaje = mensaje + "El campo nombre es obligatorio\n";
+                insert = insert + "null,";
             }
-            if (string.IsNullOrEmpty(textBoxApellido.Text))
+            else
             {
-                a = 1;
-                mensaje = mensaje + "El campo apellido es obligatorio\n";
+                insert = insert + "" + campo + ",";
             }
-            if (string.IsNullOrEmpty(textBoxNacionalidad.Text))
-            {
-                a = 1;
-                mensaje = mensaje + "El campo nacionalidad es obligatorio\n";
-            }
-
-            if (string.IsNullOrEmpty(comboBoxTipoDoc.Text))
-            {
-                a = 1;
-                mensaje = mensaje + "El campo tipo doc es obligatorio\n";
-            }
-            if (string.IsNullOrEmpty(textBoxTelefono.Text))
-            {
-                a = 1;
-                mensaje = mensaje + "El campo telefono es obligatorio\n";
-            }
-            if (string.IsNullOrEmpty(textBoxNroDoc.Text))
-            {
-                a = 1;
-                mensaje = mensaje + "El campo NroDoc es obligatorio\n";
-            }
-            if (string.IsNullOrEmpty(textBoxEmail.Text))
-            {
-                a = 1;
-                mensaje = mensaje + "El campo mail es obligatorio\n";
-            }
-            if (string.IsNullOrEmpty(textBoxDireccion.Text))
-            {
-                a = 1;
-                mensaje = mensaje + "El campo direccion es obligatorio\n";
-            }
-
-            DateTime fecha;
-            fecha = Convert.ToDateTime(dateTimePickerFechaNac.Value);
-
-            DateTime s = DateTime.Today;
-
-            int result = DateTime.Compare(fecha, s);
-
-            if (result >= 0)
-            {
-                a = 1;
-                mensaje = mensaje + "La fecha debe ser menor a la actual\n";
-            }
-
-            if (a == 1)
-            {
-                MessageBox.Show(mensaje);
-            }
-            return a;
+            return insert;
         }
 
         private void guardar_Click(object sender, EventArgs e)
         {
-            int a = checkVacios();
-            if (a == 0)
+            
+            if (!checkCampos())
             {
-                string insert = "EXEC EN_CASA_ANDABA.altaCLiente ";
-                insert = insert + "'" + textBoxNroDoc + "',";
-                insert = insert + "'" + comboBoxTipoDoc.Text + "',";
-                insert = insert + "'" + textBoxNombre.Text + "',";
-                insert = insert + "'" + textBoxApellido.Text + "',";
-                insert = insert + "'" + textBoxEmail.Text + "',";
-                insert = insert + "'" + textBoxNacionalidad.Text + "',";
+                insert = "exec EN_CASA_ANDABA.altaCliente ";
+                insert = insertInt(nroDocumento.Text);
+                insert = insertString(tipoDocumento.Text);
+                insert = insertString(nombre.Text);
+                insert = insertString(apellido.Text);
+                insert = insertString(eMail.Text);
+                insert = insertString(nacionalidad.Text);
 
                 DateTime fecha;
+                fecha = Convert.ToDateTime(fechaNacimiento.Value);
+                insert = insertString(fecha.Date.ToString("yyyyMMdd HH:mm:ss"));
 
-                fecha = Convert.ToDateTime(dateTimePickerFechaNac.Value);
-                string fechaString = fecha.Date.ToString("yyyyMMdd HH:mm:ss");
-                insert = insert + "'" + fechaString + "',";
-                insert = insert + textBoxDireccion.Text + ","; // #Issue03
-                insert = insert + textBoxTelefono.Text + ",";
+                insert = insertString(calle.Text);
+                insert = insertInt(calleNumero.Text);
+                insert = insertString(piso.Text);
+                insert = insertString(departamento.Text);
+                insert = insertString(localidad.Text);
+                insert = insertString(pais.Text);
+                insert = insertString(telefono.Text);
 
-                decimal ok = 0;
-                decimal email = 0;
+                insert = insert.Remove(insert.Length - 1);
 
-                resultado = Index.BD.consultaGetPuntero(insert);
-                if (resultado.Read())
+                bool insertOk = false;
+                int cantEmailsRepetidos = 0;
+
+                qry = Index.BD.consultaGetPuntero(insert);
+                if (qry.Read())
                 {
-                    ok = resultado.GetDecimal(0);
+                    insertOk = qry.GetBoolean(0);
                 }
-                resultado.Close();
+                qry.Close();
 
-                resultado = Index.BD.consultaGetPuntero("select count (*) from EN_CASA_ANDABA.Clientes where mail = '" + textBoxEmail.Text + "'");
-                if (resultado.Read())
+                qry = Index.BD.consultaGetPuntero("select count (*) from EN_CASA_ANDABA.Clientes where cli_mail = '" + eMail.Text + "'");
+                if (qry.Read())
                 {
-                    email = resultado.GetDecimal(0);
+                    cantEmailsRepetidos = qry.GetInt32(0);
                 }
-                resultado.Close();
+                qry.Close();
 
-                if (ok == 1 && email == 0)
+                if (insertOk && cantEmailsRepetidos == 1)
                 {
-                    MessageBox.Show("Operación realizada con éxito");                 
+                    MessageBox.Show("Cliente dado de alta ");                 
                 }
-                else if (ok == 2)
+                else if (!insertOk)
                 {
-                    MessageBox.Show("Error: no se pudo guardar");
+                    MessageBox.Show("#error: no se ha podido realizar la operación");
                 }
                 else
                 {
-                    MessageBox.Show("Error: Email ya registrado");
+                    MessageBox.Show("#error: el eMail ya se encuentra registrado");
                 }
             }
+        }
+
+        private void limpiar_Click(object sender, EventArgs e)
+        {
+            tipoDocumento.ResetText();
+            nroDocumento.ResetText();
+            nombre.Text = string.Empty;
+            apellido.Text = string.Empty;
+            eMail.Text = string.Empty;
+            nacionalidad.Text = string.Empty;
+            fechaNacimiento.ResetText();
+            calle.Text = string.Empty;
+            calleNumero.Text = string.Empty;
+            piso.Text = string.Empty;
+            departamento.Text = string.Empty;
+            telefono.Text = string.Empty;
+            localidad.Text = string.Empty;
+            pais.Text = string.Empty;
+            tipoDocumento.Focus();
         }
 
         private void cancelar_Click(object sender, EventArgs e)
@@ -160,13 +229,6 @@ namespace FrbaHotel.AbmCliente
             this.Hide();
             AbmCli = new MenuAbmCliente();
             AbmCli.Show();
-        }
-
-        private void AltaCliente_Load(object sender, EventArgs e)
-        {
-            // TODO: This line of code loads data into the 'gD1C2018DataSet.Documentos' table. You can move, or remove it, as needed.
-            this.documentosTableAdapter.Fill(this.gD1C2018DataSet.Documentos);
-
         }
 
     }
