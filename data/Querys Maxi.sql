@@ -1,3 +1,247 @@
+create procedure EN_CASA_ANDABA.top5_hoteles_reservas_canceladas
+	@trimestre numeric(18,0), @anio numeric(18,0) as
+	begin
+		declare @inicio datetime, @fin datetime, @anioAux char(4)
+		set @anioAux = CAST(@anio as char(4))
+		if (@trimestre = 1)
+			begin
+				set @inicio = '01-01-'+@anioAux
+				set @fin = '31-03-'+@anioAux
+			end
+		else if (@trimestre = 2)
+			begin
+				set @inicio = '01-04-'+@anioAux
+				set @fin = '30-06-'+@anioAux
+			end
+		else if (@trimestre = 3)
+			begin 
+				set @inicio = '01-07-'+@anioAux
+				set @fin = '30-09-'+@anioAux
+			end
+		else if (@trimestre = 4)
+			begin
+				set @inicio = '01-10-'+@anioAux
+				set @fin = '31-12-'+@anioAux
+			end
+		else 
+			begin
+				set @inicio = '01-01-'+@anioAux
+				set @fin = '31-12-'+@anioAux
+			end
+		select top 5 HO.hot_nombre as Hotel, HO.hot_calle as Calle, HO.hot_calle_nro as Numero, count(R.res_estados_id) as [Reservas Canceladas]
+			from EN_CASA_ANDABA.reservas R, EN_CASA_ANDABA.hoteles HO, EN_CASA_ANDABA.habitaciones HA,
+				EN_CASA_ANDABA.Reservas_habitaciones RH, EN_CASA_ANDABA.Estados E,
+				EN_CASA_ANDABA.Usuarios_ReservasCancelaciones U_RC
+			where R.res_estados_id = E.estados_id and (E.estados_desc = 'Reserva CANCELADA MAESTRA' or
+				E.estados_desc = 'Reserva CANCELADA POR RECEPCION' or
+  				E.estados_desc = 'Reserva CANCELADA POR NO-SHOW' or
+				E.estados_desc = 'Reserva CANCELADA POR CLIENTE') and
+				HA.hab_id = RH.ryh_hab_id and HA.hab_hot_id = HO.hot_id and U_RC.urc_res_id = R.res_id and
+				RH.ryh_res_id = R.res_id and U_RC.urc_fecha between @inicio and @fin
+			group by HO.hot_nombre, HO.hot_calle, Ho.hot_calle_nro
+			order by [Reservas Canceladas] desc				
+	end
+go
+
+create procedure EN_CASA_ANDABA.top5_hoteles_consumibles_facturados
+	@trimestre numeric(18,0), @anio numeric(18,0) as
+	begin
+		declare @inicio datetime, @fin datetime, @anioAux char(4)
+		set @anioAux = CAST(@anio as char(4))
+		if (@trimestre = 1)
+			begin
+				set @inicio = '01-01-'+@anioAux
+				set @fin = '31-03-'+@anioAux
+			end
+		else if (@trimestre = 2)
+			begin
+				set @inicio = '01-04-'+@anioAux
+				set @fin = '30-06-'+@anioAux
+			end
+		else if (@trimestre = 3)
+			begin 
+				set @inicio = '01-07-'+@anioAux
+				set @fin = '30-09-'+@anioAux
+			end
+		else if (@trimestre = 4)
+			begin
+				set @inicio = '01-10-'+@anioAux
+				set @fin = '31-12-'+@anioAux
+			end
+		else 
+			begin
+				set @inicio = '01-01-'+@anioAux
+				set @fin = '31-12-'+@anioAux
+			end
+		select top 5 H.hot_nombre as Hotel, H.hot_calle as Calle, H.hot_calle_nro as Numero, sum(iyf_cantidad) as [Consumibles Facturados]
+			from EN_CASA_ANDABA.Items_Facturas IYF, EN_CASA_ANDABA.facturas F, EN_CASA_ANDABA.Estadias E,
+				EN_CASA_ANDABA.Clientes_estadias CYE, EN_CASA_ANDABA.Hoteles H
+			where IYF.iyf_fac_id = F.fac_id and F.fac_est_res_id = E.est_res_id 
+				and CYE.cye_est_res_id = E.est_res_id and F.fac_fecha between @inicio AND @fin
+				and CYE.cye_hab_hot_id = H.hot_id
+			group by H.hot_nombre, H.hot_calle, H.hot_calle_nro
+			order by [Consumibles Facturados] desc
+	end
+go
+
+create procedure EN_CASA_ANDABA.top5_hoteles_dias_fuera_de_servicio
+	@trimestre numeric(18,0), @anio numeric(18,0) as
+	begin
+		declare @inicio datetime, @fin datetime, @anioAux char(4)
+		set @anioAux = CAST(@anio as char(4))
+		if (@trimestre = 1)
+			begin
+				set @inicio = '01-01-'+@anioAux
+				set @fin = '31-03-'+@anioAux
+			end
+		else if (@trimestre = 2)
+			begin
+				set @inicio = '01-04-'+@anioAux
+				set @fin = '30-06-'+@anioAux
+			end
+		else if (@trimestre = 3)
+			begin 
+				set @inicio = '01-07-'+@anioAux
+				set @fin = '30-09-'+@anioAux
+			end
+		else if (@trimestre = 4)
+			begin
+				set @inicio = '01-10-'+@anioAux
+				set @fin = '31-12-'+@anioAux
+			end
+		else 
+			begin
+				set @inicio = '01-01-'+@anioAux
+				set @fin = '31-12-'+@anioAux
+			end
+		select top 5 Hotel as Hotel, Calle as Calle, Numero as Numero ,SUM(total.dias) as Dias from  
+			(select * from
+				(select H.hot_nombre as Hotel, h.hot_calle as Calle, h.hot_calle_nro as Numero, SUM(DATEDIFF(day, B.baj_fecha_inicio, B.baj_fecha_fin)) as dias
+					from EN_CASA_ANDABA.BajasHotel B, EN_CASA_ANDABA.Hoteles H
+					where B.baj_hot_id = H.hot_id and B.baj_fecha_inicio between @inicio and @fin
+						and B.baj_fecha_fin < @fin
+					group by H.hot_nombre, h.hot_calle, h.hot_calle_nro) as antesFin
+			UNION ALL
+			select * from
+				(select H.hot_nombre as Hotel, h.hot_calle as Calle, h.hot_calle_nro as Numero, SUM(DATEDIFF(day, B.baj_fecha_inicio,@fin)) as dias
+					from EN_CASA_ANDABA.BajasHotel B, EN_CASA_ANDABA.Hoteles H
+					where B.baj_hot_id = H.hot_id and B.baj_fecha_inicio between @inicio and @fin
+						and B.baj_fecha_fin > @fin
+					group by H.hot_nombre, h.hot_calle, h.hot_calle_nro) as luegoFin) as total, EN_CASA_ANDABA.Hoteles HO
+					where HO.hot_calle = total.calle
+					and ho.hot_calle_nro = total.numero
+					and ho.hot_nombre = total.Hotel
+					group by Hotel,Calle,Numero
+					order by dias desc
+	end
+go
+
+create procedure EN_CASA_ANDABA.top5_habitaciones_veces_ocupadas
+	@trimestre numeric(18,0), @anio numeric(18,0) as
+	begin
+		declare @inicio datetime, @fin datetime, @anioAux char(4)
+		set @anioAux = CAST(@anio as char(4))
+		if (@trimestre = 1)
+			begin
+				set @inicio = '01-01-'+@anioAux
+				set @fin = '31-03-'+@anioAux
+			end
+		else if (@trimestre = 2)
+			begin
+				set @inicio = '01-04-'+@anioAux
+				set @fin = '30-06-'+@anioAux
+			end
+		else if (@trimestre = 3)
+			begin 
+				set @inicio = '01-07-'+@anioAux
+				set @fin = '30-09-'+@anioAux
+			end
+		else if (@trimestre = 4)
+			begin
+				set @inicio = '01-10-'+@anioAux
+				set @fin = '31-12-'+@anioAux
+			end
+		else 
+			begin
+				set @inicio = '01-01-'+@anioAux
+				set @fin = '31-12-'+@anioAux
+			end
+		select distinct top 5 HO.hot_nombre as Hotel, HO.hot_calle as Calle, HO.hot_calle_nro as Numero, HA.hab_numero as [Numero Habitacion],
+				HA.hab_piso as [Piso Habitacion], cantidad_habitacion.cantVeces as [Veces Ocupada],
+				cantidad_dias.Dias as [Dias Ocupada]
+			from (select hab_id as hab, hab_hot_id as hot, COUNT(hab_id) cantVeces
+					from EN_CASA_ANDABA.reservas_habitaciones RYH, EN_CASA_ANDABA.Habitaciones HA,
+							EN_CASA_ANDABA.Reservas R, EN_CASA_ANDABA.Hoteles HO, EN_CASA_ANDABA.Estadias E
+					where RYH.ryh_hab_id = HA.hab_id and RYH.ryh_hab_hot_id = HA.hab_hot_id 
+							and RYH.ryh_res_id = R.res_id and HO.hot_id = HA.hab_hot_id 
+							and E.est_res_id = R.res_id and E.est_checkin between @inicio and @fin
+					group by hab_id, hab_hot_id) as cantidad_habitacion, 
+					(select  HA.hab_id as hab2, HA.hab_hot_id, SUM(DATEDIFF(day, E.est_checkin, E.est_checkout)) Dias
+						from EN_CASA_ANDABA.reservas_habitaciones RYH, EN_CASA_ANDABA.Habitaciones HA,
+								EN_CASA_ANDABA.Reservas R, EN_CASA_ANDABA.Hoteles HO, EN_CASA_ANDABA.Estadias E
+						where RYH.ryh_hab_id = HA.hab_id and RYH.ryh_res_id = R.res_id and
+							  HO.hot_id = HA.hab_hot_id and E.est_res_id = R.res_id and 
+							  E.est_checkin between @inicio and @fin
+						group by HA.hab_id, HA.hab_hot_id) as cantidad_dias,EN_CASA_ANDABA.Hoteles HO,
+							EN_CASA_ANDABA.Habitaciones HA, EN_CASA_ANDABA.Estadias E
+						where cantidad_habitacion.hot = HO.hot_id and HA.hab_id = cantidad_habitacion.hab and
+							cantidad_habitacion.hab = cantidad_dias.hab2 and E.est_checkin between @inicio and @fin
+						order by [Veces Ocupada] desc
+	end
+go
+
+create procedure EN_CASA_ANDABA.top5_clientes_puntos
+	@trimestre numeric(18,0), @anio numeric(18,0) as
+	begin
+		declare @inicio datetime, @fin datetime, @anioAux char(4)
+		set @anioAux = CAST(@anio as char(4))
+		if (@trimestre = 1)
+			begin
+				set @inicio = '01-01-'+@anioAux
+				set @fin = '31-03-'+@anioAux
+			end
+		else if (@trimestre = 2)
+			begin
+				set @inicio = '01-04-'+@anioAux
+				set @fin = '30-06-'+@anioAux
+			end
+		else if (@trimestre = 3)
+			begin 
+				set @inicio = '01-07-'+@anioAux
+				set @fin = '30-09-'+@anioAux
+			end
+		else if (@trimestre = 4)
+			begin
+				set @inicio = '01-10-'+@anioAux
+				set @fin = '31-12-'+@anioAux
+			end
+		else 
+			begin
+				set @inicio = '01-01-'+@anioAux
+				set @fin = '31-12-'+@anioAux
+			end
+		select top 5 C.cli_nombre as Nombre, C.cli_apellido as Apellido,C.cli_doc_id as [Tipo Documento], C.cli_documento as Documento,
+		puntos_estadias.puntos+puntos_consumibles.puntos as Puntos
+		from (select E.est_res_id, SUM(E.est_precio) as gastos, SUM(E.est_precio) / 20 as puntos
+				from EN_CASA_ANDABA.Estadias E, EN_CASA_ANDABA.Reservas R, EN_CASA_ANDABA.Facturas F
+		where E.est_res_id = R.res_id and F.fac_est_res_id = E.est_res_id and F.fac_fecha between @inicio and @fin
+		group by E.est_res_id) as puntos_estadias, 
+			(select E.est_res_id, SUM(CON.con_precio) Gasto, SUM(CON.con_precio) / 10 as puntos
+				from EN_CASA_ANDABA.Consumibles CON, EN_CASA_ANDABA.items_facturas IYF, EN_CASA_ANDABA.Facturas F,
+					EN_CASA_ANDABA.Estadias E
+				where iyf_con_id = con_id and iyf_fac_id = fac_id and fac_est_res_id = est_res_id
+					and F.fac_fecha between @inicio and @fin
+				group by E.est_res_id) as puntos_consumibles, EN_CASA_ANDABA.Clientes C, EN_CASA_ANDABA.Estadias E,
+					EN_CASA_ANDABA.Reservas R
+				where R.res_cli_doc_id = C.cli_doc_id and R.res_cli_documento = C.cli_documento 
+					and E.est_res_id = R.res_id and puntos_consumibles.est_res_id = E.est_res_id and 
+					puntos_estadias.est_res_id = E.est_res_id
+				order by Puntos desc
+	end
+go
+
+----------------------------------------------------------------------------------------------------------------
+
 -- ABM Cliente
 
 --Cambio Password
