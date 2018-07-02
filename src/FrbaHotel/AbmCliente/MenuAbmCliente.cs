@@ -16,6 +16,7 @@ namespace FrbaHotel.AbmCliente
         public static AltaCliente AltaCli;
         public static BajaCliente BajaCli;
         public static ListadoClientesMod ListadoModificacionCli;
+        public static Login.MenuFuncionalidades menuFuncionalidades;
         
         public MenuAbmCliente()
         {
@@ -52,7 +53,9 @@ namespace FrbaHotel.AbmCliente
 
         private void atras_Click(object sender, EventArgs e)
         {
-            // #Issue02
+            menuFuncionalidades = new Login.MenuFuncionalidades();
+            menuFuncionalidades.Show();
+            this.Close();
         }
 
     }

@@ -57,9 +57,9 @@
             this.listaClientes.BackgroundColor = System.Drawing.Color.White;
             this.listaClientes.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.listaClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.listaClientes.Location = new System.Drawing.Point(71, 206);
+            this.listaClientes.Location = new System.Drawing.Point(71, 214);
             this.listaClientes.Name = "listaClientes";
-            this.listaClientes.Size = new System.Drawing.Size(566, 174);
+            this.listaClientes.Size = new System.Drawing.Size(566, 166);
             this.listaClientes.TabIndex = 9;
             // 
             // cancelar
@@ -237,7 +237,7 @@
             this.groupBox1.Controls.Add(this.apellido);
             this.groupBox1.Location = new System.Drawing.Point(71, 53);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(566, 147);
+            this.groupBox1.Size = new System.Drawing.Size(566, 155);
             this.groupBox1.TabIndex = 39;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "FILTRAR BUSQUEDA POR:";
