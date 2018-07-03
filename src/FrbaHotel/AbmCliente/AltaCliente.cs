@@ -92,6 +92,16 @@ namespace FrbaHotel.AbmCliente
                 alerta = alerta + "Debe ingresar un eMail válido\n";
                 hayCamposVacios = true;
             }
+            else
+            {     
+                qry = Index.BD.consultaGetPuntero("select * from EN_CASA_ANDABA.Clientes where cli_mail = '" + eMail.Text + "'");
+                if (qry.Read())
+                {
+                    alerta = alerta + "eMail ya registrado\n";
+                    hayCamposVacios = true;
+                }
+                qry.Close();
+            }
             if (string.IsNullOrEmpty(nacionalidad.Text))
             {
                 alerta = alerta + "Debe ingresar una Nacionalidad válida\n";
@@ -163,7 +173,6 @@ namespace FrbaHotel.AbmCliente
 
         private void guardar_Click(object sender, EventArgs e)
         {
-            
             if (!checkCampos())
             {
                 insert = "exec EN_CASA_ANDABA.altaCliente ";
@@ -189,7 +198,6 @@ namespace FrbaHotel.AbmCliente
                 insert = insert.Remove(insert.Length - 1);
 
                 bool insertOk = false;
-                int cantEmailsRepetidos = 0;
 
                 qry = Index.BD.consultaGetPuntero(insert);
                 if (qry.Read())
@@ -198,25 +206,15 @@ namespace FrbaHotel.AbmCliente
                 }
                 qry.Close();
 
-                qry = Index.BD.consultaGetPuntero("select count (*) from EN_CASA_ANDABA.Clientes where cli_mail = '" + eMail.Text + "'");
-                if (qry.Read())
+                if (insertOk)
                 {
-                    cantEmailsRepetidos = qry.GetInt32(0);
-                }
-                qry.Close();
-
-                if (insertOk && cantEmailsRepetidos == 1)
-                {
-                    MessageBox.Show("Cliente dado de alta ");                 
-                }
-                else if (!insertOk)
-                {
-                    MessageBox.Show("#error: no se ha podido realizar la operación");
+                    MessageBox.Show("Cliente dado de alta");
                 }
                 else
                 {
-                    MessageBox.Show("#error: el eMail ya se encuentra registrado");
+                    MessageBox.Show("#error: no se ha podido realizar la operación");
                 }
+                limpiar.PerformClick();
             }
         }
 
