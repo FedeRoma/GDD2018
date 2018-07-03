@@ -17,23 +17,7 @@ namespace FrbaHotel.Login
         public static Index index;
         public static CambiarContrasenia cambiarContrasenia;
         private bool cerrarFormulario = false;
-/*
-        private class Hotel
-        {
-            public string Valor;
-            public string Nombre;
 
-            public Hotel(string valor, string calle, int calle_nro)
-            {
-                Nombre = calle + " " + calle_nro.ToString();
-                Valor = valor;
-            }
-            public override string ToString()
-            {
-                return Nombre;
-            }
-        }
- */
         public MenuFuncionalidades()
         {
             InitializeComponent();
@@ -60,9 +44,9 @@ namespace FrbaHotel.Login
          switch (funcionalidad)
             {
                 case "ABM Rol":
-                    //this.Hide();
-                    //AbmRol.MenuAbmRol IndexRol = new AbmRol.MenuAbmRol();
-                    //IndexRol.Show();
+                    this.Hide();
+                    AbmRol.MenuAbmRol IndexRol = new AbmRol.MenuAbmRol();
+                    IndexRol.Show();
                     break;
                 case "ABM Usuario":
                     //this.Hide();
