@@ -28,13 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AltaCliente));
             this.label1 = new System.Windows.Forms.Label();
             this.tipoDocumento = new System.Windows.Forms.ComboBox();
-            this.documentosBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.gD1C2018DataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.gD1C2018DataSet = new FrbaHotel.GD1C2018DataSet();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.nroDocumento = new System.Windows.Forms.TextBox();
@@ -55,7 +51,6 @@
             this.limpiar = new System.Windows.Forms.Button();
             this.atras = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
-            this.documentosTableAdapter = new FrbaHotel.GD1C2018DataSetTableAdapters.DocumentosTableAdapter();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label22 = new System.Windows.Forms.Label();
             this.pais = new System.Windows.Forms.TextBox();
@@ -68,9 +63,6 @@
             this.piso = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.calleNumero = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.documentosBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gD1C2018DataSetBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gD1C2018DataSet)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -96,21 +88,6 @@
             this.tipoDocumento.Name = "tipoDocumento";
             this.tipoDocumento.Size = new System.Drawing.Size(206, 24);
             this.tipoDocumento.TabIndex = 1;
-            // 
-            // documentosBindingSource
-            // 
-            this.documentosBindingSource.DataMember = "Documentos";
-            this.documentosBindingSource.DataSource = this.gD1C2018DataSetBindingSource;
-            // 
-            // gD1C2018DataSetBindingSource
-            // 
-            this.gD1C2018DataSetBindingSource.DataSource = this.gD1C2018DataSet;
-            this.gD1C2018DataSetBindingSource.Position = 0;
-            // 
-            // gD1C2018DataSet
-            // 
-            this.gD1C2018DataSet.DataSetName = "GD1C2018DataSet";
-            this.gD1C2018DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // label2
             // 
@@ -207,7 +184,7 @@
             this.telefono.Location = new System.Drawing.Point(155, 73);
             this.telefono.Name = "telefono";
             this.telefono.Size = new System.Drawing.Size(193, 22);
-            this.telefono.TabIndex = 12;
+            this.telefono.TabIndex = 11;
             // 
             // eMail
             // 
@@ -237,7 +214,7 @@
             this.calle.Location = new System.Drawing.Point(6, 31);
             this.calle.Name = "calle";
             this.calle.Size = new System.Drawing.Size(259, 22);
-            this.calle.TabIndex = 8;
+            this.calle.TabIndex = 7;
             // 
             // label9
             // 
@@ -258,7 +235,7 @@
             this.fechaNacimiento.Location = new System.Drawing.Point(291, 332);
             this.fechaNacimiento.Name = "fechaNacimiento";
             this.fechaNacimiento.Size = new System.Drawing.Size(348, 21);
-            this.fechaNacimiento.TabIndex = 7;
+            this.fechaNacimiento.TabIndex = 14;
             // 
             // label10
             // 
@@ -336,10 +313,6 @@
             this.label11.Text = "(*) campos obligatorios";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // documentosTableAdapter
-            // 
-            this.documentosTableAdapter.ClearBeforeFill = true;
-            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.label22);
@@ -382,7 +355,7 @@
             this.pais.Location = new System.Drawing.Point(186, 115);
             this.pais.Name = "pais";
             this.pais.Size = new System.Drawing.Size(162, 22);
-            this.pais.TabIndex = 14;
+            this.pais.TabIndex = 13;
             // 
             // label16
             // 
@@ -403,7 +376,7 @@
             this.localidad.Location = new System.Drawing.Point(6, 115);
             this.localidad.Name = "localidad";
             this.localidad.Size = new System.Drawing.Size(174, 22);
-            this.localidad.TabIndex = 13;
+            this.localidad.TabIndex = 12;
             // 
             // label15
             // 
@@ -436,7 +409,7 @@
             this.departamento.Location = new System.Drawing.Point(58, 73);
             this.departamento.Name = "departamento";
             this.departamento.Size = new System.Drawing.Size(91, 22);
-            this.departamento.TabIndex = 11;
+            this.departamento.TabIndex = 10;
             // 
             // label13
             // 
@@ -457,7 +430,7 @@
             this.piso.Location = new System.Drawing.Point(6, 73);
             this.piso.Name = "piso";
             this.piso.Size = new System.Drawing.Size(46, 22);
-            this.piso.TabIndex = 10;
+            this.piso.TabIndex = 9;
             // 
             // label12
             // 
@@ -478,7 +451,7 @@
             this.calleNumero.Location = new System.Drawing.Point(271, 31);
             this.calleNumero.Name = "calleNumero";
             this.calleNumero.Size = new System.Drawing.Size(77, 22);
-            this.calleNumero.TabIndex = 9;
+            this.calleNumero.TabIndex = 8;
             this.calleNumero.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.calleNumero_KeyPress);
             // 
             // AltaCliente
@@ -515,9 +488,6 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FRBA Hotel 2018";
-            ((System.ComponentModel.ISupportInitialize)(this.documentosBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gD1C2018DataSetBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gD1C2018DataSet)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -549,10 +519,6 @@
         private System.Windows.Forms.Button limpiar;
         private System.Windows.Forms.Button atras;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.BindingSource gD1C2018DataSetBindingSource;
-        private GD1C2018DataSet gD1C2018DataSet;
-        private System.Windows.Forms.BindingSource documentosBindingSource;
-        private GD1C2018DataSetTableAdapters.DocumentosTableAdapter documentosTableAdapter;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox pais;
         private System.Windows.Forms.Label label16;

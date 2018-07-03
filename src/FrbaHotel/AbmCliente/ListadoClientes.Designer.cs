@@ -62,6 +62,8 @@
             this.listaClientes.Name = "listaClientes";
             this.listaClientes.Size = new System.Drawing.Size(566, 169);
             this.listaClientes.TabIndex = 9;
+            this.listaClientes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listaClientes_CellClick);
+            this.listaClientes.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.listaClientes_CellPainting);
             // 
             // atras
             // 

@@ -70,12 +70,6 @@
     <Compile Include="AbmCliente\BajaCliente.Designer.cs">
       <DependentUpon>BajaCliente.cs</DependentUpon>
     </Compile>
-    <Compile Include="AbmCliente\ListadoClientesMod.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AbmCliente\ListadoClientesMod.Designer.cs">
-      <DependentUpon>ListadoClientesMod.cs</DependentUpon>
-    </Compile>
     <Compile Include="AbmCliente\ListadoClientes.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -215,9 +209,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AbmCliente\ListadoClientes.resx">
       <DependentUpon>ListadoClientes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AbmCliente\ListadoClientesMod.resx">
-      <DependentUpon>ListadoClientesMod.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AbmCliente\ModificacionCliente.resx">
       <DependentUpon>ModificacionCliente.cs</DependentUpon>

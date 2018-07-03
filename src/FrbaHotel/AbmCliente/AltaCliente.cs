@@ -158,7 +158,7 @@ namespace FrbaHotel.AbmCliente
             return insert;
         }
 
-        private string insertInt(string campo)
+        private string insertNro(string campo)
         {
             if (string.IsNullOrEmpty(campo))
             {
@@ -176,7 +176,7 @@ namespace FrbaHotel.AbmCliente
             if (!checkCampos())
             {
                 insert = "exec EN_CASA_ANDABA.altaCliente ";
-                insert = insertInt(nroDocumento.Text);
+                insert = insertNro(nroDocumento.Text);
                 insert = insertString(tipoDocumento.Text);
                 insert = insertString(nombre.Text);
                 insert = insertString(apellido.Text);
@@ -188,7 +188,7 @@ namespace FrbaHotel.AbmCliente
                 insert = insertString(fecha.Date.ToString("yyyyMMdd HH:mm:ss"));
 
                 insert = insertString(calle.Text);
-                insert = insertInt(calleNumero.Text);
+                insert = insertNro(calleNumero.Text);
                 insert = insertString(piso.Text);
                 insert = insertString(departamento.Text);
                 insert = insertString(localidad.Text);

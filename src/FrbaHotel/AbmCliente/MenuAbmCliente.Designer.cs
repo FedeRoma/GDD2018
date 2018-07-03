@@ -53,8 +53,8 @@
             // 
             this.listadoClientes.BackColor = System.Drawing.Color.Crimson;
             this.listadoClientes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.listadoClientes.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listadoClientes.ForeColor = System.Drawing.Color.White;
+            this.listadoClientes.Font = new System.Drawing.Font("Arial", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listadoClientes.ForeColor = System.Drawing.Color.WhiteSmoke;
             this.listadoClientes.Location = new System.Drawing.Point(193, 80);
             this.listadoClientes.Name = "listadoClientes";
             this.listadoClientes.Size = new System.Drawing.Size(318, 69);
@@ -67,7 +67,7 @@
             // 
             this.altaCliente.BackColor = System.Drawing.Color.Crimson;
             this.altaCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.altaCliente.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.altaCliente.Font = new System.Drawing.Font("Arial", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.altaCliente.ForeColor = System.Drawing.Color.White;
             this.altaCliente.Location = new System.Drawing.Point(193, 155);
             this.altaCliente.Name = "altaCliente";
@@ -81,7 +81,7 @@
             // 
             this.bajaCliente.BackColor = System.Drawing.Color.Crimson;
             this.bajaCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bajaCliente.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bajaCliente.Font = new System.Drawing.Font("Arial", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bajaCliente.ForeColor = System.Drawing.Color.White;
             this.bajaCliente.Location = new System.Drawing.Point(355, 155);
             this.bajaCliente.Name = "bajaCliente";
@@ -95,7 +95,7 @@
             // 
             this.modificacionCliente.BackColor = System.Drawing.Color.Crimson;
             this.modificacionCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.modificacionCliente.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.modificacionCliente.Font = new System.Drawing.Font("Arial", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.modificacionCliente.ForeColor = System.Drawing.Color.White;
             this.modificacionCliente.Location = new System.Drawing.Point(193, 293);
             this.modificacionCliente.Name = "modificacionCliente";
