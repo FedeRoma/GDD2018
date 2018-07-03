@@ -15,7 +15,6 @@ namespace FrbaHotel.AbmHabitacion
         public static ListadoHabitaciones ListadoHab;
         public static AltaHabitacion AltaHab;
         public static BajaHabitacion BajaHab;
-        public static ListadoHabitacionesMod ListadoModificacionHab;
         
         public MenuAbmHabitacion()
         {
@@ -45,9 +44,7 @@ namespace FrbaHotel.AbmHabitacion
 
         private void modificacionHabitacion_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            ListadoModificacionHab = new ListadoHabitacionesMod();
-            ListadoModificacionHab.Show();
+
         }
 
         private void atras_Click(object sender, EventArgs e)
