@@ -28,8 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CambiarContrasenia));
             this.label1 = new System.Windows.Forms.Label();
-            this.listBoxUsuario = new System.Windows.Forms.ListBox();
+            this.usuarioActivo = new System.Windows.Forms.ListBox();
             this.atras = new System.Windows.Forms.Button();
             this.aceptar = new System.Windows.Forms.Button();
             this.contraseniaNueva = new System.Windows.Forms.TextBox();
@@ -50,18 +51,18 @@
             this.label1.Text = "Nombre de Usuario";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // listBoxUsuario
+            // usuarioActivo
             // 
-            this.listBoxUsuario.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.listBoxUsuario.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.listBoxUsuario.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listBoxUsuario.ForeColor = System.Drawing.Color.Crimson;
-            this.listBoxUsuario.FormattingEnabled = true;
-            this.listBoxUsuario.ItemHeight = 18;
-            this.listBoxUsuario.Location = new System.Drawing.Point(160, 142);
-            this.listBoxUsuario.Name = "listBoxUsuario";
-            this.listBoxUsuario.Size = new System.Drawing.Size(280, 20);
-            this.listBoxUsuario.TabIndex = 1;
+            this.usuarioActivo.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.usuarioActivo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.usuarioActivo.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.usuarioActivo.ForeColor = System.Drawing.Color.Crimson;
+            this.usuarioActivo.FormattingEnabled = true;
+            this.usuarioActivo.ItemHeight = 18;
+            this.usuarioActivo.Location = new System.Drawing.Point(160, 142);
+            this.usuarioActivo.Name = "usuarioActivo";
+            this.usuarioActivo.Size = new System.Drawing.Size(280, 20);
+            this.usuarioActivo.TabIndex = 5;
             // 
             // atras
             // 
@@ -72,7 +73,7 @@
             this.atras.Location = new System.Drawing.Point(12, 386);
             this.atras.Name = "atras";
             this.atras.Size = new System.Drawing.Size(101, 44);
-            this.atras.TabIndex = 5;
+            this.atras.TabIndex = 4;
             this.atras.Text = "atrás";
             this.atras.UseVisualStyleBackColor = false;
             this.atras.Click += new System.EventHandler(this.atras_Click);
@@ -87,7 +88,7 @@
             this.aceptar.Location = new System.Drawing.Point(446, 235);
             this.aceptar.Name = "aceptar";
             this.aceptar.Size = new System.Drawing.Size(101, 44);
-            this.aceptar.TabIndex = 4;
+            this.aceptar.TabIndex = 3;
             this.aceptar.Text = "aceptar";
             this.aceptar.UseVisualStyleBackColor = false;
             this.aceptar.Click += new System.EventHandler(this.aceptar_Click);
@@ -102,7 +103,7 @@
             this.contraseniaNueva.Name = "contraseniaNueva";
             this.contraseniaNueva.PasswordChar = '*';
             this.contraseniaNueva.Size = new System.Drawing.Size(280, 22);
-            this.contraseniaNueva.TabIndex = 3;
+            this.contraseniaNueva.TabIndex = 2;
             // 
             // label5
             // 
@@ -126,7 +127,7 @@
             this.contraseniaActual.Name = "contraseniaActual";
             this.contraseniaActual.PasswordChar = '*';
             this.contraseniaActual.Size = new System.Drawing.Size(280, 22);
-            this.contraseniaActual.TabIndex = 2;
+            this.contraseniaActual.TabIndex = 1;
             // 
             // label3
             // 
@@ -153,12 +154,12 @@
             this.Controls.Add(this.contraseniaActual);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.listBoxUsuario);
+            this.Controls.Add(this.usuarioActivo);
             this.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "CambiarContrasenia";
-            this.ShowIcon = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FRBA Hotel 2018";
@@ -171,7 +172,7 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ListBox listBoxUsuario;
+        private System.Windows.Forms.ListBox usuarioActivo;
         private System.Windows.Forms.Button atras;
         private System.Windows.Forms.Button aceptar;
         private System.Windows.Forms.TextBox contraseniaNueva;

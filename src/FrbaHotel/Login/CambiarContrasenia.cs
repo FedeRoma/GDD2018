@@ -28,7 +28,7 @@ namespace FrbaHotel.Login
             qry = Index.BD.consultaGetPuntero("select distinct usu_username from EN_CASA_ANDABA.Usuarios where usu_id = " + Index.usuarioID.ToString());
             qry.Read();
             usuario = qry.GetString(0);
-            listBoxUsuario.Items.Add(qry.GetSqlString(0));
+            usuarioActivo.Items.Add(qry.GetSqlString(0));
             qry.Close();
             contraseniaActual.Focus();
         }

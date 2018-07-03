@@ -28,12 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MenuFuncionalidades));
             this.label2 = new System.Windows.Forms.Label();
             this.cancelar = new System.Windows.Forms.Button();
             this.aceptar = new System.Windows.Forms.Button();
             this.cambiarContraseña = new System.Windows.Forms.Button();
             this.funcionalidad = new System.Windows.Forms.ComboBox();
-            this.hoteles = new System.Windows.Forms.ListBox();
+            this.hotelActivo = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -58,7 +59,7 @@
             this.cancelar.Location = new System.Drawing.Point(12, 386);
             this.cancelar.Name = "cancelar";
             this.cancelar.Size = new System.Drawing.Size(101, 44);
-            this.cancelar.TabIndex = 5;
+            this.cancelar.TabIndex = 4;
             this.cancelar.Text = "cancelar";
             this.cancelar.UseVisualStyleBackColor = false;
             this.cancelar.Click += new System.EventHandler(this.cancelar_Click);
@@ -72,7 +73,7 @@
             this.aceptar.Location = new System.Drawing.Point(591, 386);
             this.aceptar.Name = "aceptar";
             this.aceptar.Size = new System.Drawing.Size(101, 44);
-            this.aceptar.TabIndex = 3;
+            this.aceptar.TabIndex = 2;
             this.aceptar.Text = "aceptar";
             this.aceptar.UseVisualStyleBackColor = false;
             this.aceptar.Click += new System.EventHandler(this.aceptar_Click);
@@ -82,11 +83,11 @@
             this.cambiarContraseña.BackColor = System.Drawing.Color.WhiteSmoke;
             this.cambiarContraseña.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cambiarContraseña.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cambiarContraseña.ForeColor = System.Drawing.Color.DimGray;
+            this.cambiarContraseña.ForeColor = System.Drawing.Color.Crimson;
             this.cambiarContraseña.Location = new System.Drawing.Point(119, 386);
             this.cambiarContraseña.Name = "cambiarContraseña";
             this.cambiarContraseña.Size = new System.Drawing.Size(106, 44);
-            this.cambiarContraseña.TabIndex = 4;
+            this.cambiarContraseña.TabIndex = 3;
             this.cambiarContraseña.Text = "cambiar contraseña";
             this.cambiarContraseña.UseVisualStyleBackColor = false;
             this.cambiarContraseña.Click += new System.EventHandler(this.cambiarContraseña_Click);
@@ -99,20 +100,20 @@
             this.funcionalidad.Location = new System.Drawing.Point(214, 220);
             this.funcionalidad.Name = "funcionalidad";
             this.funcionalidad.Size = new System.Drawing.Size(280, 24);
-            this.funcionalidad.TabIndex = 2;
+            this.funcionalidad.TabIndex = 1;
             // 
-            // hoteles
+            // hotelActivo
             // 
-            this.hoteles.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.hoteles.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.hoteles.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.hoteles.ForeColor = System.Drawing.Color.Crimson;
-            this.hoteles.FormattingEnabled = true;
-            this.hoteles.ItemHeight = 18;
-            this.hoteles.Location = new System.Drawing.Point(214, 167);
-            this.hoteles.Name = "hoteles";
-            this.hoteles.Size = new System.Drawing.Size(280, 20);
-            this.hoteles.TabIndex = 1;
+            this.hotelActivo.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.hotelActivo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.hotelActivo.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.hotelActivo.ForeColor = System.Drawing.Color.Crimson;
+            this.hotelActivo.FormattingEnabled = true;
+            this.hotelActivo.ItemHeight = 18;
+            this.hotelActivo.Location = new System.Drawing.Point(214, 167);
+            this.hotelActivo.Name = "hotelActivo";
+            this.hotelActivo.Size = new System.Drawing.Size(280, 20);
+            this.hotelActivo.TabIndex = 5;
             // 
             // label1
             // 
@@ -133,7 +134,7 @@
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(704, 442);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.hoteles);
+            this.Controls.Add(this.hotelActivo);
             this.Controls.Add(this.funcionalidad);
             this.Controls.Add(this.cambiarContraseña);
             this.Controls.Add(this.cancelar);
@@ -141,9 +142,9 @@
             this.Controls.Add(this.label2);
             this.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "MenuFuncionalidades";
-            this.ShowIcon = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FRBA Hotel 2018";
@@ -160,7 +161,7 @@
         private System.Windows.Forms.Button aceptar;
         private System.Windows.Forms.Button cambiarContraseña;
         private System.Windows.Forms.ComboBox funcionalidad;
-        private System.Windows.Forms.ListBox hoteles;
+        private System.Windows.Forms.ListBox hotelActivo;
         private System.Windows.Forms.Label label1;
     }
 }

@@ -28,11 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
             this.contrasenia = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.nombreUsuario = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.atras = new System.Windows.Forms.Button();
+            this.cancelar = new System.Windows.Forms.Button();
             this.ingresar = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -47,7 +48,7 @@
             this.contrasenia.Name = "contrasenia";
             this.contrasenia.PasswordChar = '*';
             this.contrasenia.Size = new System.Drawing.Size(280, 22);
-            this.contrasenia.TabIndex = 12;
+            this.contrasenia.TabIndex = 2;
             // 
             // label5
             // 
@@ -70,7 +71,7 @@
             this.nombreUsuario.Location = new System.Drawing.Point(214, 192);
             this.nombreUsuario.Name = "nombreUsuario";
             this.nombreUsuario.Size = new System.Drawing.Size(280, 22);
-            this.nombreUsuario.TabIndex = 10;
+            this.nombreUsuario.TabIndex = 1;
             // 
             // label3
             // 
@@ -84,19 +85,19 @@
             this.label3.Text = "Nombre de Usuario";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // atras
+            // cancelar
             // 
-            this.atras.BackColor = System.Drawing.Color.DimGray;
-            this.atras.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.atras.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.atras.ForeColor = System.Drawing.Color.White;
-            this.atras.Location = new System.Drawing.Point(12, 386);
-            this.atras.Name = "atras";
-            this.atras.Size = new System.Drawing.Size(101, 44);
-            this.atras.TabIndex = 23;
-            this.atras.Text = "atrás";
-            this.atras.UseVisualStyleBackColor = false;
-            this.atras.Click += new System.EventHandler(this.atras_Click);
+            this.cancelar.BackColor = System.Drawing.Color.DimGray;
+            this.cancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cancelar.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cancelar.ForeColor = System.Drawing.Color.White;
+            this.cancelar.Location = new System.Drawing.Point(12, 386);
+            this.cancelar.Name = "cancelar";
+            this.cancelar.Size = new System.Drawing.Size(101, 44);
+            this.cancelar.TabIndex = 4;
+            this.cancelar.Text = "cancelar";
+            this.cancelar.UseVisualStyleBackColor = false;
+            this.cancelar.Click += new System.EventHandler(this.atras_Click);
             // 
             // ingresar
             // 
@@ -108,7 +109,7 @@
             this.ingresar.Location = new System.Drawing.Point(500, 235);
             this.ingresar.Name = "ingresar";
             this.ingresar.Size = new System.Drawing.Size(101, 44);
-            this.ingresar.TabIndex = 22;
+            this.ingresar.TabIndex = 3;
             this.ingresar.Text = "ingresar";
             this.ingresar.UseVisualStyleBackColor = false;
             this.ingresar.Click += new System.EventHandler(this.ingresar_Click);
@@ -131,7 +132,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(704, 442);
-            this.Controls.Add(this.atras);
+            this.Controls.Add(this.cancelar);
             this.Controls.Add(this.ingresar);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.contrasenia);
@@ -140,9 +141,9 @@
             this.Controls.Add(this.label3);
             this.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Login";
-            this.ShowIcon = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FRBA Hotel 2018";
@@ -157,7 +158,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox nombreUsuario;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button atras;
+        private System.Windows.Forms.Button cancelar;
         private System.Windows.Forms.Button ingresar;
         private System.Windows.Forms.Label label2;
 
