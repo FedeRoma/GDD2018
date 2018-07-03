@@ -48,7 +48,7 @@ namespace FrbaHotel.AbmCliente
         private void ListadoClientes_Load(object sender, EventArgs e)
         {
             DataGridViewButtonColumn botonColumna = new DataGridViewButtonColumn();
-            botonColumna.Name = "Modificar";
+            botonColumna.Name = "";
             listaClientes.Columns.Add(botonColumna);
 
             tablaClientes = Index.BD.consultaGetTabla("select C.cli_nombre Nombre, C.cli_apellido Apellido, D.doc_desc TipoDoc, C.cli_documento NroDoc, C.cli_mail eMail, C.cli_telefono Telefono, C.cli_nacionalidad Nacionalidad, C.cli_fecha_nac Fecha_Nacimiento, C.cli_habilitado Habilitado, C.cli_calle Calle, C.cli_calle_nro Numero_Calle, C.cli_piso Piso, C.cli_depto Departamento, C.cli_dir_localidad Localidad, C.cli_dir_pais Pais from EN_CASA_ANDABA.Clientes C, EN_CASA_ANDABA.Documentos D where C.cli_doc_id = D.doc_id");
@@ -76,12 +76,12 @@ namespace FrbaHotel.AbmCliente
 
         private void listaClientes_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
-            if (e.ColumnIndex >= 0 && this.listaClientes.Columns[e.ColumnIndex].Name == "Modificar" && e.RowIndex >= 0)
+            if (e.ColumnIndex >= 0 && this.listaClientes.Columns[e.ColumnIndex].Name == "" && e.RowIndex >= 0)
             {
                 e.Paint(e.CellBounds, DataGridViewPaintParts.All);
 
-                DataGridViewButtonCell botonColumna = this.listaClientes.Rows[e.RowIndex].Cells["Modificar"] as DataGridViewButtonCell;
-                Icon icono = new Icon(Environment.CurrentDirectory + @"\\edit.ico");
+                DataGridViewButtonCell botonColumna = this.listaClientes.Rows[e.RowIndex].Cells[""] as DataGridViewButtonCell;
+                Icon icono = new Icon(Environment.CurrentDirectory + @"\\modificar.ico");
                 e.Graphics.DrawIcon(icono, e.CellBounds.Left + 2, e.CellBounds.Top + 2);
 
                 this.listaClientes.Rows[e.RowIndex].Height = icono.Height + 5;

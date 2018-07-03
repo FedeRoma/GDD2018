@@ -63,7 +63,7 @@ namespace FrbaHotel.AbmCliente
                 e.Paint(e.CellBounds, DataGridViewPaintParts.All);
 
                 DataGridViewButtonCell botonColumna = this.listaClientes.Rows[e.RowIndex].Cells[""] as DataGridViewButtonCell;
-                Icon icono = new Icon(Environment.CurrentDirectory + @"\\delete.ico");
+                Icon icono = new Icon(Environment.CurrentDirectory + @"\\borrar.ico");
                 e.Graphics.DrawIcon(icono, e.CellBounds.Left + 2, e.CellBounds.Top + 2);
                 
                 this.listaClientes.Rows[e.RowIndex].Height = icono.Height + 5;
