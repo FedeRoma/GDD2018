@@ -29,8 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListadoClientes));
             this.listaClientes = new System.Windows.Forms.DataGridView();
-            this.cancelar = new System.Windows.Forms.Button();
+            this.atras = new System.Windows.Forms.Button();
             this.limpiar = new System.Windows.Forms.Button();
             this.buscar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -57,31 +58,31 @@
             this.listaClientes.BackgroundColor = System.Drawing.Color.White;
             this.listaClientes.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.listaClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.listaClientes.Location = new System.Drawing.Point(71, 214);
+            this.listaClientes.Location = new System.Drawing.Point(71, 211);
             this.listaClientes.Name = "listaClientes";
-            this.listaClientes.Size = new System.Drawing.Size(566, 166);
+            this.listaClientes.Size = new System.Drawing.Size(566, 169);
             this.listaClientes.TabIndex = 9;
             // 
-            // cancelar
+            // atras
             // 
-            this.cancelar.BackColor = System.Drawing.Color.DimGray;
-            this.cancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cancelar.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cancelar.ForeColor = System.Drawing.Color.White;
-            this.cancelar.Location = new System.Drawing.Point(12, 386);
-            this.cancelar.Name = "cancelar";
-            this.cancelar.Size = new System.Drawing.Size(101, 44);
-            this.cancelar.TabIndex = 8;
-            this.cancelar.Text = "cancelar";
-            this.cancelar.UseVisualStyleBackColor = false;
-            this.cancelar.Click += new System.EventHandler(this.cancelar_Click);
+            this.atras.BackColor = System.Drawing.Color.DimGray;
+            this.atras.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.atras.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.atras.ForeColor = System.Drawing.Color.White;
+            this.atras.Location = new System.Drawing.Point(12, 386);
+            this.atras.Name = "atras";
+            this.atras.Size = new System.Drawing.Size(101, 44);
+            this.atras.TabIndex = 8;
+            this.atras.Text = "atrás";
+            this.atras.UseVisualStyleBackColor = false;
+            this.atras.Click += new System.EventHandler(this.cancelar_Click);
             // 
             // limpiar
             // 
             this.limpiar.BackColor = System.Drawing.Color.White;
             this.limpiar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.limpiar.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.limpiar.ForeColor = System.Drawing.Color.Crimson;
+            this.limpiar.ForeColor = System.Drawing.Color.DimGray;
             this.limpiar.Location = new System.Drawing.Point(119, 386);
             this.limpiar.Name = "limpiar";
             this.limpiar.Size = new System.Drawing.Size(101, 44);
@@ -237,10 +238,10 @@
             this.groupBox1.Controls.Add(this.apellido);
             this.groupBox1.Location = new System.Drawing.Point(71, 53);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(566, 155);
+            this.groupBox1.Size = new System.Drawing.Size(566, 152);
             this.groupBox1.TabIndex = 39;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "FILTRAR BUSQUEDA POR:";
+            this.groupBox1.Text = "FILTROS";
             // 
             // ListadoClientes
             // 
@@ -250,15 +251,15 @@
             this.ClientSize = new System.Drawing.Size(704, 442);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.listaClientes);
-            this.Controls.Add(this.cancelar);
+            this.Controls.Add(this.atras);
             this.Controls.Add(this.limpiar);
             this.Controls.Add(this.buscar);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "ListadoClientes";
-            this.ShowIcon = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FRBA Hotel 2018";
@@ -275,7 +276,7 @@
         #endregion
 
         private System.Windows.Forms.DataGridView listaClientes;
-        private System.Windows.Forms.Button cancelar;
+        private System.Windows.Forms.Button atras;
         private System.Windows.Forms.Button limpiar;
         private System.Windows.Forms.Button buscar;
         private System.Windows.Forms.Label label1;

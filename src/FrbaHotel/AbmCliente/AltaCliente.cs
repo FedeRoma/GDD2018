@@ -47,6 +47,21 @@ namespace FrbaHotel.AbmCliente
             fechaNacimiento.Value = DateTime.Today;
         }
 
+        private void numeroDocumento_Keypress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+        private void calleNumero_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        } 
+
         private bool checkCampos()
         {
             hayCamposVacios = false;
