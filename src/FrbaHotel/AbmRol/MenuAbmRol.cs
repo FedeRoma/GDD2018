@@ -10,11 +10,21 @@ using System.Windows.Forms;
 
 namespace FrbaHotel.AbmRol
 {
-    public partial class Form1 : Form
+    public partial class MenuAbmRol : Form
     {
-        public Form1()
+        public static AltaRol AltaRol;
+
+        public MenuAbmRol()
         {
             InitializeComponent();
         }
+
+        private void altaRol_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            AltaRol = new AltaRol();
+            AltaRol.Show();
+        }
+
     }
 }
