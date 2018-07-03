@@ -100,12 +100,6 @@
     <Compile Include="AbmHabitacion\ModificacionHabitacion.Designer.cs">
       <DependentUpon>ModificacionHabitacion.cs</DependentUpon>
     </Compile>
-    <Compile Include="AbmHabitacion\ListadoHabitacionesMod.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AbmHabitacion\ListadoHabitacionesMod.Designer.cs">
-      <DependentUpon>ListadoHabitacionesMod.cs</DependentUpon>
-    </Compile>
     <Compile Include="AbmHabitacion\ListadoHabitaciones.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -124,11 +118,17 @@
     <Compile Include="AbmRegimen\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="AbmRol\Form1.cs">
+    <Compile Include="AbmRol\AltaRol.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AbmRol\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="AbmRol\AltaRol.Designer.cs">
+      <DependentUpon>AltaRol.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbmRol\MenuAbmRol.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmRol\MenuAbmRol.Designer.cs">
+      <DependentUpon>MenuAbmRol.cs</DependentUpon>
     </Compile>
     <Compile Include="CancelarReserva\Form1.cs">
       <SubType>Form</SubType>
@@ -222,14 +222,17 @@
     <EmbeddedResource Include="AbmHabitacion\ListadoHabitaciones.resx">
       <DependentUpon>ListadoHabitaciones.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AbmHabitacion\ListadoHabitacionesMod.resx">
-      <DependentUpon>ListadoHabitacionesMod.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="AbmHabitacion\MenuAbmHabitacion.resx">
       <DependentUpon>MenuAbmHabitacion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AbmHabitacion\ModificacionHabitacion.resx">
       <DependentUpon>ModificacionHabitacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmRol\AltaRol.resx">
+      <DependentUpon>AltaRol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmRol\MenuAbmRol.resx">
+      <DependentUpon>MenuAbmRol.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Index.resx">
       <DependentUpon>Index.cs</DependentUpon>
