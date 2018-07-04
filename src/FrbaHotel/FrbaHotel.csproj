@@ -32,9 +32,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -141,11 +138,6 @@
     </Compile>
     <Compile Include="CancelarReserva\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GD1C2018DataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>GD1C2018DataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="Index.cs">
       <SubType>Form</SubType>
@@ -270,17 +262,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="GD1C2018DataSet.xsc">
-      <DependentUpon>GD1C2018DataSet.xsd</DependentUpon>
-    </None>
-    <None Include="GD1C2018DataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>GD1C2018DataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="GD1C2018DataSet.xss">
-      <DependentUpon>GD1C2018DataSet.xsd</DependentUpon>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
