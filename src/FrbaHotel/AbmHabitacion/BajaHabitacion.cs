@@ -21,8 +21,6 @@ namespace FrbaHotel.AbmHabitacion
 
         private void BajaHabitacion_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'gD1C2018DataSet.TiposHabitaciones' table. You can move, or remove it, as needed.
-            this.tiposHabitacionesTableAdapter.Fill(this.gD1C2018DataSet.TiposHabitaciones);
 
         }
 

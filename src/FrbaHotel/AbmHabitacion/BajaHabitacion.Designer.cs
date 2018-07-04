@@ -42,16 +42,10 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.comboBoxTipoHab = new System.Windows.Forms.ComboBox();
-            this.tiposHabitacionesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.gD1C2018DataSet = new FrbaHotel.GD1C2018DataSet();
             this.label12 = new System.Windows.Forms.Label();
             this.textBoxPiso = new System.Windows.Forms.TextBox();
             this.textBoxNroHab = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.tiposHabitacionesTableAdapter = new FrbaHotel.GD1C2018DataSetTableAdapters.TiposHabitacionesTableAdapter();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tiposHabitacionesBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gD1C2018DataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -196,7 +190,6 @@
             // 
             // comboBoxTipoHab
             // 
-            this.comboBoxTipoHab.DataSource = this.tiposHabitacionesBindingSource;
             this.comboBoxTipoHab.DisplayMember = "tip_nombre";
             this.comboBoxTipoHab.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxTipoHab.ForeColor = System.Drawing.Color.DimGray;
@@ -206,16 +199,6 @@
             this.comboBoxTipoHab.Size = new System.Drawing.Size(280, 24);
             this.comboBoxTipoHab.TabIndex = 5;
             this.comboBoxTipoHab.ValueMember = "tip_id";
-            // 
-            // tiposHabitacionesBindingSource
-            // 
-            this.tiposHabitacionesBindingSource.DataMember = "TiposHabitaciones";
-            this.tiposHabitacionesBindingSource.DataSource = this.gD1C2018DataSet;
-            // 
-            // gD1C2018DataSet
-            // 
-            this.gD1C2018DataSet.DataSetName = "GD1C2018DataSet";
-            this.gD1C2018DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // label12
             // 
@@ -259,10 +242,6 @@
             this.label3.Text = "NUMERO";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // tiposHabitacionesTableAdapter
-            // 
-            this.tiposHabitacionesTableAdapter.ClearBeforeFill = true;
-            // 
             // BajaHabitacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
@@ -295,9 +274,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FRBA Hotel 2018";
             this.Load += new System.EventHandler(this.BajaHabitacion_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tiposHabitacionesBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gD1C2018DataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -322,8 +298,5 @@
         private System.Windows.Forms.TextBox textBoxPiso;
         private System.Windows.Forms.TextBox textBoxNroHab;
         private System.Windows.Forms.Label label3;
-        private GD1C2018DataSet gD1C2018DataSet;
-        private System.Windows.Forms.BindingSource tiposHabitacionesBindingSource;
-        private GD1C2018DataSetTableAdapters.TiposHabitacionesTableAdapter tiposHabitacionesTableAdapter;
     }
 }
