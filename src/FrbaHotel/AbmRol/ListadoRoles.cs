@@ -25,15 +25,15 @@ namespace FrbaHotel.AbmRol
 
         private void ListadoRoles_Load(object sender, EventArgs e)
         {
-            DataGridViewButtonColumn botonEditar = new DataGridViewButtonColumn();
-            botonEditar.Name = "EDITAR";
-            listaRoles.Columns.Add(botonEditar);
+            DataGridViewButtonColumn botonModif = new DataGridViewButtonColumn();
+            botonModif.Name = "modif";
+            listaRoles.Columns.Add(botonModif);
 
-            DataGridViewButtonColumn botonBorrar = new DataGridViewButtonColumn();
-            botonBorrar.Name = "BORRAR";
-            listaRoles.Columns.Add(botonBorrar);
+            DataGridViewButtonColumn botonBaja = new DataGridViewButtonColumn();
+            botonBaja.Name = "baja";
+            listaRoles.Columns.Add(botonBaja);
 
-            tablaRoles = Index.BD.consultaGetTabla("select rol_id ID, rol_nombre NOMBRE, rol_estado ESTADO from EN_CASA_ANDABA.Roles");
+            tablaRoles = Index.BD.consultaGetTabla("select rol_id ID, rol_nombre NOMBRE, rol_estado HABILITADO from EN_CASA_ANDABA.Roles");
             BindingSource bindingSourceListaRoles = new BindingSource();
             bindingSourceListaRoles.DataSource = tablaRoles;
             listaRoles.DataSource = bindingSourceListaRoles;
@@ -45,11 +45,11 @@ namespace FrbaHotel.AbmRol
 
         private void listaRoles_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
-            if (e.ColumnIndex >= 0 && this.listaRoles.Columns[e.ColumnIndex].Name == "EDITAR" && e.RowIndex >= 0)
+            if (e.ColumnIndex >= 0 && this.listaRoles.Columns[e.ColumnIndex].Name == "modif" && e.RowIndex >= 0)
             {
                 e.Paint(e.CellBounds, DataGridViewPaintParts.All);
 
-                DataGridViewButtonCell botonEditar = this.listaRoles.Rows[e.RowIndex].Cells["EDITAR"] as DataGridViewButtonCell;
+                DataGridViewButtonCell botonModif = this.listaRoles.Rows[e.RowIndex].Cells["modif"] as DataGridViewButtonCell;
                 Icon icono = new Icon(Environment.CurrentDirectory + @"\\pencil.ico");
                 e.Graphics.DrawIcon(icono, e.CellBounds.Left + 2, e.CellBounds.Top + 2);
 
@@ -59,12 +59,12 @@ namespace FrbaHotel.AbmRol
                 e.Handled = true;
             }
 
-            if (e.ColumnIndex >= 0 && this.listaRoles.Columns[e.ColumnIndex].Name == "BORRAR" && e.RowIndex >= 0)
+            if (e.ColumnIndex >= 0 && this.listaRoles.Columns[e.ColumnIndex].Name == "baja" && e.RowIndex >= 0)
             {
                 e.Paint(e.CellBounds, DataGridViewPaintParts.All);
 
-                DataGridViewButtonCell botonBorrar = this.listaRoles.Rows[e.RowIndex].Cells["BORRAR"] as DataGridViewButtonCell;
-                Icon icono = new Icon(Environment.CurrentDirectory + @"\\eraser.ico");
+                DataGridViewButtonCell botonBaja = this.listaRoles.Rows[e.RowIndex].Cells["baja"] as DataGridViewButtonCell;
+                Icon icono = new Icon(Environment.CurrentDirectory + @"\\cross-script.ico");
                 e.Graphics.DrawIcon(icono, e.CellBounds.Left + 2, e.CellBounds.Top + 2);
 
                 this.listaRoles.Rows[e.RowIndex].Height = icono.Height + 5;
