@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListadosEstadisticos));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -40,9 +42,9 @@
             this.aceptar = new System.Windows.Forms.Button();
             this.atras = new System.Windows.Forms.Button();
             this.limpiar = new System.Windows.Forms.Button();
-            this.topFive = new System.Windows.Forms.DataGridView();
+            this.listaTopFive = new System.Windows.Forms.DataGridView();
             this.bindingSourceTop5 = new System.Windows.Forms.BindingSource(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.topFive)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.listaTopFive)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceTop5)).BeginInit();
             this.SuspendLayout();
             // 
@@ -170,16 +172,29 @@
             this.limpiar.UseVisualStyleBackColor = false;
             this.limpiar.Click += new System.EventHandler(this.limpiar_Click);
             // 
-            // topFive
+            // listaTopFive
             // 
-            this.topFive.AllowUserToOrderColumns = true;
-            this.topFive.BackgroundColor = System.Drawing.Color.White;
-            this.topFive.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.topFive.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.topFive.Location = new System.Drawing.Point(70, 162);
-            this.topFive.Name = "topFive";
-            this.topFive.Size = new System.Drawing.Size(568, 218);
-            this.topFive.TabIndex = 7;
+            this.listaTopFive.AllowUserToOrderColumns = true;
+            this.listaTopFive.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+            this.listaTopFive.BackgroundColor = System.Drawing.Color.White;
+            this.listaTopFive.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.listaTopFive.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.listaTopFive.Location = new System.Drawing.Point(70, 162);
+            this.listaTopFive.Name = "listaTopFive";
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.listaTopFive.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.DimGray;
+            this.listaTopFive.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            this.listaTopFive.Size = new System.Drawing.Size(568, 218);
+            this.listaTopFive.TabIndex = 7;
             // 
             // ListadosEstadisticos
             // 
@@ -189,7 +204,7 @@
             this.ClientSize = new System.Drawing.Size(704, 442);
             this.Controls.Add(this.limpiar);
             this.Controls.Add(this.atras);
-            this.Controls.Add(this.topFive);
+            this.Controls.Add(this.listaTopFive);
             this.Controls.Add(this.aceptar);
             this.Controls.Add(this.top5);
             this.Controls.Add(this.label4);
@@ -206,7 +221,7 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FRBA Hotel 2018";
-            ((System.ComponentModel.ISupportInitialize)(this.topFive)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.listaTopFive)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceTop5)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -225,7 +240,7 @@
         private System.Windows.Forms.Button aceptar;
         private System.Windows.Forms.Button atras;
         private System.Windows.Forms.Button limpiar;
-        private System.Windows.Forms.DataGridView topFive;
+        private System.Windows.Forms.DataGridView listaTopFive;
         private System.Windows.Forms.BindingSource bindingSourceTop5;
     }
 }

@@ -82,7 +82,7 @@ namespace FrbaHotel.ListadoEstadistico
             tablaListados = Index.BD.consultaGetTabla(sp);
             BindingSource bindingSourceTop5 = new BindingSource();
             bindingSourceTop5.DataSource = tablaListados;
-            topFive.DataSource = bindingSourceTop5;        
+            listaTopFive.DataSource = bindingSourceTop5;        
             
         }
 
@@ -91,8 +91,8 @@ namespace FrbaHotel.ListadoEstadistico
             anio.ResetText();
             trimestre.ResetText();
             top5.ResetText();
-            topFive.DataSource = null;
-            topFive.Rows.Clear();
+            listaTopFive.DataSource = null;
+            listaTopFive.Rows.Clear();
             anio.Focus();
         }
 

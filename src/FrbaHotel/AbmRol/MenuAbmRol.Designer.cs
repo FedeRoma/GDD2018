@@ -48,6 +48,7 @@
             this.atras.TabIndex = 11;
             this.atras.Text = "atrás";
             this.atras.UseVisualStyleBackColor = false;
+            this.atras.Click += new System.EventHandler(this.atras_Click);
             // 
             // modificacionRol
             // 
@@ -61,6 +62,7 @@
             this.modificacionRol.TabIndex = 10;
             this.modificacionRol.Text = "MODIFICACION";
             this.modificacionRol.UseVisualStyleBackColor = false;
+            this.modificacionRol.Click += new System.EventHandler(this.modificacionRol_Click);
             // 
             // bajaRol
             // 
@@ -74,6 +76,7 @@
             this.bajaRol.TabIndex = 9;
             this.bajaRol.Text = "BAJA";
             this.bajaRol.UseVisualStyleBackColor = false;
+            this.bajaRol.Click += new System.EventHandler(this.bajaRol_Click);
             // 
             // altaRol
             // 
@@ -101,6 +104,7 @@
             this.listadoRoles.TabIndex = 6;
             this.listadoRoles.Text = "LISTADO";
             this.listadoRoles.UseVisualStyleBackColor = false;
+            this.listadoRoles.Click += new System.EventHandler(this.listadoRoles_Click);
             // 
             // label1
             // 

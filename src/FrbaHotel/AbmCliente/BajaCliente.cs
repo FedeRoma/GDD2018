@@ -46,11 +46,11 @@ namespace FrbaHotel.AbmCliente
 
         private void BajaCliente_Load(object sender, EventArgs e)
         {
-            DataGridViewButtonColumn botonColumna = new DataGridViewButtonColumn();
-            botonColumna.Name = "";
-            listaClientes.Columns.Add(botonColumna);
+            DataGridViewButtonColumn botonDeshabilitar = new DataGridViewButtonColumn();
+            botonDeshabilitar.Name = "DESHABILITAR";
+            listaClientes.Columns.Add(botonDeshabilitar);
 
-            tablaClientes = Index.BD.consultaGetTabla("select C.cli_nombre Nombre, C.cli_apellido Apellido, D.doc_desc TipoDoc, C.cli_documento NroDoc, C.cli_mail eMail, C.cli_telefono Telefono, C.cli_nacionalidad Nacionalidad, C.cli_fecha_nac Fecha_Nacimiento, C.cli_habilitado Habilitado, C.cli_calle Calle, C.cli_calle_nro Numero_Calle, C.cli_depto Departamento, C.cli_dir_localidad Localidad, C.cli_dir_pais Pais from EN_CASA_ANDABA.Clientes C, EN_CASA_ANDABA.Documentos D where C.cli_doc_id = D.doc_id");
+            tablaClientes = Index.BD.consultaGetTabla("select C.cli_nombre NOMBRE, C.cli_apellido APELLIDO, D.doc_desc TIPO_DOCUMENTO, C.cli_documento NRO_DOCUMENTO, C.cli_mail EMAIL, C.cli_telefono TELEFONO, C.cli_nacionalidad NACIONALIDAD, C.cli_fecha_nac FECHA_DE_NACIMIENTO, C.cli_habilitado HABILITADO, C.cli_calle CALLE, C.cli_calle_nro NUMERO, C.cli_piso PISO, C.cli_depto DEPTO, C.cli_dir_localidad LOCALIDAD, C.cli_dir_pais PAIS from EN_CASA_ANDABA.Clientes C, EN_CASA_ANDABA.Documentos D where C.cli_doc_id = D.doc_id");
             BindingSource bindingSourceListaClientes = new BindingSource();
             bindingSourceListaClientes.DataSource = tablaClientes;
             listaClientes.DataSource = bindingSourceListaClientes;
@@ -58,12 +58,12 @@ namespace FrbaHotel.AbmCliente
 
         private void listaClientes_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
-            if (e.ColumnIndex >= 0 && this.listaClientes.Columns[e.ColumnIndex].Name == "" && e.RowIndex >= 0)
+            if (e.ColumnIndex >= 0 && this.listaClientes.Columns[e.ColumnIndex].Name == "DESHABILITAR" && e.RowIndex >= 0)
             {
                 e.Paint(e.CellBounds, DataGridViewPaintParts.All);
 
-                DataGridViewButtonCell botonColumna = this.listaClientes.Rows[e.RowIndex].Cells[""] as DataGridViewButtonCell;
-                Icon icono = new Icon(Environment.CurrentDirectory + @"\\borrar.ico");
+                DataGridViewButtonCell botonColumna = this.listaClientes.Rows[e.RowIndex].Cells["DESHABILITAR"] as DataGridViewButtonCell;
+                Icon icono = new Icon(Environment.CurrentDirectory + @"\\eraser.ico");
                 e.Graphics.DrawIcon(icono, e.CellBounds.Left + 2, e.CellBounds.Top + 2);
                 
                 this.listaClientes.Rows[e.RowIndex].Height = icono.Height + 5;

@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AltaRol));
             this.label1 = new System.Windows.Forms.Label();
             this.nombre = new System.Windows.Forms.TextBox();
@@ -130,11 +132,24 @@
             // listaFuncionalidades
             // 
             this.listaFuncionalidades.AllowUserToOrderColumns = true;
+            this.listaFuncionalidades.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
             this.listaFuncionalidades.BackgroundColor = System.Drawing.Color.White;
             this.listaFuncionalidades.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.listaFuncionalidades.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.listaFuncionalidades.Location = new System.Drawing.Point(6, 33);
             this.listaFuncionalidades.Name = "listaFuncionalidades";
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.listaFuncionalidades.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.DimGray;
+            this.listaFuncionalidades.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.listaFuncionalidades.Size = new System.Drawing.Size(275, 240);
             this.listaFuncionalidades.TabIndex = 5;
             this.listaFuncionalidades.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listaFuncionalidades_CellClick);
@@ -180,11 +195,24 @@
             // listaFuncionalidadesAsig
             // 
             this.listaFuncionalidadesAsig.AllowUserToOrderColumns = true;
+            this.listaFuncionalidadesAsig.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
             this.listaFuncionalidadesAsig.BackgroundColor = System.Drawing.Color.White;
             this.listaFuncionalidadesAsig.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.listaFuncionalidadesAsig.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.listaFuncionalidadesAsig.Location = new System.Drawing.Point(291, 33);
             this.listaFuncionalidadesAsig.Name = "listaFuncionalidadesAsig";
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.listaFuncionalidadesAsig.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.DimGray;
+            this.listaFuncionalidadesAsig.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.listaFuncionalidadesAsig.Size = new System.Drawing.Size(275, 240);
             this.listaFuncionalidadesAsig.TabIndex = 6;
             // 

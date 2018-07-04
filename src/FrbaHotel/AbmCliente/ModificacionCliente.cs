@@ -14,7 +14,7 @@ namespace FrbaHotel.AbmCliente
     public partial class ModificacionCliente : Form
     {
         private SqlDataReader qry;
-        public static MenuAbmCliente AbmCli;
+        public static ListadoClientes ListadoCli;
         bool hayCamposVacios = false;
         string eMailOriginal;
         string update = "";
@@ -274,8 +274,8 @@ namespace FrbaHotel.AbmCliente
         private void cancelar_Click(object sender, EventArgs e)
         {
             this.Hide();
-            AbmCli = new MenuAbmCliente();
-            AbmCli.Show();
+            ListadoCli = new ListadoClientes();
+            ListadoCli.Show();
         }
     }
 }
