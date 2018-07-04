@@ -47,11 +47,11 @@ namespace FrbaHotel.AbmCliente
 
         private void ListadoClientes_Load(object sender, EventArgs e)
         {
-            DataGridViewButtonColumn botonEditar = new DataGridViewButtonColumn();
-            botonEditar.Name = "EDITAR";
-            listaClientes.Columns.Add(botonEditar);
+            DataGridViewButtonColumn botonModif = new DataGridViewButtonColumn();
+            botonModif.Name = "modif";
+            listaClientes.Columns.Add(botonModif);
 
-            tablaClientes = Index.BD.consultaGetTabla("select C.cli_nombre NOMBRE, C.cli_apellido APELLIDO, D.doc_desc TIPO_DOCUMENTO, C.cli_documento NRO_DOCUMENTO, C.cli_mail EMAIL, C.cli_telefono TELEFONO, C.cli_nacionalidad NACIONALIDAD, C.cli_fecha_nac FECHA_DE_NACIMIENTO, C.cli_habilitado HABILITADO, C.cli_calle CALLE, C.cli_calle_nro NUMERO, C.cli_piso PISO, C.cli_depto DEPTO, C.cli_dir_localidad LOCALIDAD, C.cli_dir_pais PAIS from EN_CASA_ANDABA.Clientes C, EN_CASA_ANDABA.Documentos D where C.cli_doc_id = D.doc_id");
+            tablaClientes = Index.BD.consultaGetTabla("select C.cli_nombre NOMBRE, C.cli_apellido APELLIDO, D.doc_desc [TIPO DOCUMENTO], C.cli_documento [NRO DOCUMENTO], C.cli_mail EMAIL, C.cli_telefono TELEFONO, C.cli_nacionalidad NACIONALIDAD, C.cli_fecha_nac [FECHA DE NACIMIENTO], C.cli_habilitado HABILITADO, C.cli_calle CALLE, C.cli_calle_nro NUMERO, C.cli_piso PISO, C.cli_depto DEPTO, C.cli_dir_localidad LOCALIDAD, C.cli_dir_pais PAIS from EN_CASA_ANDABA.Clientes C, EN_CASA_ANDABA.Documentos D where C.cli_doc_id = D.doc_id");
             BindingSource bindingSourceListaClientes = new BindingSource();
             bindingSourceListaClientes.DataSource = tablaClientes;
             listaClientes.DataSource = bindingSourceListaClientes;  
@@ -76,11 +76,11 @@ namespace FrbaHotel.AbmCliente
 
         private void listaClientes_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
-            if (e.ColumnIndex >= 0 && this.listaClientes.Columns[e.ColumnIndex].Name == "EDITAR" && e.RowIndex >= 0)
+            if (e.ColumnIndex >= 0 && this.listaClientes.Columns[e.ColumnIndex].Name == "modif" && e.RowIndex >= 0)
             {
                 e.Paint(e.CellBounds, DataGridViewPaintParts.All);
 
-                DataGridViewButtonCell botonColumna = this.listaClientes.Rows[e.RowIndex].Cells["EDITAR"] as DataGridViewButtonCell;
+                DataGridViewButtonCell botonModif = this.listaClientes.Rows[e.RowIndex].Cells["modif"] as DataGridViewButtonCell;
                 Icon icono = new Icon(Environment.CurrentDirectory + @"\\pencil.ico");
                 e.Graphics.DrawIcon(icono, e.CellBounds.Left + 2, e.CellBounds.Top + 2);
 
@@ -122,11 +122,11 @@ namespace FrbaHotel.AbmCliente
         {
             DataView vistaClientes = new DataView(tablaClientes);
             string filtro = "";
-            filtro = filtro + this.esExactamente("TipoDoc", tipoDocumento.Text);
-            filtro = filtro + this.esExactamente("NroDoc", nroDocumento.Text);
-            filtro = filtro + this.esAproximadamente("Nombre", nombre.Text);
-            filtro = filtro + this.esAproximadamente("Apellido", apellido.Text);
-            filtro = filtro + this.esAproximadamente("eMail", eMail.Text);
+            filtro = filtro + this.esExactamente("[TIPO DOCUMENTO]", tipoDocumento.Text);
+            filtro = filtro + this.esExactamente("[NRO DOCUMENTO]", nroDocumento.Text);
+            filtro = filtro + this.esAproximadamente("NOMBRE", nombre.Text);
+            filtro = filtro + this.esAproximadamente("APELLIDO", apellido.Text);
+            filtro = filtro + this.esAproximadamente("EMAIL", eMail.Text);
 
             if (filtro.Length > 0) 
             { 
