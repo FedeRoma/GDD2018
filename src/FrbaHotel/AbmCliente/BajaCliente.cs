@@ -75,7 +75,7 @@ namespace FrbaHotel.AbmCliente
 
         private void listaClientes_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 0)
+            if (listaClientes.Columns[e.ColumnIndex].Name == "baja")
             {
                 if (listaClientes.CurrentRow.Cells[9].Value.ToString() == "False")
                 {

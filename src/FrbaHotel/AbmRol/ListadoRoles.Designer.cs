@@ -136,7 +136,7 @@
             this.listaRoles.Name = "listaRoles";
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -148,6 +148,7 @@
             this.listaRoles.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.listaRoles.Size = new System.Drawing.Size(566, 158);
             this.listaRoles.TabIndex = 45;
+            this.listaRoles.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listaRoles_CellClick);
             this.listaRoles.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.listaRoles_CellPainting);
             // 
             // ListadoRoles

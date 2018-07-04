@@ -28,10 +28,10 @@ namespace FrbaHotel.AbmRol
         private void AltaRol_Load(object sender, EventArgs e)
         {
             DataGridViewButtonColumn botonAsignar = new DataGridViewButtonColumn();
-            botonAsignar.Name = "ASIGNAR";
+            botonAsignar.Name = "asignar";
             listaFuncionalidades.Columns.Add(botonAsignar);
 
-            tablaFuncionalidades = Index.BD.consultaGetTabla("select distinct F.fun_id ID,F.fun_desc DESCRIPCION from EN_CASA_ANDABA.Funcionalidades F");
+            tablaFuncionalidades = Index.BD.consultaGetTabla("select distinct fun_id ID, fun_desc DESCRIPCION from EN_CASA_ANDABA.Funcionalidades");
             BindingSource bindingSourceListaFuncionalidades = new BindingSource();
             bindingSourceListaFuncionalidades.DataSource = tablaFuncionalidades;
             listaFuncionalidades.DataSource = bindingSourceListaFuncionalidades;
@@ -46,11 +46,11 @@ namespace FrbaHotel.AbmRol
 
         private void listaFuncionalidades_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
-            if (e.ColumnIndex >= 0 && this.listaFuncionalidades.Columns[e.ColumnIndex].Name == "ASIGNAR" && e.RowIndex >= 0)
+            if (e.ColumnIndex >= 0 && this.listaFuncionalidades.Columns[e.ColumnIndex].Name == "asignar" && e.RowIndex >= 0)
             {
                 e.Paint(e.CellBounds, DataGridViewPaintParts.All);
 
-                DataGridViewButtonCell botonColumna = this.listaFuncionalidades.Rows[e.RowIndex].Cells["ASIGNAR"] as DataGridViewButtonCell;
+                DataGridViewButtonCell botonColumna = this.listaFuncionalidades.Rows[e.RowIndex].Cells["asignar"] as DataGridViewButtonCell;
                 Icon icono = new Icon(Environment.CurrentDirectory + @"\\plus.ico");
                 e.Graphics.DrawIcon(icono, e.CellBounds.Left + 2, e.CellBounds.Top + 2);
 
@@ -63,7 +63,7 @@ namespace FrbaHotel.AbmRol
 
         private void listaFuncionalidades_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 0)
+            if (listaFuncionalidades.Columns[e.ColumnIndex].Name == "asignar")
             {
                 string funcionalidadID = listaFuncionalidades.CurrentRow.Cells[1].Value.ToString();
                 string funcionalidadDesc = listaFuncionalidades.CurrentRow.Cells[2].Value.ToString();

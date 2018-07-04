@@ -93,7 +93,7 @@ namespace FrbaHotel.AbmCliente
 
         private void listaClientes_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 0)
+            if (listaClientes.Columns[e.ColumnIndex].Name == "modif")
             {
                 string nombre = listaClientes.CurrentRow.Cells[1].Value.ToString();
                 string apellido = listaClientes.CurrentRow.Cells[2].Value.ToString();
@@ -115,6 +115,7 @@ namespace FrbaHotel.AbmCliente
                                                     telefono, nacionalidad, fecha_nac, estado,
                                                     calle, calleNro, piso, depto, localidad, pais);
                 ModifCli.Show();
+                this.Hide();
             }
         }
 

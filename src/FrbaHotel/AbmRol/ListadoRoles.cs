@@ -13,7 +13,6 @@ namespace FrbaHotel.AbmRol
 {
     public partial class ListadoRoles : Form
     {
-        private SqlDataReader qry;
         public static MenuAbmRol AbmRol;
         DataTable tablaRoles;
         DataTable tablaFuncionalidades;
@@ -88,9 +87,21 @@ namespace FrbaHotel.AbmRol
             }
         }
 
+        private void listaRoles_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (listaRoles.Columns[e.ColumnIndex].Name == "FUNCIONALIDADES")
+            {
+                tablaFuncionalidades = Index.BD.consultaGetTabla("select F.fun_id ID, F.fun_desc DESCRIPCION from EN_CASA_ANDABA.Funcionalidades F, EN_CASA_ANDABA.Funcionalidades_Roles FR where F.fun_id = FR.fyr_fun_id and FR.fyr_rol_id = " + listaRoles.CurrentRow.Cells[2].Value.ToString());
+                BindingSource bindingSourceListaFuncionalidades = new BindingSource();
+                bindingSourceListaFuncionalidades.DataSource = tablaFuncionalidades;
+                listaFuncionalidades.DataSource = bindingSourceListaFuncionalidades;
+            }
+        }
+        
         private void limpiar_Click(object sender, EventArgs e)
         {
-
+            listaRoles.ClearSelection();
+            listaFuncionalidades.DataSource = null;
         }
 
         private void atras_Click(object sender, EventArgs e)
