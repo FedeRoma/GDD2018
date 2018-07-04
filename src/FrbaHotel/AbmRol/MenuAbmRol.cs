@@ -13,6 +13,7 @@ namespace FrbaHotel.AbmRol
     public partial class MenuAbmRol : Form
     {
         public static AltaRol AltaRol;
+        public static BajaRol BajaRol;
         public static ListadoRoles ListadoRoles;
         public static Login.MenuFuncionalidades menuFuncionalidades;
 
@@ -37,7 +38,9 @@ namespace FrbaHotel.AbmRol
 
         private void bajaRol_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
+            BajaRol = new BajaRol();
+            BajaRol.Show();
         }
 
         private void modificacionRol_Click(object sender, EventArgs e)

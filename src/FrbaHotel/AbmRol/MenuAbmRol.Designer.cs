@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MenuAbmRol));
             this.atras = new System.Windows.Forms.Button();
             this.modificacionRol = new System.Windows.Forms.Button();
             this.bajaRol = new System.Windows.Forms.Button();
@@ -132,6 +133,7 @@
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "MenuAbmRol";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
