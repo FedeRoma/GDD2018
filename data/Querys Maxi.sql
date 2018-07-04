@@ -28,7 +28,7 @@ create procedure EN_CASA_ANDABA.top5_hoteles_reservas_canceladas
 				set @inicio = '01-01-'+@anioAux
 				set @fin = '31-12-'+@anioAux
 			end
-		select top 5 HO.hot_nombre as Hotel, HO.hot_calle as Calle, HO.hot_calle_nro as Numero, count(R.res_estados_id) as [Reservas Canceladas]
+		select top 5 HO.hot_nombre as HOTEL, HO.hot_calle as CALLE, HO.hot_calle_nro as NUMERO, count(R.res_estados_id) as [Reservas Canceladas]
 			from EN_CASA_ANDABA.reservas R, EN_CASA_ANDABA.hoteles HO, EN_CASA_ANDABA.habitaciones HA,
 				EN_CASA_ANDABA.Reservas_habitaciones RH, EN_CASA_ANDABA.Estados E,
 				EN_CASA_ANDABA.Usuarios_ReservasCancelaciones U_RC
@@ -73,7 +73,7 @@ create procedure EN_CASA_ANDABA.top5_hoteles_consumibles_facturados
 				set @inicio = '01-01-'+@anioAux
 				set @fin = '31-12-'+@anioAux
 			end
-		select top 5 H.hot_nombre as Hotel, H.hot_calle as Calle, H.hot_calle_nro as Numero, sum(iyf_cantidad) as [Consumibles Facturados]
+		select top 5 H.hot_nombre as HOTEL, H.hot_calle as CALLE, H.hot_calle_nro as NUMERO, sum(iyf_cantidad) as [Consumibles Facturados]
 			from EN_CASA_ANDABA.Items_Facturas IYF, EN_CASA_ANDABA.facturas F, EN_CASA_ANDABA.Estadias E,
 				EN_CASA_ANDABA.Clientes_estadias CYE, EN_CASA_ANDABA.Hoteles H
 			where IYF.iyf_fac_id = F.fac_id and F.fac_est_res_id = E.est_res_id 
@@ -114,7 +114,7 @@ create procedure EN_CASA_ANDABA.top5_hoteles_dias_fuera_de_servicio
 				set @inicio = '01-01-'+@anioAux
 				set @fin = '31-12-'+@anioAux
 			end
-		select top 5 Hotel as Hotel, Calle as Calle, Numero as Numero ,SUM(total.dias) as Dias from  
+		select top 5 Hotel as HOTEL, Calle as CALLE, Numero as NUMERO ,SUM(total.dias) as DIAS from  
 			(select * from
 				(select H.hot_nombre as Hotel, h.hot_calle as Calle, h.hot_calle_nro as Numero, SUM(DATEDIFF(day, B.baj_fecha_inicio, B.baj_fecha_fin)) as dias
 					from EN_CASA_ANDABA.BajasHotel B, EN_CASA_ANDABA.Hoteles H

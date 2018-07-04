@@ -873,7 +873,7 @@ create procedure EN_CASA_ANDABA.top5_hoteles_reservas_canceladas
 				set @inicio = '01-01-'+@anioAux
 				set @fin = '31-12-'+@anioAux
 			end
-		select top 5 HO.hot_id, count(R.res_estados_id) as cancelados
+		select top 5 HO.hot_nombre as HOTEL, HO.hot_calle as CALLE, HO.hot_calle_nro as NUMERO, count(R.res_estados_id) as [RESERVAS CANCELADAS]
 			from EN_CASA_ANDABA.reservas R, EN_CASA_ANDABA.hoteles HO, EN_CASA_ANDABA.habitaciones HA,
 				EN_CASA_ANDABA.Reservas_habitaciones RH, EN_CASA_ANDABA.Estados E,
 				EN_CASA_ANDABA.Usuarios_ReservasCancelaciones U_RC
@@ -883,8 +883,8 @@ create procedure EN_CASA_ANDABA.top5_hoteles_reservas_canceladas
 				E.estados_desc = 'Reserva CANCELADA POR CLIENTE') and
 				HA.hab_id = RH.ryh_hab_id and HA.hab_hot_id = HO.hot_id and U_RC.urc_res_id = R.res_id and
 				RH.ryh_res_id = R.res_id and U_RC.urc_fecha between @inicio and @fin
-			group by HO.hot_id
-			order by cancelados desc				
+			group by HO.hot_nombre, HO.hot_calle, Ho.hot_calle_nro
+			order by [RESERVAS CANCELADAS] desc				
 	end
 go
 
@@ -918,13 +918,14 @@ create procedure EN_CASA_ANDABA.top5_hoteles_consumibles_facturados
 				set @inicio = '01-01-'+@anioAux
 				set @fin = '31-12-'+@anioAux
 			end
-		select top 5 CYE.cye_hab_hot_id as hotel, sum(iyf_cantidad) as consumibles_facturados
+		select top 5 H.hot_nombre as HOTEL, H.hot_calle as CALLE, H.hot_calle_nro as NUMERO, sum(iyf_cantidad) as [CONSUMIBLES FACTURADOS]
 			from EN_CASA_ANDABA.Items_Facturas IYF, EN_CASA_ANDABA.facturas F, EN_CASA_ANDABA.Estadias E,
-				EN_CASA_ANDABA.Clientes_estadias CYE
+				EN_CASA_ANDABA.Clientes_estadias CYE, EN_CASA_ANDABA.Hoteles H
 			where IYF.iyf_fac_id = F.fac_id and F.fac_est_res_id = E.est_res_id 
 				and CYE.cye_est_res_id = E.est_res_id and F.fac_fecha between @inicio AND @fin
-			group by CYE.cye_hab_hot_id
-			order by consumibles_facturados desc
+				and CYE.cye_hab_hot_id = H.hot_id
+			group by H.hot_nombre, H.hot_calle, H.hot_calle_nro
+			order by [CONSUMIBLES FACTURADOS] desc
 	end
 go
 
@@ -958,22 +959,24 @@ create procedure EN_CASA_ANDABA.top5_hoteles_dias_fuera_de_servicio
 				set @inicio = '01-01-'+@anioAux
 				set @fin = '31-12-'+@anioAux
 			end
-		select top 5 total.hotel, ho.hot_id ,SUM(total.dias) as dias from  
+		select top 5 Hotel as HOTEL, Calle as CALLE, Numero as NUMERO ,SUM(total.dias) as DIAS from  
 			(select * from
-				(select H.hot_id as hotel, SUM(DATEDIFF(day, B.baj_fecha_inicio, B.baj_fecha_fin)) as dias
+				(select H.hot_nombre as Hotel, h.hot_calle as Calle, h.hot_calle_nro as Numero, SUM(DATEDIFF(day, B.baj_fecha_inicio, B.baj_fecha_fin)) as dias
 					from EN_CASA_ANDABA.BajasHotel B, EN_CASA_ANDABA.Hoteles H
 					where B.baj_hot_id = H.hot_id and B.baj_fecha_inicio between @inicio and @fin
 						and B.baj_fecha_fin < @fin
-					group by H.hot_id ) as antesFin
+					group by H.hot_nombre, h.hot_calle, h.hot_calle_nro) as antesFin
 			UNION ALL
 			select * from
-				(select H.hot_id as hotel, SUM(DATEDIFF(day, B.baj_fecha_inicio,@fin)) as dias
+				(select H.hot_nombre as Hotel, h.hot_calle as Calle, h.hot_calle_nro as Numero, SUM(DATEDIFF(day, B.baj_fecha_inicio,@fin)) as dias
 					from EN_CASA_ANDABA.BajasHotel B, EN_CASA_ANDABA.Hoteles H
 					where B.baj_hot_id = H.hot_id and B.baj_fecha_inicio between @inicio and @fin
 						and B.baj_fecha_fin > @fin
-					group by H.hot_id) as luegoFin) as total, EN_CASA_ANDABA.Hoteles HO
-					where HO.hot_id = total.hotel
-					group by total.hotel, HO.hot_id
+					group by H.hot_nombre, h.hot_calle, h.hot_calle_nro) as luegoFin) as total, EN_CASA_ANDABA.Hoteles HO
+					where HO.hot_calle = total.calle
+					and ho.hot_calle_nro = total.numero
+					and ho.hot_nombre = total.Hotel
+					group by Hotel,Calle,Numero
 					order by dias desc
 	end
 go
@@ -1008,9 +1011,9 @@ create procedure EN_CASA_ANDABA.top5_habitaciones_veces_ocupadas
 				set @inicio = '01-01-'+@anioAux
 				set @fin = '31-12-'+@anioAux
 			end
-		select distinct top 5 HO.hot_id as hotel, HA.hab_numero as numero_habitacion,
-				HA.hab_piso as piso_habitacion, cantidad_habitacion.cantVeces as veces,
-				cantidad_dias.Dias as dias
+		select distinct top 5 HO.hot_nombre as HOTEL, HO.hot_calle as CALLE, HO.hot_calle_nro as NUMERO, HA.hab_numero as [NUMERO HABITACION],
+				HA.hab_piso as [PISO HABITACION], cantidad_habitacion.cantVeces as [VECES OCUPADA],
+				cantidad_dias.Dias as [DIAS OCUPADA]
 			from (select hab_id as hab, hab_hot_id as hot, COUNT(hab_id) cantVeces
 					from EN_CASA_ANDABA.reservas_habitaciones RYH, EN_CASA_ANDABA.Habitaciones HA,
 							EN_CASA_ANDABA.Reservas R, EN_CASA_ANDABA.Hoteles HO, EN_CASA_ANDABA.Estadias E
@@ -1028,7 +1031,7 @@ create procedure EN_CASA_ANDABA.top5_habitaciones_veces_ocupadas
 							EN_CASA_ANDABA.Habitaciones HA, EN_CASA_ANDABA.Estadias E
 						where cantidad_habitacion.hot = HO.hot_id and HA.hab_id = cantidad_habitacion.hab and
 							cantidad_habitacion.hab = cantidad_dias.hab2 and E.est_checkin between @inicio and @fin
-						order by cantVeces desc
+						order by [VECES OCUPADA] desc
 	end
 go
 
@@ -1062,8 +1065,8 @@ create procedure EN_CASA_ANDABA.top5_clientes_puntos
 				set @inicio = '01-01-'+@anioAux
 				set @fin = '31-12-'+@anioAux
 			end
-		select top 5 C.cli_doc_id as tipo_documento, C.cli_documento as documento, C.cli_nombre as nombre, 
-			C.cli_apellido as apellido, puntos_estadias.puntos+puntos_consumibles.puntos as puntos
+		select top 5 C.cli_nombre as NOMBRE, C.cli_apellido as APELLIDO, C.cli_doc_id as [TIPO DOCUMENTO], C.cli_documento as DOCUMENTO,
+		puntos_estadias.puntos+puntos_consumibles.puntos as PUNTOS
 		from (select E.est_res_id, SUM(E.est_precio) as gastos, SUM(E.est_precio) / 20 as puntos
 				from EN_CASA_ANDABA.Estadias E, EN_CASA_ANDABA.Reservas R, EN_CASA_ANDABA.Facturas F
 		where E.est_res_id = R.res_id and F.fac_est_res_id = E.est_res_id and F.fac_fecha between @inicio and @fin
@@ -1078,7 +1081,7 @@ create procedure EN_CASA_ANDABA.top5_clientes_puntos
 				where R.res_cli_doc_id = C.cli_doc_id and R.res_cli_documento = C.cli_documento 
 					and E.est_res_id = R.res_id and puntos_consumibles.est_res_id = E.est_res_id and 
 					puntos_estadias.est_res_id = E.est_res_id
-				order by puntos desc
+				order by PUNTOS desc
 	end
 go
 
