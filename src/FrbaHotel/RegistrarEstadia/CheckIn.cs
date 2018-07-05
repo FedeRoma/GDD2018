@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FrbaHotel.AbmRegimen
+namespace FrbaHotel.RegistrarEstadia
 {
-    public partial class Form1 : Form
+    public partial class CheckIn : Form
     {
-        public Form1()
+        public CheckIn()
         {
             InitializeComponent();
         }
