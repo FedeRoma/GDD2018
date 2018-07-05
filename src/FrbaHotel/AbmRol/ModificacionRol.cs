@@ -16,7 +16,6 @@ namespace FrbaHotel.AbmRol
         private SqlDataReader qry;
         public static ListadoRoles ListadoRoles;
         string rolID;
-        bool inconsistencias = false;
 
         public ModificacionRol(string idRol, string nombreRol, string estadoRol)
         {
@@ -53,12 +52,12 @@ namespace FrbaHotel.AbmRol
 
         private bool checkCampos()
         {
-            inconsistencias = false;
+            bool inconsistencias = false;
             string alerta = "";
 
             if (string.IsNullOrEmpty(nombre.Text))
             {
-                alerta = alerta + "Debe ingresar un Nombre válido";
+                alerta = alerta + "Debe ingresar un nombre válido";
                 inconsistencias = true;
             }
 
