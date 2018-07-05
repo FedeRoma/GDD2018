@@ -34,7 +34,7 @@ namespace FrbaHotel.AbmHabitacion
             textBoxNroHab.Text = string.Empty;
             textBoxPiso.Text = string.Empty;
             textBoxUbicacion.Text = string.Empty;
-            comboBoxTipoHab.ResetText();
+            tipo.ResetText();
             textBoxDescripcion.Text = string.Empty;
             textBoxNroHab.Focus();
         }

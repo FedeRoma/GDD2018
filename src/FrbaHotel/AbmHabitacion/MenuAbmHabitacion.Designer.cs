@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MenuAbmHabitacion));
             this.atras = new System.Windows.Forms.Button();
             this.modificacionHabitacion = new System.Windows.Forms.Button();
             this.bajaHabitacion = new System.Windows.Forms.Button();
@@ -54,7 +55,7 @@
             // 
             this.modificacionHabitacion.BackColor = System.Drawing.Color.Crimson;
             this.modificacionHabitacion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.modificacionHabitacion.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.modificacionHabitacion.Font = new System.Drawing.Font("Arial", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.modificacionHabitacion.ForeColor = System.Drawing.Color.White;
             this.modificacionHabitacion.Location = new System.Drawing.Point(193, 293);
             this.modificacionHabitacion.Name = "modificacionHabitacion";
@@ -68,7 +69,7 @@
             // 
             this.bajaHabitacion.BackColor = System.Drawing.Color.Crimson;
             this.bajaHabitacion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.bajaHabitacion.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bajaHabitacion.Font = new System.Drawing.Font("Arial", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bajaHabitacion.ForeColor = System.Drawing.Color.White;
             this.bajaHabitacion.Location = new System.Drawing.Point(355, 155);
             this.bajaHabitacion.Name = "bajaHabitacion";
@@ -82,7 +83,7 @@
             // 
             this.altaHabitacion.BackColor = System.Drawing.Color.Crimson;
             this.altaHabitacion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.altaHabitacion.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.altaHabitacion.Font = new System.Drawing.Font("Arial", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.altaHabitacion.ForeColor = System.Drawing.Color.White;
             this.altaHabitacion.Location = new System.Drawing.Point(193, 155);
             this.altaHabitacion.Name = "altaHabitacion";
@@ -96,7 +97,7 @@
             // 
             this.listadoHabitaciones.BackColor = System.Drawing.Color.Crimson;
             this.listadoHabitaciones.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.listadoHabitaciones.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listadoHabitaciones.Font = new System.Drawing.Font("Arial", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listadoHabitaciones.ForeColor = System.Drawing.Color.White;
             this.listadoHabitaciones.Location = new System.Drawing.Point(193, 80);
             this.listadoHabitaciones.Name = "listadoHabitaciones";
@@ -132,9 +133,9 @@
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "MenuAbmHabitacion";
-            this.ShowIcon = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FRBA Hotel 2018";

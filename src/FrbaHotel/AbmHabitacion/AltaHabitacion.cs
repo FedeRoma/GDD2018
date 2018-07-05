@@ -31,12 +31,12 @@ namespace FrbaHotel.AbmHabitacion
 
         private void limpiar_Click(object sender, EventArgs e)
         {
-            textBoxNroHab.Text = string.Empty;
-            textBoxPiso.Text = string.Empty;
-            textBoxUbicacion.Text = string.Empty;
-            comboBoxTipoHab.ResetText();
-            textBoxDescripcion.Text = string.Empty;
-            textBoxNroHab.Focus();
+            numero.Text = string.Empty;
+            piso.Text = string.Empty;
+            ubicacion.Text = string.Empty;
+            tipoHabitacion.ResetText();
+            descripcion.Text = string.Empty;
+            numero.Focus();
         }
 
         private void cancelar_Click(object sender, EventArgs e)
