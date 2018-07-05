@@ -46,7 +46,7 @@
             this.atras.Location = new System.Drawing.Point(12, 386);
             this.atras.Name = "atras";
             this.atras.Size = new System.Drawing.Size(101, 44);
-            this.atras.TabIndex = 11;
+            this.atras.TabIndex = 5;
             this.atras.Text = "atrás";
             this.atras.UseVisualStyleBackColor = false;
             this.atras.Click += new System.EventHandler(this.atras_Click);
@@ -60,7 +60,7 @@
             this.modificacionRol.Location = new System.Drawing.Point(193, 293);
             this.modificacionRol.Name = "modificacionRol";
             this.modificacionRol.Size = new System.Drawing.Size(318, 69);
-            this.modificacionRol.TabIndex = 10;
+            this.modificacionRol.TabIndex = 4;
             this.modificacionRol.Text = "MODIFICACION";
             this.modificacionRol.UseVisualStyleBackColor = false;
             this.modificacionRol.Click += new System.EventHandler(this.modificacionRol_Click);
@@ -74,7 +74,7 @@
             this.bajaRol.Location = new System.Drawing.Point(355, 155);
             this.bajaRol.Name = "bajaRol";
             this.bajaRol.Size = new System.Drawing.Size(156, 131);
-            this.bajaRol.TabIndex = 9;
+            this.bajaRol.TabIndex = 3;
             this.bajaRol.Text = "BAJA";
             this.bajaRol.UseVisualStyleBackColor = false;
             this.bajaRol.Click += new System.EventHandler(this.bajaRol_Click);
@@ -88,7 +88,7 @@
             this.altaRol.Location = new System.Drawing.Point(193, 155);
             this.altaRol.Name = "altaRol";
             this.altaRol.Size = new System.Drawing.Size(156, 131);
-            this.altaRol.TabIndex = 8;
+            this.altaRol.TabIndex = 2;
             this.altaRol.Text = "ALTA";
             this.altaRol.UseVisualStyleBackColor = false;
             this.altaRol.Click += new System.EventHandler(this.altaRol_Click);
@@ -102,7 +102,7 @@
             this.listadoRoles.Location = new System.Drawing.Point(193, 80);
             this.listadoRoles.Name = "listadoRoles";
             this.listadoRoles.Size = new System.Drawing.Size(318, 69);
-            this.listadoRoles.TabIndex = 6;
+            this.listadoRoles.TabIndex = 1;
             this.listadoRoles.Text = "LISTADO";
             this.listadoRoles.UseVisualStyleBackColor = false;
             this.listadoRoles.Click += new System.EventHandler(this.listadoRoles_Click);

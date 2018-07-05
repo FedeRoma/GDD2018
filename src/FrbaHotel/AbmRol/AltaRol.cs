@@ -174,7 +174,7 @@ namespace FrbaHotel.AbmRol
             nombre.Clear();
             nombre.Focus();
 
-            tablaFuncionalidades = Index.BD.consultaGetTabla("select distinct F.fun_id ID,F.fun_desc Descripcion from EN_CASA_ANDABA.Funcionalidades F");
+            tablaFuncionalidades = Index.BD.consultaGetTabla("select distinct F.fun_id ID,F.fun_desc DESCRIPCION from EN_CASA_ANDABA.Funcionalidades F");
             BindingSource bindingSourceListaFuncionalidades = new BindingSource();
             bindingSourceListaFuncionalidades.DataSource = tablaFuncionalidades;
             listaFuncionalidades.DataSource = bindingSourceListaFuncionalidades;

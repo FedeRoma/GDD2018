@@ -84,7 +84,7 @@
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.DimGray;
             this.listaFuncionalidades.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.listaFuncionalidades.Size = new System.Drawing.Size(554, 138);
-            this.listaFuncionalidades.TabIndex = 40;
+            this.listaFuncionalidades.TabIndex = 2;
             // 
             // atras
             // 
@@ -95,7 +95,7 @@
             this.atras.Location = new System.Drawing.Point(12, 386);
             this.atras.Name = "atras";
             this.atras.Size = new System.Drawing.Size(101, 44);
-            this.atras.TabIndex = 43;
+            this.atras.TabIndex = 4;
             this.atras.Text = "atrás";
             this.atras.UseVisualStyleBackColor = false;
             this.atras.Click += new System.EventHandler(this.atras_Click);
@@ -109,7 +109,7 @@
             this.limpiar.Location = new System.Drawing.Point(119, 386);
             this.limpiar.Name = "limpiar";
             this.limpiar.Size = new System.Drawing.Size(101, 44);
-            this.limpiar.TabIndex = 42;
+            this.limpiar.TabIndex = 3;
             this.limpiar.Text = "limpiar datos";
             this.limpiar.UseVisualStyleBackColor = false;
             this.limpiar.Click += new System.EventHandler(this.limpiar_Click);
@@ -147,7 +147,7 @@
             dataGridViewCellStyle4.ForeColor = System.Drawing.Color.DimGray;
             this.listaRoles.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.listaRoles.Size = new System.Drawing.Size(566, 158);
-            this.listaRoles.TabIndex = 45;
+            this.listaRoles.TabIndex = 1;
             this.listaRoles.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listaRoles_CellClick);
             this.listaRoles.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.listaRoles_CellPainting);
             // 

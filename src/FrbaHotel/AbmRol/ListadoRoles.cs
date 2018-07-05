@@ -14,6 +14,7 @@ namespace FrbaHotel.AbmRol
     public partial class ListadoRoles : Form
     {
         public static MenuAbmRol AbmRol;
+        public static ModificacionRol ModifRol;
         DataTable tablaRoles;
         DataTable tablaFuncionalidades;
 
@@ -27,10 +28,6 @@ namespace FrbaHotel.AbmRol
             DataGridViewButtonColumn botonModif = new DataGridViewButtonColumn();
             botonModif.Name = "modif";
             listaRoles.Columns.Add(botonModif);
-
-            DataGridViewButtonColumn botonBaja = new DataGridViewButtonColumn();
-            botonBaja.Name = "baja";
-            listaRoles.Columns.Add(botonBaja);
 
             tablaRoles = Index.BD.consultaGetTabla("select rol_id ID, rol_nombre NOMBRE, rol_estado HABILITADO from EN_CASA_ANDABA.Roles");
             BindingSource bindingSourceListaRoles = new BindingSource();
@@ -58,20 +55,6 @@ namespace FrbaHotel.AbmRol
                 e.Handled = true;
             }
 
-            if (e.ColumnIndex >= 0 && this.listaRoles.Columns[e.ColumnIndex].Name == "baja" && e.RowIndex >= 0)
-            {
-                e.Paint(e.CellBounds, DataGridViewPaintParts.All);
-
-                DataGridViewButtonCell botonBaja = this.listaRoles.Rows[e.RowIndex].Cells["baja"] as DataGridViewButtonCell;
-                Icon icono = new Icon(Environment.CurrentDirectory + @"\\cross-script.ico");
-                e.Graphics.DrawIcon(icono, e.CellBounds.Left + 2, e.CellBounds.Top + 2);
-
-                this.listaRoles.Rows[e.RowIndex].Height = icono.Height + 5;
-                this.listaRoles.Columns[e.ColumnIndex].Width = icono.Width + 5;
-
-                e.Handled = true;
-            }
-
             if (e.ColumnIndex >= 0 && this.listaRoles.Columns[e.ColumnIndex].Name == "FUNCIONALIDADES" && e.RowIndex >= 0)
             {
                 e.Paint(e.CellBounds, DataGridViewPaintParts.All);
@@ -89,9 +72,20 @@ namespace FrbaHotel.AbmRol
 
         private void listaRoles_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (listaRoles.Columns[e.ColumnIndex].Name == "modif")
+            {
+                string id = listaRoles.CurrentRow.Cells[1].Value.ToString();
+                string nombre = listaRoles.CurrentRow.Cells[2].Value.ToString();
+                string estado = listaRoles.CurrentRow.Cells[3].Value.ToString();
+
+                ModifRol = new ModificacionRol(id, nombre, estado);
+                ModifRol.Show();
+                this.Hide();
+            }
+
             if (listaRoles.Columns[e.ColumnIndex].Name == "FUNCIONALIDADES")
             {
-                tablaFuncionalidades = Index.BD.consultaGetTabla("select F.fun_id ID, F.fun_desc DESCRIPCION from EN_CASA_ANDABA.Funcionalidades F, EN_CASA_ANDABA.Funcionalidades_Roles FR where F.fun_id = FR.fyr_fun_id and FR.fyr_rol_id = " + listaRoles.CurrentRow.Cells[2].Value.ToString());
+                tablaFuncionalidades = Index.BD.consultaGetTabla("select F.fun_id ID, F.fun_desc DESCRIPCION from EN_CASA_ANDABA.Funcionalidades F, EN_CASA_ANDABA.Funcionalidades_Roles FR where F.fun_id = FR.fyr_fun_id and FR.fyr_rol_id = " + listaRoles.CurrentRow.Cells[1].Value.ToString());
                 BindingSource bindingSourceListaFuncionalidades = new BindingSource();
                 bindingSourceListaFuncionalidades.DataSource = tablaFuncionalidades;
                 listaFuncionalidades.DataSource = bindingSourceListaFuncionalidades;
