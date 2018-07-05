@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ModificacionCliente));
             this.label1 = new System.Windows.Forms.Label();
             this.atras = new System.Windows.Forms.Button();
-            this.limpiar = new System.Windows.Forms.Button();
             this.guardar = new System.Windows.Forms.Button();
             this.estado = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -92,21 +91,7 @@
             this.atras.TabIndex = 18;
             this.atras.Text = "atrás";
             this.atras.UseVisualStyleBackColor = false;
-            this.atras.Click += new System.EventHandler(this.cancelar_Click);
-            // 
-            // limpiar
-            // 
-            this.limpiar.BackColor = System.Drawing.Color.White;
-            this.limpiar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.limpiar.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.limpiar.ForeColor = System.Drawing.Color.DimGray;
-            this.limpiar.Location = new System.Drawing.Point(119, 386);
-            this.limpiar.Name = "limpiar";
-            this.limpiar.Size = new System.Drawing.Size(101, 44);
-            this.limpiar.TabIndex = 17;
-            this.limpiar.Text = "limpiar datos";
-            this.limpiar.UseVisualStyleBackColor = false;
-            this.limpiar.Click += new System.EventHandler(this.limpiar_Click);
+            this.atras.Click += new System.EventHandler(this.atras_Click);
             // 
             // guardar
             // 
@@ -488,7 +473,6 @@
             this.Controls.Add(this.tipoDocumento);
             this.Controls.Add(this.estado);
             this.Controls.Add(this.atras);
-            this.Controls.Add(this.limpiar);
             this.Controls.Add(this.guardar);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -510,7 +494,6 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button atras;
-        private System.Windows.Forms.Button limpiar;
         private System.Windows.Forms.Button guardar;
         private System.Windows.Forms.CheckBox estado;
         private System.Windows.Forms.GroupBox groupBox1;

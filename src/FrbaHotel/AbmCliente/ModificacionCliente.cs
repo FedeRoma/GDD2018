@@ -15,7 +15,7 @@ namespace FrbaHotel.AbmCliente
     {
         private SqlDataReader qry;
         public static ListadoClientes ListadoCli;
-        bool hayCamposVacios = false;
+        bool inconsistencias = false;
         string eMailOriginal;
         string update = "";
 
@@ -88,33 +88,33 @@ namespace FrbaHotel.AbmCliente
 
         private bool checkCampos()
         {
-            hayCamposVacios = false;
+            inconsistencias = false;
             string alerta = "";
 
             if (string.IsNullOrEmpty(tipoDocumento.Text))
             {
                 alerta = alerta + "Debe ingresar un Tipo de Documento válido\n";
-                hayCamposVacios = true;
+                inconsistencias = true;
             }
             if (string.IsNullOrEmpty(nroDocumento.Text))
             {
                 alerta = alerta + "Debe ingresar un Número de Documento válido\n";
-                hayCamposVacios = true;
+                inconsistencias = true;
             }
             if (string.IsNullOrEmpty(nombre.Text))
             {
                 alerta = alerta + "Debe ingresar un Nombre válido\n";
-                hayCamposVacios = true;
+                inconsistencias = true;
             }
             if (string.IsNullOrEmpty(apellido.Text))
             {
                 alerta = alerta + "Debe ingresar un Apellido válido\n";
-                hayCamposVacios = true;
+                inconsistencias = true;
             }
             if (string.IsNullOrEmpty(eMail.Text))
             {
                 alerta = alerta + "Debe ingresar un eMail válido\n";
-                hayCamposVacios = true;
+                inconsistencias = true;
             }
             else
             {
@@ -124,7 +124,7 @@ namespace FrbaHotel.AbmCliente
                     if (!(eMail.Text == eMailOriginal))
                     {
                         alerta = alerta + "eMail ya registrado\n";
-                        hayCamposVacios = true;
+                        inconsistencias = true;
                     }
                 }
                 qry.Close();
@@ -132,27 +132,27 @@ namespace FrbaHotel.AbmCliente
             if (string.IsNullOrEmpty(nacionalidad.Text))
             {
                 alerta = alerta + "Debe ingresar una Nacionalidad válida\n";
-                hayCamposVacios = true;
+                inconsistencias = true;
             }
             if (string.IsNullOrEmpty(calle.Text) || string.IsNullOrEmpty(calleNumero.Text))
             {
                 alerta = alerta + "Debe ingresar una Dirección válida\n";
-                hayCamposVacios = true;
+                inconsistencias = true;
             }
             if (string.IsNullOrEmpty(telefono.Text))
             {
                 alerta = alerta + "Debe ingresar un Teléfono válido\n";
-                hayCamposVacios = true;
+                inconsistencias = true;
             }
             if (string.IsNullOrEmpty(localidad.Text) || string.IsNullOrEmpty(pais.Text))
             {
                 alerta = alerta + "Debe ingresar una Localidad y/o Pais válidos\n";
-                hayCamposVacios = true;
+                inconsistencias = true;
             }
             if (string.IsNullOrEmpty(fechaNacimiento.Text))
             {
                 alerta = alerta + "Debe ingresar un nombre válido\n";
-                hayCamposVacios = true;
+                inconsistencias = true;
             }
 
             DateTime fechaNac, hoy;
@@ -162,14 +162,14 @@ namespace FrbaHotel.AbmCliente
             if (DateTime.Compare(fechaNac, hoy) >= 0)
             {
                 alerta = alerta + "Debe ingresar una Fecha de Nacimiento válida\n";
-                hayCamposVacios = true;
+                inconsistencias = true;
             }
 
-            if (hayCamposVacios)
+            if (inconsistencias)
             {
                 MessageBox.Show(alerta);
             }
-            return hayCamposVacios;
+            return inconsistencias;
         }
 
         private string updateString(string campo)
@@ -248,30 +248,10 @@ namespace FrbaHotel.AbmCliente
                 {
                     MessageBox.Show("#error: no se ha podido realizar la operación");
                 }
-                limpiar.PerformClick();
             }
         }
 
-        private void limpiar_Click(object sender, EventArgs e)
-        {
-            tipoDocumento.ResetText();
-            nroDocumento.ResetText();
-            nombre.Text = string.Empty;
-            apellido.Text = string.Empty;
-            eMail.Text = string.Empty;
-            nacionalidad.Text = string.Empty;
-            fechaNacimiento.ResetText();
-            calle.Text = string.Empty;
-            calleNumero.Text = string.Empty;
-            piso.Text = string.Empty;
-            departamento.Text = string.Empty;
-            telefono.Text = string.Empty;
-            localidad.Text = string.Empty;
-            pais.Text = string.Empty;
-            tipoDocumento.Focus();
-        }
-
-        private void cancelar_Click(object sender, EventArgs e)
+        private void atras_Click(object sender, EventArgs e)
         {
             this.Hide();
             ListadoCli = new ListadoClientes();
