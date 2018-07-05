@@ -78,6 +78,9 @@ namespace FrbaHotel.Login
                 case "Modificar Reserva":
                     break;
                 case "Baja Reserva":
+                    this.Hide();
+                    CancelarReserva.CancelarReserva BajaReserva = new CancelarReserva.CancelarReserva();
+                    BajaReserva.Show();
                     break;
                 case "Registrar Estadía":
                     break;
