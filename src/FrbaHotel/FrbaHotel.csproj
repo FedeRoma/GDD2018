@@ -211,11 +211,11 @@
     <Compile Include="CancelarReserva\CancelarReserva.Designer.cs">
       <DependentUpon>CancelarReserva.cs</DependentUpon>
     </Compile>
-    <Compile Include="FacturacionEstadia\FacturacionEstadia.cs">
+    <Compile Include="FacturarEstadia\FacturarEstadia.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FacturacionEstadia\FacturacionEstadia.Designer.cs">
-      <DependentUpon>FacturacionEstadia.cs</DependentUpon>
+    <Compile Include="FacturarEstadia\FacturarEstadia.Designer.cs">
+      <DependentUpon>FacturarEstadia.cs</DependentUpon>
     </Compile>
     <Compile Include="Index.cs">
       <SubType>Form</SubType>
@@ -223,11 +223,11 @@
     <Compile Include="Index.Designer.cs">
       <DependentUpon>Index.cs</DependentUpon>
     </Compile>
-    <Compile Include="GenerarModificacionReserva\MenuGenerarModificarReserva.cs">
+    <Compile Include="GenerarModificacionReserva\MenuGenerarModificacionReserva.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GenerarModificacionReserva\MenuGenerarModificarReserva.Designer.cs">
-      <DependentUpon>MenuGenerarModificarReserva.cs</DependentUpon>
+    <Compile Include="GenerarModificacionReserva\MenuGenerarModificacionReserva.Designer.cs">
+      <DependentUpon>MenuGenerarModificacionReserva.cs</DependentUpon>
     </Compile>
     <Compile Include="ListadoEstadistico\ListadosEstadisticos.cs">
       <SubType>Form</SubType>
@@ -373,11 +373,11 @@
     <EmbeddedResource Include="CancelarReserva\CancelarReserva.resx">
       <DependentUpon>CancelarReserva.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FacturacionEstadia\FacturacionEstadia.resx">
-      <DependentUpon>FacturacionEstadia.cs</DependentUpon>
+    <EmbeddedResource Include="FacturarEstadia\FacturarEstadia.resx">
+      <DependentUpon>FacturarEstadia.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GenerarModificacionReserva\MenuGenerarModificarReserva.resx">
-      <DependentUpon>MenuGenerarModificarReserva.cs</DependentUpon>
+    <EmbeddedResource Include="GenerarModificacionReserva\MenuGenerarModificacionReserva.resx">
+      <DependentUpon>MenuGenerarModificacionReserva.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Index.resx">
       <DependentUpon>Index.cs</DependentUpon>
