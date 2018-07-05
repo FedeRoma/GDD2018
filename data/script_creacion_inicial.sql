@@ -1065,10 +1065,10 @@ create procedure EN_CASA_ANDABA.top5_clientes_puntos
 				set @inicio = '01-01-'+@anioAux
 				set @fin = '31-12-'+@anioAux
 			end
-		select top 5 C.cli_nombre as NOMBRE, C.cli_apellido as APELLIDO, C.cli_doc_id as [TIPO DOCUMENTO], C.cli_documento as DOCUMENTO,
+		select top 5 C.cli_nombre as NOMBRE, C.cli_apellido as APELLIDO, D.doc_desc as [TIPO DOCUMENTO], C.cli_documento as DOCUMENTO,
 		puntos_estadias.puntos+puntos_consumibles.puntos as PUNTOS
 		from (select E.est_res_id, SUM(E.est_precio) as gastos, SUM(E.est_precio) / 20 as puntos
-				from EN_CASA_ANDABA.Estadias E, EN_CASA_ANDABA.Reservas R, EN_CASA_ANDABA.Facturas F
+				from EN_CASA_ANDABA.Estadias E, EN_CASA_ANDABA.Reservas R, EN_CASA_ANDABA.Facturas F 
 		where E.est_res_id = R.res_id and F.fac_est_res_id = E.est_res_id and F.fac_fecha between @inicio and @fin
 		group by E.est_res_id) as puntos_estadias, 
 			(select E.est_res_id, SUM(CON.con_precio) Gasto, SUM(CON.con_precio) / 10 as puntos
@@ -1077,10 +1077,10 @@ create procedure EN_CASA_ANDABA.top5_clientes_puntos
 				where iyf_con_id = con_id and iyf_fac_id = fac_id and fac_est_res_id = est_res_id
 					and F.fac_fecha between @inicio and @fin
 				group by E.est_res_id) as puntos_consumibles, EN_CASA_ANDABA.Clientes C, EN_CASA_ANDABA.Estadias E,
-					EN_CASA_ANDABA.Reservas R
+					EN_CASA_ANDABA.Reservas R, EN_CASA_ANDABA.Documentos D
 				where R.res_cli_doc_id = C.cli_doc_id and R.res_cli_documento = C.cli_documento 
 					and E.est_res_id = R.res_id and puntos_consumibles.est_res_id = E.est_res_id and 
-					puntos_estadias.est_res_id = E.est_res_id
+					puntos_estadias.est_res_id = E.est_res_id and D.doc_id = C.cli_doc_id
 				order by PUNTOS desc
 	end
 go
