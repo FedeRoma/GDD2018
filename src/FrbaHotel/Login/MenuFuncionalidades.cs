@@ -59,9 +59,9 @@ namespace FrbaHotel.Login
                     IndexCliente.Show();
                     break;
                 case "ABM Hotel":
-                    //this.Hide();
-                    //AbmHotel.MenuAbmHotel IndexHotel = new AbmHotel.MenuAbmHotel();
-                    //IndexHotel.Show();
+                    this.Hide();
+                    AbmHotel.MenuAbmHotel IndexHotel = new AbmHotel.MenuAbmHotel();
+                    IndexHotel.Show();
                     break;
                 case "ABM Habitación":
                     this.Hide();
