@@ -33,10 +33,12 @@ namespace FrbaHotel.Login
         private void ingresar_Click(object sender, EventArgs e)
         {
             cantIntentos++;
+
             qry = Index.BD.consultaGetPuntero("select usu_estado, usu_id from EN_CASA_ANDABA.Usuarios where usu_username = '"+ nombreUsuario.Text +"' and usu_password = hashbytes('SHA2_256', '"+ contrasenia.Text +"')");
-            
+           
             if (nombreUsuario.Text == "guest" || nombreUsuario.Text == "Guest")
             {
+                qry.Close();
                 MessageBox.Show("Continuando como invitado...");
                 funcionalidadesUsuarios = new MenuFuncionalidades();
                 funcionalidadesUsuarios.Show();

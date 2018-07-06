@@ -45,7 +45,6 @@ namespace FrbaHotel
             if (qry.Read() == true)
             {
                 rol = qry.GetString(0);
-                qry.Close();
                 this.Hide();
                 rolesUsuario = new RolesUsuario();
                 rolesUsuario.Show();            
@@ -54,6 +53,7 @@ namespace FrbaHotel
             {
                 MessageBox.Show("#error: Rol de Guest inhabilitado");
             }
+            qry.Close();
         }
 
     }
