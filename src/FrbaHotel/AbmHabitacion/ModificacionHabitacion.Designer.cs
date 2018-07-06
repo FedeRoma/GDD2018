@@ -28,24 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ModificacionHabitacion));
             this.label1 = new System.Windows.Forms.Label();
             this.estado = new System.Windows.Forms.CheckBox();
             this.piso = new System.Windows.Forms.TextBox();
-            this.hotel = new System.Windows.Forms.TextBox();
             this.atras = new System.Windows.Forms.Button();
-            this.limpiar = new System.Windows.Forms.Button();
             this.guardar = new System.Windows.Forms.Button();
-            this.descripcion = new System.Windows.Forms.TextBox();
-            this.ubicacion = new System.Windows.Forms.TextBox();
+            this.vista = new System.Windows.Forms.TextBox();
             this.numero = new System.Windows.Forms.TextBox();
             this.tipoHabitacion = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.hotelActivo = new System.Windows.Forms.ListBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.descripcion = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -65,7 +65,7 @@
             // 
             this.estado.AutoSize = true;
             this.estado.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.estado.Location = new System.Drawing.Point(327, 386);
+            this.estado.Location = new System.Drawing.Point(357, 356);
             this.estado.Name = "estado";
             this.estado.Size = new System.Drawing.Size(82, 19);
             this.estado.TabIndex = 7;
@@ -81,15 +81,6 @@
             this.piso.Size = new System.Drawing.Size(135, 22);
             this.piso.TabIndex = 57;
             // 
-            // hotel
-            // 
-            this.hotel.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.hotel.ForeColor = System.Drawing.Color.DimGray;
-            this.hotel.Location = new System.Drawing.Point(71, 110);
-            this.hotel.Name = "hotel";
-            this.hotel.Size = new System.Drawing.Size(280, 22);
-            this.hotel.TabIndex = 55;
-            // 
             // atras
             // 
             this.atras.BackColor = System.Drawing.Color.DimGray;
@@ -103,19 +94,7 @@
             this.atras.TabIndex = 63;
             this.atras.Text = "atrás";
             this.atras.UseVisualStyleBackColor = false;
-            // 
-            // limpiar
-            // 
-            this.limpiar.BackColor = System.Drawing.Color.White;
-            this.limpiar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.limpiar.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.limpiar.ForeColor = System.Drawing.Color.DimGray;
-            this.limpiar.Location = new System.Drawing.Point(119, 386);
-            this.limpiar.Name = "limpiar";
-            this.limpiar.Size = new System.Drawing.Size(101, 44);
-            this.limpiar.TabIndex = 62;
-            this.limpiar.Text = "limpiar datos";
-            this.limpiar.UseVisualStyleBackColor = false;
+            this.atras.Click += new System.EventHandler(this.atras_Click);
             // 
             // guardar
             // 
@@ -129,25 +108,16 @@
             this.guardar.TabIndex = 61;
             this.guardar.Text = "guardar";
             this.guardar.UseVisualStyleBackColor = false;
+            this.guardar.Click += new System.EventHandler(this.guardar_Click);
             // 
-            // descripcion
+            // vista
             // 
-            this.descripcion.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.descripcion.ForeColor = System.Drawing.Color.DimGray;
-            this.descripcion.Location = new System.Drawing.Point(71, 215);
-            this.descripcion.Multiline = true;
-            this.descripcion.Name = "descripcion";
-            this.descripcion.Size = new System.Drawing.Size(566, 135);
-            this.descripcion.TabIndex = 60;
-            // 
-            // ubicacion
-            // 
-            this.ubicacion.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ubicacion.ForeColor = System.Drawing.Color.DimGray;
-            this.ubicacion.Location = new System.Drawing.Point(71, 164);
-            this.ubicacion.Name = "ubicacion";
-            this.ubicacion.Size = new System.Drawing.Size(280, 22);
-            this.ubicacion.TabIndex = 58;
+            this.vista.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.vista.ForeColor = System.Drawing.Color.DimGray;
+            this.vista.Location = new System.Drawing.Point(71, 164);
+            this.vista.Name = "vista";
+            this.vista.Size = new System.Drawing.Size(280, 22);
+            this.vista.TabIndex = 58;
             // 
             // numero
             // 
@@ -176,7 +146,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.Crimson;
-            this.label6.Location = new System.Drawing.Point(496, 367);
+            this.label6.Location = new System.Drawing.Point(496, 353);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(141, 16);
             this.label6.TabIndex = 71;
@@ -219,18 +189,6 @@
             this.label5.Text = "Tipo (*)";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(68, 147);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(74, 14);
-            this.label4.TabIndex = 74;
-            this.label4.Text = "Ubicación (*)";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -243,6 +201,19 @@
             this.label3.Text = "Número (*)";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // hotelActivo
+            // 
+            this.hotelActivo.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.hotelActivo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.hotelActivo.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.hotelActivo.ForeColor = System.Drawing.Color.Crimson;
+            this.hotelActivo.FormattingEnabled = true;
+            this.hotelActivo.ItemHeight = 18;
+            this.hotelActivo.Location = new System.Drawing.Point(71, 110);
+            this.hotelActivo.Name = "hotelActivo";
+            this.hotelActivo.Size = new System.Drawing.Size(280, 20);
+            this.hotelActivo.TabIndex = 79;
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -250,10 +221,32 @@
             this.label2.ForeColor = System.Drawing.Color.Black;
             this.label2.Location = new System.Drawing.Point(68, 93);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(50, 14);
-            this.label2.TabIndex = 72;
-            this.label2.Text = "Hotel (*)";
+            this.label2.Size = new System.Drawing.Size(35, 14);
+            this.label2.TabIndex = 78;
+            this.label2.Text = "Hotel";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.Black;
+            this.label4.Location = new System.Drawing.Point(68, 147);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(50, 14);
+            this.label4.TabIndex = 80;
+            this.label4.Text = "Vista (*)";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // descripcion
+            // 
+            this.descripcion.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.descripcion.ForeColor = System.Drawing.Color.DimGray;
+            this.descripcion.Location = new System.Drawing.Point(71, 215);
+            this.descripcion.Multiline = true;
+            this.descripcion.Name = "descripcion";
+            this.descripcion.Size = new System.Drawing.Size(566, 135);
+            this.descripcion.TabIndex = 81;
             // 
             // ModificacionHabitacion
             // 
@@ -261,32 +254,32 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(704, 442);
+            this.Controls.Add(this.descripcion);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.hotelActivo);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.piso);
-            this.Controls.Add(this.hotel);
             this.Controls.Add(this.atras);
-            this.Controls.Add(this.limpiar);
             this.Controls.Add(this.guardar);
-            this.Controls.Add(this.descripcion);
-            this.Controls.Add(this.ubicacion);
+            this.Controls.Add(this.vista);
             this.Controls.Add(this.numero);
             this.Controls.Add(this.tipoHabitacion);
             this.Controls.Add(this.estado);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "ModificacionHabitacion";
-            this.ShowIcon = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FRBA Hotel 2018";
+            this.Load += new System.EventHandler(this.ModificacionHabitacion_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -297,20 +290,19 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckBox estado;
         private System.Windows.Forms.TextBox piso;
-        private System.Windows.Forms.TextBox hotel;
         private System.Windows.Forms.Button atras;
-        private System.Windows.Forms.Button limpiar;
         private System.Windows.Forms.Button guardar;
-        private System.Windows.Forms.TextBox descripcion;
-        private System.Windows.Forms.TextBox ubicacion;
+        private System.Windows.Forms.TextBox vista;
         private System.Windows.Forms.TextBox numero;
         private System.Windows.Forms.ComboBox tipoHabitacion;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ListBox hotelActivo;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox descripcion;
     }
 }

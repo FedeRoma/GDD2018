@@ -34,7 +34,7 @@
             this.guardar = new System.Windows.Forms.Button();
             this.descripcion = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.ubicacion = new System.Windows.Forms.TextBox();
+            this.vista = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.numero = new System.Windows.Forms.TextBox();
@@ -42,10 +42,10 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tipoHabitacion = new System.Windows.Forms.ComboBox();
-            this.hotel = new System.Windows.Forms.TextBox();
             this.piso = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.hotelActivo = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // atras
@@ -61,7 +61,7 @@
             this.atras.TabIndex = 9;
             this.atras.Text = "atrás";
             this.atras.UseVisualStyleBackColor = false;
-            this.atras.Click += new System.EventHandler(this.cancelar_Click);
+            this.atras.Click += new System.EventHandler(this.atras_Click);
             // 
             // limpiar
             // 
@@ -113,14 +113,14 @@
             this.label8.Text = "Descripción";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // ubicacion
+            // vista
             // 
-            this.ubicacion.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ubicacion.ForeColor = System.Drawing.Color.DimGray;
-            this.ubicacion.Location = new System.Drawing.Point(71, 164);
-            this.ubicacion.Name = "ubicacion";
-            this.ubicacion.Size = new System.Drawing.Size(280, 22);
-            this.ubicacion.TabIndex = 4;
+            this.vista.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.vista.ForeColor = System.Drawing.Color.DimGray;
+            this.vista.Location = new System.Drawing.Point(71, 164);
+            this.vista.Name = "vista";
+            this.vista.Size = new System.Drawing.Size(280, 22);
+            this.vista.TabIndex = 4;
             // 
             // label5
             // 
@@ -141,9 +141,9 @@
             this.label4.ForeColor = System.Drawing.Color.Black;
             this.label4.Location = new System.Drawing.Point(68, 147);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(74, 14);
+            this.label4.Size = new System.Drawing.Size(50, 14);
             this.label4.TabIndex = 30;
-            this.label4.Text = "Ubicación (*)";
+            this.label4.Text = "Vista (*)";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // numero
@@ -154,6 +154,7 @@
             this.numero.Name = "numero";
             this.numero.Size = new System.Drawing.Size(135, 22);
             this.numero.TabIndex = 2;
+            this.numero.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.numero_KeyPress);
             // 
             // label3
             // 
@@ -174,9 +175,9 @@
             this.label2.ForeColor = System.Drawing.Color.Black;
             this.label2.Location = new System.Drawing.Point(68, 93);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(50, 14);
+            this.label2.Size = new System.Drawing.Size(35, 14);
             this.label2.TabIndex = 25;
-            this.label2.Text = "Hotel (*)";
+            this.label2.Text = "Hotel";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label1
@@ -203,15 +204,6 @@
             this.tipoHabitacion.Size = new System.Drawing.Size(280, 24);
             this.tipoHabitacion.TabIndex = 5;
             this.tipoHabitacion.ValueMember = "doc_id";
-            // 
-            // hotel
-            // 
-            this.hotel.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.hotel.ForeColor = System.Drawing.Color.DimGray;
-            this.hotel.Location = new System.Drawing.Point(71, 110);
-            this.hotel.Name = "hotel";
-            this.hotel.Size = new System.Drawing.Size(280, 22);
-            this.hotel.TabIndex = 1;
             // 
             // piso
             // 
@@ -240,12 +232,25 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.Crimson;
-            this.label6.Location = new System.Drawing.Point(496, 367);
+            this.label6.Location = new System.Drawing.Point(496, 353);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(141, 16);
             this.label6.TabIndex = 72;
             this.label6.Text = "(*) campos obligatorios";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // hotelActivo
+            // 
+            this.hotelActivo.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.hotelActivo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.hotelActivo.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.hotelActivo.ForeColor = System.Drawing.Color.Crimson;
+            this.hotelActivo.FormattingEnabled = true;
+            this.hotelActivo.ItemHeight = 18;
+            this.hotelActivo.Location = new System.Drawing.Point(71, 110);
+            this.hotelActivo.Name = "hotelActivo";
+            this.hotelActivo.Size = new System.Drawing.Size(280, 20);
+            this.hotelActivo.TabIndex = 73;
             // 
             // AltaHabitacion
             // 
@@ -253,16 +258,16 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(704, 442);
+            this.Controls.Add(this.hotelActivo);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.piso);
-            this.Controls.Add(this.hotel);
             this.Controls.Add(this.atras);
             this.Controls.Add(this.limpiar);
             this.Controls.Add(this.guardar);
             this.Controls.Add(this.descripcion);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.ubicacion);
+            this.Controls.Add(this.vista);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.numero);
@@ -278,6 +283,7 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FRBA Hotel 2018";
+            this.Load += new System.EventHandler(this.AltaHabitacion_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -290,7 +296,7 @@
         private System.Windows.Forms.Button guardar;
         private System.Windows.Forms.TextBox descripcion;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox ubicacion;
+        private System.Windows.Forms.TextBox vista;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox numero;
@@ -298,9 +304,9 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox tipoHabitacion;
-        private System.Windows.Forms.TextBox hotel;
         private System.Windows.Forms.TextBox piso;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ListBox hotelActivo;
     }
 }
