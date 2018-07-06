@@ -1,3 +1,6 @@
+use [GD1C2018]
+go
+
 --DROPs
 drop table EN_CASA_ANDABA.Items_Facturas
 drop table EN_CASA_ANDABA.Consumibles
