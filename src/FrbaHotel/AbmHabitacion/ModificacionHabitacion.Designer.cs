@@ -54,7 +54,7 @@
             this.label12.ForeColor = System.Drawing.Color.Black;
             this.label12.Location = new System.Drawing.Point(499, 97);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(32, 14);
+            this.label12.Size = new System.Drawing.Size(41, 16);
             this.label12.TabIndex = 64;
             this.label12.Text = "PISO";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -65,7 +65,7 @@
             this.textBoxPiso.ForeColor = System.Drawing.Color.DimGray;
             this.textBoxPiso.Location = new System.Drawing.Point(502, 114);
             this.textBoxPiso.Name = "textBoxPiso";
-            this.textBoxPiso.Size = new System.Drawing.Size(135, 22);
+            this.textBoxPiso.Size = new System.Drawing.Size(135, 26);
             this.textBoxPiso.TabIndex = 3;
             // 
             // textBoxHotel
@@ -74,7 +74,7 @@
             this.textBoxHotel.ForeColor = System.Drawing.Color.DimGray;
             this.textBoxHotel.Location = new System.Drawing.Point(71, 114);
             this.textBoxHotel.Name = "textBoxHotel";
-            this.textBoxHotel.Size = new System.Drawing.Size(280, 22);
+            this.textBoxHotel.Size = new System.Drawing.Size(280, 26);
             this.textBoxHotel.TabIndex = 1;
             // 
             // cancelar
@@ -136,7 +136,7 @@
             this.label8.ForeColor = System.Drawing.Color.Black;
             this.label8.Location = new System.Drawing.Point(68, 202);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(78, 14);
+            this.label8.Size = new System.Drawing.Size(104, 16);
             this.label8.TabIndex = 59;
             this.label8.Text = "DESCRIPCION";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -147,7 +147,7 @@
             this.textBoxUbicacion.ForeColor = System.Drawing.Color.DimGray;
             this.textBoxUbicacion.Location = new System.Drawing.Point(71, 168);
             this.textBoxUbicacion.Name = "textBoxUbicacion";
-            this.textBoxUbicacion.Size = new System.Drawing.Size(280, 22);
+            this.textBoxUbicacion.Size = new System.Drawing.Size(280, 26);
             this.textBoxUbicacion.TabIndex = 4;
             // 
             // label5
@@ -157,7 +157,7 @@
             this.label5.ForeColor = System.Drawing.Color.Black;
             this.label5.Location = new System.Drawing.Point(354, 151);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(32, 14);
+            this.label5.Size = new System.Drawing.Size(40, 16);
             this.label5.TabIndex = 58;
             this.label5.Text = "TIPO";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -169,7 +169,7 @@
             this.label4.ForeColor = System.Drawing.Color.Black;
             this.label4.Location = new System.Drawing.Point(68, 151);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(66, 14);
+            this.label4.Size = new System.Drawing.Size(86, 16);
             this.label4.TabIndex = 57;
             this.label4.Text = "UBICACION";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -180,7 +180,7 @@
             this.textBoxNroHab.ForeColor = System.Drawing.Color.DimGray;
             this.textBoxNroHab.Location = new System.Drawing.Point(357, 114);
             this.textBoxNroHab.Name = "textBoxNroHab";
-            this.textBoxNroHab.Size = new System.Drawing.Size(135, 22);
+            this.textBoxNroHab.Size = new System.Drawing.Size(135, 26);
             this.textBoxNroHab.TabIndex = 2;
             // 
             // label3
@@ -190,7 +190,7 @@
             this.label3.ForeColor = System.Drawing.Color.Black;
             this.label3.Location = new System.Drawing.Point(354, 97);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(52, 14);
+            this.label3.Size = new System.Drawing.Size(71, 16);
             this.label3.TabIndex = 56;
             this.label3.Text = "NUMERO";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -202,7 +202,7 @@
             this.label2.ForeColor = System.Drawing.Color.Black;
             this.label2.Location = new System.Drawing.Point(68, 97);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(42, 14);
+            this.label2.Size = new System.Drawing.Size(54, 16);
             this.label2.TabIndex = 55;
             this.label2.Text = "HOTEL";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -215,10 +215,11 @@
             this.label1.ForeColor = System.Drawing.Color.Black;
             this.label1.Location = new System.Drawing.Point(133, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(439, 41);
+            this.label1.Size = new System.Drawing.Size(553, 51);
             this.label1.TabIndex = 54;
             this.label1.Text = "MODIFICACION HABITACION";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // comboBoxTipoHab
             // 
@@ -228,7 +229,7 @@
             this.comboBoxTipoHab.FormattingEnabled = true;
             this.comboBoxTipoHab.Location = new System.Drawing.Point(357, 168);
             this.comboBoxTipoHab.Name = "comboBoxTipoHab";
-            this.comboBoxTipoHab.Size = new System.Drawing.Size(280, 24);
+            this.comboBoxTipoHab.Size = new System.Drawing.Size(280, 26);
             this.comboBoxTipoHab.TabIndex = 5;
             this.comboBoxTipoHab.ValueMember = "doc_id";
             // 
@@ -238,14 +239,15 @@
             this.checkBoxEstado.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBoxEstado.Location = new System.Drawing.Point(308, 370);
             this.checkBoxEstado.Name = "checkBoxEstado";
-            this.checkBoxEstado.Size = new System.Drawing.Size(98, 19);
+            this.checkBoxEstado.Size = new System.Drawing.Size(118, 21);
             this.checkBoxEstado.TabIndex = 7;
             this.checkBoxEstado.Text = "Estado Activo";
             this.checkBoxEstado.UseVisualStyleBackColor = true;
+            this.checkBoxEstado.CheckedChanged += new System.EventHandler(this.checkBoxEstado_CheckedChanged);
             // 
             // ModificacionHabitacion
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(704, 442);
