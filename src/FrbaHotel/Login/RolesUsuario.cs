@@ -50,7 +50,7 @@ namespace FrbaHotel.Login
             rol.SelectedIndex = 0;
         }
 
-        private void comboBoxRol_SelectedIndexChanged(object sender, EventArgs e)
+        private void rol_SelectedIndexChanged(object sender, EventArgs e)
         {
             qry = Index.BD.consultaGetPuntero("exec EN_CASA_ANDABA.buscarHoteles '" + rol.SelectedItem + "' , " + Index.usuarioID.ToString());
             hotel.Items.Clear();

@@ -243,6 +243,7 @@ namespace FrbaHotel.AbmCliente
                 if (insertOk)
                 {
                     MessageBox.Show("Cliente modificado con éxito");
+                    atras_Click(null, null);
                 }
                 else
                 {

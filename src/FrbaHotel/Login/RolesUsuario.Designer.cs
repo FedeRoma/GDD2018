@@ -59,7 +59,7 @@
             this.rol.Name = "rol";
             this.rol.Size = new System.Drawing.Size(280, 24);
             this.rol.TabIndex = 1;
-            this.rol.SelectedIndexChanged += new System.EventHandler(this.comboBoxRol_SelectedIndexChanged);
+            this.rol.SelectedIndexChanged += new System.EventHandler(this.rol_SelectedIndexChanged);
             // 
             // label3
             // 
