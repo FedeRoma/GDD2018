@@ -42,8 +42,8 @@ namespace FrbaHotel.AbmHotel
         private void bajaHotel_Click(object sender, EventArgs e)
         {
             this.Hide();
-            BajaHot = new BajaHotel();
-            BajaHot.Show();
+            ListadoHot = new ListadoHoteles();
+            ListadoHot.Show();
         }
 
         private void modificacionHotel_Click(object sender, EventArgs e)
