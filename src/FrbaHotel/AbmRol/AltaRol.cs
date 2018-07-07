@@ -73,6 +73,8 @@ namespace FrbaHotel.AbmRol
                 row["ID"] = funcionalidadID;
                 row["DESCRIPCION"] = funcionalidadDesc;
                 tablaFuncionalidadesAsig.Rows.Add(row);
+                bindingSourceListaFuncionalidadesAsig.DataSource = tablaFuncionalidadesAsig;
+                bindingSourceListaFuncionalidadesAsig.ResetBindings(true);
 
                 if (cantFuncionalidades == 0)
                 {
@@ -189,6 +191,11 @@ namespace FrbaHotel.AbmRol
             this.Hide();
             AbmRol = new MenuAbmRol();
             AbmRol.Show();
+        }
+
+        private void listaFuncionalidades_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
 
     }
