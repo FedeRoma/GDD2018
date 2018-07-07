@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -60,14 +61,18 @@
             this.limpiar = new System.Windows.Forms.Button();
             this.guardar = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
-            this.listaFuncionalidades = new System.Windows.Forms.DataGridView();
-            this.listaFuncionalidadesAsig = new System.Windows.Forms.DataGridView();
+            this.listaRegimenes = new System.Windows.Forms.DataGridView();
+            this.listaRegimenesAsig = new System.Windows.Forms.DataGridView();
             this.label5 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.bindingSourceListaRegimenes = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingSourceListaRegimenesAsig = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.listaFuncionalidades)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.listaFuncionalidadesAsig)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.listaRegimenes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.listaRegimenesAsig)).BeginInit();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceListaRegimenes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceListaRegimenesAsig)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -190,6 +195,7 @@
             this.calleNumero.Name = "calleNumero";
             this.calleNumero.Size = new System.Drawing.Size(77, 26);
             this.calleNumero.TabIndex = 6;
+            this.calleNumero.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.calleNro_Keypress);
             // 
             // telefono
             // 
@@ -250,6 +256,7 @@
             this.cantidadEstrellas.Name = "cantidadEstrellas";
             this.cantidadEstrellas.Size = new System.Drawing.Size(206, 26);
             this.cantidadEstrellas.TabIndex = 2;
+            this.cantidadEstrellas.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cantidadEstrellas_Keypress);
             // 
             // label2
             // 
@@ -271,6 +278,7 @@
             this.recargaEstrellas.Name = "recargaEstrellas";
             this.recargaEstrellas.Size = new System.Drawing.Size(206, 26);
             this.recargaEstrellas.TabIndex = 3;
+            this.recargaEstrellas.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.recargaEstrellas_Keypress);
             // 
             // label4
             // 
@@ -338,6 +346,7 @@
             this.atras.TabIndex = 13;
             this.atras.Text = "atrás";
             this.atras.UseVisualStyleBackColor = false;
+            this.atras.Click += new System.EventHandler(this.cancelar_Click);
             // 
             // limpiar
             // 
@@ -365,6 +374,7 @@
             this.guardar.TabIndex = 11;
             this.guardar.Text = "guardar";
             this.guardar.UseVisualStyleBackColor = false;
+            this.guardar.Click += new System.EventHandler(this.guardar_Click);
             // 
             // label6
             // 
@@ -378,53 +388,53 @@
             this.label6.Text = "Disponibles";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // listaFuncionalidades
+            // listaRegimenes
             // 
-            this.listaFuncionalidades.AllowUserToOrderColumns = true;
-            this.listaFuncionalidades.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
-            this.listaFuncionalidades.BackgroundColor = System.Drawing.Color.White;
-            this.listaFuncionalidades.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.listaFuncionalidades.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.listaFuncionalidades.Location = new System.Drawing.Point(6, 33);
-            this.listaFuncionalidades.Name = "listaFuncionalidades";
+            this.listaRegimenes.AllowUserToOrderColumns = true;
+            this.listaRegimenes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+            this.listaRegimenes.BackgroundColor = System.Drawing.Color.White;
+            this.listaRegimenes.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.listaRegimenes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.listaRegimenes.Location = new System.Drawing.Point(6, 33);
+            this.listaRegimenes.Name = "listaRegimenes";
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.Silver;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.listaFuncionalidades.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.listaRegimenes.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.WhiteSmoke;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.DimGray;
-            this.listaFuncionalidades.RowsDefaultCellStyle = dataGridViewCellStyle2;
-            this.listaFuncionalidades.Size = new System.Drawing.Size(275, 85);
-            this.listaFuncionalidades.TabIndex = 5;
+            this.listaRegimenes.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            this.listaRegimenes.Size = new System.Drawing.Size(275, 85);
+            this.listaRegimenes.TabIndex = 5;
             // 
-            // listaFuncionalidadesAsig
+            // listaRegimenesAsig
             // 
-            this.listaFuncionalidadesAsig.AllowUserToOrderColumns = true;
-            this.listaFuncionalidadesAsig.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
-            this.listaFuncionalidadesAsig.BackgroundColor = System.Drawing.Color.White;
-            this.listaFuncionalidadesAsig.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.listaFuncionalidadesAsig.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.listaFuncionalidadesAsig.Location = new System.Drawing.Point(291, 33);
-            this.listaFuncionalidadesAsig.Name = "listaFuncionalidadesAsig";
+            this.listaRegimenesAsig.AllowUserToOrderColumns = true;
+            this.listaRegimenesAsig.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+            this.listaRegimenesAsig.BackgroundColor = System.Drawing.Color.White;
+            this.listaRegimenesAsig.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.listaRegimenesAsig.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.listaRegimenesAsig.Location = new System.Drawing.Point(291, 33);
+            this.listaRegimenesAsig.Name = "listaRegimenesAsig";
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.Silver;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.listaFuncionalidadesAsig.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.listaRegimenesAsig.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.WhiteSmoke;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle4.ForeColor = System.Drawing.Color.DimGray;
-            this.listaFuncionalidadesAsig.RowsDefaultCellStyle = dataGridViewCellStyle4;
-            this.listaFuncionalidadesAsig.Size = new System.Drawing.Size(275, 85);
-            this.listaFuncionalidadesAsig.TabIndex = 6;
+            this.listaRegimenesAsig.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            this.listaRegimenesAsig.Size = new System.Drawing.Size(275, 85);
+            this.listaRegimenesAsig.TabIndex = 6;
             // 
             // label5
             // 
@@ -441,8 +451,8 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Controls.Add(this.listaFuncionalidadesAsig);
-            this.groupBox2.Controls.Add(this.listaFuncionalidades);
+            this.groupBox2.Controls.Add(this.listaRegimenesAsig);
+            this.groupBox2.Controls.Add(this.listaRegimenes);
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Location = new System.Drawing.Point(69, 256);
             this.groupBox2.Name = "groupBox2";
@@ -481,12 +491,15 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FRBA Hotel 2018";
+            this.Load += new System.EventHandler(this.AltaHotel_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.listaFuncionalidades)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.listaFuncionalidadesAsig)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.listaRegimenes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.listaRegimenesAsig)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceListaRegimenes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceListaRegimenesAsig)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -521,9 +534,11 @@
         private System.Windows.Forms.Button guardar;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.DataGridView listaFuncionalidades;
-        private System.Windows.Forms.DataGridView listaFuncionalidadesAsig;
+        private System.Windows.Forms.DataGridView listaRegimenes;
+        private System.Windows.Forms.DataGridView listaRegimenesAsig;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.BindingSource bindingSourceListaRegimenes;
+        private System.Windows.Forms.BindingSource bindingSourceListaRegimenesAsig;
     }
 }
