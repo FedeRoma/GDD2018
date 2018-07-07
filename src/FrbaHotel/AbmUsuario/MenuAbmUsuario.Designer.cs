@@ -49,6 +49,7 @@
             this.atras.TabIndex = 5;
             this.atras.Text = "atrás";
             this.atras.UseVisualStyleBackColor = false;
+            this.atras.Click += new System.EventHandler(this.atras_Click);
             // 
             // modificacionUsuario
             // 
@@ -62,6 +63,7 @@
             this.modificacionUsuario.TabIndex = 4;
             this.modificacionUsuario.Text = "MODIFICACION";
             this.modificacionUsuario.UseVisualStyleBackColor = false;
+            this.modificacionUsuario.Click += new System.EventHandler(this.modificacionUsuario_Click);
             // 
             // bajaUsuario
             // 
@@ -75,6 +77,7 @@
             this.bajaUsuario.TabIndex = 3;
             this.bajaUsuario.Text = "BAJA";
             this.bajaUsuario.UseVisualStyleBackColor = false;
+            this.bajaUsuario.Click += new System.EventHandler(this.bajaUsuario_Click);
             // 
             // altaUsuario
             // 
@@ -88,6 +91,7 @@
             this.altaUsuario.TabIndex = 2;
             this.altaUsuario.Text = "ALTA";
             this.altaUsuario.UseVisualStyleBackColor = false;
+            this.altaUsuario.Click += new System.EventHandler(this.altaUsuario_Click);
             // 
             // listadoUsuarios
             // 
@@ -101,6 +105,7 @@
             this.listadoUsuarios.TabIndex = 1;
             this.listadoUsuarios.Text = "LISTADO";
             this.listadoUsuarios.UseVisualStyleBackColor = false;
+            this.listadoUsuarios.Click += new System.EventHandler(this.listadoUsuarios_Click);
             // 
             // label1
             // 
