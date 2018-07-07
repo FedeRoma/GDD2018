@@ -28,10 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListadoHoteles));
-            this.listaClientes = new System.Windows.Forms.DataGridView();
+            this.listaHoteles = new System.Windows.Forms.DataGridView();
             this.atras = new System.Windows.Forms.Button();
             this.limpiar = new System.Windows.Forms.Button();
             this.buscar = new System.Windows.Forms.Button();
@@ -39,39 +40,41 @@
             this.label2 = new System.Windows.Forms.Label();
             this.nombre = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.cantidadEstrellas = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.pais = new System.Windows.Forms.TextBox();
             this.ciudad = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.listaClientes)).BeginInit();
+            this.cantidadEstrellas = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.bindingSourceListaHoteles = new System.Windows.Forms.BindingSource(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.listaHoteles)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceListaHoteles)).BeginInit();
             this.SuspendLayout();
             // 
-            // listaClientes
+            // listaHoteles
             // 
-            this.listaClientes.AllowUserToOrderColumns = true;
-            this.listaClientes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
-            this.listaClientes.BackgroundColor = System.Drawing.Color.White;
-            this.listaClientes.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.listaClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.listaClientes.Location = new System.Drawing.Point(71, 173);
-            this.listaClientes.Name = "listaClientes";
+            this.listaHoteles.AllowUserToOrderColumns = true;
+            this.listaHoteles.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+            this.listaHoteles.BackgroundColor = System.Drawing.Color.White;
+            this.listaHoteles.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.listaHoteles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.listaHoteles.Location = new System.Drawing.Point(71, 173);
+            this.listaHoteles.Name = "listaHoteles";
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.Silver;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.listaClientes.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.listaHoteles.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.WhiteSmoke;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.DimGray;
-            this.listaClientes.RowsDefaultCellStyle = dataGridViewCellStyle2;
-            this.listaClientes.Size = new System.Drawing.Size(566, 207);
-            this.listaClientes.TabIndex = 43;
+            this.listaHoteles.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            this.listaHoteles.Size = new System.Drawing.Size(566, 207);
+            this.listaHoteles.TabIndex = 43;
             // 
             // atras
             // 
@@ -85,6 +88,7 @@
             this.atras.TabIndex = 42;
             this.atras.Text = "atrás";
             this.atras.UseVisualStyleBackColor = false;
+            this.atras.Click += new System.EventHandler(this.atras_Click);
             // 
             // limpiar
             // 
@@ -98,6 +102,7 @@
             this.limpiar.TabIndex = 41;
             this.limpiar.Text = "limpiar datos";
             this.limpiar.UseVisualStyleBackColor = false;
+            this.limpiar.Click += new System.EventHandler(this.limpiar_Click);
             // 
             // buscar
             // 
@@ -111,6 +116,7 @@
             this.buscar.TabIndex = 40;
             this.buscar.Text = "buscar";
             this.buscar.UseVisualStyleBackColor = false;
+            this.buscar.Click += new System.EventHandler(this.buscar_Click);
             // 
             // label1
             // 
@@ -120,7 +126,7 @@
             this.label1.ForeColor = System.Drawing.Color.Black;
             this.label1.Location = new System.Drawing.Point(205, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(294, 41);
+            this.label1.Size = new System.Drawing.Size(369, 51);
             this.label1.TabIndex = 44;
             this.label1.Text = "LISTADO HOTELES";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -132,7 +138,7 @@
             this.label2.ForeColor = System.Drawing.Color.Black;
             this.label2.Location = new System.Drawing.Point(6, 16);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(51, 14);
+            this.label2.Size = new System.Drawing.Size(63, 16);
             this.label2.TabIndex = 28;
             this.label2.Text = "Nombre";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -143,7 +149,7 @@
             this.nombre.ForeColor = System.Drawing.Color.DimGray;
             this.nombre.Location = new System.Drawing.Point(9, 33);
             this.nombre.Name = "nombre";
-            this.nombre.Size = new System.Drawing.Size(280, 22);
+            this.nombre.Size = new System.Drawing.Size(280, 26);
             this.nombre.TabIndex = 37;
             // 
             // groupBox1
@@ -163,34 +169,13 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "FILTROS";
             // 
-            // cantidadEstrellas
-            // 
-            this.cantidadEstrellas.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cantidadEstrellas.ForeColor = System.Drawing.Color.DimGray;
-            this.cantidadEstrellas.Location = new System.Drawing.Point(295, 33);
-            this.cantidadEstrellas.Name = "cantidadEstrellas";
-            this.cantidadEstrellas.Size = new System.Drawing.Size(265, 22);
-            this.cantidadEstrellas.TabIndex = 46;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(294, 16);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(55, 14);
-            this.label3.TabIndex = 47;
-            this.label3.Text = "Estrellas";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // pais
             // 
             this.pais.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pais.ForeColor = System.Drawing.Color.DimGray;
             this.pais.Location = new System.Drawing.Point(295, 75);
             this.pais.Name = "pais";
-            this.pais.Size = new System.Drawing.Size(265, 22);
+            this.pais.Size = new System.Drawing.Size(265, 26);
             this.pais.TabIndex = 50;
             // 
             // ciudad
@@ -199,7 +184,7 @@
             this.ciudad.ForeColor = System.Drawing.Color.DimGray;
             this.ciudad.Location = new System.Drawing.Point(9, 75);
             this.ciudad.Name = "ciudad";
-            this.ciudad.Size = new System.Drawing.Size(280, 22);
+            this.ciudad.Size = new System.Drawing.Size(280, 26);
             this.ciudad.TabIndex = 49;
             // 
             // label4
@@ -209,7 +194,7 @@
             this.label4.ForeColor = System.Drawing.Color.Black;
             this.label4.Location = new System.Drawing.Point(294, 58);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(30, 14);
+            this.label4.Size = new System.Drawing.Size(37, 16);
             this.label4.TabIndex = 51;
             this.label4.Text = "Pais";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -221,19 +206,40 @@
             this.label5.ForeColor = System.Drawing.Color.Black;
             this.label5.Location = new System.Drawing.Point(6, 58);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(45, 14);
+            this.label5.Size = new System.Drawing.Size(57, 16);
             this.label5.TabIndex = 48;
             this.label5.Text = "Ciudad";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // cantidadEstrellas
+            // 
+            this.cantidadEstrellas.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cantidadEstrellas.ForeColor = System.Drawing.Color.DimGray;
+            this.cantidadEstrellas.Location = new System.Drawing.Point(295, 33);
+            this.cantidadEstrellas.Name = "cantidadEstrellas";
+            this.cantidadEstrellas.Size = new System.Drawing.Size(265, 26);
+            this.cantidadEstrellas.TabIndex = 46;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.Black;
+            this.label3.Location = new System.Drawing.Point(294, 16);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(69, 16);
+            this.label3.TabIndex = 47;
+            this.label3.Text = "Estrellas";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // ListadoHoteles
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(704, 442);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.listaClientes);
+            this.Controls.Add(this.listaHoteles);
             this.Controls.Add(this.atras);
             this.Controls.Add(this.limpiar);
             this.Controls.Add(this.buscar);
@@ -246,9 +252,11 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FRBA Hotel 2018";
-            ((System.ComponentModel.ISupportInitialize)(this.listaClientes)).EndInit();
+            this.Load += new System.EventHandler(this.ListadoHoteles_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.listaHoteles)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceListaHoteles)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -256,7 +264,7 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView listaClientes;
+        private System.Windows.Forms.DataGridView listaHoteles;
         private System.Windows.Forms.Button atras;
         private System.Windows.Forms.Button limpiar;
         private System.Windows.Forms.Button buscar;
@@ -270,5 +278,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox cantidadEstrellas;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.BindingSource bindingSourceListaHoteles;
     }
 }

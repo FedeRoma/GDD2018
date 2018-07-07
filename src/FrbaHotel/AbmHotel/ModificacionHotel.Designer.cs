@@ -28,23 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ModificacionHotel));
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.listaFuncionalidadesAsig = new System.Windows.Forms.DataGridView();
-            this.listaFuncionalidades = new System.Windows.Forms.DataGridView();
-            this.label6 = new System.Windows.Forms.Label();
             this.atras = new System.Windows.Forms.Button();
             this.guardar = new System.Windows.Forms.Button();
-            this.nacionalidad = new System.Windows.Forms.TextBox();
+            this.eMail = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.fechaNacimiento = new System.Windows.Forms.DateTimePicker();
+            this.fechaCreacion = new System.Windows.Forms.DateTimePicker();
             this.label9 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.recargaEstrellas = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.cantidadEstrellas = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -63,96 +54,14 @@
             this.label8 = new System.Windows.Forms.Label();
             this.calle = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.listaFuncionalidadesAsig)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.listaFuncionalidades)).BeginInit();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.altaFuncionalidad = new System.Windows.Forms.ComboBox();
+            this.bajaFuncionalidad = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Controls.Add(this.listaFuncionalidadesAsig);
-            this.groupBox2.Controls.Add(this.listaFuncionalidades);
-            this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Location = new System.Drawing.Point(69, 256);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(572, 124);
-            this.groupBox2.TabIndex = 57;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Regímenes";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(486, 16);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(81, 14);
-            this.label5.TabIndex = 41;
-            this.label5.Text = "Asignados (*)";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // listaFuncionalidadesAsig
-            // 
-            this.listaFuncionalidadesAsig.AllowUserToOrderColumns = true;
-            this.listaFuncionalidadesAsig.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
-            this.listaFuncionalidadesAsig.BackgroundColor = System.Drawing.Color.White;
-            this.listaFuncionalidadesAsig.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.listaFuncionalidadesAsig.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.listaFuncionalidadesAsig.Location = new System.Drawing.Point(291, 33);
-            this.listaFuncionalidadesAsig.Name = "listaFuncionalidadesAsig";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.listaFuncionalidadesAsig.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.DimGray;
-            this.listaFuncionalidadesAsig.RowsDefaultCellStyle = dataGridViewCellStyle2;
-            this.listaFuncionalidadesAsig.Size = new System.Drawing.Size(275, 85);
-            this.listaFuncionalidadesAsig.TabIndex = 6;
-            // 
-            // listaFuncionalidades
-            // 
-            this.listaFuncionalidades.AllowUserToOrderColumns = true;
-            this.listaFuncionalidades.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
-            this.listaFuncionalidades.BackgroundColor = System.Drawing.Color.White;
-            this.listaFuncionalidades.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.listaFuncionalidades.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.listaFuncionalidades.Location = new System.Drawing.Point(6, 33);
-            this.listaFuncionalidades.Name = "listaFuncionalidades";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.listaFuncionalidades.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.DimGray;
-            this.listaFuncionalidades.RowsDefaultCellStyle = dataGridViewCellStyle4;
-            this.listaFuncionalidades.Size = new System.Drawing.Size(275, 85);
-            this.listaFuncionalidades.TabIndex = 5;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.Location = new System.Drawing.Point(6, 16);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(72, 14);
-            this.label6.TabIndex = 39;
-            this.label6.Text = "Disponibles";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // atras
             // 
@@ -166,6 +75,7 @@
             this.atras.TabIndex = 50;
             this.atras.Text = "atrás";
             this.atras.UseVisualStyleBackColor = false;
+            this.atras.Click += new System.EventHandler(this.cancelar_Click);
             // 
             // guardar
             // 
@@ -179,15 +89,16 @@
             this.guardar.TabIndex = 48;
             this.guardar.Text = "guardar";
             this.guardar.UseVisualStyleBackColor = false;
+            this.guardar.Click += new System.EventHandler(this.guardar_Click);
             // 
-            // nacionalidad
+            // eMail
             // 
-            this.nacionalidad.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nacionalidad.ForeColor = System.Drawing.Color.DimGray;
-            this.nacionalidad.Location = new System.Drawing.Point(69, 228);
-            this.nacionalidad.Name = "nacionalidad";
-            this.nacionalidad.Size = new System.Drawing.Size(204, 22);
-            this.nacionalidad.TabIndex = 46;
+            this.eMail.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.eMail.ForeColor = System.Drawing.Color.DimGray;
+            this.eMail.Location = new System.Drawing.Point(69, 228);
+            this.eMail.Name = "eMail";
+            this.eMail.Size = new System.Drawing.Size(204, 26);
+            this.eMail.TabIndex = 46;
             // 
             // label10
             // 
@@ -196,19 +107,19 @@
             this.label10.ForeColor = System.Drawing.Color.Black;
             this.label10.Location = new System.Drawing.Point(66, 211);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(36, 14);
+            this.label10.Size = new System.Drawing.Size(46, 16);
             this.label10.TabIndex = 56;
             this.label10.Text = "eMail";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // fechaNacimiento
+            // fechaCreacion
             // 
-            this.fechaNacimiento.CalendarTitleBackColor = System.Drawing.Color.Crimson;
-            this.fechaNacimiento.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.fechaNacimiento.Location = new System.Drawing.Point(291, 228);
-            this.fechaNacimiento.Name = "fechaNacimiento";
-            this.fechaNacimiento.Size = new System.Drawing.Size(348, 21);
-            this.fechaNacimiento.TabIndex = 47;
+            this.fechaCreacion.CalendarTitleBackColor = System.Drawing.Color.Crimson;
+            this.fechaCreacion.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.fechaCreacion.Location = new System.Drawing.Point(291, 228);
+            this.fechaCreacion.Name = "fechaCreacion";
+            this.fechaCreacion.Size = new System.Drawing.Size(348, 25);
+            this.fechaCreacion.TabIndex = 47;
             // 
             // label9
             // 
@@ -217,19 +128,19 @@
             this.label9.ForeColor = System.Drawing.Color.Black;
             this.label9.Location = new System.Drawing.Point(288, 211);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(123, 14);
+            this.label9.Size = new System.Drawing.Size(159, 16);
             this.label9.TabIndex = 55;
             this.label9.Text = "Fecha de Creación (*)";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // textBox1
+            // recargaEstrellas
             // 
-            this.textBox1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.ForeColor = System.Drawing.Color.DimGray;
-            this.textBox1.Location = new System.Drawing.Point(71, 168);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(206, 22);
-            this.textBox1.TabIndex = 45;
+            this.recargaEstrellas.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.recargaEstrellas.ForeColor = System.Drawing.Color.DimGray;
+            this.recargaEstrellas.Location = new System.Drawing.Point(71, 168);
+            this.recargaEstrellas.Name = "recargaEstrellas";
+            this.recargaEstrellas.Size = new System.Drawing.Size(206, 26);
+            this.recargaEstrellas.TabIndex = 45;
             // 
             // label4
             // 
@@ -238,7 +149,7 @@
             this.label4.ForeColor = System.Drawing.Color.Black;
             this.label4.Location = new System.Drawing.Point(70, 151);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(117, 14);
+            this.label4.Size = new System.Drawing.Size(150, 16);
             this.label4.TabIndex = 54;
             this.label4.Text = "Recarga Estrellas (*)";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -249,7 +160,7 @@
             this.cantidadEstrellas.ForeColor = System.Drawing.Color.DimGray;
             this.cantidadEstrellas.Location = new System.Drawing.Point(71, 126);
             this.cantidadEstrellas.Name = "cantidadEstrellas";
-            this.cantidadEstrellas.Size = new System.Drawing.Size(206, 22);
+            this.cantidadEstrellas.Size = new System.Drawing.Size(206, 26);
             this.cantidadEstrellas.TabIndex = 43;
             // 
             // label2
@@ -259,7 +170,7 @@
             this.label2.ForeColor = System.Drawing.Color.Black;
             this.label2.Location = new System.Drawing.Point(70, 109);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(70, 14);
+            this.label2.Size = new System.Drawing.Size(88, 16);
             this.label2.TabIndex = 53;
             this.label2.Text = "Estrellas (*)";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -270,7 +181,7 @@
             this.nombre.ForeColor = System.Drawing.Color.DimGray;
             this.nombre.Location = new System.Drawing.Point(73, 84);
             this.nombre.Name = "nombre";
-            this.nombre.Size = new System.Drawing.Size(206, 22);
+            this.nombre.Size = new System.Drawing.Size(206, 26);
             this.nombre.TabIndex = 42;
             // 
             // label3
@@ -280,7 +191,7 @@
             this.label3.ForeColor = System.Drawing.Color.Black;
             this.label3.Location = new System.Drawing.Point(72, 67);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(66, 14);
+            this.label3.Size = new System.Drawing.Size(82, 16);
             this.label3.TabIndex = 52;
             this.label3.Text = "Nombre (*)";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -312,7 +223,7 @@
             this.label22.ForeColor = System.Drawing.Color.Black;
             this.label22.Location = new System.Drawing.Point(7, 98);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(55, 14);
+            this.label22.Size = new System.Drawing.Size(68, 16);
             this.label22.TabIndex = 30;
             this.label22.Text = "Teléfono";
             this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -325,7 +236,7 @@
             this.label11.ForeColor = System.Drawing.Color.Crimson;
             this.label11.Location = new System.Drawing.Point(209, 118);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(141, 16);
+            this.label11.Size = new System.Drawing.Size(178, 19);
             this.label11.TabIndex = 38;
             this.label11.Text = "(*) campos obligatorios";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -336,7 +247,7 @@
             this.pais.ForeColor = System.Drawing.Color.DimGray;
             this.pais.Location = new System.Drawing.Point(186, 73);
             this.pais.Name = "pais";
-            this.pais.Size = new System.Drawing.Size(162, 22);
+            this.pais.Size = new System.Drawing.Size(162, 26);
             this.pais.TabIndex = 8;
             // 
             // label16
@@ -346,7 +257,7 @@
             this.label16.ForeColor = System.Drawing.Color.Black;
             this.label16.Location = new System.Drawing.Point(183, 56);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(30, 14);
+            this.label16.Size = new System.Drawing.Size(37, 16);
             this.label16.TabIndex = 24;
             this.label16.Text = "Pais";
             this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -357,7 +268,7 @@
             this.ciudad.ForeColor = System.Drawing.Color.DimGray;
             this.ciudad.Location = new System.Drawing.Point(6, 73);
             this.ciudad.Name = "ciudad";
-            this.ciudad.Size = new System.Drawing.Size(174, 22);
+            this.ciudad.Size = new System.Drawing.Size(174, 26);
             this.ciudad.TabIndex = 7;
             // 
             // label15
@@ -367,7 +278,7 @@
             this.label15.ForeColor = System.Drawing.Color.Black;
             this.label15.Location = new System.Drawing.Point(7, 56);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(45, 14);
+            this.label15.Size = new System.Drawing.Size(57, 16);
             this.label15.TabIndex = 28;
             this.label15.Text = "Ciudad";
             this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -379,7 +290,7 @@
             this.label12.ForeColor = System.Drawing.Color.Black;
             this.label12.Location = new System.Drawing.Point(268, 14);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(51, 14);
+            this.label12.Size = new System.Drawing.Size(63, 16);
             this.label12.TabIndex = 24;
             this.label12.Text = "Número";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -390,7 +301,7 @@
             this.calleNumero.ForeColor = System.Drawing.Color.DimGray;
             this.calleNumero.Location = new System.Drawing.Point(271, 31);
             this.calleNumero.Name = "calleNumero";
-            this.calleNumero.Size = new System.Drawing.Size(77, 22);
+            this.calleNumero.Size = new System.Drawing.Size(77, 26);
             this.calleNumero.TabIndex = 6;
             // 
             // telefono
@@ -399,7 +310,7 @@
             this.telefono.ForeColor = System.Drawing.Color.DimGray;
             this.telefono.Location = new System.Drawing.Point(10, 115);
             this.telefono.Name = "telefono";
-            this.telefono.Size = new System.Drawing.Size(193, 22);
+            this.telefono.Size = new System.Drawing.Size(193, 26);
             this.telefono.TabIndex = 9;
             // 
             // label8
@@ -409,7 +320,7 @@
             this.label8.ForeColor = System.Drawing.Color.Black;
             this.label8.Location = new System.Drawing.Point(7, 14);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(34, 14);
+            this.label8.Size = new System.Drawing.Size(43, 16);
             this.label8.TabIndex = 13;
             this.label8.Text = "Calle";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -420,7 +331,7 @@
             this.calle.ForeColor = System.Drawing.Color.DimGray;
             this.calle.Location = new System.Drawing.Point(6, 31);
             this.calle.Name = "calle";
-            this.calle.Size = new System.Drawing.Size(259, 22);
+            this.calle.Size = new System.Drawing.Size(259, 26);
             this.calle.TabIndex = 5;
             // 
             // label1
@@ -431,25 +342,82 @@
             this.label1.ForeColor = System.Drawing.Color.Black;
             this.label1.Location = new System.Drawing.Point(203, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(298, 41);
+            this.label1.Size = new System.Drawing.Size(374, 51);
             this.label1.TabIndex = 44;
             this.label1.Text = "MODIFICAR HOTEL";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.altaFuncionalidad);
+            this.groupBox2.Controls.Add(this.bajaFuncionalidad);
+            this.groupBox2.Controls.Add(this.label5);
+            this.groupBox2.Controls.Add(this.label6);
+            this.groupBox2.Location = new System.Drawing.Point(69, 272);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(572, 78);
+            this.groupBox2.TabIndex = 57;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Regimenes";
+            // 
+            // altaFuncionalidad
+            // 
+            this.altaFuncionalidad.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.altaFuncionalidad.ForeColor = System.Drawing.Color.DimGray;
+            this.altaFuncionalidad.FormattingEnabled = true;
+            this.altaFuncionalidad.Location = new System.Drawing.Point(6, 33);
+            this.altaFuncionalidad.Name = "altaFuncionalidad";
+            this.altaFuncionalidad.Size = new System.Drawing.Size(266, 26);
+            this.altaFuncionalidad.TabIndex = 51;
+            // 
+            // bajaFuncionalidad
+            // 
+            this.bajaFuncionalidad.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bajaFuncionalidad.ForeColor = System.Drawing.Color.DimGray;
+            this.bajaFuncionalidad.FormattingEnabled = true;
+            this.bajaFuncionalidad.Location = new System.Drawing.Point(300, 33);
+            this.bajaFuncionalidad.Name = "bajaFuncionalidad";
+            this.bajaFuncionalidad.Size = new System.Drawing.Size(266, 26);
+            this.bajaFuncionalidad.TabIndex = 43;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.Black;
+            this.label5.Location = new System.Drawing.Point(437, 16);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(130, 16);
+            this.label5.TabIndex = 41;
+            this.label5.Text = "Eliminar Regimen";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.Black;
+            this.label6.Location = new System.Drawing.Point(6, 16);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(130, 16);
+            this.label6.TabIndex = 39;
+            this.label6.Text = "Agregar Regimen";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // ModificacionHotel
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(704, 442);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.atras);
             this.Controls.Add(this.guardar);
-            this.Controls.Add(this.nacionalidad);
+            this.Controls.Add(this.eMail);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.fechaNacimiento);
+            this.Controls.Add(this.fechaCreacion);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.recargaEstrellas);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.cantidadEstrellas);
             this.Controls.Add(this.label2);
@@ -465,12 +433,10 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FRBA Hotel 2018";
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.listaFuncionalidadesAsig)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.listaFuncionalidades)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -478,18 +444,13 @@
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.DataGridView listaFuncionalidadesAsig;
-        private System.Windows.Forms.DataGridView listaFuncionalidades;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button atras;
         private System.Windows.Forms.Button guardar;
-        private System.Windows.Forms.TextBox nacionalidad;
+        private System.Windows.Forms.TextBox eMail;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.DateTimePicker fechaNacimiento;
+        private System.Windows.Forms.DateTimePicker fechaCreacion;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox recargaEstrellas;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox cantidadEstrellas;
         private System.Windows.Forms.Label label2;
@@ -508,5 +469,10 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox calle;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.ComboBox altaFuncionalidad;
+        private System.Windows.Forms.ComboBox bajaFuncionalidad;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
     }
 }
