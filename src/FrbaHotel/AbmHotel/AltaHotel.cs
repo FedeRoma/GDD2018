@@ -129,26 +129,29 @@ namespace FrbaHotel.AbmHotel
         {
             if (!checkCampos())
             {
-                insert = "exec EN_CASA_ANDABA.altaCliente ";
-                insert = insertNro(nroDocumento.Text);
-                insert = insertString(tipoDocumento.Text);
-                insert = insertString(nombre.Text);
-                insert = insertString(apellido.Text);
-                insert = insertString(eMail.Text);
-                insert = insertString(nacionalidad.Text);
-
-                DateTime fecha;
-                fecha = Convert.ToDateTime(fechaNacimiento.Value);
-                insert = insertString(fecha.Date.ToString("yyyyMMdd HH:mm:ss"));
-
+                insert = "exec EN_CASA_ANDABA.altaHotel ";
+                /*	@nombre varchar(50), 
+                 *  @cantEstrellas int, 
+                 *  @calle varchar(50), 
+                 *  @numero int, 
+                 *  @ciudad varchar(50), 
+	                @pais varchar(50), 
+                 *  @email nvarchar(50), 
+                 *  @telefono varchar(50), 
+                 *  @fecha datetime,
+	                @recargaEstrellas int as*/
+                insert = insertNro(nombre.Text);
+                insert = insertString(cantidadEstrellas.Text);
                 insert = insertString(calle.Text);
-                insert = insertNro(calleNumero.Text);
-                insert = insertString(piso.Text);
-                insert = insertString(departamento.Text);
-                insert = insertString(localidad.Text);
+                insert = insertString(calleNumero.Text);
+                insert = insertString(ciudad.Text);
                 insert = insertString(pais.Text);
+                insert = insertString(eMail.Text);
                 insert = insertString(telefono.Text);
-
+                DateTime fecha;
+                fecha = Convert.ToDateTime(fechaCreacion.Value);
+                insert = insertString(fecha.Date.ToString("yyyyMMdd HH:mm:ss"));
+                insert = insertString(recargaEstrellas.Text);
                 insert = insert.Remove(insert.Length - 1);
 
                 bool insertOk = false;
@@ -162,7 +165,7 @@ namespace FrbaHotel.AbmHotel
 
                 if (insertOk)
                 {
-                    MessageBox.Show("Cliente dado de alta");
+                    MessageBox.Show("Hotel dado de alta");
                 }
                 else
                 {
@@ -174,28 +177,24 @@ namespace FrbaHotel.AbmHotel
 
         private void limpiar_Click(object sender, EventArgs e)
         {
-            tipoDocumento.ResetText();
-            nroDocumento.ResetText();
             nombre.Text = string.Empty;
-            apellido.Text = string.Empty;
+            cantidadEstrellas.Text = string.Empty;
+            recargaEstrellas.Text = string.Empty;
             eMail.Text = string.Empty;
-            nacionalidad.Text = string.Empty;
-            fechaNacimiento.ResetText();
             calle.Text = string.Empty;
             calleNumero.Text = string.Empty;
-            piso.Text = string.Empty;
-            departamento.Text = string.Empty;
-            telefono.Text = string.Empty;
-            localidad.Text = string.Empty;
+            ciudad.Text = string.Empty;
             pais.Text = string.Empty;
-            tipoDocumento.Focus();
+            telefono.Text = string.Empty;
+            nombre.Focus();
         }
 
         private void cancelar_Click(object sender, EventArgs e)
         {
             this.Hide();
-            AbmCli = new MenuAbmCliente();
-            AbmCli.Show();
+            AbmHot = new MenuAbmHotel();
+            AbmHot.Show();
         }
+
     }
 }

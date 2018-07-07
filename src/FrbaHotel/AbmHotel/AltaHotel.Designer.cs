@@ -351,6 +351,7 @@
             this.limpiar.TabIndex = 12;
             this.limpiar.Text = "limpiar datos";
             this.limpiar.UseVisualStyleBackColor = false;
+            this.limpiar.Click += new System.EventHandler(this.limpiar_Click);
             // 
             // guardar
             // 
