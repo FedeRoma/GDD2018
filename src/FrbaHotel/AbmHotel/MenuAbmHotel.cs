@@ -12,13 +12,10 @@ namespace FrbaHotel.AbmHotel
 {
     public partial class MenuAbmHotel : Form
     {
-        //Instancio las ventanas que voy a llamar luego
         public static ListadoHoteles ListadoHot;
         public static AltaHotel AltaHot;
         public static BajaHotel BajaHot;
         public static Login.MenuFuncionalidades menuFuncionalidades;
-
-
 
         public MenuAbmHotel()
         {
@@ -59,5 +56,6 @@ namespace FrbaHotel.AbmHotel
             menuFuncionalidades.Show();
             this.Close();
         }
+
     }
 }
