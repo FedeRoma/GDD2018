@@ -123,7 +123,7 @@ namespace FrbaHotel.AbmCliente
             }
             if (string.IsNullOrEmpty(fechaNacimiento.Text))
             {
-                alerta = alerta + "Debe ingresar un nombre válido\n";
+                alerta = alerta + "Debe ingresar una fecha válida\n";
                 inconsistencias = true;
             }
 
