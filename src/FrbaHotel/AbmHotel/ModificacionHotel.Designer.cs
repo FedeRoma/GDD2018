@@ -55,10 +55,11 @@
             this.calle = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.altaFuncionalidad = new System.Windows.Forms.ComboBox();
-            this.bajaFuncionalidad = new System.Windows.Forms.ComboBox();
+            this.altaRegimen = new System.Windows.Forms.ComboBox();
+            this.bajaRegimen = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.estado = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -72,10 +73,10 @@
             this.atras.Location = new System.Drawing.Point(12, 386);
             this.atras.Name = "atras";
             this.atras.Size = new System.Drawing.Size(101, 44);
-            this.atras.TabIndex = 50;
+            this.atras.TabIndex = 15;
             this.atras.Text = "atrás";
             this.atras.UseVisualStyleBackColor = false;
-            this.atras.Click += new System.EventHandler(this.cancelar_Click);
+            this.atras.Click += new System.EventHandler(this.atras_Click);
             // 
             // guardar
             // 
@@ -86,7 +87,7 @@
             this.guardar.Location = new System.Drawing.Point(591, 386);
             this.guardar.Name = "guardar";
             this.guardar.Size = new System.Drawing.Size(101, 44);
-            this.guardar.TabIndex = 48;
+            this.guardar.TabIndex = 14;
             this.guardar.Text = "guardar";
             this.guardar.UseVisualStyleBackColor = false;
             this.guardar.Click += new System.EventHandler(this.guardar_Click);
@@ -97,8 +98,8 @@
             this.eMail.ForeColor = System.Drawing.Color.DimGray;
             this.eMail.Location = new System.Drawing.Point(69, 228);
             this.eMail.Name = "eMail";
-            this.eMail.Size = new System.Drawing.Size(204, 26);
-            this.eMail.TabIndex = 46;
+            this.eMail.Size = new System.Drawing.Size(204, 22);
+            this.eMail.TabIndex = 4;
             // 
             // label10
             // 
@@ -107,9 +108,9 @@
             this.label10.ForeColor = System.Drawing.Color.Black;
             this.label10.Location = new System.Drawing.Point(66, 211);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(46, 16);
+            this.label10.Size = new System.Drawing.Size(51, 14);
             this.label10.TabIndex = 56;
-            this.label10.Text = "eMail";
+            this.label10.Text = "eMail (*)";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // fechaCreacion
@@ -118,8 +119,8 @@
             this.fechaCreacion.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fechaCreacion.Location = new System.Drawing.Point(291, 228);
             this.fechaCreacion.Name = "fechaCreacion";
-            this.fechaCreacion.Size = new System.Drawing.Size(348, 25);
-            this.fechaCreacion.TabIndex = 47;
+            this.fechaCreacion.Size = new System.Drawing.Size(348, 21);
+            this.fechaCreacion.TabIndex = 10;
             // 
             // label9
             // 
@@ -128,7 +129,7 @@
             this.label9.ForeColor = System.Drawing.Color.Black;
             this.label9.Location = new System.Drawing.Point(288, 211);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(159, 16);
+            this.label9.Size = new System.Drawing.Size(123, 14);
             this.label9.TabIndex = 55;
             this.label9.Text = "Fecha de Creación (*)";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -139,8 +140,8 @@
             this.recargaEstrellas.ForeColor = System.Drawing.Color.DimGray;
             this.recargaEstrellas.Location = new System.Drawing.Point(71, 168);
             this.recargaEstrellas.Name = "recargaEstrellas";
-            this.recargaEstrellas.Size = new System.Drawing.Size(206, 26);
-            this.recargaEstrellas.TabIndex = 45;
+            this.recargaEstrellas.Size = new System.Drawing.Size(206, 22);
+            this.recargaEstrellas.TabIndex = 3;
             // 
             // label4
             // 
@@ -149,7 +150,7 @@
             this.label4.ForeColor = System.Drawing.Color.Black;
             this.label4.Location = new System.Drawing.Point(70, 151);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(150, 16);
+            this.label4.Size = new System.Drawing.Size(117, 14);
             this.label4.TabIndex = 54;
             this.label4.Text = "Recarga Estrellas (*)";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -160,8 +161,8 @@
             this.cantidadEstrellas.ForeColor = System.Drawing.Color.DimGray;
             this.cantidadEstrellas.Location = new System.Drawing.Point(71, 126);
             this.cantidadEstrellas.Name = "cantidadEstrellas";
-            this.cantidadEstrellas.Size = new System.Drawing.Size(206, 26);
-            this.cantidadEstrellas.TabIndex = 43;
+            this.cantidadEstrellas.Size = new System.Drawing.Size(206, 22);
+            this.cantidadEstrellas.TabIndex = 2;
             // 
             // label2
             // 
@@ -170,7 +171,7 @@
             this.label2.ForeColor = System.Drawing.Color.Black;
             this.label2.Location = new System.Drawing.Point(70, 109);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(88, 16);
+            this.label2.Size = new System.Drawing.Size(70, 14);
             this.label2.TabIndex = 53;
             this.label2.Text = "Estrellas (*)";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -181,8 +182,8 @@
             this.nombre.ForeColor = System.Drawing.Color.DimGray;
             this.nombre.Location = new System.Drawing.Point(73, 84);
             this.nombre.Name = "nombre";
-            this.nombre.Size = new System.Drawing.Size(206, 26);
-            this.nombre.TabIndex = 42;
+            this.nombre.Size = new System.Drawing.Size(206, 22);
+            this.nombre.TabIndex = 1;
             // 
             // label3
             // 
@@ -191,7 +192,7 @@
             this.label3.ForeColor = System.Drawing.Color.Black;
             this.label3.Location = new System.Drawing.Point(72, 67);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(82, 16);
+            this.label3.Size = new System.Drawing.Size(66, 14);
             this.label3.TabIndex = 52;
             this.label3.Text = "Nombre (*)";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -223,9 +224,9 @@
             this.label22.ForeColor = System.Drawing.Color.Black;
             this.label22.Location = new System.Drawing.Point(7, 98);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(68, 16);
+            this.label22.Size = new System.Drawing.Size(70, 14);
             this.label22.TabIndex = 30;
-            this.label22.Text = "Teléfono";
+            this.label22.Text = "Teléfono (*)";
             this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label11
@@ -236,7 +237,7 @@
             this.label11.ForeColor = System.Drawing.Color.Crimson;
             this.label11.Location = new System.Drawing.Point(209, 118);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(178, 19);
+            this.label11.Size = new System.Drawing.Size(141, 16);
             this.label11.TabIndex = 38;
             this.label11.Text = "(*) campos obligatorios";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -247,7 +248,7 @@
             this.pais.ForeColor = System.Drawing.Color.DimGray;
             this.pais.Location = new System.Drawing.Point(186, 73);
             this.pais.Name = "pais";
-            this.pais.Size = new System.Drawing.Size(162, 26);
+            this.pais.Size = new System.Drawing.Size(162, 22);
             this.pais.TabIndex = 8;
             // 
             // label16
@@ -257,9 +258,9 @@
             this.label16.ForeColor = System.Drawing.Color.Black;
             this.label16.Location = new System.Drawing.Point(183, 56);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(37, 16);
+            this.label16.Size = new System.Drawing.Size(45, 14);
             this.label16.TabIndex = 24;
-            this.label16.Text = "Pais";
+            this.label16.Text = "Pais (*)";
             this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // ciudad
@@ -268,7 +269,7 @@
             this.ciudad.ForeColor = System.Drawing.Color.DimGray;
             this.ciudad.Location = new System.Drawing.Point(6, 73);
             this.ciudad.Name = "ciudad";
-            this.ciudad.Size = new System.Drawing.Size(174, 26);
+            this.ciudad.Size = new System.Drawing.Size(174, 22);
             this.ciudad.TabIndex = 7;
             // 
             // label15
@@ -278,9 +279,9 @@
             this.label15.ForeColor = System.Drawing.Color.Black;
             this.label15.Location = new System.Drawing.Point(7, 56);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(57, 16);
+            this.label15.Size = new System.Drawing.Size(60, 14);
             this.label15.TabIndex = 28;
-            this.label15.Text = "Ciudad";
+            this.label15.Text = "Ciudad (*)";
             this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label12
@@ -290,9 +291,9 @@
             this.label12.ForeColor = System.Drawing.Color.Black;
             this.label12.Location = new System.Drawing.Point(268, 14);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(63, 16);
+            this.label12.Size = new System.Drawing.Size(66, 14);
             this.label12.TabIndex = 24;
-            this.label12.Text = "Número";
+            this.label12.Text = "Número (*)";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // calleNumero
@@ -301,7 +302,7 @@
             this.calleNumero.ForeColor = System.Drawing.Color.DimGray;
             this.calleNumero.Location = new System.Drawing.Point(271, 31);
             this.calleNumero.Name = "calleNumero";
-            this.calleNumero.Size = new System.Drawing.Size(77, 26);
+            this.calleNumero.Size = new System.Drawing.Size(77, 22);
             this.calleNumero.TabIndex = 6;
             // 
             // telefono
@@ -310,7 +311,7 @@
             this.telefono.ForeColor = System.Drawing.Color.DimGray;
             this.telefono.Location = new System.Drawing.Point(10, 115);
             this.telefono.Name = "telefono";
-            this.telefono.Size = new System.Drawing.Size(193, 26);
+            this.telefono.Size = new System.Drawing.Size(193, 22);
             this.telefono.TabIndex = 9;
             // 
             // label8
@@ -320,9 +321,9 @@
             this.label8.ForeColor = System.Drawing.Color.Black;
             this.label8.Location = new System.Drawing.Point(7, 14);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(43, 16);
+            this.label8.Size = new System.Drawing.Size(49, 14);
             this.label8.TabIndex = 13;
-            this.label8.Text = "Calle";
+            this.label8.Text = "Calle (*)";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // calle
@@ -331,7 +332,7 @@
             this.calle.ForeColor = System.Drawing.Color.DimGray;
             this.calle.Location = new System.Drawing.Point(6, 31);
             this.calle.Name = "calle";
-            this.calle.Size = new System.Drawing.Size(259, 26);
+            this.calle.Size = new System.Drawing.Size(259, 22);
             this.calle.TabIndex = 5;
             // 
             // label1
@@ -342,15 +343,15 @@
             this.label1.ForeColor = System.Drawing.Color.Black;
             this.label1.Location = new System.Drawing.Point(203, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(374, 51);
+            this.label1.Size = new System.Drawing.Size(298, 41);
             this.label1.TabIndex = 44;
             this.label1.Text = "MODIFICAR HOTEL";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.altaFuncionalidad);
-            this.groupBox2.Controls.Add(this.bajaFuncionalidad);
+            this.groupBox2.Controls.Add(this.altaRegimen);
+            this.groupBox2.Controls.Add(this.bajaRegimen);
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Location = new System.Drawing.Point(69, 272);
@@ -360,25 +361,25 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Regimenes";
             // 
-            // altaFuncionalidad
+            // altaRegimen
             // 
-            this.altaFuncionalidad.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.altaFuncionalidad.ForeColor = System.Drawing.Color.DimGray;
-            this.altaFuncionalidad.FormattingEnabled = true;
-            this.altaFuncionalidad.Location = new System.Drawing.Point(6, 33);
-            this.altaFuncionalidad.Name = "altaFuncionalidad";
-            this.altaFuncionalidad.Size = new System.Drawing.Size(266, 26);
-            this.altaFuncionalidad.TabIndex = 51;
+            this.altaRegimen.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.altaRegimen.ForeColor = System.Drawing.Color.DimGray;
+            this.altaRegimen.FormattingEnabled = true;
+            this.altaRegimen.Location = new System.Drawing.Point(6, 33);
+            this.altaRegimen.Name = "altaRegimen";
+            this.altaRegimen.Size = new System.Drawing.Size(266, 24);
+            this.altaRegimen.TabIndex = 11;
             // 
-            // bajaFuncionalidad
+            // bajaRegimen
             // 
-            this.bajaFuncionalidad.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bajaFuncionalidad.ForeColor = System.Drawing.Color.DimGray;
-            this.bajaFuncionalidad.FormattingEnabled = true;
-            this.bajaFuncionalidad.Location = new System.Drawing.Point(300, 33);
-            this.bajaFuncionalidad.Name = "bajaFuncionalidad";
-            this.bajaFuncionalidad.Size = new System.Drawing.Size(266, 26);
-            this.bajaFuncionalidad.TabIndex = 43;
+            this.bajaRegimen.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bajaRegimen.ForeColor = System.Drawing.Color.DimGray;
+            this.bajaRegimen.FormattingEnabled = true;
+            this.bajaRegimen.Location = new System.Drawing.Point(300, 33);
+            this.bajaRegimen.Name = "bajaRegimen";
+            this.bajaRegimen.Size = new System.Drawing.Size(266, 24);
+            this.bajaRegimen.TabIndex = 12;
             // 
             // label5
             // 
@@ -387,7 +388,7 @@
             this.label5.ForeColor = System.Drawing.Color.Black;
             this.label5.Location = new System.Drawing.Point(437, 16);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(130, 16);
+            this.label5.Size = new System.Drawing.Size(103, 14);
             this.label5.TabIndex = 41;
             this.label5.Text = "Eliminar Regimen";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -399,17 +400,29 @@
             this.label6.ForeColor = System.Drawing.Color.Black;
             this.label6.Location = new System.Drawing.Point(6, 16);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(130, 16);
+            this.label6.Size = new System.Drawing.Size(104, 14);
             this.label6.TabIndex = 39;
             this.label6.Text = "Agregar Regimen";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // estado
+            // 
+            this.estado.AutoSize = true;
+            this.estado.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.estado.Location = new System.Drawing.Point(318, 367);
+            this.estado.Name = "estado";
+            this.estado.Size = new System.Drawing.Size(82, 19);
+            this.estado.TabIndex = 13;
+            this.estado.Text = "Habilitado";
+            this.estado.UseVisualStyleBackColor = true;
+            // 
             // ModificacionHotel
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(704, 442);
+            this.Controls.Add(this.estado);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.atras);
             this.Controls.Add(this.guardar);
@@ -470,9 +483,10 @@
         private System.Windows.Forms.TextBox calle;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.ComboBox altaFuncionalidad;
-        private System.Windows.Forms.ComboBox bajaFuncionalidad;
+        private System.Windows.Forms.ComboBox altaRegimen;
+        private System.Windows.Forms.ComboBox bajaRegimen;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.CheckBox estado;
     }
 }

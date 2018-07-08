@@ -14,85 +14,67 @@ namespace FrbaHotel.AbmHotel
     public partial class ModificacionHotel : Form
     {
         private SqlDataReader qry;
-        public static MenuAbmHotel AbmHot;
-        string insert = "";
-        private DataTable tablaRegimenes;
-        private DataTable tablaRegimenesAsig;
-        private string regimenes = "";
-        private int cantRegimenes = 0;
-        private string nombre1;
-        private string eMail1;
-        private string telefono1;
-        private string cantidadEstrellas1;
-        private string recargaEstrellas1;
-        private string fecha_creacion;
-        private string calle1;
-        private string calleNro;
-        private string ciudad1;
-        private string pais1;
+        public static ListadoHoteles ListadoHoteles;
+        int hotelID = 0;
+        string update = "";
 
-
-
-  /*      public ModificacionHotel()
+        public ModificacionHotel(string nombreHot, string eMailHot, string telefonoHot, string cantidadEstrellasHot, 
+                                    string recargaEstrellasHot, string fechaCreacionHot, string calleHot, 
+                                    string calleNroHot, string ciudadHot, string paisHot, string estadoHot)
         {
             InitializeComponent();
-            rolID = idRol;
-            nombre.Text = nombreRol;
-            if (estadoRol == "True")
+
+            nombre.Text = nombreHot;
+            cantidadEstrellas.Text = cantidadEstrellasHot;
+            recargaEstrellas.Text = recargaEstrellasHot;
+            eMail.Text = eMailHot;
+            calle.Text = calleHot;
+            calleNumero.Text = calleNroHot;
+            ciudad.Text = ciudadHot;
+            pais.Text = paisHot;
+            telefono.Text = telefonoHot;
+            
+            if (fechaCreacionHot == "")
+            {
+                fechaCreacion.Value = new DateTime(1900, 1, 1);
+            }
+            else 
+            {
+                fechaCreacion.Value = Convert.ToDateTime(fechaCreacionHot);
+            }
+          
+            if (estadoHot == "True")
             {
                 estado.Checked = true;
             }
-            nombre.Focus();
 
-            qry = Index.BD.consultaGetPuntero("select F.fun_desc from EN_CASA_ANDABA.Funcionalidades_Roles FR, EN_CASA_ANDABA.Funcionalidades F where F.fun_id = FR.fyr_fun_id and FR.fyr_rol_id = " + idRol);
-
-            bajaFuncionalidad.Items.Add("Ninguna");
-            while (qry.Read())
+            qry = Index.BD.consultaGetPuntero("select hot_id from EN_CASA_ANDABA.Hoteles where hot_calle = '" + calleHot + "' and hot_calle_nro = " + calleNroHot);
+            if (qry.Read())
             {
-                bajaFuncionalidad.Items.Add(qry.GetString(0));
+                hotelID = qry.GetInt32(0); 
             }
             qry.Close();
-            bajaFuncionalidad.SelectedIndex = 0;
 
-            qry = Index.BD.consultaGetPuntero("select fun_desc from EN_CASA_ANDABA.Funcionalidades except select F.fun_desc from EN_CASA_ANDABA.Funcionalidades_Roles FR, EN_CASA_ANDABA.Funcionalidades F where F.fun_id = FR.fyr_fun_id and FR.fyr_rol_id = " + idRol);
+            qry = Index.BD.consultaGetPuntero("select R.reg_desc from EN_CASA_ANDABA.Regimenes_Hoteles RH, EN_CASA_ANDABA.Regimenes R where R.reg_id = RH.ryh_reg_id and RH.ryh_hot_id = " + hotelID);
 
-            altaFuncionalidad.Items.Add("Ninguna");
+            bajaRegimen.Items.Add("Ninguna");
             while (qry.Read())
             {
-                altaFuncionalidad.Items.Add(qry.GetString(0));
+                bajaRegimen.Items.Add(qry.GetString(0));
             }
             qry.Close();
-            altaFuncionalidad.SelectedIndex = 0;
-            nombre.Focus();
-        }*/
+            bajaRegimen.SelectedIndex = 0;
 
-        public ModificacionHotel(string nombre1, string eMail1, string telefono1, string cantidadEstrellas1, string recargaEstrellas1, string fecha_creacion, string calle1, string calleNro, string ciudad1)
-        {
-            // TODO: Complete member initialization
-            this.nombre1 = nombre1;
-            this.eMail1 = eMail1;
-            this.telefono1 = telefono1;
-            this.cantidadEstrellas1 = cantidadEstrellas1;
-            this.recargaEstrellas1 = recargaEstrellas1;
-            this.fecha_creacion = fecha_creacion;
-            this.calle1 = calle1;
-            this.calleNro = calleNro;
-            this.ciudad1 = ciudad1;
-        }
+            qry = Index.BD.consultaGetPuntero("select R.reg_desc from EN_CASA_ANDABA.Regimenes_Hoteles RH, EN_CASA_ANDABA.Regimenes R except select R.reg_desc from EN_CASA_ANDABA.Regimenes_Hoteles RH, EN_CASA_ANDABA.Regimenes R where R.reg_id = RH.ryh_reg_id and RH.ryh_hot_id = " + hotelID);
 
-        public ModificacionHotel(string nombre1, string eMail1, string telefono1, string cantidadEstrellas1, string recargaEstrellas1, string fecha_creacion, string calle1, string calleNro, string ciudad1, string pais1)
-        {
-            // TODO: Complete member initialization
-            this.nombre1 = nombre1;
-            this.eMail1 = eMail1;
-            this.telefono1 = telefono1;
-            this.cantidadEstrellas1 = cantidadEstrellas1;
-            this.recargaEstrellas1 = recargaEstrellas1;
-            this.fecha_creacion = fecha_creacion;
-            this.calle1 = calle1;
-            this.calleNro = calleNro;
-            this.ciudad1 = ciudad1;
-            this.pais1 = pais1;
+            altaRegimen.Items.Add("Ninguna");
+            while (qry.Read())
+            {
+                altaRegimen.Items.Add(qry.GetString(0));
+            }
+            qry.Close();
+            altaRegimen.SelectedIndex = 0;
+
         }
 
         private void cantidadEstrellas_Keypress(object sender, KeyPressEventArgs e)
@@ -117,8 +99,6 @@ namespace FrbaHotel.AbmHotel
             }
         }
       
-
-
         private bool checkCampos()
         {
             bool inconsistencias = false;
@@ -131,17 +111,12 @@ namespace FrbaHotel.AbmHotel
             }
             if (string.IsNullOrEmpty(cantidadEstrellas.Text))
             {
-                alerta = alerta + "Debe ingresar una cantidadEstrellas válido\n";
+                alerta = alerta + "Debe ingresar una cantidad de estrellas válido\n";
                 inconsistencias = true;
             }
             if (string.IsNullOrEmpty(recargaEstrellas.Text))
             {
-                alerta = alerta + "Debe ingresar una Recarga Estrellas válido\n";
-                inconsistencias = true;
-            }
-            if (string.IsNullOrEmpty(ciudad.Text))
-            {
-                alerta = alerta + "Debe ingresar una Ciudad válida\n";
+                alerta = alerta + "Debe ingresar una recarga estrellas válido\n";
                 inconsistencias = true;
             }
             if (string.IsNullOrEmpty(eMail.Text))
@@ -149,14 +124,19 @@ namespace FrbaHotel.AbmHotel
                 alerta = alerta + "Debe ingresar un eMail válido\n";
                 inconsistencias = true;
             }
-            if (string.IsNullOrEmpty(calleNumero.Text))
-            {
-                alerta = alerta + "Debe ingresar un numero de calle válida\n";
-                inconsistencias = true;
-            }
             if (string.IsNullOrEmpty(calle.Text) || string.IsNullOrEmpty(calleNumero.Text))
             {
                 alerta = alerta + "Debe ingresar una dirección válida\n";
+                inconsistencias = true;
+            }
+            if (string.IsNullOrEmpty(ciudad.Text))
+            {
+                alerta = alerta + "Debe ingresar una ciudad válida\n";
+                inconsistencias = true;
+            }
+            if (string.IsNullOrEmpty(pais.Text) || string.IsNullOrEmpty(pais.Text))
+            {
+                alerta = alerta + "Debe ingresar un pais válido\n";
                 inconsistencias = true;
             }
             if (string.IsNullOrEmpty(telefono.Text))
@@ -164,24 +144,20 @@ namespace FrbaHotel.AbmHotel
                 alerta = alerta + "Debe ingresar un teléfono válido\n";
                 inconsistencias = true;
             }
-            if (string.IsNullOrEmpty(pais.Text) || string.IsNullOrEmpty(pais.Text))
-            {
-                alerta = alerta + "Debe ingresar un pais válidos\n";
-                inconsistencias = true;
-            }
+
             if (string.IsNullOrEmpty(fechaCreacion.Text))
             {
-                alerta = alerta + "Debe ingresar un nombre válido\n";
+                alerta = alerta + "Debe ingresar una fecha de alta válida\n";
                 inconsistencias = true;
             }
 
-            DateTime fechaNac, hoy;
-            fechaNac = Convert.ToDateTime(fechaCreacion.Value);
+            DateTime fechaCrea, hoy;
+            fechaCrea = Convert.ToDateTime(fechaCreacion.Value);
             hoy = DateTime.Today;
 
-            if (DateTime.Compare(fechaNac, hoy) >= 0)
+            if (DateTime.Compare(fechaCrea, hoy) >= 0)
             {
-                alerta = alerta + "Debe ingresar una fecha de nacimiento válida\n";
+                alerta = alerta + "Debe ingresar una fecha de alta válida\n";
                 inconsistencias = true;
             }
 
@@ -190,68 +166,69 @@ namespace FrbaHotel.AbmHotel
                 MessageBox.Show(alerta);
             }
             return inconsistencias;
-        }//Fin CheckSUM
-
-
-
-        private string insertString(string campo)
-        {
-            if (string.IsNullOrEmpty(campo))
-            {
-                insert = insert + "null,";
-            }
-            else
-            {
-                insert = insert + "'" + campo + "',";
-            }
-            return insert;
         }
 
-        private string insertNro(string campo)
+        private string updateString(string campo)
         {
             if (string.IsNullOrEmpty(campo))
             {
-                insert = insert + "null,";
+                update = update + "null,";
             }
             else
             {
-                insert = insert + "" + campo + ",";
+                update = update + "'" + campo + "',";
             }
-            return insert;
+            return update;
+        }
+
+        private string updateNro(string campo)
+        {
+            if (string.IsNullOrEmpty(campo))
+            {
+                update = update + "null,";
+            }
+            else
+            {
+                update = update + "" + campo + ",";
+            }
+            return update;
         }
 
         private void guardar_Click(object sender, EventArgs e)
         {
             if (!checkCampos())
             {
-                insert = "exec EN_CASA_ANDABA.altaHotel ";
-                /*	@nombre varchar(50), 
-                 *  @cantEstrellas int, 
-                 *  @calle varchar(50), 
-                 *  @numero int, 
-                 *  @ciudad varchar(50), 
-	                @pais varchar(50), 
-                 *  @email nvarchar(50), 
-                 *  @telefono varchar(50), 
-                 *  @fecha datetime,
-	                @recargaEstrellas int as*/
-                insert = insertNro(nombre.Text);
-                insert = insertString(cantidadEstrellas.Text);
-                insert = insertString(calle.Text);
-                insert = insertString(calleNumero.Text);
-                insert = insertString(ciudad.Text);
-                insert = insertString(pais.Text);
-                insert = insertString(eMail.Text);
-                insert = insertString(telefono.Text);
+                update = "exec EN_CASA_ANDABA.modificacionHotel ";
+                update = updateNro(hotelID.ToString());
+                update = updateString(nombre.Text);
+                update = updateNro(cantidadEstrellas.Text);
+                update = updateString(calle.Text);
+                update = updateNro(calleNumero.Text);
+                update = updateString(ciudad.Text);
+                update = updateString(pais.Text);
+                update = updateString(eMail.Text);
+                update = updateString(telefono.Text);
+
                 DateTime fecha;
                 fecha = Convert.ToDateTime(fechaCreacion.Value);
-                insert = insertString(fecha.Date.ToString("yyyyMMdd HH:mm:ss"));
-                insert = insertString(recargaEstrellas.Text);
-                insert = insert.Remove(insert.Length - 1);
+                update = updateString(fecha.Date.ToString("yyyyMMdd HH:mm:ss"));
+
+                if (estado.Text == "True")
+                {
+                    update = updateNro("1");
+                }
+                else
+                {
+                    update = updateNro("0");
+                }
+
+                update = updateNro(recargaEstrellas.Text);
+
+                update = update.Remove(update.Length - 1);
 
                 bool insertOk = false;
 
-                qry = Index.BD.consultaGetPuntero(insert);
+                qry = Index.BD.consultaGetPuntero(update);
                 if (qry.Read())
                 {
                     insertOk = qry.GetBoolean(0);
@@ -260,39 +237,22 @@ namespace FrbaHotel.AbmHotel
 
                 if (insertOk)
                 {
-                    MessageBox.Show("Hotel dado de alta");
+                    MessageBox.Show("Hotel modificado con éxito");
+                    atras_Click(null, null);
                 }
                 else
                 {
                     MessageBox.Show("#error: no se ha podido realizar la operación");
                 }
-                //limpiar.PerformClick();
             }
         }
 
-/*        private void limpiar_Click(object sender, EventArgs e)
-        {
-            nombre.Text = string.Empty;
-            cantidadEstrellas.Text = string.Empty;
-            recargaEstrellas.Text = string.Empty;
-            eMail.Text = string.Empty;
-            calle.Text = string.Empty;
-            calleNumero.Text = string.Empty;
-            ciudad.Text = string.Empty;
-            pais.Text = string.Empty;
-            telefono.Text = string.Empty;
-            nombre.Focus();
-        }
-*/
-        private void cancelar_Click(object sender, EventArgs e)
+        private void atras_Click(object sender, EventArgs e)
         {
             this.Hide();
-            AbmHot = new MenuAbmHotel();
-            AbmHot.Show();
+            ListadoHoteles = new ListadoHoteles();
+            ListadoHoteles.Show();
         }
-
-
-
 
     }
 }

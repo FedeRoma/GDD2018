@@ -115,9 +115,9 @@
             this.label22.ForeColor = System.Drawing.Color.Black;
             this.label22.Location = new System.Drawing.Point(7, 98);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(55, 14);
+            this.label22.Size = new System.Drawing.Size(70, 14);
             this.label22.TabIndex = 30;
-            this.label22.Text = "Teléfono";
+            this.label22.Text = "Teléfono (*)";
             this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label11
@@ -149,9 +149,9 @@
             this.label16.ForeColor = System.Drawing.Color.Black;
             this.label16.Location = new System.Drawing.Point(183, 56);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(30, 14);
+            this.label16.Size = new System.Drawing.Size(45, 14);
             this.label16.TabIndex = 24;
-            this.label16.Text = "Pais";
+            this.label16.Text = "Pais (*)";
             this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // ciudad
@@ -170,9 +170,9 @@
             this.label15.ForeColor = System.Drawing.Color.Black;
             this.label15.Location = new System.Drawing.Point(7, 56);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(45, 14);
+            this.label15.Size = new System.Drawing.Size(60, 14);
             this.label15.TabIndex = 28;
-            this.label15.Text = "Ciudad";
+            this.label15.Text = "Ciudad (*)";
             this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label12
@@ -308,9 +308,9 @@
             this.label10.ForeColor = System.Drawing.Color.Black;
             this.label10.Location = new System.Drawing.Point(66, 211);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(36, 14);
+            this.label10.Size = new System.Drawing.Size(51, 14);
             this.label10.TabIndex = 34;
-            this.label10.Text = "eMail";
+            this.label10.Text = "eMail (*)";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // fechaCreacion

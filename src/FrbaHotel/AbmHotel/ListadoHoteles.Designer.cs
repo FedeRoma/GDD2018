@@ -76,6 +76,8 @@
             this.listaHoteles.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.listaHoteles.Size = new System.Drawing.Size(566, 207);
             this.listaHoteles.TabIndex = 43;
+            this.listaHoteles.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listaHoteles_CellClick);
+            this.listaHoteles.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.listaHoteles_CellPainting);
             // 
             // atras
             // 
@@ -86,7 +88,7 @@
             this.atras.Location = new System.Drawing.Point(12, 386);
             this.atras.Name = "atras";
             this.atras.Size = new System.Drawing.Size(101, 44);
-            this.atras.TabIndex = 42;
+            this.atras.TabIndex = 7;
             this.atras.Text = "atrás";
             this.atras.UseVisualStyleBackColor = false;
             this.atras.Click += new System.EventHandler(this.atras_Click);
@@ -100,7 +102,7 @@
             this.limpiar.Location = new System.Drawing.Point(119, 386);
             this.limpiar.Name = "limpiar";
             this.limpiar.Size = new System.Drawing.Size(101, 44);
-            this.limpiar.TabIndex = 41;
+            this.limpiar.TabIndex = 6;
             this.limpiar.Text = "limpiar datos";
             this.limpiar.UseVisualStyleBackColor = false;
             this.limpiar.Click += new System.EventHandler(this.limpiar_Click);
@@ -114,7 +116,7 @@
             this.buscar.Location = new System.Drawing.Point(591, 386);
             this.buscar.Name = "buscar";
             this.buscar.Size = new System.Drawing.Size(101, 44);
-            this.buscar.TabIndex = 40;
+            this.buscar.TabIndex = 5;
             this.buscar.Text = "buscar";
             this.buscar.UseVisualStyleBackColor = false;
             this.buscar.Click += new System.EventHandler(this.buscar_Click);
@@ -151,7 +153,7 @@
             this.nombre.Location = new System.Drawing.Point(9, 33);
             this.nombre.Name = "nombre";
             this.nombre.Size = new System.Drawing.Size(280, 22);
-            this.nombre.TabIndex = 37;
+            this.nombre.TabIndex = 1;
             // 
             // groupBox1
             // 
@@ -177,7 +179,7 @@
             this.pais.Location = new System.Drawing.Point(295, 75);
             this.pais.Name = "pais";
             this.pais.Size = new System.Drawing.Size(265, 22);
-            this.pais.TabIndex = 50;
+            this.pais.TabIndex = 4;
             // 
             // ciudad
             // 
@@ -186,7 +188,7 @@
             this.ciudad.Location = new System.Drawing.Point(9, 75);
             this.ciudad.Name = "ciudad";
             this.ciudad.Size = new System.Drawing.Size(280, 22);
-            this.ciudad.TabIndex = 49;
+            this.ciudad.TabIndex = 3;
             // 
             // label4
             // 
@@ -219,7 +221,7 @@
             this.cantidadEstrellas.Location = new System.Drawing.Point(295, 33);
             this.cantidadEstrellas.Name = "cantidadEstrellas";
             this.cantidadEstrellas.Size = new System.Drawing.Size(265, 22);
-            this.cantidadEstrellas.TabIndex = 46;
+            this.cantidadEstrellas.TabIndex = 2;
             // 
             // label3
             // 

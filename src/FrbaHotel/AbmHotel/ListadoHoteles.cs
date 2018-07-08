@@ -13,11 +13,9 @@ namespace FrbaHotel.AbmHotel
 {
     public partial class ListadoHoteles : Form
     {
-        private SqlDataReader qry;
         public static MenuAbmHotel AbmHot;
         public static ModificacionHotel ModifHot;
         DataTable tablaHoteles;
-
 
         public ListadoHoteles()
         {
@@ -30,7 +28,7 @@ namespace FrbaHotel.AbmHotel
             botonModif.Name = "modif";
             listaHoteles.Columns.Add(botonModif);
 
-            tablaHoteles = Index.BD.consultaGetTabla("select hot_nombre Nombre,hot_mail Mail,hot_telefono Tel,hot_estrellas Estrellas,hot_recarga_estrellas RecargaEstrella,hot_fecha_cre FechaCreacion, hot_calle Calle, hot_calle_nro Numero_Calle, hot_ciudad Ciudad,hot_pais Pais from EN_CASA_ANDABA.Hoteles");
+            tablaHoteles = Index.BD.consultaGetTabla("select hot_nombre Nombre, hot_mail Mail, hot_telefono [Teléfono], hot_estrellas Estrellas, hot_recarga_estrellas [Recarga Estrellas], hot_fecha_cre [Fecha de Creación], hot_calle Calle, hot_calle_nro [Numero Calle], hot_ciudad Ciudad, hot_pais Pais, hot_habilitado [Estado] from EN_CASA_ANDABA.Hoteles");
             BindingSource bindingSourcelistaHoteles = new BindingSource();
             bindingSourcelistaHoteles.DataSource = tablaHoteles;
             listaHoteles.DataSource = bindingSourcelistaHoteles;
@@ -52,6 +50,7 @@ namespace FrbaHotel.AbmHotel
             }
             return "";
         }
+
         private void listaHoteles_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
             if (e.ColumnIndex >= 0 && this.listaHoteles.Columns[e.ColumnIndex].Name == "modif" && e.RowIndex >= 0)
@@ -68,6 +67,7 @@ namespace FrbaHotel.AbmHotel
                 e.Handled = true;
             }
         }
+
         private void listaHoteles_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (listaHoteles.Columns[e.ColumnIndex].Name == "modif")
@@ -77,17 +77,19 @@ namespace FrbaHotel.AbmHotel
                 string telefono = listaHoteles.CurrentRow.Cells[3].Value.ToString();
                 string cantidadEstrellas = listaHoteles.CurrentRow.Cells[4].Value.ToString();
                 string recargaEstrellas = listaHoteles.CurrentRow.Cells[5].Value.ToString();
-                string fecha_creacion = listaHoteles.CurrentRow.Cells[6].Value.ToString();
+                string fechaCreacion = listaHoteles.CurrentRow.Cells[6].Value.ToString();
                 string calle = listaHoteles.CurrentRow.Cells[7].Value.ToString();
                 string calleNro = listaHoteles.CurrentRow.Cells[8].Value.ToString();
                 string ciudad = listaHoteles.CurrentRow.Cells[9].Value.ToString();
                 string pais = listaHoteles.CurrentRow.Cells[10].Value.ToString();
-                ModifHot = new ModificacionHotel(nombre, eMail,telefono,cantidadEstrellas ,recargaEstrellas,
-                                                fecha_creacion,calle, calleNro,ciudad,pais);
+                string estado = listaHoteles.CurrentRow.Cells[11].Value.ToString();
+                ModifHot = new ModificacionHotel(nombre, eMail, telefono, cantidadEstrellas, recargaEstrellas,
+                                                fechaCreacion, calle, calleNro, ciudad, pais, estado);
                 ModifHot.Show();
                 this.Hide();
             }
         }
+
         private void buscar_Click(object sender, EventArgs e)
         {
             DataView vistaHoteles = new DataView(tablaHoteles);
@@ -96,7 +98,6 @@ namespace FrbaHotel.AbmHotel
             filtro = filtro + this.esExactamente("[Estrellas]", cantidadEstrellas.Text);
             filtro = filtro + this.esExactamente("[Ciudad]", ciudad.Text);
             filtro = filtro + this.esExactamente("[Pais]", pais.Text);
-
 
             if (filtro.Length > 0)
             {

@@ -128,17 +128,12 @@ namespace FrbaHotel.AbmHotel
             }
             if (string.IsNullOrEmpty(cantidadEstrellas.Text))
             {
-                alerta = alerta + "Debe ingresar una cantidadEstrellas válido\n";
+                alerta = alerta + "Debe ingresar una cantidad de estrellas válido\n";
                 inconsistencias = true;
             }
             if (string.IsNullOrEmpty(recargaEstrellas.Text))
             {
-                alerta = alerta + "Debe ingresar una Recarga Estrellas válido\n";
-                inconsistencias = true;
-            }
-            if (string.IsNullOrEmpty(ciudad.Text))
-            {
-                alerta = alerta + "Debe ingresar una Ciudad válida\n";
+                alerta = alerta + "Debe ingresar una recarga estrellas válido\n";
                 inconsistencias = true;
             }
             if (string.IsNullOrEmpty(eMail.Text))
@@ -146,14 +141,19 @@ namespace FrbaHotel.AbmHotel
                 alerta = alerta + "Debe ingresar un eMail válido\n";
                 inconsistencias = true;
             }
-            if (string.IsNullOrEmpty(calleNumero.Text))
-            {
-                alerta = alerta + "Debe ingresar un numero de calle válida\n";
-                inconsistencias = true;
-            }
             if (string.IsNullOrEmpty(calle.Text) || string.IsNullOrEmpty(calleNumero.Text))
             {
                 alerta = alerta + "Debe ingresar una dirección válida\n";
+                inconsistencias = true;
+            }
+            if (string.IsNullOrEmpty(ciudad.Text))
+            {
+                alerta = alerta + "Debe ingresar una ciudad válida\n";
+                inconsistencias = true;
+            }
+            if (string.IsNullOrEmpty(pais.Text) || string.IsNullOrEmpty(pais.Text))
+            {
+                alerta = alerta + "Debe ingresar un pais válido\n";
                 inconsistencias = true;
             }
             if (string.IsNullOrEmpty(telefono.Text))
@@ -161,24 +161,20 @@ namespace FrbaHotel.AbmHotel
                 alerta = alerta + "Debe ingresar un teléfono válido\n";
                 inconsistencias = true;
             }
-            if (string.IsNullOrEmpty(pais.Text) || string.IsNullOrEmpty(pais.Text))
-            {
-                alerta = alerta + "Debe ingresar un pais válidos\n";
-                inconsistencias = true;
-            }
+
             if (string.IsNullOrEmpty(fechaCreacion.Text))
             {
-                alerta = alerta + "Debe ingresar un nombre válido\n";
+                alerta = alerta + "Debe ingresar una fecha de alta válida\n";
                 inconsistencias = true;
             }
 
-            DateTime fechaNac, hoy;
-            fechaNac = Convert.ToDateTime(fechaCreacion.Value);
+            DateTime fechaCrea, hoy;
+            fechaCrea = Convert.ToDateTime(fechaCreacion.Value);
             hoy = DateTime.Today;
 
-            if (DateTime.Compare(fechaNac, hoy) >= 0)
+            if (DateTime.Compare(fechaCrea, hoy) >= 0)
             {
-                alerta = alerta + "Debe ingresar una fecha de nacimiento válida\n";
+                alerta = alerta + "Debe ingresar una fecha de alta válida\n";
                 inconsistencias = true;
             }
 

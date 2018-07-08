@@ -75,7 +75,7 @@ namespace FrbaHotel.AbmHotel
                 inconsistencias = true;
             }
 
-            qry = Index.BD.consultaGetPuntero("exec EN_CASA_ANDABA.habitacionesReservadasHotel"); // SP QUE CHEQUEE SI TIENE RESERVAS UN HOTEL
+            qry = Index.BD.consultaGetPuntero("exec EN_CASA_ANDABA.tieneReservaHotel " + bajaDesde.ToString() + ", " + bajaHasta.ToString() + "," + hotelID);
 
             if (qry.Read())
             {
