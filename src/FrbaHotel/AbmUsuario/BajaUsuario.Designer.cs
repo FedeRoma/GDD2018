@@ -76,7 +76,7 @@
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.DimGray;
             this.listaClientes.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.listaClientes.Size = new System.Drawing.Size(566, 169);
-            this.listaClientes.TabIndex = 45;
+            this.listaClientes.TabIndex = 10;
             // 
             // groupBox1
             // 
@@ -131,7 +131,7 @@
             this.comboBox1.Location = new System.Drawing.Point(298, 119);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(262, 24);
-            this.comboBox1.TabIndex = 47;
+            this.comboBox1.TabIndex = 6;
             // 
             // tipoDocumento
             // 
@@ -236,7 +236,7 @@
             this.atras.Location = new System.Drawing.Point(12, 386);
             this.atras.Name = "atras";
             this.atras.Size = new System.Drawing.Size(101, 44);
-            this.atras.TabIndex = 43;
+            this.atras.TabIndex = 9;
             this.atras.Text = "atrás";
             this.atras.UseVisualStyleBackColor = false;
             // 
@@ -249,7 +249,7 @@
             this.limpiar.Location = new System.Drawing.Point(119, 386);
             this.limpiar.Name = "limpiar";
             this.limpiar.Size = new System.Drawing.Size(101, 44);
-            this.limpiar.TabIndex = 42;
+            this.limpiar.TabIndex = 8;
             this.limpiar.Text = "limpiar datos";
             this.limpiar.UseVisualStyleBackColor = false;
             // 
@@ -262,7 +262,7 @@
             this.buscar.Location = new System.Drawing.Point(591, 386);
             this.buscar.Name = "buscar";
             this.buscar.Size = new System.Drawing.Size(101, 44);
-            this.buscar.TabIndex = 41;
+            this.buscar.TabIndex = 7;
             this.buscar.Text = "buscar";
             this.buscar.UseVisualStyleBackColor = false;
             // 

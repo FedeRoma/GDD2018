@@ -68,7 +68,7 @@
             this.label11.ForeColor = System.Drawing.Color.Crimson;
             this.label11.Location = new System.Drawing.Point(445, 350);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(178, 19);
+            this.label11.Size = new System.Drawing.Size(141, 16);
             this.label11.TabIndex = 41;
             this.label11.Text = "(*) campos obligatorios";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -82,7 +82,7 @@
             this.atras.Location = new System.Drawing.Point(12, 386);
             this.atras.Name = "atras";
             this.atras.Size = new System.Drawing.Size(101, 44);
-            this.atras.TabIndex = 40;
+            this.atras.TabIndex = 15;
             this.atras.Text = "atrás";
             this.atras.UseVisualStyleBackColor = false;
             this.atras.Click += new System.EventHandler(this.cancelar_Click);
@@ -96,7 +96,7 @@
             this.limpiar.Location = new System.Drawing.Point(119, 386);
             this.limpiar.Name = "limpiar";
             this.limpiar.Size = new System.Drawing.Size(101, 44);
-            this.limpiar.TabIndex = 38;
+            this.limpiar.TabIndex = 14;
             this.limpiar.Text = "limpiar datos";
             this.limpiar.UseVisualStyleBackColor = false;
             this.limpiar.Click += new System.EventHandler(this.limpiar_Click);
@@ -110,7 +110,7 @@
             this.guardar.Location = new System.Drawing.Point(591, 386);
             this.guardar.Name = "guardar";
             this.guardar.Size = new System.Drawing.Size(101, 44);
-            this.guardar.TabIndex = 37;
+            this.guardar.TabIndex = 13;
             this.guardar.Text = "guardar";
             this.guardar.UseVisualStyleBackColor = false;
             this.guardar.Click += new System.EventHandler(this.guardar_Click);
@@ -121,8 +121,8 @@
             this.direccion.ForeColor = System.Drawing.Color.DimGray;
             this.direccion.Location = new System.Drawing.Point(122, 309);
             this.direccion.Name = "direccion";
-            this.direccion.Size = new System.Drawing.Size(431, 26);
-            this.direccion.TabIndex = 32;
+            this.direccion.Size = new System.Drawing.Size(431, 22);
+            this.direccion.TabIndex = 11;
             // 
             // label10
             // 
@@ -131,7 +131,7 @@
             this.label10.ForeColor = System.Drawing.Color.Black;
             this.label10.Location = new System.Drawing.Point(119, 292);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(94, 16);
+            this.label10.Size = new System.Drawing.Size(73, 14);
             this.label10.TabIndex = 39;
             this.label10.Text = "Dirección (*)";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -142,8 +142,8 @@
             this.fechaNacimiento.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fechaNacimiento.Location = new System.Drawing.Point(123, 350);
             this.fechaNacimiento.Name = "fechaNacimiento";
-            this.fechaNacimiento.Size = new System.Drawing.Size(307, 25);
-            this.fechaNacimiento.TabIndex = 35;
+            this.fechaNacimiento.Size = new System.Drawing.Size(307, 21);
+            this.fechaNacimiento.TabIndex = 12;
             // 
             // label9
             // 
@@ -152,7 +152,7 @@
             this.label9.ForeColor = System.Drawing.Color.Black;
             this.label9.Location = new System.Drawing.Point(120, 333);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(174, 16);
+            this.label9.Size = new System.Drawing.Size(135, 14);
             this.label9.TabIndex = 36;
             this.label9.Text = "Fecha de Nacimiento (*)";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -163,8 +163,8 @@
             this.eMail.ForeColor = System.Drawing.Color.DimGray;
             this.eMail.Location = new System.Drawing.Point(347, 174);
             this.eMail.Name = "eMail";
-            this.eMail.Size = new System.Drawing.Size(206, 26);
-            this.eMail.TabIndex = 31;
+            this.eMail.Size = new System.Drawing.Size(206, 22);
+            this.eMail.TabIndex = 6;
             // 
             // label7
             // 
@@ -173,7 +173,7 @@
             this.label7.ForeColor = System.Drawing.Color.Black;
             this.label7.Location = new System.Drawing.Point(346, 157);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(65, 16);
+            this.label7.Size = new System.Drawing.Size(51, 14);
             this.label7.TabIndex = 34;
             this.label7.Text = "eMail (*)";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -184,8 +184,8 @@
             this.confirmacionClave.ForeColor = System.Drawing.Color.DimGray;
             this.confirmacionClave.Location = new System.Drawing.Point(123, 260);
             this.confirmacionClave.Name = "confirmacionClave";
-            this.confirmacionClave.Size = new System.Drawing.Size(206, 26);
-            this.confirmacionClave.TabIndex = 28;
+            this.confirmacionClave.Size = new System.Drawing.Size(206, 22);
+            this.confirmacionClave.TabIndex = 9;
             // 
             // label4
             // 
@@ -194,7 +194,7 @@
             this.label4.ForeColor = System.Drawing.Color.Black;
             this.label4.Location = new System.Drawing.Point(122, 243);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(164, 16);
+            this.label4.Size = new System.Drawing.Size(129, 14);
             this.label4.TabIndex = 30;
             this.label4.Text = "Confirmación Clave (*)";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -205,8 +205,8 @@
             this.clave.ForeColor = System.Drawing.Color.DimGray;
             this.clave.Location = new System.Drawing.Point(123, 218);
             this.clave.Name = "clave";
-            this.clave.Size = new System.Drawing.Size(206, 26);
-            this.clave.TabIndex = 25;
+            this.clave.Size = new System.Drawing.Size(206, 22);
+            this.clave.TabIndex = 7;
             // 
             // label3
             // 
@@ -215,7 +215,7 @@
             this.label3.ForeColor = System.Drawing.Color.Black;
             this.label3.Location = new System.Drawing.Point(122, 201);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(67, 16);
+            this.label3.Size = new System.Drawing.Size(52, 14);
             this.label3.TabIndex = 27;
             this.label3.Text = "Clave (*)";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -227,7 +227,7 @@
             this.label2.ForeColor = System.Drawing.Color.Black;
             this.label2.Location = new System.Drawing.Point(122, 157);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(161, 16);
+            this.label2.Size = new System.Drawing.Size(128, 14);
             this.label2.TabIndex = 26;
             this.label2.Text = "Nombre de usuario (*)";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -240,7 +240,7 @@
             this.label1.ForeColor = System.Drawing.Color.Black;
             this.label1.Location = new System.Drawing.Point(232, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(302, 51);
+            this.label1.Size = new System.Drawing.Size(240, 41);
             this.label1.TabIndex = 43;
             this.label1.Text = "ALTA USUARIO";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -251,8 +251,8 @@
             this.nombreUsuario.ForeColor = System.Drawing.Color.DimGray;
             this.nombreUsuario.Location = new System.Drawing.Point(123, 174);
             this.nombreUsuario.Name = "nombreUsuario";
-            this.nombreUsuario.Size = new System.Drawing.Size(206, 26);
-            this.nombreUsuario.TabIndex = 44;
+            this.nombreUsuario.Size = new System.Drawing.Size(206, 22);
+            this.nombreUsuario.TabIndex = 5;
             // 
             // label5
             // 
@@ -261,7 +261,7 @@
             this.label5.ForeColor = System.Drawing.Color.Black;
             this.label5.Location = new System.Drawing.Point(346, 241);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(50, 16);
+            this.label5.Size = new System.Drawing.Size(39, 14);
             this.label5.TabIndex = 46;
             this.label5.Text = "Rol (*)";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -273,8 +273,8 @@
             this.rol.FormattingEnabled = true;
             this.rol.Location = new System.Drawing.Point(347, 258);
             this.rol.Name = "rol";
-            this.rol.Size = new System.Drawing.Size(206, 26);
-            this.rol.TabIndex = 45;
+            this.rol.Size = new System.Drawing.Size(206, 24);
+            this.rol.TabIndex = 10;
             // 
             // nombre
             // 
@@ -282,8 +282,8 @@
             this.nombre.ForeColor = System.Drawing.Color.DimGray;
             this.nombre.Location = new System.Drawing.Point(123, 132);
             this.nombre.Name = "nombre";
-            this.nombre.Size = new System.Drawing.Size(206, 26);
-            this.nombre.TabIndex = 48;
+            this.nombre.Size = new System.Drawing.Size(206, 22);
+            this.nombre.TabIndex = 3;
             // 
             // label6
             // 
@@ -292,7 +292,7 @@
             this.label6.ForeColor = System.Drawing.Color.Black;
             this.label6.Location = new System.Drawing.Point(122, 115);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(82, 16);
+            this.label6.Size = new System.Drawing.Size(66, 14);
             this.label6.TabIndex = 47;
             this.label6.Text = "Nombre (*)";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -303,8 +303,8 @@
             this.apellido.ForeColor = System.Drawing.Color.DimGray;
             this.apellido.Location = new System.Drawing.Point(347, 132);
             this.apellido.Name = "apellido";
-            this.apellido.Size = new System.Drawing.Size(206, 26);
-            this.apellido.TabIndex = 50;
+            this.apellido.Size = new System.Drawing.Size(206, 22);
+            this.apellido.TabIndex = 4;
             // 
             // label17
             // 
@@ -313,7 +313,7 @@
             this.label17.ForeColor = System.Drawing.Color.Black;
             this.label17.Location = new System.Drawing.Point(346, 115);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(84, 16);
+            this.label17.Size = new System.Drawing.Size(67, 14);
             this.label17.TabIndex = 49;
             this.label17.Text = "Apellido (*)";
             this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -325,7 +325,7 @@
             this.label22.ForeColor = System.Drawing.Color.Black;
             this.label22.Location = new System.Drawing.Point(344, 201);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(87, 16);
+            this.label22.Size = new System.Drawing.Size(70, 14);
             this.label22.TabIndex = 52;
             this.label22.Text = "Teléfono (*)";
             this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -336,8 +336,8 @@
             this.telefono.ForeColor = System.Drawing.Color.DimGray;
             this.telefono.Location = new System.Drawing.Point(347, 218);
             this.telefono.Name = "telefono";
-            this.telefono.Size = new System.Drawing.Size(206, 26);
-            this.telefono.TabIndex = 51;
+            this.telefono.Size = new System.Drawing.Size(206, 22);
+            this.telefono.TabIndex = 8;
             // 
             // label8
             // 
@@ -346,7 +346,7 @@
             this.label8.ForeColor = System.Drawing.Color.Black;
             this.label8.Location = new System.Drawing.Point(122, 71);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(162, 16);
+            this.label8.Size = new System.Drawing.Size(129, 14);
             this.label8.TabIndex = 54;
             this.label8.Text = "Tipo de documento (*)";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -358,8 +358,8 @@
             this.tipoDocumento.FormattingEnabled = true;
             this.tipoDocumento.Location = new System.Drawing.Point(123, 88);
             this.tipoDocumento.Name = "tipoDocumento";
-            this.tipoDocumento.Size = new System.Drawing.Size(206, 26);
-            this.tipoDocumento.TabIndex = 53;
+            this.tipoDocumento.Size = new System.Drawing.Size(206, 24);
+            this.tipoDocumento.TabIndex = 1;
             // 
             // nroDocumento
             // 
@@ -367,8 +367,8 @@
             this.nroDocumento.ForeColor = System.Drawing.Color.DimGray;
             this.nroDocumento.Location = new System.Drawing.Point(347, 88);
             this.nroDocumento.Name = "nroDocumento";
-            this.nroDocumento.Size = new System.Drawing.Size(206, 26);
-            this.nroDocumento.TabIndex = 55;
+            this.nroDocumento.Size = new System.Drawing.Size(206, 22);
+            this.nroDocumento.TabIndex = 2;
             // 
             // label12
             // 
@@ -377,14 +377,14 @@
             this.label12.ForeColor = System.Drawing.Color.Black;
             this.label12.Location = new System.Drawing.Point(346, 71);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(161, 16);
+            this.label12.Size = new System.Drawing.Size(127, 14);
             this.label12.TabIndex = 56;
             this.label12.Text = "Nro. de documento (*)";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // AltaUsuario
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(704, 442);

@@ -67,7 +67,7 @@
             this.nroDocumento.Location = new System.Drawing.Point(363, 88);
             this.nroDocumento.Name = "nroDocumento";
             this.nroDocumento.Size = new System.Drawing.Size(206, 22);
-            this.nroDocumento.TabIndex = 84;
+            this.nroDocumento.TabIndex = 2;
             // 
             // label12
             // 
@@ -101,7 +101,7 @@
             this.tipoDocumento.Location = new System.Drawing.Point(139, 88);
             this.tipoDocumento.Name = "tipoDocumento";
             this.tipoDocumento.Size = new System.Drawing.Size(206, 24);
-            this.tipoDocumento.TabIndex = 82;
+            this.tipoDocumento.TabIndex = 1;
             // 
             // label22
             // 
@@ -122,7 +122,7 @@
             this.telefono.Location = new System.Drawing.Point(363, 218);
             this.telefono.Name = "telefono";
             this.telefono.Size = new System.Drawing.Size(206, 22);
-            this.telefono.TabIndex = 80;
+            this.telefono.TabIndex = 8;
             // 
             // apellido
             // 
@@ -131,7 +131,7 @@
             this.apellido.Location = new System.Drawing.Point(363, 132);
             this.apellido.Name = "apellido";
             this.apellido.Size = new System.Drawing.Size(206, 22);
-            this.apellido.TabIndex = 79;
+            this.apellido.TabIndex = 4;
             // 
             // label17
             // 
@@ -152,7 +152,7 @@
             this.nombre.Location = new System.Drawing.Point(139, 132);
             this.nombre.Name = "nombre";
             this.nombre.Size = new System.Drawing.Size(206, 22);
-            this.nombre.TabIndex = 77;
+            this.nombre.TabIndex = 3;
             // 
             // label6
             // 
@@ -186,7 +186,7 @@
             this.rol.Location = new System.Drawing.Point(363, 258);
             this.rol.Name = "rol";
             this.rol.Size = new System.Drawing.Size(206, 24);
-            this.rol.TabIndex = 74;
+            this.rol.TabIndex = 10;
             // 
             // nombreUsuario
             // 
@@ -195,7 +195,7 @@
             this.nombreUsuario.Location = new System.Drawing.Point(139, 174);
             this.nombreUsuario.Name = "nombreUsuario";
             this.nombreUsuario.Size = new System.Drawing.Size(206, 22);
-            this.nombreUsuario.TabIndex = 73;
+            this.nombreUsuario.TabIndex = 5;
             // 
             // label1
             // 
@@ -232,7 +232,7 @@
             this.atras.Location = new System.Drawing.Point(12, 386);
             this.atras.Name = "atras";
             this.atras.Size = new System.Drawing.Size(101, 44);
-            this.atras.TabIndex = 70;
+            this.atras.TabIndex = 15;
             this.atras.Text = "atrás";
             this.atras.UseVisualStyleBackColor = false;
             // 
@@ -245,7 +245,7 @@
             this.guardar.Location = new System.Drawing.Point(591, 386);
             this.guardar.Name = "guardar";
             this.guardar.Size = new System.Drawing.Size(101, 44);
-            this.guardar.TabIndex = 67;
+            this.guardar.TabIndex = 14;
             this.guardar.Text = "guardar";
             this.guardar.UseVisualStyleBackColor = false;
             // 
@@ -256,7 +256,7 @@
             this.direccion.Location = new System.Drawing.Point(138, 309);
             this.direccion.Name = "direccion";
             this.direccion.Size = new System.Drawing.Size(431, 22);
-            this.direccion.TabIndex = 63;
+            this.direccion.TabIndex = 11;
             // 
             // label10
             // 
@@ -277,7 +277,7 @@
             this.fechaNacimiento.Location = new System.Drawing.Point(139, 350);
             this.fechaNacimiento.Name = "fechaNacimiento";
             this.fechaNacimiento.Size = new System.Drawing.Size(307, 21);
-            this.fechaNacimiento.TabIndex = 65;
+            this.fechaNacimiento.TabIndex = 12;
             // 
             // label9
             // 
@@ -298,7 +298,7 @@
             this.eMail.Location = new System.Drawing.Point(363, 174);
             this.eMail.Name = "eMail";
             this.eMail.Size = new System.Drawing.Size(206, 22);
-            this.eMail.TabIndex = 62;
+            this.eMail.TabIndex = 6;
             // 
             // label7
             // 
@@ -319,7 +319,7 @@
             this.confirmacionClave.Location = new System.Drawing.Point(139, 260);
             this.confirmacionClave.Name = "confirmacionClave";
             this.confirmacionClave.Size = new System.Drawing.Size(206, 22);
-            this.confirmacionClave.TabIndex = 60;
+            this.confirmacionClave.TabIndex = 9;
             // 
             // label4
             // 
@@ -340,7 +340,7 @@
             this.clave.Location = new System.Drawing.Point(139, 218);
             this.clave.Name = "clave";
             this.clave.Size = new System.Drawing.Size(206, 22);
-            this.clave.TabIndex = 57;
+            this.clave.TabIndex = 7;
             // 
             // label3
             // 
@@ -373,7 +373,7 @@
             this.estado.Location = new System.Drawing.Point(487, 350);
             this.estado.Name = "estado";
             this.estado.Size = new System.Drawing.Size(82, 19);
-            this.estado.TabIndex = 86;
+            this.estado.TabIndex = 13;
             this.estado.Text = "Habilitado";
             this.estado.UseVisualStyleBackColor = true;
             // 
