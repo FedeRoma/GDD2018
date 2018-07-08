@@ -17,6 +17,8 @@ namespace FrbaHotel.AbmUsuario
         private SqlDataReader qry;
         public static MenuAbmUsuario AbmUsu;
         string insert = "";
+        String calle = "";
+        int calleNro = 0;
 
         private class TipoDocumento
         {
@@ -32,6 +34,36 @@ namespace FrbaHotel.AbmUsuario
                 return Nombre;
             }
         }
+        private class Rol
+        {
+            public string Nombre;
+            public int Valor;
+            public Rol(int valor, string nombre)
+            {
+                Nombre = nombre;
+                Valor = valor;
+            }
+            public override string ToString()
+            {
+                return Nombre;
+            }
+        }
+        private class Hotel
+        {
+            public string Calle;
+            public int CalleNro;
+            public Hotel(string calle, int calleNro)
+            {
+                Calle = calle;
+                CalleNro = calleNro;
+            }
+            public override string ToString()
+            {
+                return Calle;
+            }
+        }
+
+
 
         public AltaUsuario()
         {
@@ -40,6 +72,13 @@ namespace FrbaHotel.AbmUsuario
             while (qry.Read())
             {
                 tipoDocumento.Items.Add(new TipoDocumento(qry.GetInt32(0), qry.GetString(1)));
+            }
+            qry.Close();
+
+            qry = Index.BD.consultaGetPuntero("select distinct rol_id, rol_nombre from EN_CASA_ANDABA.Roles where rol_estado = 1");
+            while (qry.Read())
+            {
+                rol.Items.Add(new Rol(qry.GetInt32(0), qry.GetString(1)));
             }
             qry.Close();
 
@@ -162,27 +201,33 @@ namespace FrbaHotel.AbmUsuario
         private void guardar_Click(object sender, EventArgs e)
         {
             if (!checkCampos())
-            {
-                insert = "exec EN_CASA_ANDABA.altaCliente ";
-                insert = insertNro(nroDocumento.Text);
-                insert = insertString(tipoDocumento.Text);
+            {   //Busco datos de hotel
+                qry = Index.BD.consultaGetPuntero("select hot_calle,hot_calle_nro from EN_CASA_ANDABA.Hoteles where hot_id = '" + Index.hotel + "'");
+                if (qry.Read())
+                {
+
+                    calle = qry.GetString(0);
+                    calleNro = qry.GetInt32(1);
+                }
+                qry.Close();
+
+
+                insert = "exec EN_CASA_ANDABA.altaUsuario ";
+                insert = insertNro(rol.Text);
+                insert = insertString(calle);//HotelCalle
+                insert = insertString(calleNro.ToString());
+                insert = insertString(nombreUsuario.Text);
+                insert = insertString(clave.Text);
                 insert = insertString(nombre.Text);
                 insert = insertString(apellido.Text);
                 insert = insertString(eMail.Text);
-                insert = insertString(nacionalidad.Text);
-
+                insert = insertString(telefono.Text);
+                insert = insertString(tipoDocumento.Text);
+                insert = insertString(nroDocumento.Text);
                 DateTime fecha;
                 fecha = Convert.ToDateTime(fechaNacimiento.Value);
                 insert = insertString(fecha.Date.ToString("yyyyMMdd HH:mm:ss"));
-
-                insert = insertString(calle.Text);
-                insert = insertNro(calleNumero.Text);
-                insert = insertString(piso.Text);
-                insert = insertString(departamento.Text);
-                insert = insertString(localidad.Text);
-                insert = insertString(pais.Text);
-                insert = insertString(telefono.Text);
-
+                insert = insertString(direccion.Text);
                 insert = insert.Remove(insert.Length - 1);
 
                 bool insertOk = false;
@@ -196,7 +241,7 @@ namespace FrbaHotel.AbmUsuario
 
                 if (insertOk)
                 {
-                    MessageBox.Show("Cliente dado de alta");
+                    MessageBox.Show("Usuario dado de alta");
                 }
                 else
                 {
@@ -210,26 +255,24 @@ namespace FrbaHotel.AbmUsuario
         {
             tipoDocumento.ResetText();
             nroDocumento.ResetText();
+            rol.ResetText();
             nombre.Text = string.Empty;
+            nombreUsuario.Text = string.Empty;
             apellido.Text = string.Empty;
             eMail.Text = string.Empty;
-            nacionalidad.Text = string.Empty;
+            clave.Text = string.Empty;
+            confirmacionClave.Text = string.Empty;
             fechaNacimiento.ResetText();
-            calle.Text = string.Empty;
-            calleNumero.Text = string.Empty;
-            piso.Text = string.Empty;
-            departamento.Text = string.Empty;
             telefono.Text = string.Empty;
-            localidad.Text = string.Empty;
-            pais.Text = string.Empty;
+            direccion.Text = string.Empty;
             tipoDocumento.Focus();
         }
 
         private void cancelar_Click(object sender, EventArgs e)
         {
             this.Hide();
-            AbmCli = new MenuAbmCliente();
-            AbmCli.Show();
+            AbmUsu = new MenuAbmUsuario();
+            AbmUsu.Show();
         }
 
 

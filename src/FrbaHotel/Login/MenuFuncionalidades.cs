@@ -49,9 +49,9 @@ namespace FrbaHotel.Login
                     IndexRol.Show();
                     break;
                 case "ABM Usuario":
-                    //this.Hide();
-                    //AbmRol.MenuAbmRol IndexRol = new AbmRol.MenuAbmRol();
-                    //IndexRol.Show();
+                    this.Hide();
+                    AbmUsuario.MenuAbmUsuario IndexUsu = new AbmUsuario.MenuAbmUsuario();
+                    IndexUsu.Show();
                     break;
                 case "ABM Cliente":
                     this.Hide();
