@@ -102,7 +102,7 @@ namespace FrbaHotel.AbmCliente
                 string eMail = listaClientes.CurrentRow.Cells[5].Value.ToString();
                 string telefono = listaClientes.CurrentRow.Cells[6].Value.ToString();
                 string nacionalidad = listaClientes.CurrentRow.Cells[7].Value.ToString();
-                string fecha_nac = listaClientes.CurrentRow.Cells[8].Value.ToString();
+                string fechaNac = listaClientes.CurrentRow.Cells[8].Value.ToString();
                 string estado = listaClientes.CurrentRow.Cells[9].Value.ToString();
                 string calle = listaClientes.CurrentRow.Cells[10].Value.ToString();
                 string calleNro = listaClientes.CurrentRow.Cells[11].Value.ToString();
@@ -112,7 +112,7 @@ namespace FrbaHotel.AbmCliente
                 string pais = listaClientes.CurrentRow.Cells[15].Value.ToString();
 
                 ModifCli = new ModificacionCliente(nombre, apellido, docTipo, docNro, eMail, 
-                                                    telefono, nacionalidad, fecha_nac, estado,
+                                                    telefono, nacionalidad, fechaNac, estado,
                                                     calle, calleNro, piso, depto, localidad, pais);
                 ModifCli.Show();
                 this.Hide();

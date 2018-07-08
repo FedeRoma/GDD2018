@@ -36,7 +36,7 @@ namespace FrbaHotel.AbmCliente
 
         public ModificacionCliente(string nombreCli, string apellidoCli, string docTipoCli, 
                                     string docNumeroCli, string eMailCli, string telefonoCli,
-                                    string nacionalidadCli, string fecha_nacCli, string estadoCli, 
+                                    string nacionalidadCli, string fechaNacCli, string estadoCli, 
                                     string calleCli, string calleNumeroCli, string pisoCli, 
                                     string deptoCli, string localidadCli, string paisCli)
         {
@@ -56,7 +56,7 @@ namespace FrbaHotel.AbmCliente
             eMail.Text = eMailCli;
             telefono.Text = telefonoCli;
             nacionalidad.Text = nacionalidadCli;
-            fechaNacimiento.Value = Convert.ToDateTime(fecha_nacCli);
+            fechaNacimiento.Value = Convert.ToDateTime(fechaNacCli);
             if (estadoCli == "True")
             {
                 estado.Checked = true;
