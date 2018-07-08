@@ -24,6 +24,7 @@ namespace FrbaHotel.AbmHotel
         public AltaHotel()
         {
             InitializeComponent();
+         
             fechaCreacion.Value = DateTime.Today;
         }
 
@@ -45,6 +46,7 @@ namespace FrbaHotel.AbmHotel
             bindingSourceListaFuncionalidadesAsig.DataSource = tablaRegimenesAsig;
             listaRegimenesAsig.DataSource = bindingSourceListaFuncionalidadesAsig;
         }
+
         private void cantidadEstrellas_Keypress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
@@ -66,6 +68,7 @@ namespace FrbaHotel.AbmHotel
                 e.Handled = true;
             }
         }
+
         private void listaRegimenes_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
             if (e.ColumnIndex >= 0 && this.listaRegimenes.Columns[e.ColumnIndex].Name == "asignar" && e.RowIndex >= 0)
@@ -184,9 +187,7 @@ namespace FrbaHotel.AbmHotel
                 MessageBox.Show(alerta);
             }
             return inconsistencias;
-        }//Fin CheckSUM
-
-
+        }
 
         private string insertString(string campo)
         {
@@ -219,16 +220,6 @@ namespace FrbaHotel.AbmHotel
             if (!checkCampos())
             {
                 insert = "exec EN_CASA_ANDABA.altaHotel ";
-                /*	@nombre varchar(50), 
-                 *  @cantEstrellas int, 
-                 *  @calle varchar(50), 
-                 *  @numero int, 
-                 *  @ciudad varchar(50), 
-	                @pais varchar(50), 
-                 *  @email nvarchar(50), 
-                 *  @telefono varchar(50), 
-                 *  @fecha datetime,
-	                @recargaEstrellas int as*/
                 insert = insertNro(nombre.Text);
                 insert = insertString(cantidadEstrellas.Text);
                 insert = insertString(calle.Text);

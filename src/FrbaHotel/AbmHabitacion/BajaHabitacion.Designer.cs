@@ -242,6 +242,7 @@
             // 
             // listaHabitaciones
             // 
+            this.listaHabitaciones.AllowUserToAddRows = false;
             this.listaHabitaciones.AllowUserToOrderColumns = true;
             this.listaHabitaciones.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
             this.listaHabitaciones.BackgroundColor = System.Drawing.Color.White;

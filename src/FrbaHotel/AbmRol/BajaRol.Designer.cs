@@ -46,6 +46,7 @@
             // 
             // listaRoles
             // 
+            this.listaRoles.AllowUserToAddRows = false;
             this.listaRoles.AllowUserToOrderColumns = true;
             this.listaRoles.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
             this.listaRoles.BackgroundColor = System.Drawing.Color.White;
@@ -83,6 +84,7 @@
             // 
             // listaFuncionalidades
             // 
+            this.listaFuncionalidades.AllowUserToAddRows = false;
             this.listaFuncionalidades.AllowUserToOrderColumns = true;
             this.listaFuncionalidades.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
             this.listaFuncionalidades.BackgroundColor = System.Drawing.Color.White;
