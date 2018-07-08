@@ -55,6 +55,7 @@
             // 
             // listaClientes
             // 
+            this.listaClientes.AllowUserToAddRows = false;
             this.listaClientes.AllowUserToOrderColumns = true;
             this.listaClientes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
             this.listaClientes.BackgroundColor = System.Drawing.Color.White;
