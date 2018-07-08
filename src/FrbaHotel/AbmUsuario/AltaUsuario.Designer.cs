@@ -184,8 +184,9 @@
             this.confirmacionClave.ForeColor = System.Drawing.Color.DimGray;
             this.confirmacionClave.Location = new System.Drawing.Point(123, 260);
             this.confirmacionClave.Name = "confirmacionClave";
+            this.confirmacionClave.PasswordChar = '*';
             this.confirmacionClave.Size = new System.Drawing.Size(206, 22);
-            this.confirmacionClave.TabIndex = 9;
+            this.confirmacionClave.TabIndex = 10;
             // 
             // label4
             // 
@@ -205,8 +206,9 @@
             this.clave.ForeColor = System.Drawing.Color.DimGray;
             this.clave.Location = new System.Drawing.Point(123, 218);
             this.clave.Name = "clave";
+            this.clave.PasswordChar = '*';
             this.clave.Size = new System.Drawing.Size(206, 22);
-            this.clave.TabIndex = 7;
+            this.clave.TabIndex = 9;
             // 
             // label3
             // 
@@ -274,7 +276,7 @@
             this.rol.Location = new System.Drawing.Point(347, 258);
             this.rol.Name = "rol";
             this.rol.Size = new System.Drawing.Size(206, 24);
-            this.rol.TabIndex = 10;
+            this.rol.TabIndex = 8;
             // 
             // nombre
             // 
@@ -337,7 +339,7 @@
             this.telefono.Location = new System.Drawing.Point(347, 218);
             this.telefono.Name = "telefono";
             this.telefono.Size = new System.Drawing.Size(206, 22);
-            this.telefono.TabIndex = 8;
+            this.telefono.TabIndex = 7;
             // 
             // label8
             // 
@@ -369,6 +371,7 @@
             this.nroDocumento.Name = "nroDocumento";
             this.nroDocumento.Size = new System.Drawing.Size(206, 22);
             this.nroDocumento.TabIndex = 2;
+            this.nroDocumento.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.numeroDocumento_Keypress);
             // 
             // label12
             // 

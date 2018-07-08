@@ -78,7 +78,11 @@ namespace FrbaHotel.AbmUsuario
             qry = Index.BD.consultaGetPuntero("select distinct rol_id, rol_nombre from EN_CASA_ANDABA.Roles where rol_estado = 1");
             while (qry.Read())
             {
-                rol.Items.Add(new Rol(qry.GetInt32(0), qry.GetString(1)));
+                // solo se pueden dar de Alta "Recepcionistas" y "Administradores"
+                if ((qry.GetString(1) != "Administrador General") || (qry.GetString(1) != "Guest"))
+                {
+                    rol.Items.Add(new Rol(qry.GetInt32(0), qry.GetString(1)));
+                }  
             }
             qry.Close();
 
@@ -86,13 +90,6 @@ namespace FrbaHotel.AbmUsuario
         }
 
         private void numeroDocumento_Keypress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-        }
-        private void calleNumero_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
@@ -130,26 +127,49 @@ namespace FrbaHotel.AbmUsuario
                 alerta = alerta + "Debe ingresar un eMail válido\n";
                 inconsistencias = true;
             }
+            if (string.IsNullOrEmpty(telefono.Text))
+            {
+                alerta = alerta + "Debe ingresar un teléfono válido\n";
+                inconsistencias = true;
+            }
+            if (string.IsNullOrEmpty(rol.Text))
+            {
+                alerta = alerta + "Debe seleccionar al menos un rol\n";
+                inconsistencias = true;
+            }
+            if (string.IsNullOrEmpty(nombreUsuario.Text))
+            {
+                alerta = alerta + "Debe ingresar un nombre de usuario válido\n";
+                inconsistencias = true;
+            }
             else
             {
-                qry = Index.BD.consultaGetPuntero("select * from EN_CASA_ANDABA.Clientes where cli_mail = '" + eMail.Text + "'");
+                qry = Index.BD.consultaGetPuntero("select * from EN_CASA_ANDABA.Usuarios where usu_username = '" + nombreUsuario.Text + "'");
                 if (qry.Read())
                 {
-                    alerta = alerta + "eMail ya registrado\n";
+                    alerta = alerta + "Nombre de usuario ya registrado\n";
                     inconsistencias = true;
                 }
                 qry.Close();
+            }
+
+
+            if (string.IsNullOrEmpty(clave.Text))
+            {
+                alerta = alerta + "Debe ingresar una contraseña válida\n";
+                inconsistencias = true;
+            }
+            if (clave.Text != confirmacionClave.Text)
+            {
+                alerta = alerta + "Debe confirmar la contraseña correctamente\n";
+                inconsistencias = true;
             }
             if (string.IsNullOrEmpty(direccion.Text))
             {
                 alerta = alerta + "Debe ingresar una dirección válida\n";
                 inconsistencias = true;
             }
-            if (string.IsNullOrEmpty(telefono.Text))
-            {
-                alerta = alerta + "Debe ingresar un teléfono válido\n";
-                inconsistencias = true;
-            }
+           
             if (string.IsNullOrEmpty(fechaNacimiento.Text))
             {
                 alerta = alerta + "Debe ingresar una fecha válida\n";
@@ -185,7 +205,6 @@ namespace FrbaHotel.AbmUsuario
             }
             return insert;
         }
-
         private string insertNro(string campo)
         {
             if (string.IsNullOrEmpty(campo))
@@ -196,6 +215,11 @@ namespace FrbaHotel.AbmUsuario
             {
                 insert = insert + "" + campo + ",";
             }
+            return insert;
+        }
+        private string insertPass(string campo)
+        {
+            insert = insert + "hashbytes('SHA2_256', '" + campo + "'), ";
             return insert;
         }
 
@@ -214,10 +238,10 @@ namespace FrbaHotel.AbmUsuario
 
                 insert = "exec EN_CASA_ANDABA.altaUsuario ";
                 insert = insertNro(rol.Text);
-                insert = insertString(calle);//HotelCalle
+                insert = insertString(calle);
                 insert = insertString(calleNro.ToString());
                 insert = insertString(nombreUsuario.Text);
-                insert = insertString(clave.Text);
+                insert = insertPass(clave.Text);
                 insert = insertString(nombre.Text);
                 insert = insertString(apellido.Text);
                 insert = insertString(eMail.Text);
