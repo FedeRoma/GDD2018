@@ -69,9 +69,9 @@ namespace FrbaHotel.Login
                     IndexHabitacion.Show();
                     break;
                 case "ABM Régimen":
-                    //this.Hide();
-                    //AbmRegimen.MenuAbmRegimen IndexRegimen = new AbmRegimen.MenuAbmRegimen();
-                    //IndexRegimen.Show();
+                    this.Hide();
+                    AbmRegimen.MenuAbmRegimen IndexRegimen = new AbmRegimen.MenuAbmRegimen();
+                    IndexRegimen.Show();
                     break;
                 case "Generar Reserva":
                     break;

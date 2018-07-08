@@ -18,31 +18,18 @@ namespace FrbaHotel.AbmHotel
         int hotelID = 0;
         string insert = "";
 
-        private class Hotel
-        {
-            public int Valor;
-            public string Nombre;
-
-            public Hotel(int valor, string calle, int calle_nro)
-            {
-                Nombre = calle + " " + calle_nro.ToString();
-                Valor = valor;
-            }
-            public override string ToString()
-            {
-                return Nombre;
-            }
-        }
-
-        public BajaHotel(int hotel)
+        public BajaHotel(string calleHot, string calleNroHot)
         {
             InitializeComponent();
 
-            hotelID = hotel;
-            qry = Index.BD.consultaGetPuntero("select distinct hot_calle, hot_calle_nro from EN_CASA_ANDABA.Hoteles where hot_id = " + hotelID);
-            qry.Read();
-            hotelActivo.Items.Add(qry.GetString(0) + " " + qry.GetInt32(1).ToString());
+            qry = Index.BD.consultaGetPuntero("select hot_id from EN_CASA_ANDABA.Hoteles where hot_calle = '" + calleHot + "' and hot_calle_nro = " + calleNroHot);
+            if (qry.Read())
+            {
+                hotelID = qry.GetInt32(0);
+            }
             qry.Close();
+
+            hotelActivo.Items.Add(calleHot + " " + calleNroHot);
 
             bajaDesde.Value = DateTime.Today;
             bajaHasta.Value = DateTime.Today;
@@ -64,25 +51,25 @@ namespace FrbaHotel.AbmHotel
                 inconsistencias = true;
             }
 
-            DateTime hasta, desde, hoy;
+            DateTime desde, hasta;
             desde = Convert.ToDateTime(bajaDesde.Value);
             hasta = Convert.ToDateTime(bajaHasta.Value);
-            hoy = DateTime.Today;
 
             if (DateTime.Compare(desde, hasta) >= 0)
             {
-                alerta = alerta + "La fecha de fin de la baja debe ser posterior al " + bajaDesde.ToString() + "\n";
+                alerta = alerta + "La fecha de fin de la baja debe ser posterior a la fecha de inicio\n";
                 inconsistencias = true;
             }
 
-            qry = Index.BD.consultaGetPuntero("exec EN_CASA_ANDABA.tieneReservaHotel " + bajaDesde.ToString() + ", " + bajaHasta.ToString() + "," + hotelID);
+            qry = Index.BD.consultaGetPuntero("exec EN_CASA_ANDABA.tieneReservaHotel '" + desde.Date.ToString("yyyyMMdd HH:mm:ss") + "', '" + hasta.Date.ToString("yyyyMMdd HH:mm:ss") + "', " + hotelID);
 
             if (qry.Read())
             {
                 alerta = alerta + "#error: En el período ingresado el Hotel tiene reservas activas\n";
                 inconsistencias = true;
             }
-                       
+            qry.Close();
+           
             if (inconsistencias)
             {
                 MessageBox.Show(alerta);

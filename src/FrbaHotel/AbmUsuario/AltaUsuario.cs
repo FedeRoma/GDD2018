@@ -16,9 +16,9 @@ namespace FrbaHotel.AbmUsuario
 
         private SqlDataReader qry;
         public static MenuAbmUsuario AbmUsu;
-        string insert = "";
         String calle = "";
         int calleNro = 0;
+        string insert = "";
 
         private class TipoDocumento
         {
@@ -34,6 +34,7 @@ namespace FrbaHotel.AbmUsuario
                 return Nombre;
             }
         }
+
         private class Rol
         {
             public string Nombre;
@@ -48,6 +49,7 @@ namespace FrbaHotel.AbmUsuario
                 return Nombre;
             }
         }
+
         private class Hotel
         {
             public string Calle;
@@ -62,9 +64,7 @@ namespace FrbaHotel.AbmUsuario
                 return Calle;
             }
         }
-
-
-
+        
         public AltaUsuario()
         {
             InitializeComponent();
@@ -84,6 +84,7 @@ namespace FrbaHotel.AbmUsuario
 
             fechaNacimiento.Value = DateTime.Today;
         }
+
         private void numeroDocumento_Keypress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
@@ -201,8 +202,8 @@ namespace FrbaHotel.AbmUsuario
         private void guardar_Click(object sender, EventArgs e)
         {
             if (!checkCampos())
-            {   //Busco datos de hotel
-                qry = Index.BD.consultaGetPuntero("select hot_calle,hot_calle_nro from EN_CASA_ANDABA.Hoteles where hot_id = '" + Index.hotel + "'");
+            {
+                qry = Index.BD.consultaGetPuntero("select hot_calle, hot_calle_nro from EN_CASA_ANDABA.Hoteles where hot_id = '" + Index.hotel + "'");
                 if (qry.Read())
                 {
 
@@ -210,7 +211,6 @@ namespace FrbaHotel.AbmUsuario
                     calleNro = qry.GetInt32(1);
                 }
                 qry.Close();
-
 
                 insert = "exec EN_CASA_ANDABA.altaUsuario ";
                 insert = insertNro(rol.Text);
@@ -274,13 +274,6 @@ namespace FrbaHotel.AbmUsuario
             AbmUsu = new MenuAbmUsuario();
             AbmUsu.Show();
         }
-
-
-
-
-
-
-
 
     }
 }
