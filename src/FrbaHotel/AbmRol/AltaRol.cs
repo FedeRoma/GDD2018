@@ -31,7 +31,7 @@ namespace FrbaHotel.AbmRol
             botonAsignar.Name = "asignar";
             listaFuncionalidades.Columns.Add(botonAsignar);
 
-            tablaFuncionalidades = Index.BD.consultaGetTabla("select distinct fun_id ID, fun_desc DESCRIPCION from EN_CASA_ANDABA.Funcionalidades");
+            tablaFuncionalidades = Index.BD.consultaGetTabla("select distinct fun_id ID, fun_desc DESCRIPCION from EN_CASA_ANDABA.Funcionalidades except select fun_id, fun_desc from EN_CASA_ANDABA.Funcionalidades where fun_desc = 'ABM Rol'");  // la funcionalidad ABM Rol es exclusiva del SysAdmin
             BindingSource bindingSourceListaFuncionalidades = new BindingSource();
             bindingSourceListaFuncionalidades.DataSource = tablaFuncionalidades;
             listaFuncionalidades.DataSource = bindingSourceListaFuncionalidades;

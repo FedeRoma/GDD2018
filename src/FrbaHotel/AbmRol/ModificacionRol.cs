@@ -33,7 +33,10 @@ namespace FrbaHotel.AbmRol
             bajaFuncionalidad.Items.Add("Ninguna");         
             while (qry.Read())
             {
-                bajaFuncionalidad.Items.Add(qry.GetString(0));
+                if (qry.GetString(0) != "ABM Rol") // la funcionalidad ABM Rol es exclusiva del SysAdmin
+                {
+                    bajaFuncionalidad.Items.Add(qry.GetString(0));
+                }              
             }
             qry.Close();
             bajaFuncionalidad.SelectedIndex = 0;
@@ -43,7 +46,10 @@ namespace FrbaHotel.AbmRol
             altaFuncionalidad.Items.Add("Ninguna");
             while (qry.Read())
             {
-                altaFuncionalidad.Items.Add(qry.GetString(0));
+                if (qry.GetString(0) != "ABM Rol") // la funcionalidad ABM Rol es exclusiva del SysAdmin
+                {
+                    altaFuncionalidad.Items.Add(qry.GetString(0));
+                }
             }
             qry.Close();
             altaFuncionalidad.SelectedIndex = 0;
