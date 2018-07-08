@@ -47,32 +47,35 @@
             this.atras.TabIndex = 3;
             this.atras.Text = "atrás";
             this.atras.UseVisualStyleBackColor = false;
+            this.atras.Click += new System.EventHandler(this.atras_Click);
             // 
             // checkOut
             // 
             this.checkOut.BackColor = System.Drawing.Color.Crimson;
             this.checkOut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.checkOut.Font = new System.Drawing.Font("Arial", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkOut.Font = new System.Drawing.Font("Arial", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkOut.ForeColor = System.Drawing.Color.White;
-            this.checkOut.Location = new System.Drawing.Point(355, 155);
+            this.checkOut.Location = new System.Drawing.Point(246, 224);
             this.checkOut.Name = "checkOut";
-            this.checkOut.Size = new System.Drawing.Size(156, 131);
+            this.checkOut.Size = new System.Drawing.Size(212, 56);
             this.checkOut.TabIndex = 2;
             this.checkOut.Text = "Check Out";
             this.checkOut.UseVisualStyleBackColor = false;
+            this.checkOut.Click += new System.EventHandler(this.checkOut_Click);
             // 
             // checkIn
             // 
             this.checkIn.BackColor = System.Drawing.Color.Crimson;
             this.checkIn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.checkIn.Font = new System.Drawing.Font("Arial", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkIn.Font = new System.Drawing.Font("Arial", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkIn.ForeColor = System.Drawing.Color.White;
-            this.checkIn.Location = new System.Drawing.Point(193, 155);
+            this.checkIn.Location = new System.Drawing.Point(246, 162);
             this.checkIn.Name = "checkIn";
-            this.checkIn.Size = new System.Drawing.Size(156, 131);
+            this.checkIn.Size = new System.Drawing.Size(212, 56);
             this.checkIn.TabIndex = 1;
             this.checkIn.Text = "Check In";
             this.checkIn.UseVisualStyleBackColor = false;
+            this.checkIn.Click += new System.EventHandler(this.checkIn_Click);
             // 
             // label1
             // 

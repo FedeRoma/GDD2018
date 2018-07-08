@@ -45,37 +45,43 @@ namespace FrbaHotel.Login
             {
                 case "ABM Rol":
                     this.Hide();
-                    AbmRol.MenuAbmRol IndexRol = new AbmRol.MenuAbmRol();
-                    IndexRol.Show();
+                    AbmRol.MenuAbmRol indexRol = new AbmRol.MenuAbmRol();
+                    indexRol.Show();
                     break;
                 case "ABM Usuario":
                     this.Hide();
-                    AbmUsuario.MenuAbmUsuario IndexUsu = new AbmUsuario.MenuAbmUsuario();
-                    IndexUsu.Show();
+                    AbmUsuario.MenuAbmUsuario indexUsu = new AbmUsuario.MenuAbmUsuario();
+                    indexUsu.Show();
                     break;
                 case "ABM Cliente":
                     this.Hide();
-                    AbmCliente.MenuAbmCliente IndexCliente = new AbmCliente.MenuAbmCliente();
-                    IndexCliente.Show();
+                    AbmCliente.MenuAbmCliente indexCliente = new AbmCliente.MenuAbmCliente();
+                    indexCliente.Show();
                     break;
                 case "ABM Hotel":
                     this.Hide();
-                    AbmHotel.MenuAbmHotel IndexHotel = new AbmHotel.MenuAbmHotel();
-                    IndexHotel.Show();
+                    AbmHotel.MenuAbmHotel indexHotel = new AbmHotel.MenuAbmHotel();
+                    indexHotel.Show();
                     break;
                 case "ABM Habitación":
                     this.Hide();
-                    AbmHabitacion.MenuAbmHabitacion IndexHabitacion = new AbmHabitacion.MenuAbmHabitacion();
-                    IndexHabitacion.Show();
+                    AbmHabitacion.MenuAbmHabitacion indexHabitacion = new AbmHabitacion.MenuAbmHabitacion();
+                    indexHabitacion.Show();
                     break;
                 case "ABM Régimen":
                     this.Hide();
-                    AbmRegimen.MenuAbmRegimen IndexRegimen = new AbmRegimen.MenuAbmRegimen();
-                    IndexRegimen.Show();
+                    AbmRegimen.MenuAbmRegimen indexRegimen = new AbmRegimen.MenuAbmRegimen();
+                    indexRegimen.Show();
                     break;
                 case "Generar Reserva":
+                    this.Hide();
+                    GenerarModificacionReserva.GenerarReserva generarReserva = new GenerarModificacionReserva.GenerarReserva();
+                    generarReserva.Show();
                     break;
                 case "Modificar Reserva":
+                    this.Hide();
+                    GenerarModificacionReserva.ModificarReserva modificarReserva = new GenerarModificacionReserva.ModificarReserva();
+                    modificarReserva.Show();
                     break;
                 case "Baja Reserva":
                     this.Hide();
@@ -83,8 +89,14 @@ namespace FrbaHotel.Login
                     BajaReserva.Show();
                     break;
                 case "Registrar Estadía":
+                    this.Hide();
+                    RegistrarEstadia.MenuRegistrarEstadia indexRegistrarEstadia = new RegistrarEstadia.MenuRegistrarEstadia();
+                    indexRegistrarEstadia.Show();
                     break;
                 case "Registrar Consumibles":
+                    this.Hide();
+                    RegistrarConsumible.RegistrarConsumibles indexRegistrarConsumibles = new RegistrarConsumible.RegistrarConsumibles();
+                    indexRegistrarConsumibles.Show();
                     break;
                 case "Listado Estadístico":
                     this.Hide();
