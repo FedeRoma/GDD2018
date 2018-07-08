@@ -80,7 +80,7 @@ namespace FrbaHotel.Login
                     break;
                 case "Modificar Reserva":
                     this.Hide();
-                    GenerarModificacionReserva.ModificarReserva modificarReserva = new GenerarModificacionReserva.ModificarReserva();
+                    GenerarModificacionReserva.ModificacionReserva modificarReserva = new GenerarModificacionReserva.ModificacionReserva();
                     modificarReserva.Show();
                     break;
                 case "Baja Reserva":

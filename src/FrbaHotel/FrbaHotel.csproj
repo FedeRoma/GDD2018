@@ -217,11 +217,11 @@
     <Compile Include="FacturarEstadia\FacturarEstadia.Designer.cs">
       <DependentUpon>FacturarEstadia.cs</DependentUpon>
     </Compile>
-    <Compile Include="GenerarModificacionReserva\ModificarReserva.cs">
+    <Compile Include="GenerarModificacionReserva\ModificacionReserva.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GenerarModificacionReserva\ModificarReserva.Designer.cs">
-      <DependentUpon>ModificarReserva.cs</DependentUpon>
+    <Compile Include="GenerarModificacionReserva\ModificacionReserva.Designer.cs">
+      <DependentUpon>ModificacionReserva.cs</DependentUpon>
     </Compile>
     <Compile Include="Index.cs">
       <SubType>Form</SubType>
@@ -385,8 +385,8 @@
     <EmbeddedResource Include="GenerarModificacionReserva\GenerarReserva.resx">
       <DependentUpon>GenerarReserva.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GenerarModificacionReserva\ModificarReserva.resx">
-      <DependentUpon>ModificarReserva.cs</DependentUpon>
+    <EmbeddedResource Include="GenerarModificacionReserva\ModificacionReserva.resx">
+      <DependentUpon>ModificacionReserva.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Index.resx">
       <DependentUpon>Index.cs</DependentUpon>

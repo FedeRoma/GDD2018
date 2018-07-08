@@ -193,10 +193,5 @@ namespace FrbaHotel.AbmRol
             AbmRol.Show();
         }
 
-        private void listaFuncionalidades_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
     }
 }

@@ -154,7 +154,6 @@
             this.listaFuncionalidades.Size = new System.Drawing.Size(275, 240);
             this.listaFuncionalidades.TabIndex = 5;
             this.listaFuncionalidades.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listaFuncionalidades_CellClick);
-            this.listaFuncionalidades.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listaFuncionalidades_CellContentClick);
             this.listaFuncionalidades.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.listaFuncionalidades_CellPainting);
             // 
             // label2

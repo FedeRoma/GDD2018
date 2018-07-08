@@ -1,6 +1,6 @@
 ﻿namespace FrbaHotel.GenerarModificacionReserva
 {
-    partial class ModificarReserva
+    partial class ModificacionReserva
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ModificarReserva));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ModificacionReserva));
             this.SuspendLayout();
             // 
             // ModificarReserva
