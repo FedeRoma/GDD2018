@@ -20,13 +20,13 @@ namespace FrbaHotel.AbmRol
         public ModificacionRol(string idRol, string nombreRol, string estadoRol)
         {
             InitializeComponent();
+
             rolID = idRol;
             nombre.Text = nombreRol;
             if (estadoRol == "True")
             {
                 estado.Checked = true;
             }
-            nombre.Focus();
 
             qry = Index.BD.consultaGetPuntero("select F.fun_desc from EN_CASA_ANDABA.Funcionalidades_Roles FR, EN_CASA_ANDABA.Funcionalidades F where F.fun_id = FR.fyr_fun_id and FR.fyr_rol_id = " + idRol); 
 
