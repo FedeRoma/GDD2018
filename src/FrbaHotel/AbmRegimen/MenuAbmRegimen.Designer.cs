@@ -49,6 +49,7 @@
             this.atras.TabIndex = 5;
             this.atras.Text = "atrás";
             this.atras.UseVisualStyleBackColor = false;
+            this.atras.Click += new System.EventHandler(this.atras_Click);
             // 
             // modificacionRegimen
             // 
@@ -62,6 +63,7 @@
             this.modificacionRegimen.TabIndex = 4;
             this.modificacionRegimen.Text = "MODIFICACION";
             this.modificacionRegimen.UseVisualStyleBackColor = false;
+            this.modificacionRegimen.Click += new System.EventHandler(this.modificacionRegimen_Click);
             // 
             // bajaRegimen
             // 
@@ -75,6 +77,7 @@
             this.bajaRegimen.TabIndex = 3;
             this.bajaRegimen.Text = "BAJA";
             this.bajaRegimen.UseVisualStyleBackColor = false;
+            this.bajaRegimen.Click += new System.EventHandler(this.bajaRegimen_Click);
             // 
             // altaRegimen
             // 
@@ -88,6 +91,7 @@
             this.altaRegimen.TabIndex = 2;
             this.altaRegimen.Text = "ALTA";
             this.altaRegimen.UseVisualStyleBackColor = false;
+            this.altaRegimen.Click += new System.EventHandler(this.altaRegimen_Click);
             // 
             // listadoRegimenes
             // 
@@ -101,6 +105,7 @@
             this.listadoRegimenes.TabIndex = 1;
             this.listadoRegimenes.Text = "LISTADO";
             this.listadoRegimenes.UseVisualStyleBackColor = false;
+            this.listadoRegimenes.Click += new System.EventHandler(this.listadoRegimenes_Click);
             // 
             // label1
             // 
