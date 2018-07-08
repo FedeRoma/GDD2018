@@ -59,6 +59,27 @@ create function EN_CASA_ANDABA.estaReservadaHabitacion
 	end
 go
 
+create function EN_CASA_ANDABA.tieneReservaHotel
+	(@desde datetime, @hasta datetime, @id numeric(18,0)) RETURNS bit as
+	begin
+		declare @t table(fecha_inicio DateTime NOT NULL, fecha_hasta DateTime NOT NULL)
+		insert into @t(fecha_inicio, fecha_hasta)
+		select Distinct R.res_inicio, R.res_fin from EN_CASA_ANDABA.Reservas R,
+			EN_CASA_ANDABA.Habitaciones H, EN_CASA_ANDABA.Hoteles HO, EN_CASA_ANDABA.Reservas_Habitaciones RH
+			where HO.hot_id = @id and RH.ryh_hab_id = H.hab_id and RH.ryh_res_id = R.res_id 
+				and R.res_Id not in(select urc_res_id from EN_CASA_ANDABA.Usuarios_ReservasCancelaciones);
+--  Período de la baja se encuentra en un periodio reservado
+		if(exists (select fecha_inicio fecha_hasta from @t
+			where ((fecha_inicio < @desde and fecha_hasta > @desde)
+				or (fecha_inicio < @hasta and fecha_hasta > @hasta)
+				or (fecha_inicio > @desde and fecha_hasta < @hasta))))
+			begin
+				return 1
+			end
+			return 0
+	end
+go
+
 create function EN_CASA_ANDABA.deudaConsumibles 
 	(@estadiaId int) RETURNS numeric(18,2) as
 	begin

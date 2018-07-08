@@ -32,6 +32,7 @@ drop table EN_CASA_ANDABA.Documentos
 PRINT 'Chau Tablas!'
 drop function EN_CASA_ANDABA.estaReservadaHabitacion
 drop function EN_CASA_ANDABA.deudaConsumibles
+drop function EN_CASA_ANDABA.tieneReservaHotel
 PRINT 'Chau Funciones!'
 drop procedure EN_CASA_ANDABA.buscarHoteles
 drop procedure EN_CASA_ANDABA.buscarRegimenesHotel
