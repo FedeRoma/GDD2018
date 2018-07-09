@@ -30,13 +30,17 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ModificacionReserva));
             this.label12 = new System.Windows.Forms.Label();
             this.total = new System.Windows.Forms.ListBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.listaHabitacionesAsig = new System.Windows.Forms.DataGridView();
-            this.listaHabitaciones = new System.Windows.Forms.DataGridView();
             this.label8 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.seleccionarCliente = new System.Windows.Forms.Button();
@@ -59,6 +63,8 @@
             this.hotel = new System.Windows.Forms.ComboBox();
             this.reserva = new System.Windows.Forms.ListBox();
             this.label10 = new System.Windows.Forms.Label();
+            this.listaHabitacionesAsig = new System.Windows.Forms.DataGridView();
+            this.listaHabitaciones = new System.Windows.Forms.DataGridView();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.listaHabitacionesAsig)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.listaHabitaciones)).BeginInit();
@@ -92,9 +98,9 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.listaHabitacionesAsig);
             this.groupBox1.Controls.Add(this.listaHabitaciones);
+            this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Location = new System.Drawing.Point(68, 186);
             this.groupBox1.Name = "groupBox1";
@@ -114,46 +120,6 @@
             this.label6.TabIndex = 41;
             this.label6.Text = "Seleccionadas";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // listaHabitacionesAsig
-            // 
-            this.listaHabitacionesAsig.AllowUserToAddRows = false;
-            this.listaHabitacionesAsig.AllowUserToOrderColumns = true;
-            this.listaHabitacionesAsig.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
-            this.listaHabitacionesAsig.BackgroundColor = System.Drawing.Color.White;
-            this.listaHabitacionesAsig.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.listaHabitacionesAsig.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.listaHabitacionesAsig.Location = new System.Drawing.Point(291, 33);
-            this.listaHabitacionesAsig.Name = "listaHabitacionesAsig";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.listaHabitacionesAsig.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.DimGray;
-            this.listaHabitacionesAsig.RowsDefaultCellStyle = dataGridViewCellStyle2;
-            this.listaHabitacionesAsig.Size = new System.Drawing.Size(275, 105);
-            this.listaHabitacionesAsig.TabIndex = 6;
-            // 
-            // listaHabitaciones
-            // 
-            this.listaHabitaciones.AllowUserToAddRows = false;
-            this.listaHabitaciones.AllowUserToOrderColumns = true;
-            this.listaHabitaciones.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
-            this.listaHabitaciones.BackgroundColor = System.Drawing.Color.White;
-            this.listaHabitaciones.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.listaHabitaciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.listaHabitaciones.Location = new System.Drawing.Point(6, 33);
-            this.listaHabitaciones.Name = "listaHabitaciones";
-            this.listaHabitaciones.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.listaHabitaciones.RowsDefaultCellStyle = dataGridViewCellStyle2;
-            this.listaHabitaciones.Size = new System.Drawing.Size(275, 105);
-            this.listaHabitaciones.TabIndex = 5;
             // 
             // label8
             // 
@@ -415,6 +381,104 @@
             this.label10.Text = "Código de Reserva";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // listaHabitacionesAsig
+            // 
+            this.listaHabitacionesAsig.AllowUserToAddRows = false;
+            this.listaHabitacionesAsig.AllowUserToDeleteRows = false;
+            this.listaHabitacionesAsig.AllowUserToOrderColumns = true;
+            this.listaHabitacionesAsig.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.listaHabitacionesAsig.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.listaHabitacionesAsig.BackgroundColor = System.Drawing.Color.White;
+            this.listaHabitacionesAsig.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.listaHabitacionesAsig.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Crimson;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.listaHabitacionesAsig.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.listaHabitacionesAsig.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Crimson;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.listaHabitacionesAsig.DefaultCellStyle = dataGridViewCellStyle2;
+            this.listaHabitacionesAsig.Location = new System.Drawing.Point(295, 33);
+            this.listaHabitacionesAsig.Name = "listaHabitacionesAsig";
+            this.listaHabitacionesAsig.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Crimson;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.listaHabitacionesAsig.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.listaHabitacionesAsig.RowHeadersVisible = false;
+            this.listaHabitacionesAsig.RowHeadersWidth = 20;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.DimGray;
+            this.listaHabitacionesAsig.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            this.listaHabitacionesAsig.Size = new System.Drawing.Size(271, 105);
+            this.listaHabitacionesAsig.TabIndex = 76;
+            // 
+            // listaHabitaciones
+            // 
+            this.listaHabitaciones.AllowUserToAddRows = false;
+            this.listaHabitaciones.AllowUserToDeleteRows = false;
+            this.listaHabitaciones.AllowUserToOrderColumns = true;
+            this.listaHabitaciones.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.listaHabitaciones.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.listaHabitaciones.BackgroundColor = System.Drawing.Color.White;
+            this.listaHabitaciones.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.listaHabitaciones.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Crimson;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.listaHabitaciones.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            this.listaHabitaciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Crimson;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.listaHabitaciones.DefaultCellStyle = dataGridViewCellStyle6;
+            this.listaHabitaciones.Location = new System.Drawing.Point(9, 33);
+            this.listaHabitaciones.Name = "listaHabitaciones";
+            this.listaHabitaciones.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.Crimson;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            this.listaHabitaciones.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            this.listaHabitaciones.RowHeadersVisible = false;
+            this.listaHabitaciones.RowHeadersWidth = 20;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.DimGray;
+            this.listaHabitaciones.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            this.listaHabitaciones.Size = new System.Drawing.Size(253, 105);
+            this.listaHabitaciones.TabIndex = 75;
+            // 
             // ModificacionReserva
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -468,8 +532,6 @@
         private System.Windows.Forms.ListBox total;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.DataGridView listaHabitacionesAsig;
-        private System.Windows.Forms.DataGridView listaHabitaciones;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button seleccionarCliente;
@@ -492,5 +554,7 @@
         private System.Windows.Forms.ComboBox hotel;
         private System.Windows.Forms.ListBox reserva;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.DataGridView listaHabitacionesAsig;
+        private System.Windows.Forms.DataGridView listaHabitaciones;
     }
 }
