@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace FrbaHotel.RegistrarEstadia
 {
-    public partial class MenuCheckOut : Form
+    public partial class AsignarClientesEstadia : Form
     {
-        public MenuCheckOut()
+        public AsignarClientesEstadia()
         {
             InitializeComponent();
         }

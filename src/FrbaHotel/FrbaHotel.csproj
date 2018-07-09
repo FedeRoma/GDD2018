@@ -291,6 +291,12 @@
     <Compile Include="RegistrarConsumible\RegistrarConsumibles.Designer.cs">
       <DependentUpon>RegistrarConsumibles.cs</DependentUpon>
     </Compile>
+    <Compile Include="RegistrarEstadia\BuscarClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RegistrarEstadia\BuscarClientes.Designer.cs">
+      <DependentUpon>BuscarClientes.cs</DependentUpon>
+    </Compile>
     <Compile Include="RegistrarEstadia\CheckIn.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -303,17 +309,17 @@
     <Compile Include="RegistrarEstadia\CheckOut.Designer.cs">
       <DependentUpon>CheckOut.cs</DependentUpon>
     </Compile>
-    <Compile Include="RegistrarEstadia\MenuCheckIn.cs">
+    <Compile Include="RegistrarEstadia\AsignarClientesEstadia.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RegistrarEstadia\MenuCheckIn.Designer.cs">
-      <DependentUpon>MenuCheckIn.cs</DependentUpon>
+    <Compile Include="RegistrarEstadia\AsignarClientesEstadia.Designer.cs">
+      <DependentUpon>AsignarClientesEstadia.cs</DependentUpon>
     </Compile>
-    <Compile Include="RegistrarEstadia\MenuCheckOut.cs">
+    <Compile Include="RegistrarEstadia\AsignarClientesHabitacion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RegistrarEstadia\MenuCheckOut.Designer.cs">
-      <DependentUpon>MenuCheckOut.cs</DependentUpon>
+    <Compile Include="RegistrarEstadia\AsignarClientesHabitacion.Designer.cs">
+      <DependentUpon>AsignarClientesHabitacion.cs</DependentUpon>
     </Compile>
     <Compile Include="RegistrarEstadia\MenuRegistrarEstadia.cs">
       <SubType>Form</SubType>
@@ -450,6 +456,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RegistrarConsumible\RegistrarConsumibles.resx">
       <DependentUpon>RegistrarConsumibles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RegistrarEstadia\AsignarClientesEstadia.resx">
+      <DependentUpon>AsignarClientesEstadia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RegistrarEstadia\AsignarClientesHabitacion.resx">
+      <DependentUpon>AsignarClientesHabitacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RegistrarEstadia\BuscarClientes.resx">
+      <DependentUpon>BuscarClientes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RegistrarEstadia\CheckIn.resx">
       <DependentUpon>CheckIn.cs</DependentUpon>

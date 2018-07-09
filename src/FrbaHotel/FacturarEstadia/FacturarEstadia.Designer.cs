@@ -1,6 +1,6 @@
 ﻿namespace FrbaHotel.FacturacionEstadia
 {
-    partial class FacturacionEstadia
+    partial class FacturarEstadia
     {
         /// <summary>
         /// Required designer variable.
@@ -32,7 +32,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FacturacionEstadia));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FacturarEstadia));
             this.formaDePago = new System.Windows.Forms.ComboBox();
             this.estadia = new System.Windows.Forms.ListBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -414,7 +414,7 @@
             this.listBox4.Size = new System.Drawing.Size(128, 27);
             this.listBox4.TabIndex = 13;
             // 
-            // FacturacionEstadia
+            // FacturarEstadia
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -450,7 +450,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.Name = "FacturacionEstadia";
+            this.Name = "FacturarEstadia";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FRBA Hotel 2018";
