@@ -16,10 +16,5 @@ namespace FrbaHotel.FacturacionEstadia
         {
             InitializeComponent();
         }
-
-        private void FacturacionEstadia_Load(object sender, EventArgs e)
-        {
-            pindonga = null;
-        }
     }
 }
