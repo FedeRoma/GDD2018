@@ -172,7 +172,7 @@ namespace FrbaHotel.AbmHotel
             fechaCrea = Convert.ToDateTime(fechaCreacion.Value);
             hoy = DateTime.Today;
 
-            if (DateTime.Compare(fechaCrea, hoy) >= 0)
+            if (DateTime.Compare(fechaCrea, hoy) > 0)
             {
                 alerta = alerta + "Debe ingresar una fecha de alta válida\n";
                 inconsistencias = true;
