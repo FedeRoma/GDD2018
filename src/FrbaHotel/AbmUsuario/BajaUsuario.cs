@@ -39,7 +39,7 @@ namespace FrbaHotel.AbmUsuario
             qry = Index.BD.consultaGetPuntero("select distinct rol_id, rol_nombre from EN_CASA_ANDABA.Roles where rol_estado = 1");
             while (qry.Read())
             {
-                // solo se pueden dar de Alta "Recepcionistas" y "Administradores"
+                // solo se pueden dar de Baja "Recepcionistas" y "Administradores"
                 if ((qry.GetString(1) != "Administrador General") || (qry.GetString(1) != "Guest"))
                 {
                     rol.Items.Add(new Rol(qry.GetInt32(0), qry.GetString(1)));
@@ -58,6 +58,31 @@ namespace FrbaHotel.AbmUsuario
             BindingSource bindingSourceListaUsuarios = new BindingSource();
             bindingSourceListaUsuarios.DataSource = tablaUsuarios;
             listaUsuarios.DataSource = bindingSourceListaUsuarios;
+        }
+
+        private void numeroDocumento_Keypress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private string esExactamente(string col, string clave)
+        {
+            if (!string.IsNullOrEmpty(clave))
+            {
+                return col + " = '" + clave + "' and ";
+            }
+            return "";
+        }
+        private string esAproximadamente(string col, string clave)
+        {
+            if (!string.IsNullOrEmpty(clave))
+            {
+                return col + " like '%" + clave + "%' and ";
+            }
+            return "";
         }
 
         private void listaUsuarios_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
@@ -105,41 +130,12 @@ namespace FrbaHotel.AbmUsuario
                 }
                 qry.Close();
 
-                tablaClientes = Index.BD.consultaGetTabla("select C.cli_nombre Nombre, C.cli_apellido Apellido, D.doc_desc TipoDoc, C.cli_documento NroDoc, C.cli_mail eMail, C.cli_telefono Telefono, C.cli_nacionalidad Nacionalidad, C.cli_fecha_nac Fecha_Nacimiento, C.cli_habilitado Habilitado, C.cli_calle Calle, C.cli_calle_nro Numero_Calle, C.cli_depto Departamento, C.cli_dir_localidad Localidad, C.cli_dir_pais Pais from EN_CASA_ANDABA.Clientes C, EN_CASA_ANDABA.Documentos D where C.cli_doc_id = D.doc_id");
+                tablaUsuarios = Index.BD.consultaGetTabla("select C.cli_nombre Nombre, C.cli_apellido Apellido, D.doc_desc TipoDoc, C.cli_documento NroDoc, C.cli_mail eMail, C.cli_telefono Telefono, C.cli_nacionalidad Nacionalidad, C.cli_fecha_nac Fecha_Nacimiento, C.cli_habilitado Habilitado, C.cli_calle Calle, C.cli_calle_nro Numero_Calle, C.cli_depto Departamento, C.cli_dir_localidad Localidad, C.cli_dir_pais Pais from EN_CASA_ANDABA.Clientes C, EN_CASA_ANDABA.Documentos D where C.cli_doc_id = D.doc_id");
                 BindingSource bindingSourcelistaUsuarios = new BindingSource();
-                bindingSourcelistaUsuarios.DataSource = tablaClientes;
+                bindingSourcelistaUsuarios.DataSource = tablaUsuarios;
                 listaUsuarios.DataSource = bindingSourcelistaUsuarios;
             }
         }
-
-        private void numeroDocumento_Keypress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-        }
-
-        private string esExactamente(string col, string clave)
-        {
-            if (!string.IsNullOrEmpty(clave))
-            {
-                return col + " = '" + clave + "' and ";
-            }
-            return "";
-        }
-        private string esAproximadamente(string col, string clave)
-        {
-            if (!string.IsNullOrEmpty(clave))
-            {
-                return col + " like '%" + clave + "%' and ";
-            }
-            return "";
-        }
-
-
-
-
 
     }
 }
