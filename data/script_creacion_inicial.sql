@@ -1597,7 +1597,7 @@ values
 	('Modificar Reserva'),
 	('Baja Reserva'),
 	('Registrar Estadía'),
-	('Registar Consumibles'),
+	('Registrar Consumibles'),
 	('Listado Estadístico')
 go
 PRINT 'Funcionalidades... OK!'

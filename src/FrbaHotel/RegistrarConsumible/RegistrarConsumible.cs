@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace FrbaHotel.RegistrarConsumible
 {
-    public partial class RegistrarConsumibles : Form
+    public partial class RegistrarConsumible : Form
     {
-        public RegistrarConsumibles()
+        public RegistrarConsumible()
         {
             InitializeComponent();
         }

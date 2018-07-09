@@ -1,6 +1,6 @@
 ﻿namespace FrbaHotel.RegistrarConsumible
 {
-    partial class RegistrarConsumibles
+    partial class RegistrarConsumible
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RegistrarConsumibles));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RegistrarConsumible));
             this.SuspendLayout();
             // 
             // RegistrarConsumibles
