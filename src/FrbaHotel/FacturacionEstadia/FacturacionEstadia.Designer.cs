@@ -1,6 +1,6 @@
 ﻿namespace FrbaHotel.FacturacionEstadia
 {
-    partial class FacturarEstadia
+    partial class FacturacionEstadia
     {
         /// <summary>
         /// Required designer variable.
@@ -28,12 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FacturarEstadia));
-            this.formaDePago = new System.Windows.Forms.ComboBox();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FacturacionEstadia));
+            this.formasDePago = new System.Windows.Forms.ComboBox();
             this.estadia = new System.Windows.Forms.ListBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -46,9 +47,9 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.reserva = new System.Windows.Forms.ListBox();
-            this.listaHabitaciones = new System.Windows.Forms.DataGridView();
+            this.listaDetalleEstadia = new System.Windows.Forms.DataGridView();
             this.label9 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.listaConsumibles = new System.Windows.Forms.DataGridView();
             this.atras = new System.Windows.Forms.Button();
             this.aceptar = new System.Windows.Forms.Button();
             this.subtotalEstadia = new System.Windows.Forms.ListBox();
@@ -58,27 +59,31 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.listBox4 = new System.Windows.Forms.ListBox();
-            ((System.ComponentModel.ISupportInitialize)(this.listaHabitaciones)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.totalFactura = new System.Windows.Forms.ListBox();
+            this.bindingSourceDetalleEstadia = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingSourceConsumibles = new System.Windows.Forms.BindingSource(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.listaDetalleEstadia)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.listaConsumibles)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceDetalleEstadia)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceConsumibles)).BeginInit();
             this.SuspendLayout();
             // 
-            // formaDePago
+            // formasDePago
             // 
-            this.formaDePago.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.formaDePago.ForeColor = System.Drawing.Color.DimGray;
-            this.formaDePago.FormattingEnabled = true;
-            this.formaDePago.Location = new System.Drawing.Point(71, 72);
-            this.formaDePago.Name = "formaDePago";
-            this.formaDePago.Size = new System.Drawing.Size(262, 24);
-            this.formaDePago.TabIndex = 1;
+            this.formasDePago.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.formasDePago.ForeColor = System.Drawing.Color.DimGray;
+            this.formasDePago.FormattingEnabled = true;
+            this.formasDePago.Location = new System.Drawing.Point(71, 72);
+            this.formasDePago.Name = "formasDePago";
+            this.formasDePago.Size = new System.Drawing.Size(262, 24);
+            this.formasDePago.TabIndex = 1;
             // 
             // estadia
             // 
             this.estadia.BackColor = System.Drawing.Color.WhiteSmoke;
             this.estadia.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.estadia.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.estadia.ForeColor = System.Drawing.Color.DimGray;
+            this.estadia.ForeColor = System.Drawing.Color.Crimson;
             this.estadia.FormattingEnabled = true;
             this.estadia.ItemHeight = 18;
             this.estadia.Location = new System.Drawing.Point(71, 21);
@@ -202,11 +207,11 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.Black;
-            this.label8.Location = new System.Drawing.Point(68, 120);
+            this.label8.Location = new System.Drawing.Point(68, 137);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(122, 14);
+            this.label8.Size = new System.Drawing.Size(115, 14);
             this.label8.TabIndex = 84;
-            this.label8.Text = "Detalles de la Estadía";
+            this.label8.Text = "Detalle de la Estadía";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // reserva
@@ -222,67 +227,76 @@
             this.reserva.Size = new System.Drawing.Size(128, 20);
             this.reserva.TabIndex = 5;
             // 
-            // listaHabitaciones
+            // listaDetalleEstadia
             // 
-            this.listaHabitaciones.AllowUserToAddRows = false;
-            this.listaHabitaciones.AllowUserToOrderColumns = true;
-            this.listaHabitaciones.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
-            this.listaHabitaciones.BackgroundColor = System.Drawing.Color.White;
-            this.listaHabitaciones.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.listaHabitaciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.listaHabitaciones.Location = new System.Drawing.Point(71, 137);
-            this.listaHabitaciones.Name = "listaHabitaciones";
+            this.listaDetalleEstadia.AllowUserToAddRows = false;
+            this.listaDetalleEstadia.AllowUserToDeleteRows = false;
+            this.listaDetalleEstadia.AllowUserToOrderColumns = true;
+            this.listaDetalleEstadia.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.listaDetalleEstadia.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.listaDetalleEstadia.BackgroundColor = System.Drawing.Color.White;
+            this.listaDetalleEstadia.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.listaDetalleEstadia.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.listaDetalleEstadia.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.listaDetalleEstadia.Location = new System.Drawing.Point(71, 154);
+            this.listaDetalleEstadia.Name = "listaDetalleEstadia";
+            this.listaDetalleEstadia.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.Silver;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.listaHabitaciones.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.listaDetalleEstadia.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.WhiteSmoke;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.DimGray;
-            this.listaHabitaciones.RowsDefaultCellStyle = dataGridViewCellStyle2;
-            this.listaHabitaciones.Size = new System.Drawing.Size(566, 81);
-            this.listaHabitaciones.TabIndex = 9;
+            this.listaDetalleEstadia.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            this.listaDetalleEstadia.Size = new System.Drawing.Size(262, 153);
+            this.listaDetalleEstadia.TabIndex = 9;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.Black;
-            this.label9.Location = new System.Drawing.Point(68, 230);
+            this.label9.Location = new System.Drawing.Point(354, 137);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(81, 14);
             this.label9.TabIndex = 87;
             this.label9.Text = "Consumibles";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // dataGridView1
+            // listaConsumibles
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToOrderColumns = true;
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(71, 250);
-            this.dataGridView1.Name = "dataGridView1";
+            this.listaConsumibles.AllowUserToAddRows = false;
+            this.listaConsumibles.AllowUserToOrderColumns = true;
+            this.listaConsumibles.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.listaConsumibles.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.listaConsumibles.BackgroundColor = System.Drawing.Color.White;
+            this.listaConsumibles.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.listaConsumibles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.listaConsumibles.Location = new System.Drawing.Point(357, 154);
+            this.listaConsumibles.Name = "listaConsumibles";
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.Silver;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.listaConsumibles.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.WhiteSmoke;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle4.ForeColor = System.Drawing.Color.DimGray;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle4;
-            this.dataGridView1.Size = new System.Drawing.Size(566, 81);
-            this.dataGridView1.TabIndex = 88;
+            this.listaConsumibles.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            this.listaConsumibles.Size = new System.Drawing.Size(280, 153);
+            this.listaConsumibles.TabIndex = 88;
             // 
             // atras
             // 
@@ -318,10 +332,10 @@
             this.subtotalEstadia.ForeColor = System.Drawing.Color.DimGray;
             this.subtotalEstadia.FormattingEnabled = true;
             this.subtotalEstadia.ItemHeight = 18;
-            this.subtotalEstadia.Location = new System.Drawing.Point(509, 224);
+            this.subtotalEstadia.Location = new System.Drawing.Point(201, 318);
             this.subtotalEstadia.Name = "subtotalEstadia";
             this.subtotalEstadia.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.subtotalEstadia.Size = new System.Drawing.Size(128, 18);
+            this.subtotalEstadia.Size = new System.Drawing.Size(132, 18);
             this.subtotalEstadia.TabIndex = 10;
             // 
             // bonificacion
@@ -332,10 +346,10 @@
             this.bonificacion.ForeColor = System.Drawing.Color.DimGray;
             this.bonificacion.FormattingEnabled = true;
             this.bonificacion.ItemHeight = 18;
-            this.bonificacion.Location = new System.Drawing.Point(509, 337);
+            this.bonificacion.Location = new System.Drawing.Point(527, 348);
             this.bonificacion.Name = "bonificacion";
             this.bonificacion.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.bonificacion.Size = new System.Drawing.Size(128, 18);
+            this.bonificacion.Size = new System.Drawing.Size(110, 18);
             this.bonificacion.TabIndex = 11;
             // 
             // subtotalConsumibles
@@ -346,10 +360,10 @@
             this.subtotalConsumibles.ForeColor = System.Drawing.Color.DimGray;
             this.subtotalConsumibles.FormattingEnabled = true;
             this.subtotalConsumibles.ItemHeight = 18;
-            this.subtotalConsumibles.Location = new System.Drawing.Point(509, 363);
+            this.subtotalConsumibles.Location = new System.Drawing.Point(527, 318);
             this.subtotalConsumibles.Name = "subtotalConsumibles";
             this.subtotalConsumibles.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.subtotalConsumibles.Size = new System.Drawing.Size(128, 18);
+            this.subtotalConsumibles.Size = new System.Drawing.Size(110, 18);
             this.subtotalConsumibles.TabIndex = 12;
             // 
             // label1
@@ -357,7 +371,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(376, 226);
+            this.label1.Location = new System.Drawing.Point(68, 318);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(127, 18);
             this.label1.TabIndex = 94;
@@ -369,7 +383,7 @@
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.Black;
-            this.label10.Location = new System.Drawing.Point(308, 337);
+            this.label10.Location = new System.Drawing.Point(326, 348);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(195, 18);
             this.label10.TabIndex = 95;
@@ -381,7 +395,7 @@
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.Black;
-            this.label11.Location = new System.Drawing.Point(336, 363);
+            this.label11.Location = new System.Drawing.Point(354, 318);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(167, 18);
             this.label11.TabIndex = 96;
@@ -393,35 +407,35 @@
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.Black;
-            this.label12.Location = new System.Drawing.Point(442, 401);
+            this.label12.Location = new System.Drawing.Point(442, 381);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(61, 18);
             this.label12.TabIndex = 98;
             this.label12.Text = "TOTAL:";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // listBox4
+            // totalFactura
             // 
-            this.listBox4.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.listBox4.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.listBox4.Font = new System.Drawing.Font("Arial Black", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listBox4.ForeColor = System.Drawing.Color.Crimson;
-            this.listBox4.FormattingEnabled = true;
-            this.listBox4.ItemHeight = 27;
-            this.listBox4.Location = new System.Drawing.Point(509, 392);
-            this.listBox4.Name = "listBox4";
-            this.listBox4.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.listBox4.Size = new System.Drawing.Size(128, 27);
-            this.listBox4.TabIndex = 13;
+            this.totalFactura.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.totalFactura.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.totalFactura.Font = new System.Drawing.Font("Arial Black", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.totalFactura.ForeColor = System.Drawing.Color.Crimson;
+            this.totalFactura.FormattingEnabled = true;
+            this.totalFactura.ItemHeight = 27;
+            this.totalFactura.Location = new System.Drawing.Point(509, 374);
+            this.totalFactura.Name = "totalFactura";
+            this.totalFactura.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.totalFactura.Size = new System.Drawing.Size(128, 27);
+            this.totalFactura.TabIndex = 13;
             // 
-            // FacturarEstadia
+            // FacturacionEstadia
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(704, 442);
             this.Controls.Add(this.label12);
-            this.Controls.Add(this.listBox4);
+            this.Controls.Add(this.totalFactura);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label1);
@@ -430,9 +444,9 @@
             this.Controls.Add(this.subtotalEstadia);
             this.Controls.Add(this.atras);
             this.Controls.Add(this.aceptar);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.listaConsumibles);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.listaHabitaciones);
+            this.Controls.Add(this.listaDetalleEstadia);
             this.Controls.Add(this.reserva);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
@@ -445,17 +459,19 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.estadia);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.formaDePago);
+            this.Controls.Add(this.formasDePago);
             this.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.Name = "FacturarEstadia";
+            this.Name = "FacturacionEstadia";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FRBA Hotel 2018";
-            ((System.ComponentModel.ISupportInitialize)(this.listaHabitaciones)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.listaDetalleEstadia)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.listaConsumibles)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceDetalleEstadia)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceConsumibles)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -463,7 +479,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ComboBox formaDePago;
+        private System.Windows.Forms.ComboBox formasDePago;
         private System.Windows.Forms.ListBox estadia;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
@@ -476,9 +492,9 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ListBox reserva;
-        private System.Windows.Forms.DataGridView listaHabitaciones;
+        private System.Windows.Forms.DataGridView listaDetalleEstadia;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView listaConsumibles;
         private System.Windows.Forms.Button atras;
         private System.Windows.Forms.Button aceptar;
         private System.Windows.Forms.ListBox subtotalEstadia;
@@ -488,6 +504,8 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.ListBox listBox4;
+        private System.Windows.Forms.ListBox totalFactura;
+        private System.Windows.Forms.BindingSource bindingSourceDetalleEstadia;
+        private System.Windows.Forms.BindingSource bindingSourceConsumibles;
     }
 }
