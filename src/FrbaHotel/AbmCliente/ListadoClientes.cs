@@ -57,6 +57,14 @@ namespace FrbaHotel.AbmCliente
             listaClientes.DataSource = bindingSourceListaClientes;  
         }
 
+        private void numeroDocumento_Keypress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
         private string esExactamente(string col, string clave)
         {
             if (!string.IsNullOrEmpty(clave))
