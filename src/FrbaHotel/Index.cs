@@ -42,7 +42,7 @@ namespace FrbaHotel
             qry.Close();
 
             qry = Index.BD.consultaGetPuntero("select distinct R.rol_nombre from EN_CASA_ANDABA.Roles_Usuarios RU, EN_CASA_ANDABA.Roles R where RU.ryu_rol_id = R.rol_id and RU.ryu_usu_id = " + usuarioID.ToString() + " and R.rol_estado = 1");
-            if (qry.Read() == true)
+            if (qry.Read())
             {
                 rol = qry.GetString(0);
                 qry.Close();

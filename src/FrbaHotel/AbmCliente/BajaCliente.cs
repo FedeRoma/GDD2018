@@ -88,7 +88,7 @@ namespace FrbaHotel.AbmCliente
                 string eMail = listaClientes.CurrentRow.Cells[5].Value.ToString();
 
                 qry = Index.BD.consultaGetPuntero("select cli_documento, cli_doc_id from EN_CASA_ANDABA.Clientes where cli_mail = '" + eMail + "'");
-                if (qry.Read() == true)
+                if (qry.Read())
                 {
                     clienteDocumento = qry.GetInt64(0);
                     clienteDocID = qry.GetInt32(1);

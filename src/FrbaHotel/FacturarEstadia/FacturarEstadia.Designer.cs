@@ -33,7 +33,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FacturacionEstadia));
-            this.pindonga = new System.Windows.Forms.ComboBox();
+            this.formaDePago = new System.Windows.Forms.ComboBox();
             this.estadia = new System.Windows.Forms.ListBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -63,15 +63,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
-            // pindonga
+            // formaDePago
             // 
-            this.pindonga.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pindonga.ForeColor = System.Drawing.Color.DimGray;
-            this.pindonga.FormattingEnabled = true;
-            this.pindonga.Location = new System.Drawing.Point(71, 72);
-            this.pindonga.Name = "pindonga";
-            this.pindonga.Size = new System.Drawing.Size(262, 24);
-            this.pindonga.TabIndex = 1;
+            this.formaDePago.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.formaDePago.ForeColor = System.Drawing.Color.DimGray;
+            this.formaDePago.FormattingEnabled = true;
+            this.formaDePago.Location = new System.Drawing.Point(71, 72);
+            this.formaDePago.Name = "formaDePago";
+            this.formaDePago.Size = new System.Drawing.Size(262, 24);
+            this.formaDePago.TabIndex = 1;
             // 
             // estadia
             // 
@@ -445,7 +445,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.estadia);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.pindonga);
+            this.Controls.Add(this.formaDePago);
             this.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -463,7 +463,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ComboBox pindonga;
+        private System.Windows.Forms.ComboBox formaDePago;
         private System.Windows.Forms.ListBox estadia;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;

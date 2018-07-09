@@ -110,7 +110,7 @@ namespace FrbaHotel.AbmHabitacion
                 int habitacionID = 0;
 
                 qry = Index.BD.consultaGetPuntero("select hab_id from EN_CASA_ANDABA.Habitaciones where hab_numero = " + habitacionNro + " and hab_piso = " + habitacionPiso + " and hab_hot_id = " + Index.hotel);
-                if (qry.Read() == true)
+                if (qry.Read())
                 {
                     habitacionID = qry.GetInt32(0);
                 }

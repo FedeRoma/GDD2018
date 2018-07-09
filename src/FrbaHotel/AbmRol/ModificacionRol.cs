@@ -79,7 +79,7 @@ namespace FrbaHotel.AbmRol
             if (!checkCampos())
             {
                 string nuevoEstado;
-                if (estado.Checked == true)
+                if (estado.Checked)
                 {
                     nuevoEstado = "1";
                 }

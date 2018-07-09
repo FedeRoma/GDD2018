@@ -46,9 +46,9 @@ namespace FrbaHotel.Login
             }
             else
             {
-                if (qry.Read() == true && cantIntentos <= 4)
+                if (qry.Read() && cantIntentos <= 4)
                 {
-                    if (qry.GetBoolean(0) == true)
+                    if (qry.GetBoolean(0))
                     {
                         Index.usuarioID = qry.GetInt32(1);
                         cantIntentos = 0;

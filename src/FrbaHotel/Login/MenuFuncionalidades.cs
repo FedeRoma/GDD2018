@@ -31,7 +31,7 @@ namespace FrbaHotel.Login
             qry.Close();
 
             qry = Index.BD.consultaGetPuntero("select distinct F.fun_desc from EN_CASA_ANDABA.Funcionalidades F, EN_CASA_ANDABA.Roles R, EN_CASA_ANDABA.Roles_Usuarios RyU, EN_CASA_ANDABA.Funcionalidades_Roles FyR, EN_CASA_ANDABA.Hoteles_Usuarios HyU where R.rol_nombre = '" + Index.rol + "' and R.rol_id = RyU.ryu_rol_id and R.rol_id = FyR.fyr_rol_id and FyR.fyr_fun_id = F.fun_id and RyU.ryu_usu_id = " + Index.usuarioID.ToString() + " and HyU.hyu_usu_id = RyU.ryu_usu_id and HyU.hyu_hot_id = " + Index.hotel);
-            while (qry.Read() == true)
+            while (qry.Read())
             {
                 funcionalidad.Items.Add(qry.GetSqlString(0));
             }
@@ -75,12 +75,12 @@ namespace FrbaHotel.Login
                     break;
                 case "Generar Reserva":
                     this.Hide();
-                    GenerarModificacionReserva.GenerarReserva generarReserva = new GenerarModificacionReserva.GenerarReserva();
+                    GenerarModificacionReserva.GenerarReservaCliente generarReserva = new GenerarModificacionReserva.GenerarReservaCliente();
                     generarReserva.Show();
                     break;
                 case "Modificar Reserva":
                     this.Hide();
-                    GenerarModificacionReserva.ModificacionReserva modificarReserva = new GenerarModificacionReserva.ModificacionReserva();
+                    GenerarModificacionReserva.MenuModificacionReserva modificarReserva = new GenerarModificacionReserva.MenuModificacionReserva();
                     modificarReserva.Show();
                     break;
                 case "Baja Reserva":

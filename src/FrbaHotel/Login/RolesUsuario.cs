@@ -42,7 +42,7 @@ namespace FrbaHotel.Login
         private void RolesUsuario_Load(object sender, EventArgs e)
         {
             qry = Index.BD.consultaGetPuntero("select distinct R.rol_nombre from EN_CASA_ANDABA.Roles_Usuarios RU, EN_CASA_ANDABA.Roles R where RU.ryu_rol_id = R.rol_id and RU.ryu_usu_id = " + Index.usuarioID.ToString() + " and R.rol_estado = 1");
-            while (qry.Read() == true)
+            while (qry.Read())
             {
                 rol.Items.Add(qry.GetSqlString(0));
             }
@@ -54,7 +54,7 @@ namespace FrbaHotel.Login
         {
             qry = Index.BD.consultaGetPuntero("exec EN_CASA_ANDABA.buscarHoteles '" + rol.SelectedItem + "' , " + Index.usuarioID.ToString());
             hotel.Items.Clear();
-            while (qry.Read() == true)
+            while (qry.Read())
             {            
                 hotel.Items.Add(new Hotel(qry.GetInt32(0), qry.GetString(1), qry.GetInt32(2)));
             }

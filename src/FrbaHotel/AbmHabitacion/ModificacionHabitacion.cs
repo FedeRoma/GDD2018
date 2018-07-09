@@ -45,7 +45,7 @@ namespace FrbaHotel.AbmHabitacion
             qry.Close();
 
             qry = Index.BD.consultaGetPuntero("select hab_id from EN_CASA_ANDABA.Habitaciones where hab_numero = " + numeroHab + " and hab_piso = " + pisoHab + " and hab_hot_id = " + Index.hotel);
-            if (qry.Read() == true)
+            if (qry.Read())
             {
                 habitacionID = qry.GetInt32(0);
             }
@@ -116,7 +116,7 @@ namespace FrbaHotel.AbmHabitacion
             if (!checkCampos())
             {
                 string nuevoEstado;
-                if (estado.Checked == true)
+                if (estado.Checked)
                 {
                     nuevoEstado = "1";
                 }

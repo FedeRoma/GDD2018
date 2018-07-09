@@ -48,7 +48,7 @@ namespace FrbaHotel.Login
                 return;
             }
             qry = Index.BD.consultaGetPuntero("select usu_id from EN_CASA_ANDABA.Usuarios where usu_username = '" + usuario + "' and usu_password = hashbytes('SHA2_256', '" + contraseniaActual.Text + "')");
-            if (qry.Read() == true)
+            if (qry.Read())
             {
                 int id = qry.GetInt32(0);
                 qry.Close();
