@@ -100,11 +100,11 @@ namespace FrbaHotel.AbmCliente
                     qry = Index.BD.consultaGetPuntero("update EN_CASA_ANDABA.Clientes set cli_habilitado = 0 where cli_documento = " + clienteDocumento.ToString() + " and cli_doc_id = " + clienteDocID.ToString());
                 }
                 qry.Close();
-
-                tablaClientes = Index.BD.consultaGetTabla("select C.cli_nombre Nombre, C.cli_apellido Apellido, D.doc_desc TipoDoc, C.cli_documento NroDoc, C.cli_mail eMail, C.cli_telefono Telefono, C.cli_nacionalidad Nacionalidad, C.cli_fecha_nac Fecha_Nacimiento, C.cli_habilitado Habilitado, C.cli_calle Calle, C.cli_calle_nro Numero_Calle, C.cli_depto Departamento, C.cli_dir_localidad Localidad, C.cli_dir_pais Pais from EN_CASA_ANDABA.Clientes C, EN_CASA_ANDABA.Documentos D where C.cli_doc_id = D.doc_id");
+                /*
+                tablaClientes = Index.BD.consultaGetTabla("select C.cli_nombre, C.cli_apellido, D.doc_desc, C.cli_documento, C.cli_mail, C.cli_telefono, C.cli_nacionalidad, C.cli_fecha_nac, C.cli_habilitado, C.cli_calle, C.cli_calle_nro, C.cli_piso, C.cli_depto, C.cli_dir_localidad, C.cli_dir_pais from EN_CASA_ANDABA.Clientes C, EN_CASA_ANDABA.Documentos D where C.cli_doc_id = D.doc_id");
                 BindingSource bindingSourceListaClientes = new BindingSource();
                 bindingSourceListaClientes.DataSource = tablaClientes;
-                listaClientes.DataSource = bindingSourceListaClientes;
+                listaClientes.DataSource = bindingSourceListaClientes;*/
             }
         }
 
@@ -137,11 +137,11 @@ namespace FrbaHotel.AbmCliente
         {
             DataView vistaClientes = new DataView(tablaClientes);
             string filtro = "";
-            filtro = filtro + this.esExactamente("TipoDoc", tipoDocumento.Text);
-            filtro = filtro + this.esExactamente("NroDoc", nroDocumento.Text);
-            filtro = filtro + this.esAproximadamente("Nombre", nombre.Text);
-            filtro = filtro + this.esAproximadamente("Apellido", apellido.Text);
-            filtro = filtro + this.esAproximadamente("eMail", eMail.Text);
+            filtro = filtro + this.esExactamente("TIPO_DOCUMENTO", tipoDocumento.Text);
+            filtro = filtro + this.esExactamente("NRO_DOCUMENTO", nroDocumento.Text);
+            filtro = filtro + this.esAproximadamente("NOMBRE", nombre.Text);
+            filtro = filtro + this.esAproximadamente("APELLIDO", apellido.Text);
+            filtro = filtro + this.esAproximadamente("EMAIL", eMail.Text);
 
             if (filtro.Length > 0)
             {
