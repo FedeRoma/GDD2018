@@ -69,6 +69,16 @@ namespace FrbaHotel.AbmHabitacion
                 alerta = alerta + "Debe ingresar un número de habitación válido\n";
                 inconsistencias = true;
             }
+            else
+            {
+                qry = Index.BD.consultaGetPuntero("select * from EN_CASA_ANDABA.Habitaciones where hab_hot_id = " + Index.hotel + " and hab_numero = " + numero.Text);
+                if (qry.Read())
+                {
+                    alerta = alerta + "Número de habitación ya existente\n";
+                    inconsistencias = true;
+                }
+                qry.Close();
+            }
             if (string.IsNullOrEmpty(piso.Text))
             {
                 alerta = alerta + "Debe ingresar un piso válido\n";
