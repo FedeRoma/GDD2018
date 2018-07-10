@@ -117,32 +117,49 @@ namespace FrbaHotel.FacturacionEstadia
                 totalFactura.Text = (total).ToString();
             }
         }
-
-        private void aceptar_Click(object sender, EventArgs e)
+        
+        private bool checkCampos()
         {
+            bool inconsistencias = false;
+            string alerta = "";
+
             if (string.IsNullOrEmpty(formasDePago.Text))
             {
-                MessageBox.Show("Debe seleccionar una forma de pago");
-                return;
+                alerta = alerta + "Debe seleccionar una forma de pago\n";
+                inconsistencias = true;
             }
 
-            int medioPagoID = Index.BD.consultaGetInt("select med_id from EN_CASA_ANDABA.MediosPago where med_desc = '" + formasDePago.Text + "'");
-
-            Int32 resultado = Index.BD.consultaGetInt("exec EN_CASA_ANDABA.modificacionFactura " + estadia.Text + ", " + medioPagoID + ", '" + DateTime.Today.ToString() + "'");
-            if (resultado == 0)
+            qry = Index.BD.consultaGetPuntero("select fac_id from EN_CASA_ANDABA.Facturas where fac_est_res_id = "+ estadia.Text);
+            if (qry.Read())
             {
-                MessageBox.Show("#error!");
-                return;
+                alerta = alerta + "La estadía " + estadia.Text + " ya fue facturada\nFactura Nro.: " + qry.GetInt32(0).ToString() + "\n";
+                inconsistencias = true;
             }
-            MessageBox.Show("La factura se ha generado correctamente");
-            this.Close();
+            qry.Close();
+            
+            if (inconsistencias)
+            {
+                MessageBox.Show(alerta);
+            }
+            return inconsistencias;
         }
 
-        private void atras_Click(object sender, EventArgs e)
+        private void generarFactura_Click(object sender, EventArgs e)
         {
+            if (!checkCampos())
+            {
+                int medioPagoID = Index.BD.consultaGetInt("select med_id from EN_CASA_ANDABA.MediosPago where med_desc = '" + formasDePago.Text + "'");
 
+                Int32 resultado = Index.BD.consultaGetInt("exec EN_CASA_ANDABA.altaFactura " + estadia.Text + ", " + medioPagoID + ", '" + DateTime.Today.ToString() + "'");
+                if (resultado == 0)
+                {
+                    MessageBox.Show("#error!");
+                    return;
+                }
+                MessageBox.Show("La factura se ha generado correctamente");
+                this.Close();
+            }
         }
-
 
     }
 }

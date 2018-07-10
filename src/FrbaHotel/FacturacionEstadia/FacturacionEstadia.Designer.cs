@@ -189,7 +189,7 @@
             this.generarFactura.TabIndex = 2;
             this.generarFactura.Text = "generar factura";
             this.generarFactura.UseVisualStyleBackColor = false;
-            this.generarFactura.Click += new System.EventHandler(this.aceptar_Click);
+            this.generarFactura.Click += new System.EventHandler(this.generarFactura_Click);
             // 
             // label1
             // 
