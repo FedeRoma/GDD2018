@@ -48,6 +48,7 @@
             this.atras.TabIndex = 3;
             this.atras.Text = "atrás";
             this.atras.UseVisualStyleBackColor = false;
+            this.atras.Click += new System.EventHandler(this.atras_Click);
             // 
             // aceptar
             // 
@@ -62,6 +63,7 @@
             this.aceptar.TabIndex = 2;
             this.aceptar.Text = "aceptar";
             this.aceptar.UseVisualStyleBackColor = false;
+            this.aceptar.Click += new System.EventHandler(this.aceptar_Click);
             // 
             // numeroReserva
             // 
@@ -73,6 +75,7 @@
             this.numeroReserva.Name = "numeroReserva";
             this.numeroReserva.Size = new System.Drawing.Size(280, 22);
             this.numeroReserva.TabIndex = 1;
+            this.numeroReserva.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.numeroReserva_KeyPress);
             // 
             // label5
             // 

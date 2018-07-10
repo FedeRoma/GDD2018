@@ -12,9 +12,9 @@ namespace FrbaHotel.RegistrarEstadia
 {
     public partial class MenuRegistrarEstadia : Form
     {
-        public static CheckIn chkIn;
-        public static CheckOut chkOut;
-        public static Login.MenuFuncionalidades menuFuncionalidades;
+        public static CheckIn ChkIn;
+        public static CheckOut ChkOut;
+        public static Login.MenuFuncionalidades MenuFuncionalidades;
 
         public MenuRegistrarEstadia()
         {
@@ -24,21 +24,21 @@ namespace FrbaHotel.RegistrarEstadia
         private void checkIn_Click(object sender, EventArgs e)
         {
             this.Hide();
-            chkIn = new CheckIn();
-            chkIn.Show();
+            ChkIn = new CheckIn();
+            ChkIn.Show();
         }
 
         private void checkOut_Click(object sender, EventArgs e)
         {
             this.Hide();
-            chkOut = new CheckOut();
-            chkOut.Show();
+            ChkOut = new CheckOut();
+            ChkOut.Show();
         }
 
         private void atras_Click(object sender, EventArgs e)
         {
-            menuFuncionalidades = new Login.MenuFuncionalidades();
-            menuFuncionalidades.Show();
+            MenuFuncionalidades = new Login.MenuFuncionalidades();
+            MenuFuncionalidades.Show();
             this.Close();
         }
 

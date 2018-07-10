@@ -12,7 +12,7 @@ namespace FrbaHotel.RegistrarEstadia
 {
     public partial class AsignarClientesEstadia : Form
     {
-        public AsignarClientesEstadia()
+        public AsignarClientesEstadia(string a, string b)
         {
             InitializeComponent();
         }
