@@ -16,33 +16,16 @@ namespace FrbaHotel.AbmHabitacion
         private SqlDataReader qry;
         public static ListadoHabitaciones ListadoHab;
         int habitacionID = 0;
-
-        private class TipoHabitacion
-        {
-            public string Nombre;
-            public int Valor;
-            public TipoHabitacion(int valor, string nombre)
-            {
-                Nombre = nombre;
-                Valor = valor;
-            }
-            public override string ToString()
-            {
-                return Nombre;
-            }
-        }
+        string nroHabitacionInic;
 
         public ModificacionHabitacion(string numeroHab, string pisoHab, string vistaHab, 
                                         string tipoHab, string descripcionHab, string estadoHab)
         {
             InitializeComponent();
 
-            qry = Index.BD.consultaGetPuntero("select distinct tip_id, tip_nombre from EN_CASA_ANDABA.TiposHabitaciones");
-            while (qry.Read())
-            {
-                tipoHabitacion.Items.Add(new TipoHabitacion(qry.GetInt32(0), qry.GetString(1)));
-            }
-            qry.Close();
+            nroHabitacionInic = numeroHab;
+
+            tipoHabitacion.Text = tipoHab;
 
             qry = Index.BD.consultaGetPuntero("select hab_id from EN_CASA_ANDABA.Habitaciones where hab_numero = " + numeroHab + " and hab_piso = " + pisoHab + " and hab_hot_id = " + Index.hotel);
             if (qry.Read())
@@ -88,6 +71,26 @@ namespace FrbaHotel.AbmHabitacion
                 alerta = alerta + "Debe ingresar un número de habitación válido\n";
                 inconsistencias = true;
             }
+            else
+            {
+                qry = Index.BD.consultaGetPuntero("select * from EN_CASA_ANDABA.Habitaciones where hab_hot_id = " + Index.hotel + " and hab_numero = " + numero.Text);
+                if (qry.Read())
+                {
+                    if ((numero.Text == nroHabitacionInic))
+                    {
+
+                    }
+                    else
+                    {
+                        alerta = alerta + "Número de habitación ya existente\n";
+                        inconsistencias = true;
+                    }
+                }
+                qry.Close();
+            }
+
+
+
             if (string.IsNullOrEmpty(piso.Text))
             {
                 alerta = alerta + "Debe ingresar un piso válido\n";

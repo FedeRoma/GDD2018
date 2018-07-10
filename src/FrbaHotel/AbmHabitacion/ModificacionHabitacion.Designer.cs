@@ -36,7 +36,6 @@
             this.guardar = new System.Windows.Forms.Button();
             this.vista = new System.Windows.Forms.TextBox();
             this.numero = new System.Windows.Forms.TextBox();
-            this.tipoHabitacion = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -46,6 +45,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.descripcion = new System.Windows.Forms.TextBox();
+            this.tipoHabitacion = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -128,18 +128,6 @@
             this.numero.Size = new System.Drawing.Size(135, 22);
             this.numero.TabIndex = 56;
             // 
-            // tipoHabitacion
-            // 
-            this.tipoHabitacion.DisplayMember = "tip_nombre";
-            this.tipoHabitacion.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tipoHabitacion.ForeColor = System.Drawing.Color.DimGray;
-            this.tipoHabitacion.FormattingEnabled = true;
-            this.tipoHabitacion.Location = new System.Drawing.Point(357, 164);
-            this.tipoHabitacion.Name = "tipoHabitacion";
-            this.tipoHabitacion.Size = new System.Drawing.Size(280, 24);
-            this.tipoHabitacion.TabIndex = 59;
-            this.tipoHabitacion.ValueMember = "doc_id";
-            // 
             // label6
             // 
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -184,9 +172,9 @@
             this.label5.ForeColor = System.Drawing.Color.Black;
             this.label5.Location = new System.Drawing.Point(354, 147);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(46, 14);
+            this.label5.Size = new System.Drawing.Size(31, 14);
             this.label5.TabIndex = 75;
-            this.label5.Text = "Tipo (*)";
+            this.label5.Text = "Tipo";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label3
@@ -248,12 +236,24 @@
             this.descripcion.Size = new System.Drawing.Size(566, 135);
             this.descripcion.TabIndex = 81;
             // 
+            // tipoHabitacion
+            // 
+            this.tipoHabitacion.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tipoHabitacion.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tipoHabitacion.ForeColor = System.Drawing.Color.DimGray;
+            this.tipoHabitacion.Location = new System.Drawing.Point(357, 164);
+            this.tipoHabitacion.Name = "tipoHabitacion";
+            this.tipoHabitacion.ReadOnly = true;
+            this.tipoHabitacion.Size = new System.Drawing.Size(280, 22);
+            this.tipoHabitacion.TabIndex = 102;
+            // 
             // ModificacionHabitacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(704, 442);
+            this.Controls.Add(this.tipoHabitacion);
             this.Controls.Add(this.descripcion);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.hotelActivo);
@@ -268,7 +268,6 @@
             this.Controls.Add(this.guardar);
             this.Controls.Add(this.vista);
             this.Controls.Add(this.numero);
-            this.Controls.Add(this.tipoHabitacion);
             this.Controls.Add(this.estado);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -294,7 +293,6 @@
         private System.Windows.Forms.Button guardar;
         private System.Windows.Forms.TextBox vista;
         private System.Windows.Forms.TextBox numero;
-        private System.Windows.Forms.ComboBox tipoHabitacion;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label8;
@@ -304,5 +302,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox descripcion;
+        private System.Windows.Forms.TextBox tipoHabitacion;
     }
 }
