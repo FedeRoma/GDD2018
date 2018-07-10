@@ -94,14 +94,8 @@ namespace FrbaHotel.FacturacionEstadia
             bindingSourceConsumibles.DataSource = tablaDetalleConsumibles;
             listaConsumibles.DataSource = bindingSourceConsumibles;
 
-            qry = Index.BD.consultaGetPuntero("exec EN_CASA_ANDABA.deudaConsumibles " + estadiaID);
-
-            if (qry.Read())
-            {
-                subConsumibles = qry.GetInt32(0); 
-                subtotalConsumibles.Text = subConsumibles.ToString();
-            }
-            qry.Close();
+            subConsumibles = Index.BD.consultaGetInt("select EN_CASA_ANDABA.deudaConsumibles(" + estadiaID + ")");
+            subtotalConsumibles.Text = subConsumibles.ToString();
 
             int regimen = 0;
             qry = Index.BD.consultaGetPuntero("select R.res_id from EN_CASA_ANDABA.Estadias E, EN_CASA_ANDABA.Reservas R where E.est_res_id = R.res_id and R.res_id = " + estadiaID);
@@ -122,6 +116,31 @@ namespace FrbaHotel.FacturacionEstadia
                 int total = subEstadia + subConsumibles;
                 totalFactura.Text = (total).ToString();
             }
+        }
+
+        private void aceptar_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(formasDePago.Text))
+            {
+                MessageBox.Show("Debe seleccionar una forma de pago");
+                return;
+            }
+
+            int medioPagoID = Index.BD.consultaGetInt("select med_id from EN_CASA_ANDABA.MediosPago where med_desc = '" + formasDePago.Text + "'");
+
+            Int32 resultado = Index.BD.consultaGetInt("exec EN_CASA_ANDABA.modificacionFactura " + estadia.Text + ", " + medioPagoID + ", '" + DateTime.Today.ToString() + "'");
+            if (resultado == 0)
+            {
+                MessageBox.Show("#error!");
+                return;
+            }
+            MessageBox.Show("La factura se ha generado correctamente");
+            this.Close();
+        }
+
+        private void atras_Click(object sender, EventArgs e)
+        {
+
         }
 
 

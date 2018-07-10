@@ -61,27 +61,29 @@ namespace FrbaHotel
 
         public int consultaGetInt(string consulta)
         {
-            SqlCommand queryCommand = new SqlCommand();
-            queryCommand.CommandTimeout = 999999999;
+            SqlCommand sqlCommand = new SqlCommand();
+            sqlCommand.CommandTimeout = 999999999;
 
-            queryCommand.Connection = this.connection;
-            queryCommand.CommandText = consulta;
+            sqlCommand.Connection = this.connection;
+            sqlCommand.CommandText = consulta;
 
-            queryCommand.CommandType = CommandType.StoredProcedure;
-            return (int)queryCommand.ExecuteScalar();
+            int retorno = Convert.ToInt32(sqlCommand.ExecuteScalar());
+            sqlCommand.Dispose();
+            sqlCommand = null;
+            return retorno;
         }
 
         public string consultaGetString(string consulta)
         {
-            SqlCommand queryCommand = new SqlCommand();
-            queryCommand.CommandTimeout = 999999999;
+            SqlCommand sqlCommand = new SqlCommand();
+            sqlCommand.CommandTimeout = 999999999;
 
-            queryCommand.Connection = this.connection;
-            queryCommand.CommandText = consulta;
+            sqlCommand.Connection = this.connection;
+            sqlCommand.CommandText = consulta;
 
-            string retorno = Convert.ToString(queryCommand.ExecuteScalar());
-            queryCommand.Dispose();
-            queryCommand = null;
+            string retorno = Convert.ToString(sqlCommand.ExecuteScalar());
+            sqlCommand.Dispose();
+            sqlCommand = null;
             return retorno;
         }
 
