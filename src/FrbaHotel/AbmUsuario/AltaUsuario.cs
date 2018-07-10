@@ -68,6 +68,7 @@ namespace FrbaHotel.AbmUsuario
         public AltaUsuario()
         {
             InitializeComponent();
+
             qry = Index.BD.consultaGetPuntero("select distinct doc_id, doc_desc from EN_CASA_ANDABA.Documentos");
             while (qry.Read())
             {
@@ -79,7 +80,7 @@ namespace FrbaHotel.AbmUsuario
             while (qry.Read())
             {
                 // solo se pueden dar de Alta "Recepcionistas" y "Administradores"
-                if ((qry.GetString(1) != "Administrador General") || (qry.GetString(1) != "Guest"))
+                if ((qry.GetString(1) != "Administrador General") && (qry.GetString(1) != "Guest"))
                 {
                     rol.Items.Add(new Rol(qry.GetInt32(0), qry.GetString(1)));
                 }  
@@ -217,11 +218,6 @@ namespace FrbaHotel.AbmUsuario
             }
             return insert;
         }
-        private string insertPass(string campo)
-        {
-            insert = insert + "hashbytes('SHA2_256', '" + campo + "'), ";
-            return insert;
-        }
 
         private void guardar_Click(object sender, EventArgs e)
         {
@@ -237,17 +233,17 @@ namespace FrbaHotel.AbmUsuario
                 qry.Close();
 
                 insert = "exec EN_CASA_ANDABA.altaUsuario ";
-                insert = insertNro(rol.Text);
+                insert = insertString(rol.Text);
                 insert = insertString(calle);
-                insert = insertString(calleNro.ToString());
+                insert = insertNro(calleNro.ToString());
                 insert = insertString(nombreUsuario.Text);
-                insert = insertPass(clave.Text);
+                insert = insertString(clave.Text);
                 insert = insertString(nombre.Text);
                 insert = insertString(apellido.Text);
                 insert = insertString(eMail.Text);
                 insert = insertString(telefono.Text);
                 insert = insertString(tipoDocumento.Text);
-                insert = insertString(nroDocumento.Text);
+                insert = insertNro(nroDocumento.Text);
                 DateTime fecha;
                 fecha = Convert.ToDateTime(fechaNacimiento.Value);
                 insert = insertString(fecha.Date.ToString("yyyyMMdd HH:mm:ss"));

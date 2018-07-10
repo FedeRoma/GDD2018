@@ -192,7 +192,7 @@ create procedure EN_CASA_ANDABA.altaUsuario
 					insert into EN_CASA_ANDABA.Usuarios (usu_username, usu_password, usu_nombre, usu_apellido, 
 						usu_doc_id, usu_documento, usu_fecha_nac, usu_mail, usu_tel, usu_estado, usu_direccion,
 						usu_intentos) 
-					values (@username, @password, @nombre, @apellido, @tipoDocumentoId, @nroDocumento, @fechaNacimiento,
+					values (@username, hashbytes('SHA2_256', @password), @nombre, @apellido, @tipoDocumentoId, @nroDocumento, @fechaNacimiento,
 						@email, @tel, 1, @direccion, 0)
 				end 
 				set @usuarioId = (select usu_id from EN_CASA_ANDABA.Usuarios where @username = usu_username)
