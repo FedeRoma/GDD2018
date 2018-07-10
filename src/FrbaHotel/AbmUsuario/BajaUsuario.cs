@@ -143,7 +143,7 @@ namespace FrbaHotel.AbmUsuario
                     qry = Index.BD.consultaGetPuntero("update EN_CASA_ANDABA.Usuarios set usu_estado=0 where usu_username = '" + username + "'");
                 }
                 qry.Close();
-
+                MessageBox.Show("Usuario Inhabilitado", "AVISO", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 tablaUsuario = Index.BD.consultaGetTabla("select usu_username USERNAME, usu_nombre NOMBRE,usu_apellido APELLIDO,usu_mail MAIL,usu_tel TELEFONO, usu_documento NUMERO_DOC,usu_estado HABILITA from EN_CASA_ANDABA.Usuarios");
                 BindingSource bindingSourceListaUsuarios = new BindingSource();
                 bindingSourceListaUsuarios.DataSource = tablaUsuario;
