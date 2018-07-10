@@ -66,15 +66,20 @@ namespace FrbaHotel.AbmCliente
             bool inconsistencias = false;
             string alerta = "";
 
-            if (string.IsNullOrEmpty(tipoDocumento.Text))
+            if ((string.IsNullOrEmpty(tipoDocumento.Text) || string.IsNullOrEmpty(nroDocumento.Text)))
             {
-                alerta = alerta + "Debe ingresar un tipo de documento válido\n";
+                alerta = alerta + "Debe ingresar un documento válido\n";
                 inconsistencias = true;
             }
-            if (string.IsNullOrEmpty(nroDocumento.Text))
+            else
             {
-                alerta = alerta + "Debe ingresar un número de documento válido\n";
-                inconsistencias = true;
+                qry = Index.BD.consultaGetPuntero("select * from EN_CASA_ANDABA.Clientes, EN_CASA_ANDABA.Documentos where cli_doc_id = doc_id and doc_desc = '" + tipoDocumento.Text + "' and cli_documento = " + nroDocumento.Text);
+                if (qry.Read())
+                {
+                    alerta = alerta + "Tipo y nro de documento ya registrado\n";
+                    inconsistencias = true;
+                }
+                qry.Close();
             }
             if (string.IsNullOrEmpty(nombre.Text))
             {

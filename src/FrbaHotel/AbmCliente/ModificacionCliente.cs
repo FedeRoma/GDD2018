@@ -18,6 +18,7 @@ namespace FrbaHotel.AbmCliente
         bool inconsistencias = false;
         string eMailOriginal;
         string update = "";
+        string docNumeroInic, docTipoInic;
 
         private class TipoDocumento
         {
@@ -41,6 +42,9 @@ namespace FrbaHotel.AbmCliente
                                     string deptoCli, string localidadCli, string paisCli)
         {
             InitializeComponent();
+
+            docNumeroInic = docNumeroCli;
+            docTipoInic = docTipoCli;
 
             qry = Index.BD.consultaGetPuntero("select distinct doc_id, doc_desc from EN_CASA_ANDABA.Documentos");
             while (qry.Read())
@@ -91,15 +95,27 @@ namespace FrbaHotel.AbmCliente
             inconsistencias = false;
             string alerta = "";
 
-            if (string.IsNullOrEmpty(tipoDocumento.Text))
+            if ((string.IsNullOrEmpty(tipoDocumento.Text) || string.IsNullOrEmpty(nroDocumento.Text)))
             {
-                alerta = alerta + "Debe ingresar un Tipo de Documento válido\n";
+                alerta = alerta + "Debe ingresar un documento válido\n";
                 inconsistencias = true;
             }
-            if (string.IsNullOrEmpty(nroDocumento.Text))
+            else
             {
-                alerta = alerta + "Debe ingresar un Número de Documento válido\n";
-                inconsistencias = true;
+                qry = Index.BD.consultaGetPuntero("select * from EN_CASA_ANDABA.Clientes, EN_CASA_ANDABA.Documentos where cli_doc_id = doc_id and doc_desc = '" + tipoDocumento.Text + "' and cli_documento = " + nroDocumento.Text);
+                if (qry.Read())
+                {
+                    if ((tipoDocumento.Text == docTipoInic) && (nroDocumento.Text == docNumeroInic))
+                    {
+                    
+                    }
+                    else
+                    {
+                        alerta = alerta + "Tipo y nro de documento ya registrado\n";
+                        inconsistencias = true;
+                    }
+                }
+                qry.Close();
             }
             if (string.IsNullOrEmpty(nombre.Text))
             {
