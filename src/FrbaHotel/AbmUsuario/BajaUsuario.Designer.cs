@@ -79,6 +79,7 @@
             this.listaUsuarios.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.listaUsuarios.Size = new System.Drawing.Size(708, 211);
             this.listaUsuarios.TabIndex = 10;
+            this.listaUsuarios.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listaUsuarios_CellClick);
             // 
             // groupBox1
             // 
@@ -230,6 +231,7 @@
             this.atras.TabIndex = 9;
             this.atras.Text = "atrás";
             this.atras.UseVisualStyleBackColor = false;
+            this.atras.Click += new System.EventHandler(this.cancelar_Click);
             // 
             // limpiar
             // 
@@ -244,6 +246,7 @@
             this.limpiar.TabIndex = 8;
             this.limpiar.Text = "limpiar datos";
             this.limpiar.UseVisualStyleBackColor = false;
+            this.limpiar.Click += new System.EventHandler(this.limpiar_Click);
             // 
             // buscar
             // 
@@ -258,6 +261,7 @@
             this.buscar.TabIndex = 7;
             this.buscar.Text = "buscar";
             this.buscar.UseVisualStyleBackColor = false;
+            this.buscar.Click += new System.EventHandler(this.buscar_Click);
             // 
             // label1
             // 

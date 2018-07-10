@@ -13,10 +13,24 @@ namespace FrbaHotel.AbmUsuario
 {
     public partial class BajaUsuario : Form
     {
-
         private SqlDataReader qry;
         public static MenuAbmUsuario AbmUsu;
-        DataTable tablaUsuarios;
+        DataTable tablaUsuario;
+
+        private class TipoDocumento
+        {
+            public string Nombre;
+            public int Valor;
+            public TipoDocumento(int valor, string nombre)
+            {
+                Nombre = nombre;
+                Valor = valor;
+            }
+            public override string ToString()
+            {
+                return Nombre;
+            }
+        }
 
         private class Rol
         {
@@ -32,6 +46,7 @@ namespace FrbaHotel.AbmUsuario
                 return Nombre;
             }
         }
+
 
         public BajaUsuario()
         {
@@ -54,9 +69,9 @@ namespace FrbaHotel.AbmUsuario
             botonBaja.Name = "baja";
             listaUsuarios.Columns.Add(botonBaja);
 
-            tablaUsuarios = Index.BD.consultaGetTabla("select usu_username USERNAME, usu_nombre NOMBRE,usu_apellido APELLIDO,usu_mail MAIL,usu_tel TELEFONO, usu_documento DOC,usu_estado HABILITA from EN_CASA_ANDABA.Usuarios");
+            tablaUsuario = Index.BD.consultaGetTabla("select usu_username USERNAME, usu_nombre NOMBRE,usu_apellido APELLIDO,usu_mail MAIL,usu_tel TELEFONO, usu_documento NUMERO_DOC,usu_estado HABILITA from EN_CASA_ANDABA.Usuarios");
             BindingSource bindingSourceListaUsuarios = new BindingSource();
-            bindingSourceListaUsuarios.DataSource = tablaUsuarios;
+            bindingSourceListaUsuarios.DataSource = tablaUsuario;
             listaUsuarios.DataSource = bindingSourceListaUsuarios;
         }
 
@@ -108,34 +123,69 @@ namespace FrbaHotel.AbmUsuario
             {
                 if (listaUsuarios.CurrentRow.Cells[7].Value.ToString() == "False")
                 {
-                    MessageBox.Show("#error: el usuario seleccionado ya se encuentra deshabilitado");
+                    MessageBox.Show("#error:  el usuario seleccionado ya se encuentra deshabilitado");
                     return;
                 }
 
-                Int64 clienteDocumento = 0;
-                Int32 clienteDocID = 0;
+                string username = listaUsuarios.CurrentRow.Cells[1].Value.ToString();
                 string eMail = listaUsuarios.CurrentRow.Cells[4].Value.ToString();
-
-                qry = Index.BD.consultaGetPuntero("select cli_documento, cli_doc_id from EN_CASA_ANDABA.Clientes where cli_mail = '" + eMail + "'");
+                /*
+                qry = Index.BD.consultaGetPuntero("select usu_username USERNAME from EN_CASA_ANDABA.Usuarios where usu_mail = '" + eMail + "'");
                 if (qry.Read())
                 {
-                    clienteDocumento = qry.GetInt64(0);
-                    clienteDocID = qry.GetInt32(1);
+                    username = qry.GetString(0);
+                    
                 }
                 qry.Close();
-
-                if (MessageBox.Show("Esta seguro que quiere inhabilitar el cliente?", "AVISO", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                */
+                if (MessageBox.Show("Esta seguro que quiere inhabilitar el usuario?", "AVISO", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    qry = Index.BD.consultaGetPuntero("update EN_CASA_ANDABA.Clientes set cli_habilitado = 0 where cli_documento = " + clienteDocumento.ToString() + " and cli_doc_id = " + clienteDocID.ToString());
+                    qry = Index.BD.consultaGetPuntero("update EN_CASA_ANDABA.Usuarios set usu_estado=0 where usu_username = '" + username + "'");
                 }
                 qry.Close();
 
-                tablaUsuarios = Index.BD.consultaGetTabla("select C.cli_nombre Nombre, C.cli_apellido Apellido, D.doc_desc TipoDoc, C.cli_documento NroDoc, C.cli_mail eMail, C.cli_telefono Telefono, C.cli_nacionalidad Nacionalidad, C.cli_fecha_nac Fecha_Nacimiento, C.cli_habilitado Habilitado, C.cli_calle Calle, C.cli_calle_nro Numero_Calle, C.cli_depto Departamento, C.cli_dir_localidad Localidad, C.cli_dir_pais Pais from EN_CASA_ANDABA.Clientes C, EN_CASA_ANDABA.Documentos D where C.cli_doc_id = D.doc_id");
-                BindingSource bindingSourcelistaUsuarios = new BindingSource();
-                bindingSourcelistaUsuarios.DataSource = tablaUsuarios;
-                listaUsuarios.DataSource = bindingSourcelistaUsuarios;
+                tablaUsuario = Index.BD.consultaGetTabla("select usu_username USERNAME, usu_nombre NOMBRE,usu_apellido APELLIDO,usu_mail MAIL,usu_tel TELEFONO, usu_documento NUMERO_DOC,usu_estado HABILITA from EN_CASA_ANDABA.Usuarios");
+                BindingSource bindingSourceListaUsuarios = new BindingSource();
+                bindingSourceListaUsuarios.DataSource = tablaUsuario;
+                listaUsuarios.DataSource = bindingSourceListaUsuarios;
             }
         }
+
+
+        private void buscar_Click(object sender, EventArgs e)
+        {
+            DataView vistaUsuario = new DataView(tablaUsuario);
+            string filtro = "";
+            filtro = filtro + this.esExactamente("NUMERO_DOC", nroDocumento.Text);
+            filtro = filtro + this.esAproximadamente("NOMBRE", nombre.Text);
+            filtro = filtro + this.esAproximadamente("APELLIDO", apellido.Text);
+            filtro = filtro + this.esAproximadamente("MAIL", eMail.Text);
+
+            if (filtro.Length > 0)
+            {
+                filtro = filtro.Remove(filtro.Length - 4);
+            }
+
+            vistaUsuario.RowFilter = filtro;
+            listaUsuarios.DataSource = vistaUsuario;
+        }
+
+        private void limpiar_Click(object sender, EventArgs e)
+        {
+            nroDocumento.ResetText();
+            nombre.Text = string.Empty;
+            apellido.Text = string.Empty;
+            eMail.Text = string.Empty;
+            nroDocumento.Focus();
+        }
+
+        private void cancelar_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            AbmUsu = new MenuAbmUsuario();
+            AbmUsu.Show();
+        }
+
 
     }
 }

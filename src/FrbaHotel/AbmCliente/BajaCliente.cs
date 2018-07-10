@@ -100,11 +100,11 @@ namespace FrbaHotel.AbmCliente
                     qry = Index.BD.consultaGetPuntero("update EN_CASA_ANDABA.Clientes set cli_habilitado = 0 where cli_documento = " + clienteDocumento.ToString() + " and cli_doc_id = " + clienteDocID.ToString());
                 }
                 qry.Close();
-                /*
+                
                 tablaClientes = Index.BD.consultaGetTabla("select C.cli_nombre, C.cli_apellido, D.doc_desc, C.cli_documento, C.cli_mail, C.cli_telefono, C.cli_nacionalidad, C.cli_fecha_nac, C.cli_habilitado, C.cli_calle, C.cli_calle_nro, C.cli_piso, C.cli_depto, C.cli_dir_localidad, C.cli_dir_pais from EN_CASA_ANDABA.Clientes C, EN_CASA_ANDABA.Documentos D where C.cli_doc_id = D.doc_id");
                 BindingSource bindingSourceListaClientes = new BindingSource();
                 bindingSourceListaClientes.DataSource = tablaClientes;
-                listaClientes.DataSource = bindingSourceListaClientes;*/
+                listaClientes.DataSource = bindingSourceListaClientes;
             }
         }
 
