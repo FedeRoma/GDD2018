@@ -7,14 +7,161 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace FrbaHotel.RegistrarEstadia
 {
     public partial class AsignarClientesEstadia : Form
     {
-        public AsignarClientesEstadia(string a, string b)
+        private SqlDataReader qry;
+        public static MenuRegistrarEstadia MenuEstadia;
+        public static RegistrarEstadia.AsignarClientesHabitacion AsignarCliHab;
+        string reservaID, estadiaID;
+        int plazasTotales, plazasDisponibles;
+        int clienteID;
+        string clienteNombre, clienteApellido;
+        public static DataTable tablaClientes;
+
+        public AsignarClientesEstadia(string reserva, string estadia)
         {
             InitializeComponent();
+
+            reservaID = reserva;
+            estadiaID = estadia;
+
+            tablaClientes = new DataTable();
+            tablaClientes.Columns.Add("ID");
+            DataColumn column = tablaClientes.Columns["ID"];
+            column.Unique = true;
+            tablaClientes.Columns.Add("NOMBRE");
+            tablaClientes.Columns.Add("APELLIDO");
+                        
+            BindingSource bindingSourcelistaClientes = new BindingSource();
+            bindingSourcelistaClientes.DataSource = tablaClientes;
+            listaClientes.DataSource = bindingSourcelistaClientes;
+
+            qry = Index.BD.consultaGetPuntero("select sum(TH.tip_personas) from EN_CASA_ANDABA.Reservas_Habitaciones RH, EN_CASA_ANDABA.Habitaciones H, EN_CASA_ANDABA.TiposHabitaciones TH where RH.ryh_hab_id = H.hab_id and TH.tip_id = H.hab_tip_id and RH.ryh_res_id = " + reservaID);
+            if (qry.Read())
+            {
+                plazasTotales = qry.GetInt32(0);
+                capacidadHabitacion.Text = plazasTotales.ToString();
+            }
+            else
+            {
+                MessageBox.Show("#error: No hay especificada una habitación en la reserva");
+            }
+            qry.Close();
+
+            qry = Index.BD.consultaGetPuntero("select C.cli_doc_id, C.cli_nombre, C.cli_apellido from EN_CASA_ANDABA.Reservas R, EN_CASA_ANDABA.Clientes C where R.res_cli_doc_id = C.cli_doc_id and R.res_id = " + reservaID);
+            if (qry.Read())
+            {
+                titularEstadia.Text = qry.GetString(1) + "" + qry.GetString(2);
+                plazasDisponibles = plazasTotales - 1;
+                plazasRestantes.Text = (plazasDisponibles).ToString();
+                clienteID = qry.GetInt32(0);
+                clienteNombre = qry.GetString(1);
+                clienteApellido = qry.GetString(2);
+                DataRow columna = tablaClientes.NewRow();
+                columna["ID"] = clienteID;
+                columna["NOMBRE"] = clienteNombre;
+                columna["APELLIDO"] = clienteApellido;
+                tablaClientes.Rows.Add(columna);
+                numeroReserva.Text = reservaID;
+            }
+            qry.Close();
         }
+
+        private void nuevoCliente_Click(object sender, EventArgs e)
+        {
+            if (plazasDisponibles > 0)
+            {
+                AbmCliente.AltaCliente altaCliente= new AbmCliente.AltaCliente();
+                altaCliente.Show();
+            }
+            else
+            {
+                MessageBox.Show("Ya se han completado las plazas");
+            }
+        }
+
+        private void seleccionarCliente_Click(object sender, EventArgs e)
+        {
+            if (plazasDisponibles > 0)
+            {
+                AbmCliente.AltaCliente altaCliente = new AbmCliente.AltaCliente();
+                altaCliente.Show();
+            }
+            else
+            {
+                MessageBox.Show("Ya se han completado las plazas");
+            }
+        }
+
+        private void AsignarClientesEstadia_Activated(object sender, EventArgs e)
+        {
+            bindingSourcelistaClientes.DataSource = tablaClientes;
+            plazasRestantes.Text = plazasDisponibles.ToString();
+        }
+
+        private void listaClientes_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 0)
+            {
+                int item = listaClientes.CurrentRow.Index;
+                if (listaClientes.CurrentRow.Cells[1].Value.ToString() == clienteID.ToString())
+                {
+                    MessageBox.Show("No se puede eliminar al titular de la reserva");
+                    return;
+                }
+                plazasDisponibles++;
+                tablaClientes.Rows.RemoveAt(item);
+                listaClientes.DataSource = tablaClientes;
+            }
+        }
+
+        private void aceptar_Click(object sender, EventArgs e)
+        {
+            foreach (DataRow fila in tablaClientes.Rows)
+            {
+                qry = Index.BD.consultaGetPuntero("exec EN_CASA_ANDABA.altaClientes_Estadias ");
+                if (qry.Read())
+                {
+                    if (qry.GetInt32(0) == 0)
+                    {
+                        MessageBox.Show("El cliente ya se encuentra asignado");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("#error: No se ha podido dar de alta el cliente");
+                }
+                qry.Close();
+            }
+
+            MessageBox.Show("Se han cargado todos los clientes");
+            AsignarCliHab = new RegistrarEstadia.AsignarClientesHabitacion(tablaClientes, reservaID, estadiaID);
+            AsignarCliHab.Show();
+
+            this.Close();
+        }
+
+        private void limpiar_Click(object sender, EventArgs e)
+        {
+            tablaClientes.Clear();
+            plazasDisponibles = plazasTotales - 1;
+            DataRow columna = tablaClientes.NewRow();
+            columna["ID"] = clienteID;
+            columna["NOMBRE"] = clienteNombre;
+            columna["APELLIDO"] = clienteApellido;
+            tablaClientes.Rows.Add(columna);
+        }
+
+        private void atras_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            MenuEstadia = new MenuRegistrarEstadia();
+            MenuEstadia.Show();
+        }
+
     }
 }

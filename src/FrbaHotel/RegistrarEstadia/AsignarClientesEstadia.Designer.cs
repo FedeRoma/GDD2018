@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -38,16 +39,20 @@
             this.limpiar = new System.Windows.Forms.Button();
             this.aceptar = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
-            this.titularEstadia = new System.Windows.Forms.ListBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.plazasRestantes = new System.Windows.Forms.ListBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.capacidadHabitacion = new System.Windows.Forms.ListBox();
             this.seleccionarCliente = new System.Windows.Forms.Button();
             this.nuevoCliente = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.listaClientes = new System.Windows.Forms.DataGridView();
+            this.bindingSourcelistaClientes = new System.Windows.Forms.BindingSource(this.components);
+            this.numeroReserva = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.titularEstadia = new System.Windows.Forms.TextBox();
+            this.capacidadHabitacion = new System.Windows.Forms.TextBox();
+            this.plazasRestantes = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.listaClientes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourcelistaClientes)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -74,6 +79,7 @@
             this.atras.TabIndex = 5;
             this.atras.Text = "atrás";
             this.atras.UseVisualStyleBackColor = false;
+            this.atras.Click += new System.EventHandler(this.atras_Click);
             // 
             // limpiar
             // 
@@ -87,6 +93,7 @@
             this.limpiar.TabIndex = 4;
             this.limpiar.Text = "limpiar datos";
             this.limpiar.UseVisualStyleBackColor = false;
+            this.limpiar.Click += new System.EventHandler(this.limpiar_Click);
             // 
             // aceptar
             // 
@@ -100,81 +107,43 @@
             this.aceptar.TabIndex = 3;
             this.aceptar.Text = "aceptar";
             this.aceptar.UseVisualStyleBackColor = false;
+            this.aceptar.Click += new System.EventHandler(this.aceptar_Click);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(96, 91);
+            this.label4.Location = new System.Drawing.Point(97, 109);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(42, 14);
             this.label4.TabIndex = 47;
             this.label4.Text = "Titular";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // titularEstadia
-            // 
-            this.titularEstadia.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.titularEstadia.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.titularEstadia.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.titularEstadia.ForeColor = System.Drawing.Color.Crimson;
-            this.titularEstadia.FormattingEnabled = true;
-            this.titularEstadia.ItemHeight = 18;
-            this.titularEstadia.Location = new System.Drawing.Point(99, 108);
-            this.titularEstadia.Name = "titularEstadia";
-            this.titularEstadia.Size = new System.Drawing.Size(280, 20);
-            this.titularEstadia.TabIndex = 46;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(507, 91);
+            this.label2.Location = new System.Drawing.Point(507, 67);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(101, 14);
             this.label2.TabIndex = 49;
             this.label2.Text = "Plazas Restantes";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // plazasRestantes
-            // 
-            this.plazasRestantes.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.plazasRestantes.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.plazasRestantes.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.plazasRestantes.ForeColor = System.Drawing.Color.DimGray;
-            this.plazasRestantes.FormattingEnabled = true;
-            this.plazasRestantes.ItemHeight = 18;
-            this.plazasRestantes.Location = new System.Drawing.Point(510, 108);
-            this.plazasRestantes.Name = "plazasRestantes";
-            this.plazasRestantes.Size = new System.Drawing.Size(98, 20);
-            this.plazasRestantes.TabIndex = 48;
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(382, 91);
+            this.label3.Location = new System.Drawing.Point(369, 67);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(122, 14);
             this.label3.TabIndex = 51;
             this.label3.Text = "Capacidad Habitación";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // capacidadHabitacion
-            // 
-            this.capacidadHabitacion.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.capacidadHabitacion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.capacidadHabitacion.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.capacidadHabitacion.ForeColor = System.Drawing.Color.DimGray;
-            this.capacidadHabitacion.FormattingEnabled = true;
-            this.capacidadHabitacion.ItemHeight = 18;
-            this.capacidadHabitacion.Location = new System.Drawing.Point(385, 108);
-            this.capacidadHabitacion.Name = "capacidadHabitacion";
-            this.capacidadHabitacion.Size = new System.Drawing.Size(119, 20);
-            this.capacidadHabitacion.TabIndex = 50;
             // 
             // seleccionarCliente
             // 
@@ -182,12 +151,13 @@
             this.seleccionarCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.seleccionarCliente.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.seleccionarCliente.ForeColor = System.Drawing.Color.DimGray;
-            this.seleccionarCliente.Location = new System.Drawing.Point(530, 159);
+            this.seleccionarCliente.Location = new System.Drawing.Point(530, 154);
             this.seleccionarCliente.Name = "seleccionarCliente";
             this.seleccionarCliente.Size = new System.Drawing.Size(78, 27);
             this.seleccionarCliente.TabIndex = 2;
             this.seleccionarCliente.Text = "existente";
             this.seleccionarCliente.UseVisualStyleBackColor = false;
+            this.seleccionarCliente.Click += new System.EventHandler(this.seleccionarCliente_Click);
             // 
             // nuevoCliente
             // 
@@ -195,19 +165,20 @@
             this.nuevoCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.nuevoCliente.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nuevoCliente.ForeColor = System.Drawing.Color.Crimson;
-            this.nuevoCliente.Location = new System.Drawing.Point(456, 159);
+            this.nuevoCliente.Location = new System.Drawing.Point(456, 154);
             this.nuevoCliente.Name = "nuevoCliente";
             this.nuevoCliente.Size = new System.Drawing.Size(68, 27);
             this.nuevoCliente.TabIndex = 1;
             this.nuevoCliente.Text = "nuevo";
             this.nuevoCliente.UseVisualStyleBackColor = false;
+            this.nuevoCliente.Click += new System.EventHandler(this.nuevoCliente_Click);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(96, 172);
+            this.label5.Location = new System.Drawing.Point(96, 167);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(53, 14);
             this.label5.TabIndex = 54;
@@ -243,7 +214,7 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.listaClientes.DefaultCellStyle = dataGridViewCellStyle2;
-            this.listaClientes.Location = new System.Drawing.Point(99, 192);
+            this.listaClientes.Location = new System.Drawing.Point(99, 187);
             this.listaClientes.Name = "listaClientes";
             this.listaClientes.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -262,6 +233,63 @@
             this.listaClientes.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.listaClientes.Size = new System.Drawing.Size(509, 188);
             this.listaClientes.TabIndex = 69;
+            this.listaClientes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listaClientes_CellClick);
+            // 
+            // numeroReserva
+            // 
+            this.numeroReserva.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.numeroReserva.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numeroReserva.ForeColor = System.Drawing.Color.Crimson;
+            this.numeroReserva.Location = new System.Drawing.Point(100, 84);
+            this.numeroReserva.Name = "numeroReserva";
+            this.numeroReserva.ReadOnly = true;
+            this.numeroReserva.Size = new System.Drawing.Size(78, 22);
+            this.numeroReserva.TabIndex = 102;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.Black;
+            this.label6.Location = new System.Drawing.Point(97, 67);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(52, 14);
+            this.label6.TabIndex = 103;
+            this.label6.Text = "Reserva";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // titularEstadia
+            // 
+            this.titularEstadia.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.titularEstadia.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.titularEstadia.ForeColor = System.Drawing.Color.DimGray;
+            this.titularEstadia.Location = new System.Drawing.Point(100, 126);
+            this.titularEstadia.Name = "titularEstadia";
+            this.titularEstadia.ReadOnly = true;
+            this.titularEstadia.Size = new System.Drawing.Size(508, 22);
+            this.titularEstadia.TabIndex = 104;
+            // 
+            // capacidadHabitacion
+            // 
+            this.capacidadHabitacion.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.capacidadHabitacion.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.capacidadHabitacion.ForeColor = System.Drawing.Color.DimGray;
+            this.capacidadHabitacion.Location = new System.Drawing.Point(418, 84);
+            this.capacidadHabitacion.Name = "capacidadHabitacion";
+            this.capacidadHabitacion.ReadOnly = true;
+            this.capacidadHabitacion.Size = new System.Drawing.Size(73, 22);
+            this.capacidadHabitacion.TabIndex = 105;
+            // 
+            // plazasRestantes
+            // 
+            this.plazasRestantes.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.plazasRestantes.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.plazasRestantes.ForeColor = System.Drawing.Color.DimGray;
+            this.plazasRestantes.Location = new System.Drawing.Point(535, 84);
+            this.plazasRestantes.Name = "plazasRestantes";
+            this.plazasRestantes.ReadOnly = true;
+            this.plazasRestantes.Size = new System.Drawing.Size(73, 22);
+            this.plazasRestantes.TabIndex = 106;
             // 
             // AsignarClientesEstadia
             // 
@@ -269,16 +297,18 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(704, 442);
+            this.Controls.Add(this.plazasRestantes);
+            this.Controls.Add(this.capacidadHabitacion);
+            this.Controls.Add(this.titularEstadia);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.numeroReserva);
             this.Controls.Add(this.listaClientes);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.seleccionarCliente);
             this.Controls.Add(this.nuevoCliente);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.capacidadHabitacion);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.plazasRestantes);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.titularEstadia);
             this.Controls.Add(this.atras);
             this.Controls.Add(this.limpiar);
             this.Controls.Add(this.aceptar);
@@ -291,7 +321,9 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FRBA Hotel 2018";
+            this.Activated += new System.EventHandler(this.AsignarClientesEstadia_Activated);
             ((System.ComponentModel.ISupportInitialize)(this.listaClientes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourcelistaClientes)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -304,14 +336,17 @@
         private System.Windows.Forms.Button limpiar;
         private System.Windows.Forms.Button aceptar;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ListBox titularEstadia;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ListBox plazasRestantes;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ListBox capacidadHabitacion;
         private System.Windows.Forms.Button seleccionarCliente;
         private System.Windows.Forms.Button nuevoCliente;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DataGridView listaClientes;
+        private System.Windows.Forms.BindingSource bindingSourcelistaClientes;
+        private System.Windows.Forms.TextBox numeroReserva;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox titularEstadia;
+        private System.Windows.Forms.TextBox capacidadHabitacion;
+        private System.Windows.Forms.TextBox plazasRestantes;
     }
 }
