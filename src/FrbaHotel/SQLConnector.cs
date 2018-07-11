@@ -84,6 +84,22 @@ namespace FrbaHotel
             queryCommand = null;
             return retorno;
         }
+        public SqlDataAdapter dameDataAdapter(string consulta)
+        {
+            SqlCommand sqlCommand = new SqlCommand();
+            sqlCommand.CommandTimeout = 999999999;
+            sqlCommand.Connection = this.connection;
+            sqlCommand.CommandText = consulta;
+            SqlDataAdapter dataAdapter = new SqlDataAdapter(consulta, this.connection);
+            return dataAdapter;
+        }
+        public DataTable dameDataTable(SqlDataAdapter dataAdapter)
+        {
+            DataTable dataTable = new DataTable();
+            dataTable.Locale = System.Globalization.CultureInfo.InvariantCulture;
+            dataAdapter.Fill(dataTable);
+            return dataTable;
+        }
 
 
     }

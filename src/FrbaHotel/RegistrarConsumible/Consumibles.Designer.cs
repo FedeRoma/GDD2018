@@ -40,7 +40,14 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.ListaDeConsumibles = new System.Windows.Forms.Label();
+            this.ConsumiblesARegistrar = new System.Windows.Forms.Label();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
             // 
             // textBoxPiso
@@ -127,7 +134,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(92, 384);
+            this.button1.Location = new System.Drawing.Point(92, 374);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 18;
@@ -143,6 +150,57 @@
             this.button2.TabIndex = 19;
             this.button2.Text = "GUARDAR";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(388, 374);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 22;
+            this.button3.Text = "LIMPIAR";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // ListaDeConsumibles
+            // 
+            this.ListaDeConsumibles.AutoSize = true;
+            this.ListaDeConsumibles.Location = new System.Drawing.Point(153, 176);
+            this.ListaDeConsumibles.Name = "ListaDeConsumibles";
+            this.ListaDeConsumibles.Size = new System.Drawing.Size(143, 16);
+            this.ListaDeConsumibles.TabIndex = 23;
+            this.ListaDeConsumibles.Text = "Lista de Consumibles";
+            this.ListaDeConsumibles.Click += new System.EventHandler(this.ListaDeConsumibles_Click);
+            // 
+            // ConsumiblesARegistrar
+            // 
+            this.ConsumiblesARegistrar.AutoSize = true;
+            this.ConsumiblesARegistrar.Location = new System.Drawing.Point(92, 271);
+            this.ConsumiblesARegistrar.Name = "ConsumiblesARegistrar";
+            this.ConsumiblesARegistrar.Size = new System.Drawing.Size(163, 16);
+            this.ConsumiblesARegistrar.TabIndex = 24;
+            this.ConsumiblesARegistrar.Text = "Consumibles a Registrar";
+            this.ConsumiblesARegistrar.Click += new System.EventHandler(this.label5_Click);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(152, 195);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowTemplate.Height = 24;
+            this.dataGridView1.Size = new System.Drawing.Size(369, 61);
+            this.dataGridView1.TabIndex = 25;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
+            // dataGridView2
+            // 
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Location = new System.Drawing.Point(92, 290);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.RowTemplate.Height = 24;
+            this.dataGridView2.Size = new System.Drawing.Size(489, 78);
+            this.dataGridView2.TabIndex = 26;
+            this.dataGridView2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
             // 
             // Consumibles
             // 
@@ -150,6 +208,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(704, 442);
+            this.Controls.Add(this.dataGridView2);
+            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.ConsumiblesARegistrar);
+            this.Controls.Add(this.ListaDeConsumibles);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox1);
@@ -164,7 +227,10 @@
             this.Load += new System.EventHandler(this.Consumibles_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -181,5 +247,10 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Label ListaDeConsumibles;
+        private System.Windows.Forms.Label ConsumiblesARegistrar;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dataGridView2;
     }
 }
