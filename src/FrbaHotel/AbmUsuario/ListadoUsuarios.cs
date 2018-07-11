@@ -55,7 +55,7 @@ namespace FrbaHotel.AbmUsuario
             botonModif.Name = "modif";
             listaUsuarios.Columns.Add(botonModif);
 
-            tablaUsuarios = Index.BD.consultaGetTabla("select usu_username USERNAME, usu_nombre NOMBRE,usu_apellido APELLIDO,usu_mail MAIL,usu_tel TELEFONO, usu_documento NUMERO_DOC,usu_estado HABILITA from EN_CASA_ANDABA.Usuarios");
+            tablaUsuarios = Index.BD.consultaGetTabla("select usu_username USERNAME, usu_nombre NOMBRE,usu_apellido APELLIDO,usu_mail MAIL,usu_tel TELEFONO,doc_desc TIPO_DOC ,usu_documento NUMERO_DOC,usu_fecha_nac FECHA_NAC,usu_direccion DIRECCION,rol_nombre ROL,usu_estado HABILITA from EN_CASA_ANDABA.Usuarios,EN_CASA_ANDABA.Documentos,EN_CASA_ANDABA.Roles_Usuarios,EN_CASA_ANDABA.Roles where doc_id=usu_doc_id and ryu_usu_id = usu_id and ryu_rol_id = rol_id");
             BindingSource bindingSourceListaUsuarios = new BindingSource();
             bindingSourceListaUsuarios.DataSource = tablaUsuarios;
             listaUsuarios.DataSource = bindingSourceListaUsuarios; 
@@ -112,15 +112,22 @@ namespace FrbaHotel.AbmUsuario
                 string apellido=listaUsuarios.CurrentRow.Cells[3].Value.ToString();
                 string email=listaUsuarios.CurrentRow.Cells[4].Value.ToString();
                 string telefono=listaUsuarios.CurrentRow.Cells[5].Value.ToString();
-                string numeroDoc = listaUsuarios.CurrentRow.Cells[6].Value.ToString();
-                string estado = listaUsuarios.CurrentRow.Cells[7].Value.ToString();         
-
+                string tipoDoc = listaUsuarios.CurrentRow.Cells[6].Value.ToString();
+                string numeroDoc = listaUsuarios.CurrentRow.Cells[7].Value.ToString();
+                string fechaNac = listaUsuarios.CurrentRow.Cells[8].Value.ToString();
+                string direccion = listaUsuarios.CurrentRow.Cells[9].Value.ToString();
+                string rol = listaUsuarios.CurrentRow.Cells[10].Value.ToString(); 
+                string estado = listaUsuarios.CurrentRow.Cells[11].Value.ToString(); 
                 ModifUsu = new ModificacionUsuario(username,
                                                     nombre,
                                                     apellido,
                                                     email,
                                                     telefono,
+                                                    tipoDoc,
                                                     numeroDoc,
+                                                    fechaNac,
+                                                    direccion,
+                                                    rol,
                                                     estado);
                 ModifUsu.Show();
                 this.Hide();
@@ -136,6 +143,7 @@ namespace FrbaHotel.AbmUsuario
             filtro = filtro + this.esAproximadamente("NOMBRE", nombre.Text);
             filtro = filtro + this.esAproximadamente("APELLIDO", apellido.Text);
             filtro = filtro + this.esAproximadamente("MAIL", eMail.Text);
+            filtro = filtro + this.esExactamente("ROL", rol.Text);
 
             if (filtro.Length > 0) 
             { 
