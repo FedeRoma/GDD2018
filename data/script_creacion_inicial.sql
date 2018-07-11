@@ -214,7 +214,7 @@ create procedure EN_CASA_ANDABA.altaUsuario
 go
 
 create procedure EN_CASA_ANDABA.modificacionUsuario
-	@userId int,@rol varchar(50), @hotelCalle varchar(50), @hotelNumero int, @username varchar(50), @password varchar(50), @nombre varchar(50),
+	@userId int,@rol varchar(50), @hotelCalle varchar(50), @hotelNumero int, @username varchar(50)/*, @password varchar(50)*/, @nombre varchar(50),
 	@apellido varchar(50), @email varchar(50), @tel varchar(50), @tipoDocumento varchar(50), @nroDocumento bigint,
 	@fechaNacimiento date, @direccion varchar(50), @estado bit as
 	begin
@@ -227,9 +227,9 @@ create procedure EN_CASA_ANDABA.modificacionUsuario
 				set @hotelId = (select hot_id from EN_CASA_ANDABA.Hoteles where @hotelCalle = hot_calle and @hotelNumero = hot_calle_nro)
 				
 				UPDATE EN_CASA_ANDABA.Usuarios        
-				set usu_username = @username, usu_password = hashbytes('SHA2_256', @password), usu_estado = @estado, usu_nombre = @nombre,
+				set usu_username = @username/*, usu_password = hashbytes('SHA2_256', @password)*/, usu_estado = @estado, usu_nombre = @nombre,
 					usu_apellido = @apellido, usu_mail = @email, usu_tel = @tel, usu_fecha_nac = @fechaNacimiento,
-					usu_documento = @nroDocumento, usu_direccion = @direccion, usu_doc_id = @tipoDocumento 
+					usu_documento = @nroDocumento, usu_direccion = @direccion, usu_doc_id = @tipoDocId 
 					where usu_id = @userId
 				UPDATE EN_CASA_ANDABA.Hoteles_Usuarios
 				set hyu_hot_id = @hotelId where hyu_usu_id = @userId and hyu_hot_id = @hotelId

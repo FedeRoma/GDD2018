@@ -270,7 +270,7 @@ namespace FrbaHotel.AbmUsuario
                 update = updateNro(usuId.ToString());
                 update = updateString(rol.Text);
                 update = updateString(calle);
-                update = updateString(calleNro.ToString());
+                update = updateNro(calleNro.ToString());
                 update = updateString(nombreUsuario.Text);
                 //update = updateString(usuPass);
                 update = updateString(nombre.Text);
