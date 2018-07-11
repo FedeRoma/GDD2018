@@ -7,14 +7,160 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace FrbaHotel.AbmUsuario
 {
     public partial class ListadoUsuarios : Form
     {
+        private SqlDataReader qry;
+        public static MenuAbmUsuario AbmUsu;
+        public static ModificacionUsuario ModifUsu;
+        DataTable tablaUsuarios;
+
+        private class Rol
+        {
+            public string Nombre;
+            public int Valor;
+            public Rol(int valor, string nombre)
+            {
+                Nombre = nombre;
+                Valor = valor;
+            }
+            public override string ToString()
+            {
+                return Nombre;
+            }
+        }
+
         public ListadoUsuarios()
         {
             InitializeComponent();
+
+            qry = Index.BD.consultaGetPuntero("select distinct rol_id, rol_nombre from EN_CASA_ANDABA.Roles where rol_estado = 1");
+            while (qry.Read())
+            {
+                // solo se pueden dar de Baja "Recepcionistas" y "Administradores"
+                if ((qry.GetString(1) != "Administrador General") || (qry.GetString(1) != "Guest"))
+                {
+                    rol.Items.Add(new Rol(qry.GetInt32(0), qry.GetString(1)));
+                }
+            }
+            qry.Close();
+        }
+
+        private void ListadoUsuarios_Load(object sender, EventArgs e)
+        {
+            DataGridViewButtonColumn botonModif = new DataGridViewButtonColumn();
+            botonModif.Name = "modif";
+            listaUsuarios.Columns.Add(botonModif);
+
+            tablaUsuarios = Index.BD.consultaGetTabla("select usu_username USERNAME, usu_nombre NOMBRE,usu_apellido APELLIDO,usu_mail MAIL,usu_tel TELEFONO, usu_documento NUMERO_DOC,usu_estado HABILITA from EN_CASA_ANDABA.Usuarios");
+            BindingSource bindingSourceListaUsuarios = new BindingSource();
+            bindingSourceListaUsuarios.DataSource = tablaUsuarios;
+            listaUsuarios.DataSource = bindingSourceListaUsuarios; 
+        }
+
+        private void numeroDocumento_Keypress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private string esExactamente(string col, string clave)
+        {
+            if (!string.IsNullOrEmpty(clave))
+            {
+                return col + " = '" + clave + "' and ";
+            }
+            return "";
+        }
+        private string esAproximadamente(string col, string clave)
+        {
+            if (!string.IsNullOrEmpty(clave))
+            {
+                return col + " like '%" + clave + "%' and ";
+            }
+            return "";
+        }
+
+        private void ListadoUsuarios_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            if (e.ColumnIndex >= 0 && this.listaUsuarios.Columns[e.ColumnIndex].Name == "modif" && e.RowIndex >= 0)
+            {
+                e.Paint(e.CellBounds, DataGridViewPaintParts.All);
+
+                DataGridViewButtonCell botonModif = this.listaUsuarios.Rows[e.RowIndex].Cells["modif"] as DataGridViewButtonCell;
+                Icon icono = new Icon(Environment.CurrentDirectory + @"\\pencil.ico");
+                e.Graphics.DrawIcon(icono, e.CellBounds.Left + 2, e.CellBounds.Top + 2);
+
+                this.listaUsuarios.Rows[e.RowIndex].Height = icono.Height + 5;
+                this.listaUsuarios.Columns[e.ColumnIndex].Width = icono.Width + 5;
+
+                e.Handled = true;
+            }
+        }
+
+        private void listaClientes_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (listaUsuarios.Columns[e.ColumnIndex].Name == "modif")
+            {   
+                string username=listaUsuarios.CurrentRow.Cells[1].Value.ToString();
+                string nombre=listaUsuarios.CurrentRow.Cells[2].Value.ToString();
+                string apellido=listaUsuarios.CurrentRow.Cells[3].Value.ToString();
+                string email=listaUsuarios.CurrentRow.Cells[4].Value.ToString();
+                string telefono=listaUsuarios.CurrentRow.Cells[5].Value.ToString();
+                string numeroDoc = listaUsuarios.CurrentRow.Cells[6].Value.ToString();
+                string estado = listaUsuarios.CurrentRow.Cells[7].Value.ToString();         
+
+                ModifUsu = new ModificacionUsuario(username,
+                                                    nombre,
+                                                    apellido,
+                                                    email,
+                                                    telefono,
+                                                    numeroDoc,
+                                                    estado);
+                ModifUsu.Show();
+                this.Hide();
+            }
+        }
+
+        private void buscar_Click(object sender, EventArgs e)
+        {
+            DataView vistaUsuarios = new DataView(tablaUsuarios);
+            string filtro = "";
+            //filtro = filtro + this.esExactamente("[TIPO DOCUMENTO]", tipoDocumento.Text);
+            filtro = filtro + this.esExactamente("NUMERO_DOC", nroDocumento.Text);
+            filtro = filtro + this.esAproximadamente("NOMBRE", nombre.Text);
+            filtro = filtro + this.esAproximadamente("APELLIDO", apellido.Text);
+            filtro = filtro + this.esAproximadamente("MAIL", eMail.Text);
+
+            if (filtro.Length > 0) 
+            { 
+                filtro = filtro.Remove(filtro.Length - 4); 
+            }
+
+            vistaUsuarios.RowFilter = filtro;
+            listaUsuarios.DataSource = vistaUsuarios;
+        }
+
+        private void limpiar_Click(object sender, EventArgs e)
+        {
+            //tipoDocumento.ResetText();
+            nroDocumento.Text = string.Empty;
+            nombre.Text = string.Empty;
+            apellido.Text = string.Empty;
+            eMail.Text = string.Empty;
+            nombre.Focus();
+        }
+
+        private void atras_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            AbmUsu = new MenuAbmUsuario();
+            AbmUsu.Show();
         }
     }
 }
