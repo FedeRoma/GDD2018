@@ -34,8 +34,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListadoUsuarios));
             this.listaUsuarios = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.rol = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.nroDocumento = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -62,7 +60,7 @@
             this.listaUsuarios.BackgroundColor = System.Drawing.Color.White;
             this.listaUsuarios.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.listaUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.listaUsuarios.Location = new System.Drawing.Point(89, 264);
+            this.listaUsuarios.Location = new System.Drawing.Point(89, 207);
             this.listaUsuarios.Margin = new System.Windows.Forms.Padding(4);
             this.listaUsuarios.Name = "listaUsuarios";
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -77,15 +75,13 @@
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.DimGray;
             this.listaUsuarios.RowsDefaultCellStyle = dataGridViewCellStyle2;
-            this.listaUsuarios.Size = new System.Drawing.Size(708, 211);
+            this.listaUsuarios.Size = new System.Drawing.Size(708, 268);
             this.listaUsuarios.TabIndex = 10;
             this.listaUsuarios.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listaClientes_CellClick);
             this.listaUsuarios.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.ListadoUsuarios_CellPainting);
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.rol);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.nroDocumento);
             this.groupBox1.Controls.Add(this.label4);
@@ -98,34 +94,10 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(708, 190);
+            this.groupBox1.Size = new System.Drawing.Size(708, 133);
             this.groupBox1.TabIndex = 52;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "FILTROS";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.Location = new System.Drawing.Point(369, 128);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(31, 16);
-            this.label6.TabIndex = 48;
-            this.label6.Text = "Rol";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // rol
-            // 
-            this.rol.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rol.ForeColor = System.Drawing.Color.DimGray;
-            this.rol.FormattingEnabled = true;
-            this.rol.Location = new System.Drawing.Point(372, 149);
-            this.rol.Margin = new System.Windows.Forms.Padding(4);
-            this.rol.Name = "rol";
-            this.rol.Size = new System.Drawing.Size(326, 26);
-            this.rol.TabIndex = 6;
             // 
             // label3
             // 
@@ -177,7 +149,7 @@
             // 
             this.eMail.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.eMail.ForeColor = System.Drawing.Color.DimGray;
-            this.eMail.Location = new System.Drawing.Point(11, 149);
+            this.eMail.Location = new System.Drawing.Point(372, 45);
             this.eMail.Margin = new System.Windows.Forms.Padding(4);
             this.eMail.Name = "eMail";
             this.eMail.Size = new System.Drawing.Size(349, 26);
@@ -201,7 +173,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.Black;
-            this.label7.Location = new System.Drawing.Point(8, 128);
+            this.label7.Location = new System.Drawing.Point(369, 24);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(46, 16);
@@ -313,8 +285,6 @@
 
         private System.Windows.Forms.DataGridView listaUsuarios;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ComboBox rol;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox nroDocumento;
         private System.Windows.Forms.Label label4;

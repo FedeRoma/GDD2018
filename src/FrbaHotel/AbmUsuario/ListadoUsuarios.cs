@@ -18,35 +18,11 @@ namespace FrbaHotel.AbmUsuario
         public static ModificacionUsuario ModifUsu;
         DataTable tablaUsuarios;
 
-        private class Rol
-        {
-            public string Nombre;
-            public int Valor;
-            public Rol(int valor, string nombre)
-            {
-                Nombre = nombre;
-                Valor = valor;
-            }
-            public override string ToString()
-            {
-                return Nombre;
-            }
-        }
 
         public ListadoUsuarios()
         {
             InitializeComponent();
 
-            qry = Index.BD.consultaGetPuntero("select distinct rol_id, rol_nombre from EN_CASA_ANDABA.Roles where rol_estado = 1");
-            while (qry.Read())
-            {
-                // solo se pueden dar de Baja "Recepcionistas" y "Administradores"
-                if ((qry.GetString(1) != "Administrador General") || (qry.GetString(1) != "Guest"))
-                {
-                    rol.Items.Add(new Rol(qry.GetInt32(0), qry.GetString(1)));
-                }
-            }
-            qry.Close();
         }
 
         private void ListadoUsuarios_Load(object sender, EventArgs e)
@@ -138,12 +114,12 @@ namespace FrbaHotel.AbmUsuario
         {
             DataView vistaUsuarios = new DataView(tablaUsuarios);
             string filtro = "";
-            //filtro = filtro + this.esExactamente("[TIPO DOCUMENTO]", tipoDocumento.Text);
+            
             filtro = filtro + this.esExactamente("NUMERO_DOC", nroDocumento.Text);
             filtro = filtro + this.esAproximadamente("NOMBRE", nombre.Text);
             filtro = filtro + this.esAproximadamente("APELLIDO", apellido.Text);
             filtro = filtro + this.esAproximadamente("MAIL", eMail.Text);
-            filtro = filtro + this.esExactamente("ROL", rol.Text);
+            
 
             if (filtro.Length > 0) 
             { 
