@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -47,8 +48,10 @@
             this.limpiar = new System.Windows.Forms.Button();
             this.buscar = new System.Windows.Forms.Button();
             this.listaEstadias = new System.Windows.Forms.DataGridView();
+            this.bindingSourcelistaEstadias = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.listaEstadias)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourcelistaEstadias)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -76,6 +79,7 @@
             this.piso.Name = "piso";
             this.piso.Size = new System.Drawing.Size(265, 22);
             this.piso.TabIndex = 4;
+            this.piso.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.piso_KeyPress);
             // 
             // numero
             // 
@@ -85,6 +89,7 @@
             this.numero.Name = "numero";
             this.numero.Size = new System.Drawing.Size(280, 22);
             this.numero.TabIndex = 3;
+            this.numero.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.numero_KeyPress);
             // 
             // label4
             // 
@@ -118,6 +123,7 @@
             this.habitacion.Name = "habitacion";
             this.habitacion.Size = new System.Drawing.Size(265, 22);
             this.habitacion.TabIndex = 2;
+            this.habitacion.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.habitacion_KeyPress);
             // 
             // estadia
             // 
@@ -127,6 +133,7 @@
             this.estadia.Name = "estadia";
             this.estadia.Size = new System.Drawing.Size(280, 22);
             this.estadia.TabIndex = 1;
+            this.estadia.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.estadia_KeyPress);
             // 
             // label3
             // 
@@ -177,6 +184,7 @@
             this.atras.TabIndex = 7;
             this.atras.Text = "atrás";
             this.atras.UseVisualStyleBackColor = false;
+            this.atras.Click += new System.EventHandler(this.atras_Click);
             // 
             // limpiar
             // 
@@ -190,6 +198,7 @@
             this.limpiar.TabIndex = 6;
             this.limpiar.Text = "limpiar datos";
             this.limpiar.UseVisualStyleBackColor = false;
+            this.limpiar.Click += new System.EventHandler(this.limpiar_Click);
             // 
             // buscar
             // 
@@ -203,6 +212,7 @@
             this.buscar.TabIndex = 5;
             this.buscar.Text = "buscar";
             this.buscar.UseVisualStyleBackColor = false;
+            this.buscar.Click += new System.EventHandler(this.buscar_Click);
             // 
             // listaEstadias
             // 
@@ -252,6 +262,8 @@
             this.listaEstadias.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.listaEstadias.Size = new System.Drawing.Size(566, 207);
             this.listaEstadias.TabIndex = 111;
+            this.listaEstadias.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listaEstadias_CellClick);
+            this.listaEstadias.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.listaEstadias_CellPainting);
             // 
             // CheckOut
             // 
@@ -273,9 +285,11 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FRBA Hotel 2018";
+            this.Load += new System.EventHandler(this.CheckOut_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.listaEstadias)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourcelistaEstadias)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -297,5 +311,6 @@
         private System.Windows.Forms.Button limpiar;
         private System.Windows.Forms.Button buscar;
         private System.Windows.Forms.DataGridView listaEstadias;
+        private System.Windows.Forms.BindingSource bindingSourcelistaEstadias;
     }
 }

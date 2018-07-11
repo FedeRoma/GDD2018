@@ -47,14 +47,6 @@ namespace FrbaHotel.AbmHotel
             }
             return "";
         }
-        private string esAproximadamente(string col, string clave)
-        {
-            if (!string.IsNullOrEmpty(clave))
-            {
-                return col + " like '%" + clave + "%' and ";
-            }
-            return "";
-        }
 
         private void listaHoteles_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
