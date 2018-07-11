@@ -66,7 +66,7 @@ namespace FrbaHotel.RegistrarEstadia
                     return;
                 }
 
-                qry = Index.BD.consultaGetPuntero("select HO.hot_id HO.hot_nombre from EN_CASA_ANDABA.Habitaciones HA, EN_CASA_ANDABA.Hoteles HO, EN_CASA_ANDABA.Reservas_Habitaciones RH where RH.ryh_hab_id = HA.hab_id and HA.hab_hot_id = HO.hot_id and RH.ryh_res_id = " + numeroReserva.Text);
+                qry = Index.BD.consultaGetPuntero("select hot_id hot_nombre from EN_CASA_ANDABA.Habitaciones HA, EN_CASA_ANDABA.Hoteles HO, EN_CASA_ANDABA.Reservas_Habitaciones RH where RH.ryh_hab_id = HA.hab_id and HA.hab_hot_id = HO.hot_id and RH.ryh_res_id = " + numeroReserva.Text);
                 int hotelID = 0;
                 if (qry.Read())
                 {
@@ -81,17 +81,27 @@ namespace FrbaHotel.RegistrarEstadia
                 }
                 if (hotelID.ToString() != Index.hotel)
                 {
-                    MessageBox.Show("#error: La reserva no pertenece a este hotel");
+                    MessageBox.Show("#error: la reserva no pertenece a este hotel");
                     return;
                 }
 
-                int estadia = Index.BD.consultaGetInt("exec EN_CASA_ANDABA.altaCheckInEstadia " + numeroReserva.Text + ", " + Index.usuarioID + ", " + fechaInicioReserva.ToString("yyyyMMdd HH:mm:ss"));
+                int estadia = Index.BD.consultaGetInt("exec EN_CASA_ANDABA.altaCheckInEstadia " + numeroReserva.Text + ", " + Index.usuarioID + ", '" + fechaInicioReserva.ToString("yyyyMMdd HH:mm:ss") +"'");
                 if (estadia == 0)
                 {
                     MessageBox.Show("#error!");
                     return;
                 }
                 MessageBox.Show("CheckIn realizado correctamente");
+
+                int resultado = Index.BD.consultaGetInt("exec EN_CASA_ANDABA.altaFactura " + estadia.ToString() + ", 0, '" + DateTime.Today.ToString("yyyyMMdd HH:mm:ss") + "'");
+                if (resultado == 0)
+                {
+                    MessageBox.Show("#error: factura ya realizada");
+                    return;
+                }
+                MessageBox.Show("La factura se ha generado correctamente");
+                this.Close();
+
                 AsignarClientesEstadia ClientesEstadia = new AsignarClientesEstadia(numeroReserva.Text, estadia.ToString());
                 ClientesEstadia.Show();
                 this.Close();

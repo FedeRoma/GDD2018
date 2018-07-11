@@ -150,7 +150,7 @@ namespace FrbaHotel.FacturacionEstadia
             {
                 int medioPagoID = Index.BD.consultaGetInt("select med_id from EN_CASA_ANDABA.MediosPago where med_desc = '" + formasDePago.Text + "'");
 
-                int resultado = Index.BD.consultaGetInt("exec EN_CASA_ANDABA.altaFactura " + estadia.Text + ", " + medioPagoID + ", '" + DateTime.Today.ToString("yyyyMMdd HH:mm:ss") + "'");
+                int resultado = Index.BD.consultaGetInt("exec EN_CASA_ANDABA.modificacionFactura " + estadia.Text + ", " + medioPagoID + ", '" + DateTime.Today.ToString("yyyyMMdd HH:mm:ss") + "'");
                 if (resultado == 0)
                 {
                     MessageBox.Show("#error!");
