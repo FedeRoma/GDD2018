@@ -15,13 +15,11 @@ namespace FrbaHotel.AbmUsuario
     {
         private SqlDataReader qry;
         public static ListadoUsuarios ListadoUsu;
-        bool inconsistencias = false;
         string usernameUsuario;
         int usuId = 0;
         String calle = "";
         int calleNro = 0;
         string update = "";
-
 
         private class TipoDocumento
         {
@@ -94,7 +92,7 @@ namespace FrbaHotel.AbmUsuario
             eMail.Text = emailU;
             telefono.Text = telefonoU;
             nombreUsuario.Text = usernameU;
-            fechaNacimiento.Text = fechaNacU;
+            fechaNacimiento.Value = Convert.ToDateTime(fechaNacU);
             direccion.Text = direccionU;
             if (estadoU == "True")
             {
@@ -110,13 +108,7 @@ namespace FrbaHotel.AbmUsuario
                 e.Handled = true;
             }
         }
-        private void calleNumero_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-        }
+
         private bool checkCampos()
         {
             bool inconsistencias = false;
@@ -162,16 +154,6 @@ namespace FrbaHotel.AbmUsuario
                 alerta = alerta + "Debe ingresar un nombre de usuario válido\n";
                 inconsistencias = true;
             }
-            /*if (string.IsNullOrEmpty(clave.Text))
-            {
-                alerta = alerta + "Debe ingresar una contraseña válida\n";
-                inconsistencias = true;
-            }
-            if (clave.Text != confirmacionClave.Text)
-            {
-                alerta = alerta + "Debe confirmar la contraseña correctamente\n";
-                inconsistencias = true;
-            }*/
             if (string.IsNullOrEmpty(direccion.Text))
             {
                 alerta = alerta + "Debe ingresar una dirección válida\n";
@@ -250,29 +232,12 @@ namespace FrbaHotel.AbmUsuario
                     calleNro = qry.GetInt32(1);
                 }
                 qry.Close();
-                /*
-                @userId int,
-		        @rol varchar(50), 
-		        @hotelCalle varchar(50), 
-		        @hotelNumero int, 
-		        @username varchar(50), 
-		        @nombre varchar(50),
-		        @apellido varchar(50), 
-		        @email varchar(50), 
-		        @tel varchar(50), 
-		        @tipoDocumento varchar(50), 
-		        @nroDocumento bigint,
-		        @fechaNacimiento date, 
-		        @direccion varchar(50), 
-		        @estado bit
-                 * */
                 update = "exec EN_CASA_ANDABA.modificacionUsuario ";
                 update = updateNro(usuId.ToString());
                 update = updateString(rol.Text);
                 update = updateString(calle);
                 update = updateNro(calleNro.ToString());
                 update = updateString(nombreUsuario.Text);
-                //update = updateString(usuPass);
                 update = updateString(nombre.Text);
                 update = updateString(apellido.Text);
                 update = updateString(eMail.Text);
@@ -322,8 +287,6 @@ namespace FrbaHotel.AbmUsuario
             ListadoUsu = new ListadoUsuarios();
             ListadoUsu.Show();
         }
-
-
 
     }
 }

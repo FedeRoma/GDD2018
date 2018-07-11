@@ -31,36 +31,10 @@ namespace FrbaHotel.AbmUsuario
                 return Nombre;
             }
         }
-
-        private class Rol
-        {
-            public string Nombre;
-            public int Valor;
-            public Rol(int valor, string nombre)
-            {
-                Nombre = nombre;
-                Valor = valor;
-            }
-            public override string ToString()
-            {
-                return Nombre;
-            }
-        }
-
-
+        
         public BajaUsuario()
         {
             InitializeComponent();
-            qry = Index.BD.consultaGetPuntero("select distinct rol_id, rol_nombre from EN_CASA_ANDABA.Roles where rol_estado = 1");
-            while (qry.Read())
-            {
-                // solo se pueden dar de Baja "Recepcionistas" y "Administradores"
-                if ((qry.GetString(1) != "Administrador General") || (qry.GetString(1) != "Guest"))
-                {
-                    rol.Items.Add(new Rol(qry.GetInt32(0), qry.GetString(1)));
-                }
-            }
-            qry.Close();
         }
 
         private void BajaUsuario_Load(object sender, EventArgs e)
@@ -129,15 +103,7 @@ namespace FrbaHotel.AbmUsuario
 
                 string username = listaUsuarios.CurrentRow.Cells[1].Value.ToString();
                 string eMail = listaUsuarios.CurrentRow.Cells[4].Value.ToString();
-                /*
-                qry = Index.BD.consultaGetPuntero("select usu_username USERNAME from EN_CASA_ANDABA.Usuarios where usu_mail = '" + eMail + "'");
-                if (qry.Read())
-                {
-                    username = qry.GetString(0);
-                    
-                }
-                qry.Close();
-                */
+
                 if (MessageBox.Show("Esta seguro que quiere inhabilitar el usuario?", "AVISO", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     qry = Index.BD.consultaGetPuntero("update EN_CASA_ANDABA.Usuarios set usu_estado=0 where usu_username = '" + username + "'");
