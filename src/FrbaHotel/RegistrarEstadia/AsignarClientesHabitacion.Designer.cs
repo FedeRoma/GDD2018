@@ -36,18 +36,17 @@
             this.label7 = new System.Windows.Forms.Label();
             this.habitacion = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.numeroHabitacion = new System.Windows.Forms.ListBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.pisoHabitacion = new System.Windows.Forms.ListBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.tipoHabitacion = new System.Windows.Forms.ListBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.capacidadHabitacion = new System.Windows.Forms.ListBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.atras = new System.Windows.Forms.Button();
-            this.limpiar = new System.Windows.Forms.Button();
+            this.cancelar = new System.Windows.Forms.Button();
             this.aceptar = new System.Windows.Forms.Button();
             this.listaClientes = new System.Windows.Forms.DataGridView();
+            this.numeroHabitacion = new System.Windows.Forms.TextBox();
+            this.pisoHabitacion = new System.Windows.Forms.TextBox();
+            this.tipoHabitacion = new System.Windows.Forms.TextBox();
+            this.capacidadHabitacion = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.listaClientes)).BeginInit();
             this.SuspendLayout();
             // 
@@ -56,7 +55,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.Black;
-            this.label7.Location = new System.Drawing.Point(117, 132);
+            this.label7.Location = new System.Drawing.Point(117, 110);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(63, 14);
             this.label7.TabIndex = 87;
@@ -68,10 +67,11 @@
             this.habitacion.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.habitacion.ForeColor = System.Drawing.Color.DimGray;
             this.habitacion.FormattingEnabled = true;
-            this.habitacion.Location = new System.Drawing.Point(120, 149);
+            this.habitacion.Location = new System.Drawing.Point(119, 127);
             this.habitacion.Name = "habitacion";
             this.habitacion.Size = new System.Drawing.Size(262, 24);
             this.habitacion.TabIndex = 1;
+            this.habitacion.SelectedIndexChanged += new System.EventHandler(this.habitacion_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -85,131 +85,67 @@
             this.label1.Text = "ASIGNAR CLIENTES A HABITACION";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // numeroHabitacion
-            // 
-            this.numeroHabitacion.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.numeroHabitacion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.numeroHabitacion.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numeroHabitacion.ForeColor = System.Drawing.Color.DimGray;
-            this.numeroHabitacion.FormattingEnabled = true;
-            this.numeroHabitacion.ItemHeight = 18;
-            this.numeroHabitacion.Location = new System.Drawing.Point(436, 92);
-            this.numeroHabitacion.Name = "numeroHabitacion";
-            this.numeroHabitacion.Size = new System.Drawing.Size(68, 20);
-            this.numeroHabitacion.TabIndex = 101;
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(433, 75);
+            this.label5.Location = new System.Drawing.Point(117, 68);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(51, 14);
             this.label5.TabIndex = 102;
             this.label5.Text = "Numero";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // pisoHabitacion
-            // 
-            this.pisoHabitacion.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.pisoHabitacion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pisoHabitacion.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pisoHabitacion.ForeColor = System.Drawing.Color.DimGray;
-            this.pisoHabitacion.FormattingEnabled = true;
-            this.pisoHabitacion.ItemHeight = 18;
-            this.pisoHabitacion.Location = new System.Drawing.Point(510, 92);
-            this.pisoHabitacion.Name = "pisoHabitacion";
-            this.pisoHabitacion.Size = new System.Drawing.Size(78, 20);
-            this.pisoHabitacion.TabIndex = 103;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(507, 75);
+            this.label2.Location = new System.Drawing.Point(196, 68);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(31, 14);
             this.label2.TabIndex = 104;
             this.label2.Text = "Piso";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // tipoHabitacion
-            // 
-            this.tipoHabitacion.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.tipoHabitacion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tipoHabitacion.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tipoHabitacion.ForeColor = System.Drawing.Color.DimGray;
-            this.tipoHabitacion.FormattingEnabled = true;
-            this.tipoHabitacion.ItemHeight = 18;
-            this.tipoHabitacion.Location = new System.Drawing.Point(436, 132);
-            this.tipoHabitacion.Name = "tipoHabitacion";
-            this.tipoHabitacion.Size = new System.Drawing.Size(152, 20);
-            this.tipoHabitacion.TabIndex = 105;
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(433, 115);
+            this.label3.Location = new System.Drawing.Point(432, 68);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(31, 14);
             this.label3.TabIndex = 106;
             this.label3.Text = "Tipo";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // capacidadHabitacion
-            // 
-            this.capacidadHabitacion.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.capacidadHabitacion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.capacidadHabitacion.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.capacidadHabitacion.ForeColor = System.Drawing.Color.DimGray;
-            this.capacidadHabitacion.FormattingEnabled = true;
-            this.capacidadHabitacion.ItemHeight = 18;
-            this.capacidadHabitacion.Location = new System.Drawing.Point(436, 172);
-            this.capacidadHabitacion.Name = "capacidadHabitacion";
-            this.capacidadHabitacion.Size = new System.Drawing.Size(152, 20);
-            this.capacidadHabitacion.TabIndex = 107;
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(433, 155);
+            this.label4.Location = new System.Drawing.Point(432, 110);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(63, 14);
             this.label4.TabIndex = 108;
             this.label4.Text = "Capacidad";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // atras
+            // cancelar
             // 
-            this.atras.BackColor = System.Drawing.Color.DimGray;
-            this.atras.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.atras.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.atras.ForeColor = System.Drawing.Color.White;
-            this.atras.Location = new System.Drawing.Point(12, 386);
-            this.atras.Name = "atras";
-            this.atras.Size = new System.Drawing.Size(101, 44);
-            this.atras.TabIndex = 4;
-            this.atras.Text = "atrás";
-            this.atras.UseVisualStyleBackColor = false;
-            // 
-            // limpiar
-            // 
-            this.limpiar.BackColor = System.Drawing.Color.White;
-            this.limpiar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.limpiar.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.limpiar.ForeColor = System.Drawing.Color.DimGray;
-            this.limpiar.Location = new System.Drawing.Point(119, 386);
-            this.limpiar.Name = "limpiar";
-            this.limpiar.Size = new System.Drawing.Size(101, 44);
-            this.limpiar.TabIndex = 3;
-            this.limpiar.Text = "limpiar datos";
-            this.limpiar.UseVisualStyleBackColor = false;
+            this.cancelar.BackColor = System.Drawing.Color.DimGray;
+            this.cancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cancelar.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cancelar.ForeColor = System.Drawing.Color.White;
+            this.cancelar.Location = new System.Drawing.Point(12, 386);
+            this.cancelar.Name = "cancelar";
+            this.cancelar.Size = new System.Drawing.Size(101, 44);
+            this.cancelar.TabIndex = 4;
+            this.cancelar.Text = "cancelar";
+            this.cancelar.UseVisualStyleBackColor = false;
+            this.cancelar.Click += new System.EventHandler(this.cancelar_Click);
             // 
             // aceptar
             // 
@@ -223,6 +159,7 @@
             this.aceptar.TabIndex = 2;
             this.aceptar.Text = "aceptar";
             this.aceptar.UseVisualStyleBackColor = false;
+            this.aceptar.Click += new System.EventHandler(this.aceptar_Click);
             // 
             // listaClientes
             // 
@@ -253,7 +190,7 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.listaClientes.DefaultCellStyle = dataGridViewCellStyle2;
-            this.listaClientes.Location = new System.Drawing.Point(120, 198);
+            this.listaClientes.Location = new System.Drawing.Point(120, 157);
             this.listaClientes.Name = "listaClientes";
             this.listaClientes.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -270,8 +207,53 @@
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle4.ForeColor = System.Drawing.Color.DimGray;
             this.listaClientes.RowsDefaultCellStyle = dataGridViewCellStyle4;
-            this.listaClientes.Size = new System.Drawing.Size(468, 182);
+            this.listaClientes.Size = new System.Drawing.Size(468, 217);
             this.listaClientes.TabIndex = 110;
+            this.listaClientes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listaClientes_CellClick);
+            // 
+            // numeroHabitacion
+            // 
+            this.numeroHabitacion.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.numeroHabitacion.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numeroHabitacion.ForeColor = System.Drawing.Color.DimGray;
+            this.numeroHabitacion.Location = new System.Drawing.Point(120, 85);
+            this.numeroHabitacion.Name = "numeroHabitacion";
+            this.numeroHabitacion.ReadOnly = true;
+            this.numeroHabitacion.Size = new System.Drawing.Size(73, 22);
+            this.numeroHabitacion.TabIndex = 111;
+            // 
+            // pisoHabitacion
+            // 
+            this.pisoHabitacion.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.pisoHabitacion.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pisoHabitacion.ForeColor = System.Drawing.Color.DimGray;
+            this.pisoHabitacion.Location = new System.Drawing.Point(199, 85);
+            this.pisoHabitacion.Name = "pisoHabitacion";
+            this.pisoHabitacion.ReadOnly = true;
+            this.pisoHabitacion.Size = new System.Drawing.Size(73, 22);
+            this.pisoHabitacion.TabIndex = 112;
+            // 
+            // tipoHabitacion
+            // 
+            this.tipoHabitacion.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.tipoHabitacion.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tipoHabitacion.ForeColor = System.Drawing.Color.DimGray;
+            this.tipoHabitacion.Location = new System.Drawing.Point(435, 85);
+            this.tipoHabitacion.Name = "tipoHabitacion";
+            this.tipoHabitacion.ReadOnly = true;
+            this.tipoHabitacion.Size = new System.Drawing.Size(152, 22);
+            this.tipoHabitacion.TabIndex = 113;
+            // 
+            // capacidadHabitacion
+            // 
+            this.capacidadHabitacion.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.capacidadHabitacion.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.capacidadHabitacion.ForeColor = System.Drawing.Color.DimGray;
+            this.capacidadHabitacion.Location = new System.Drawing.Point(435, 127);
+            this.capacidadHabitacion.Name = "capacidadHabitacion";
+            this.capacidadHabitacion.ReadOnly = true;
+            this.capacidadHabitacion.Size = new System.Drawing.Size(152, 22);
+            this.capacidadHabitacion.TabIndex = 114;
             // 
             // AsignarClientesHabitacion
             // 
@@ -279,17 +261,16 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(704, 442);
-            this.Controls.Add(this.listaClientes);
-            this.Controls.Add(this.atras);
-            this.Controls.Add(this.limpiar);
-            this.Controls.Add(this.aceptar);
             this.Controls.Add(this.capacidadHabitacion);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.tipoHabitacion);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.pisoHabitacion);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.numeroHabitacion);
+            this.Controls.Add(this.listaClientes);
+            this.Controls.Add(this.cancelar);
+            this.Controls.Add(this.aceptar);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label7);
@@ -313,17 +294,16 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox habitacion;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ListBox numeroHabitacion;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ListBox pisoHabitacion;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ListBox tipoHabitacion;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ListBox capacidadHabitacion;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button atras;
-        private System.Windows.Forms.Button limpiar;
+        private System.Windows.Forms.Button cancelar;
         private System.Windows.Forms.Button aceptar;
         private System.Windows.Forms.DataGridView listaClientes;
+        private System.Windows.Forms.TextBox numeroHabitacion;
+        private System.Windows.Forms.TextBox pisoHabitacion;
+        private System.Windows.Forms.TextBox tipoHabitacion;
+        private System.Windows.Forms.TextBox capacidadHabitacion;
     }
 }

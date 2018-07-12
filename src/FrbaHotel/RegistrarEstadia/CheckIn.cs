@@ -91,7 +91,10 @@ namespace FrbaHotel.RegistrarEstadia
                     MessageBox.Show("#error!");
                     return;
                 }
-                MessageBox.Show("CheckIn realizado correctamente");
+                else
+                {
+                    MessageBox.Show("CheckIn realizado correctamente");
+                }
 
                 int resultado = Index.BD.consultaGetInt("exec EN_CASA_ANDABA.altaFactura " + estadia.ToString() + ", 0, '" + DateTime.Today.ToString("yyyyMMdd HH:mm:ss") + "'");
                 if (resultado == 0)

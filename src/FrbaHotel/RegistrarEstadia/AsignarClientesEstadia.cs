@@ -17,7 +17,7 @@ namespace FrbaHotel.RegistrarEstadia
         public static MenuRegistrarEstadia MenuEstadia;
         public static RegistrarEstadia.AsignarClientesHabitacion AsignarCliHab;
         string reservaID, estadiaID;
-        int plazasTotales, plazasDisponibles;
+        public static int plazasTotales, plazasDisponibles;
         int clienteID;
         string clienteNombre, clienteApellido;
         public static DataTable tablaClientes;
