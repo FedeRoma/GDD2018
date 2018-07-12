@@ -16,6 +16,10 @@ namespace FrbaHotel.AbmHabitacion
         private SqlDataReader qry;
         public static MenuAbmHabitacion AbmHab;
         DataTable tablaHabitaciones;
+        String estaReservada = "0";
+        int resultado = 0;
+        
+        
 
         private class TipoHabitacion
         {
@@ -118,9 +122,23 @@ namespace FrbaHotel.AbmHabitacion
 
                 if (MessageBox.Show("Esta seguro que quiere inhabilitar la habitación?", "AVISO", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    qry = Index.BD.consultaGetPuntero("update EN_CASA_ANDABA.Habitaciones set hab_habilitado = 0 where hab_id = " + habitacionID.ToString());
+                    DateTime desde = DateTime.Today;
+                    DateTime hasta = desde.AddYears(10);
+                    //qry = Index.BD.consultaGetPuntero("select EN_CASA_ANDABA.estaReservadaHabitacion(" + desde.Date.ToString() + "," + hasta.Date.ToString() + "," + habitacionID.ToString() + ")");
+                    //qry = Index.BD.consultaGetPuntero("select EN_CASA_ANDABA.estaReservadaHabitacion ('" + desde.Date.ToString() + "','" + hasta.Date.ToString() + "'," + habitacionID.ToString() + ")");
+                    int resultado = Index.BD.consultaGetInt("select EN_CASA_ANDABA.estaReservadaHabitacion ('" + desde.Date.ToString() + "','" + hasta.Date.ToString() + "'," + habitacionID.ToString() + ")");
+
+                    if (resultado == 0)
+                    {
+                        qry = Index.BD.consultaGetPuntero("update EN_CASA_ANDABA.Habitaciones set hab_habilitado = 0 where hab_id = " + habitacionID.ToString());
+                        qry.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("La Habitacion no se puede eliminar ya que tiene reservas", "AVISO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
-                qry.Close();
+                
 
                 tablaHabitaciones = Index.BD.consultaGetTabla("select Ha.hab_numero NUMERO, Ha.hab_piso PISO, Ha.hab_vista VISTA, T.tip_nombre TIPO, Ha.hab_desc DESCRIPCION, Ha.hab_habilitado HABILITADO from	EN_CASA_ANDABA.Habitaciones Ha, EN_CASA_ANDABA.Hoteles H, EN_CASA_ANDABA.TiposHabitaciones T where Ha.hab_hot_id = H.hot_id and T.tip_id = Ha.hab_tip_id and H.hot_id = " + Index.hotel);
                 BindingSource bindingSourceListaHabitaciones = new BindingSource();
