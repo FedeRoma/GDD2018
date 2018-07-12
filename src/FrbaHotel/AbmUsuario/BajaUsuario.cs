@@ -106,10 +106,18 @@ namespace FrbaHotel.AbmUsuario
 
                 if (MessageBox.Show("Esta seguro que quiere inhabilitar el usuario?", "AVISO", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    qry = Index.BD.consultaGetPuntero("update EN_CASA_ANDABA.Usuarios set usu_estado=0 where usu_username = '" + username + "'");
-                    MessageBox.Show("Usuario Inhabilitado", "AVISO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (Index.rol != "Administrador General")
+                    {
+                        qry = Index.BD.consultaGetPuntero("update EN_CASA_ANDABA.Usuarios set usu_estado=0 where usu_username = '" + username + "'");
+                        MessageBox.Show("Usuario Inhabilitado", "AVISO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        qry.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No podes dar de baja un usuario administrador general", "AVISO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
-                qry.Close();
+                
                 
                 tablaUsuario = Index.BD.consultaGetTabla("select usu_username USERNAME, usu_nombre NOMBRE,usu_apellido APELLIDO,usu_mail MAIL,usu_tel TELEFONO, usu_documento NUMERO_DOC,usu_estado HABILITA from EN_CASA_ANDABA.Usuarios");
                 BindingSource bindingSourceListaUsuarios = new BindingSource();
