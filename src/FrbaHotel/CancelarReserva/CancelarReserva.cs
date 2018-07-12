@@ -18,13 +18,10 @@ namespace FrbaHotel.CancelarReserva
         int noshowCancID = 0;
         int usuCancID = 0;
         int cliCancID = 0;
-        DateTime fechaCanc, hoy;
 
         public CancelarReserva()
         {
             InitializeComponent();
-            codigoReserva.Clear();
-            codigoReserva.Focus();
 
             qry = Index.BD.consultaGetPuntero("select estados_id from EN_CASA_ANDABA.Estados where estados_desc = 'RESERVA CANCELADA POR NO-SHOW'");
             qry.Read();
@@ -40,6 +37,8 @@ namespace FrbaHotel.CancelarReserva
             qry.Read();
             cliCancID = qry.GetInt32(0);
             qry.Close();
+
+            fechaCancelacion.Value = DateTime.Today;
         }
 
         private void codigoReserva_KeyPress(object sender, KeyPressEventArgs e)
@@ -61,12 +60,14 @@ namespace FrbaHotel.CancelarReserva
                 inconsistencias = true;
             }
 
-            fechaCanc = Convert.ToDateTime(fechaCancelacion.Value);
-            hoy = DateTime.Today;
-
-            if (DateTime.Compare(fechaCanc, hoy) >= 0)
+            if (string.IsNullOrEmpty(fechaCancelacion.Text))
             {
-                alerta = alerta + "Debe ingresar una fecha de cancelación válida";
+                alerta = alerta + "Debe ingresar una fecha de cancelación válida\n";
+                inconsistencias = true;
+            }
+            if (string.IsNullOrEmpty(motivoCancelacion.Text))
+            {
+                alerta = alerta + "Debe ingresar un motivo de cancelación válido";
                 inconsistencias = true;
             }
 
@@ -99,28 +100,27 @@ namespace FrbaHotel.CancelarReserva
                         return;
                     }
 
-                    qry = Index.BD.consultaGetPuntero("exec EN_CASA_ANDABA.bajaReserva " + codigoReserva.Text + ", " + Index.usuarioID + ", " + estado + ", '" + fechaCanc.Date.ToString("yyyyMMdd HH:mm:ss") + "', '" + motivoCancelacion.Text + "'");
-                    if (qry.Read())
+                    if (Index.rol == "Guest")
                     {
-                        if (qry.GetInt32(0) == 1)
-                        {
-                            MessageBox.Show("La reserva se ha cancelado con éxito");
-                            return;
-                        }
-                        else
-                        {
-                            MessageBox.Show("#error: no se ha podido realizar la operación");
-                            return;
-                        }
+                        estado = 5;
                     }
-                    qry.Close();
+                    else
+                    {
+                        estado = 4;
+                    }
+
+                    int resultado = Index.BD.consultaGetInt("exec EN_CASA_ANDABA.bajaReserva " + codigoReserva.Text + ", " + Index.usuarioID + ", " + estado + ", '" + fechaCancelacion.Value.Date.ToString("yyyyMMdd HH:mm:ss") + "', '" + motivoCancelacion.Text + "'");
+                    if (resultado == 0)
+                    {
+                        MessageBox.Show("#error: no se ha podido realizar la operación");
+                        return;
+                    }
+                    else
+                    {
+                        MessageBox.Show("La reserva se ha cancelado con éxito");
+                        return;
+                    }
                 }
-                qry.Close();
-            }
-            else
-            {
-                MessageBox.Show("#error: no se ha encontrado una reserva con ese número");
-                return;
             }
         }
 
