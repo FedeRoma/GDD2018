@@ -45,6 +45,7 @@
             this.ConsumiblesARegistrar = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -134,7 +135,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(92, 374);
+            this.button1.Location = new System.Drawing.Point(92, 407);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 18;
@@ -144,7 +145,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(495, 374);
+            this.button2.Location = new System.Drawing.Point(495, 407);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(86, 23);
             this.button2.TabIndex = 19;
@@ -154,7 +155,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(388, 374);
+            this.button3.Location = new System.Drawing.Point(388, 407);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 22;
@@ -165,7 +166,7 @@
             // ListaDeConsumibles
             // 
             this.ListaDeConsumibles.AutoSize = true;
-            this.ListaDeConsumibles.Location = new System.Drawing.Point(153, 176);
+            this.ListaDeConsumibles.Location = new System.Drawing.Point(91, 209);
             this.ListaDeConsumibles.Name = "ListaDeConsumibles";
             this.ListaDeConsumibles.Size = new System.Drawing.Size(143, 16);
             this.ListaDeConsumibles.TabIndex = 23;
@@ -175,7 +176,7 @@
             // ConsumiblesARegistrar
             // 
             this.ConsumiblesARegistrar.AutoSize = true;
-            this.ConsumiblesARegistrar.Location = new System.Drawing.Point(92, 271);
+            this.ConsumiblesARegistrar.Location = new System.Drawing.Point(89, 304);
             this.ConsumiblesARegistrar.Name = "ConsumiblesARegistrar";
             this.ConsumiblesARegistrar.Size = new System.Drawing.Size(163, 16);
             this.ConsumiblesARegistrar.TabIndex = 24;
@@ -185,22 +186,33 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(152, 195);
+            this.dataGridView1.Location = new System.Drawing.Point(94, 228);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(369, 61);
+            this.dataGridView1.Size = new System.Drawing.Size(487, 61);
             this.dataGridView1.TabIndex = 25;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // dataGridView2
             // 
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(92, 290);
+            this.dataGridView2.Location = new System.Drawing.Point(92, 323);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowTemplate.Height = 24;
             this.dataGridView2.Size = new System.Drawing.Size(489, 78);
             this.dataGridView2.TabIndex = 26;
             this.dataGridView2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(470, 176);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(103, 20);
+            this.checkBox1.TabIndex = 27;
+            this.checkBox1.Text = "All Inclusive";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // Consumibles
             // 
@@ -208,6 +220,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(704, 442);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.ConsumiblesARegistrar);
@@ -252,5 +265,6 @@
         private System.Windows.Forms.Label ConsumiblesARegistrar;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }

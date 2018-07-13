@@ -31,7 +31,9 @@ namespace FrbaHotel.RegistrarConsumible
             botonRegCons.Name = "regCons";
             listaEstadias.Columns.Add(botonRegCons);
 
-            tablaEstadias = Index.BD.consultaGetTabla("select distinct CE.cye_cye_id IdEstadia, CE. cye_hab_id IdHabitacion, H. hab_numero NUMERO, H.hab_piso PISO from EN_CASA_ANDABA.Estadias E, EN_CASA_ANDABA.Clientes_Estadias CE, EN_CASA_ANDABA.Habitaciones H where CE. cye_cye_id = E. est_res_id and CE. cye_hab_id=H.hab_id and H. hab_hot_id =" + Index.hotel);
+            tablaEstadias = Index.BD.consultaGetTabla("select distinct CE.cye_cye_id IdEstadia, CE. cye_hab_id IdHabitacion, H.hab_numero NUMERO, H.hab_piso PISO, R.res_reg_id Regimen from EN_CASA_ANDABA.Estadias E, EN_CASA_ANDABA.Clientes_Estadias CE, EN_CASA_ANDABA.Habitaciones H,EN_CASA_ANDABA.Reservas R  where CE. cye_est_res_id = E. est_res_id and CE. cye_hab_id=H.hab_id and (cye_cye_id)is not NULL and CE.cye_hab_hot_id=H.hab_hot_id and H.hab_hot_id =" + Index.hotel);
+            
+
 
             BindingSource bindingSourceListaEstadias = new BindingSource();
             bindingSourceListaEstadias.DataSource = tablaEstadias;
@@ -105,9 +107,11 @@ namespace FrbaHotel.RegistrarConsumible
                 string IdEstadia = listaEstadias.CurrentRow.Cells[1].Value.ToString();
                 string IdHabitacion = listaEstadias.CurrentRow.Cells[2].Value.ToString();
                 string NUMERO = listaEstadias.CurrentRow.Cells[3].Value.ToString();
-                string PISO = listaEstadias.CurrentRow.Cells[4].Value.ToString();            
+                string PISO = listaEstadias.CurrentRow.Cells[4].Value.ToString();
+                string Regimen = listaEstadias.CurrentRow.Cells[5].Value.ToString();
+                
 
-                RegConsumible = new RegistrarConsumible.Consumibles(IdEstadia, IdHabitacion, NUMERO, PISO);
+                RegConsumible = new RegistrarConsumible.Consumibles(IdEstadia, IdHabitacion, NUMERO, PISO,Regimen);
                 RegConsumible.Show();
                 this.Hide();
             }

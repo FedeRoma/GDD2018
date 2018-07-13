@@ -18,9 +18,10 @@ namespace FrbaHotel.RegistrarConsumible
         private SqlDataReader resultado;
         SqlDataAdapter sAdapter;
         DataTable tablaConsu;
+        private SqlDataReader qry;
        
         public static RegistrarConsumible.RegistrarConsumibles RegCons;
-        public Consumibles(string estadia, string habitacion, string numero, string piso)
+        public Consumibles(string estadia, string habitacion, string numero, string piso,String Regimen)
         {
             InitializeComponent();
             textBoxIdEstadia.Text = estadia;
@@ -35,6 +36,16 @@ namespace FrbaHotel.RegistrarConsumible
             bSource2.DataSource = tablaReg;
             //set the DataGridView DataSource
             dataGridView2.DataSource = bSource2;
+            Int32 aux = Convert.ToInt32(Regimen);
+            checkBox1.Enabled = false;
+
+            
+            if (aux == 4)
+            {
+                checkBox1.Checked = true;
+            }
+            
+
 
         }
 
@@ -54,6 +65,7 @@ namespace FrbaHotel.RegistrarConsumible
             bSource.DataSource = tablaConsu;
             //set the DataGridView DataSource
             dataGridView1.DataSource = bSource;
+
             
 
         }
@@ -85,22 +97,7 @@ namespace FrbaHotel.RegistrarConsumible
 
         }
 
-        private void listaConsumibles_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.ColumnIndex == 0)
-            {
-                string id = dataGridView1.CurrentRow.Cells[1].Value.ToString();
-                string precio = dataGridView1.CurrentRow.Cells[2].Value.ToString();
-                string descripcion = dataGridView1.CurrentRow.Cells[3].Value.ToString();
-                DataRow row = tablaReg.NewRow();
-                row["Id"] = id;
-                row["Precio"] = precio;
-                row["Descripcion"] = descripcion;
-                tablaReg.Rows.Add(row);
-                dataGridView2.DataSource = bSource2;
-            }
-
-        }
+        
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -118,6 +115,23 @@ namespace FrbaHotel.RegistrarConsumible
                 dataGridView2.DataSource = bSource2;
             }
 
+        }
+
+        private void dataGridView1_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            if (e.ColumnIndex >= 0 && this.dataGridView1.Columns[e.ColumnIndex].Name == "Id" && e.RowIndex >= 0)
+            {
+                e.Paint(e.CellBounds, DataGridViewPaintParts.All);
+
+                DataGridViewButtonCell botonColumna = this.dataGridView1.Rows[e.RowIndex].Cells["Id"] as DataGridViewButtonCell;
+                Icon icono = new Icon(Environment.CurrentDirectory + @"\\plus.ico");
+                e.Graphics.DrawIcon(icono, e.CellBounds.Left + 2, e.CellBounds.Top + 2);
+
+                this.dataGridView1.Rows[e.RowIndex].Height = icono.Height + 5;
+                this.dataGridView1.Columns[e.ColumnIndex].Width = icono.Width + 5;
+
+                e.Handled = true;
+            }
         }
 
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -156,6 +170,11 @@ namespace FrbaHotel.RegistrarConsumible
             this.Close();
             RegCons = new RegistrarConsumible.RegistrarConsumibles();
             RegCons.Show();
+
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
 
         }
 
