@@ -18,6 +18,21 @@ namespace FrbaHotel.AbmHabitacion
         public static ModificacionHabitacion ModifHab;
         DataTable tablaHabitaciones;
 
+        private class Vista
+        {
+            public string Nombre;
+            public string Valor;
+            public Vista(string valor, string nombre)
+            {
+                Nombre = nombre;
+                Valor = valor;
+            }
+            public override string ToString()
+            {
+                return Nombre;
+            }
+        }
+
         private class TipoHabitacion
         {
             public string Nombre;
@@ -43,6 +58,8 @@ namespace FrbaHotel.AbmHabitacion
                 tipoHabitacion.Items.Add(new TipoHabitacion(qry.GetInt32(0), qry.GetString(1)));
             }
             qry.Close();
+            vista.Items.Add(new Vista("S", "S"));
+            vista.Items.Add(new Vista("N", "N"));
         }
 
         private void ListadoHabitaciones_Load(object sender, EventArgs e)

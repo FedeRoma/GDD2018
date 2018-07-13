@@ -18,6 +18,21 @@ namespace FrbaHotel.AbmHabitacion
         int habitacionID = 0;
         string nroHabitacionInic;
 
+        private class Vista
+        {
+            public string Nombre;
+            public string Valor;
+            public Vista(string valor, string nombre)
+            {
+                Nombre = nombre;
+                Valor = valor;
+            }
+            public override string ToString()
+            {
+                return Nombre;
+            }
+        }
+
         public ModificacionHabitacion(string numeroHab, string pisoHab, string vistaHab, 
                                         string tipoHab, string descripcionHab, string estadoHab)
         {
@@ -33,7 +48,8 @@ namespace FrbaHotel.AbmHabitacion
                 habitacionID = qry.GetInt32(0);
             }
             qry.Close();
-
+            vista.Items.Add(new Vista("S", "S"));
+            vista.Items.Add(new Vista("N", "N"));
             numero.Text = numeroHab;
             piso.Text = pisoHab;
             vista.Text = vistaHab;

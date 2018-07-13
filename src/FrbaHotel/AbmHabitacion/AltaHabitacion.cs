@@ -30,6 +30,20 @@ namespace FrbaHotel.AbmHabitacion
                 return Nombre;
             }
         }
+        private class Vista
+        {
+            public string Nombre;
+            public string Valor;
+            public Vista(string valor, string nombre)
+            {
+                Nombre = nombre;
+                Valor = valor;
+            }
+            public override string ToString()
+            {
+                return Nombre;
+            }
+        }
 
         public AltaHabitacion()
         {
@@ -41,6 +55,8 @@ namespace FrbaHotel.AbmHabitacion
                 tipoHabitacion.Items.Add(new TipoHabitacion(qry.GetInt32(0), qry.GetString(1)));
             }
             qry.Close();
+            vista.Items.Add(new Vista("S", "S"));
+            vista.Items.Add(new Vista("N", "N"));
         }
 
         private void AltaHabitacion_Load(object sender, EventArgs e)
@@ -130,7 +146,7 @@ namespace FrbaHotel.AbmHabitacion
         {
             numero.Text = string.Empty;
             piso.Text = string.Empty;
-            vista.Text = string.Empty;
+            vista.ResetText();
             tipoHabitacion.ResetText();
             descripcion.Text = string.Empty;
             numero.Focus();

@@ -18,8 +18,21 @@ namespace FrbaHotel.AbmHabitacion
         DataTable tablaHabitaciones;
         String estaReservada = "0";
         int resultado = 0;
-        
-        
+
+        private class Vista
+        {
+            public string Nombre;
+            public string Valor;
+            public Vista(string valor, string nombre)
+            {
+                Nombre = nombre;
+                Valor = valor;
+            }
+            public override string ToString()
+            {
+                return Nombre;
+            }
+        }
 
         private class TipoHabitacion
         {
@@ -46,6 +59,8 @@ namespace FrbaHotel.AbmHabitacion
                 tipoHabitacion.Items.Add(new TipoHabitacion(qry.GetInt32(0), qry.GetString(1)));
             }
             qry.Close();
+            vista.Items.Add(new Vista("S", "S"));
+            vista.Items.Add(new Vista("N", "N"));
         }
 
         private void BajaHabitacion_Load(object sender, EventArgs e)
@@ -169,7 +184,7 @@ namespace FrbaHotel.AbmHabitacion
         {
             numero.Text = string.Empty;
             piso.Text = string.Empty;
-            vista.Text = string.Empty;
+            vista.ResetText();
             tipoHabitacion.ResetText();
             numero.Focus();
         }
