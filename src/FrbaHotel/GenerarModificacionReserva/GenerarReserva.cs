@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace FrbaHotel.GenerarModificacionReserva
 {
-    public partial class GenerarReservaGuest : Form
+    public partial class GenerarReserva : Form
     {
-        public GenerarReservaGuest()
+        public GenerarReserva()
         {
             InitializeComponent();
         }

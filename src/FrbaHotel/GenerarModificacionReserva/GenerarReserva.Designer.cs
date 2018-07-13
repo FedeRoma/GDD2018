@@ -1,6 +1,6 @@
 ﻿namespace FrbaHotel.GenerarModificacionReserva
 {
-    partial class GenerarReservaGuest
+    partial class GenerarReserva
     {
         /// <summary>
         /// Required designer variable.
@@ -36,7 +36,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GenerarReservaGuest));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GenerarReserva));
             this.label7 = new System.Windows.Forms.Label();
             this.hotel = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -58,12 +58,12 @@
             this.seleccionarCliente = new System.Windows.Forms.Button();
             this.buscarHabitaciones = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.listaHabitacionesAsig = new System.Windows.Forms.DataGridView();
+            this.listaHabitaciones = new System.Windows.Forms.DataGridView();
             this.label6 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.total = new System.Windows.Forms.ListBox();
-            this.listaHabitacionesAsig = new System.Windows.Forms.DataGridView();
-            this.listaHabitaciones = new System.Windows.Forms.DataGridView();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.listaHabitacionesAsig)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.listaHabitaciones)).BeginInit();
@@ -230,7 +230,7 @@
             // 
             // aceptar
             // 
-            this.aceptar.BackColor = System.Drawing.Color.Crimson;
+            this.aceptar.BackColor = System.Drawing.Color.Violet;
             this.aceptar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.aceptar.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.aceptar.ForeColor = System.Drawing.Color.White;
@@ -317,56 +317,6 @@
             this.groupBox1.TabIndex = 104;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Habitaciones";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.Location = new System.Drawing.Point(480, 16);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(86, 14);
-            this.label6.TabIndex = 41;
-            this.label6.Text = "Seleccionadas";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.Color.Black;
-            this.label8.Location = new System.Drawing.Point(6, 16);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(72, 14);
-            this.label8.TabIndex = 39;
-            this.label8.Text = "Disponibles";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.ForeColor = System.Drawing.Color.Black;
-            this.label12.Location = new System.Drawing.Point(445, 354);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(61, 18);
-            this.label12.TabIndex = 106;
-            this.label12.Text = "TOTAL:";
-            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // total
-            // 
-            this.total.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.total.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.total.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.total.ForeColor = System.Drawing.Color.Crimson;
-            this.total.FormattingEnabled = true;
-            this.total.ItemHeight = 18;
-            this.total.Location = new System.Drawing.Point(512, 354);
-            this.total.Name = "total";
-            this.total.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.total.Size = new System.Drawing.Size(128, 18);
-            this.total.TabIndex = 105;
             // 
             // listaHabitacionesAsig
             // 
@@ -466,7 +416,57 @@
             this.listaHabitaciones.Size = new System.Drawing.Size(253, 105);
             this.listaHabitaciones.TabIndex = 73;
             // 
-            // GenerarReservaGuest
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.Black;
+            this.label6.Location = new System.Drawing.Point(480, 16);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(86, 14);
+            this.label6.TabIndex = 41;
+            this.label6.Text = "Seleccionadas";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.Black;
+            this.label8.Location = new System.Drawing.Point(6, 16);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(72, 14);
+            this.label8.TabIndex = 39;
+            this.label8.Text = "Disponibles";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.ForeColor = System.Drawing.Color.Black;
+            this.label12.Location = new System.Drawing.Point(445, 354);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(61, 18);
+            this.label12.TabIndex = 106;
+            this.label12.Text = "TOTAL:";
+            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // total
+            // 
+            this.total.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.total.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.total.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.total.ForeColor = System.Drawing.Color.Crimson;
+            this.total.FormattingEnabled = true;
+            this.total.ItemHeight = 18;
+            this.total.Location = new System.Drawing.Point(512, 354);
+            this.total.Name = "total";
+            this.total.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.total.Size = new System.Drawing.Size(128, 18);
+            this.total.TabIndex = 105;
+            // 
+            // GenerarReserva
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
@@ -499,7 +499,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.Name = "GenerarReservaGuest";
+            this.Name = "GenerarReserva";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FRBA Hotel 2018";

@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MenuModificacionReserva));
             this.label1 = new System.Windows.Forms.Label();
             this.aceptar = new System.Windows.Forms.Button();
-            this.numeroReserva = new System.Windows.Forms.TextBox();
+            this.reserva = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.atras = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -64,16 +64,17 @@
             this.aceptar.UseVisualStyleBackColor = false;
             this.aceptar.Click += new System.EventHandler(this.aceptar_Click);
             // 
-            // numeroReserva
+            // reserva
             // 
-            this.numeroReserva.BackColor = System.Drawing.Color.White;
-            this.numeroReserva.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.numeroReserva.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numeroReserva.ForeColor = System.Drawing.Color.DimGray;
-            this.numeroReserva.Location = new System.Drawing.Point(160, 213);
-            this.numeroReserva.Name = "numeroReserva";
-            this.numeroReserva.Size = new System.Drawing.Size(280, 22);
-            this.numeroReserva.TabIndex = 1;
+            this.reserva.BackColor = System.Drawing.Color.White;
+            this.reserva.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.reserva.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.reserva.ForeColor = System.Drawing.Color.DimGray;
+            this.reserva.Location = new System.Drawing.Point(160, 213);
+            this.reserva.Name = "reserva";
+            this.reserva.Size = new System.Drawing.Size(280, 22);
+            this.reserva.TabIndex = 1;
+            this.reserva.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.reserva_Keypress);
             // 
             // label5
             // 
@@ -82,9 +83,9 @@
             this.label5.ForeColor = System.Drawing.Color.Black;
             this.label5.Location = new System.Drawing.Point(157, 196);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(116, 14);
+            this.label5.Size = new System.Drawing.Size(99, 14);
             this.label5.TabIndex = 14;
-            this.label5.Text = "Número de Reserva";
+            this.label5.Text = "Número Reserva";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // atras
@@ -99,6 +100,7 @@
             this.atras.TabIndex = 3;
             this.atras.Text = "atrás";
             this.atras.UseVisualStyleBackColor = false;
+            this.atras.Click += new System.EventHandler(this.atras_Click);
             // 
             // MenuModificacionReserva
             // 
@@ -108,7 +110,7 @@
             this.ClientSize = new System.Drawing.Size(704, 442);
             this.Controls.Add(this.atras);
             this.Controls.Add(this.aceptar);
-            this.Controls.Add(this.numeroReserva);
+            this.Controls.Add(this.reserva);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -128,7 +130,7 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button aceptar;
-        private System.Windows.Forms.TextBox numeroReserva;
+        private System.Windows.Forms.TextBox reserva;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button atras;
     }
