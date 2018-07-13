@@ -147,11 +147,11 @@ namespace FrbaHotel.RegistrarEstadia
                 }
                 else
                 {
+                    this.Close();
                     MessageBox.Show("#error: no se ha podido realizar la operación");
+                    MenuEstadia = new MenuRegistrarEstadia();
+                    MenuEstadia.Show();
                 }
-                this.Close();
-                MenuEstadia = new MenuRegistrarEstadia();
-                MenuEstadia.Show();
             }
         }
         
