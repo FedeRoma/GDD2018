@@ -65,6 +65,7 @@
             this.subtotalEstadia = new System.Windows.Forms.TextBox();
             this.bonificacion = new System.Windows.Forms.TextBox();
             this.totalFactura = new System.Windows.Forms.TextBox();
+            this.cancelar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceDetalleEstadia)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceConsumibles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.listaDetalleEstadia)).BeginInit();
@@ -443,12 +444,27 @@
             this.totalFactura.Size = new System.Drawing.Size(110, 22);
             this.totalFactura.TabIndex = 111;
             // 
+            // cancelar
+            // 
+            this.cancelar.BackColor = System.Drawing.Color.DimGray;
+            this.cancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cancelar.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cancelar.ForeColor = System.Drawing.Color.White;
+            this.cancelar.Location = new System.Drawing.Point(12, 386);
+            this.cancelar.Name = "cancelar";
+            this.cancelar.Size = new System.Drawing.Size(101, 44);
+            this.cancelar.TabIndex = 112;
+            this.cancelar.Text = "cancelar";
+            this.cancelar.UseVisualStyleBackColor = false;
+            this.cancelar.Click += new System.EventHandler(this.cancelar_Click);
+            // 
             // FacturacionEstadia
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(704, 442);
+            this.Controls.Add(this.cancelar);
             this.Controls.Add(this.totalFactura);
             this.Controls.Add(this.bonificacion);
             this.Controls.Add(this.subtotalEstadia);
@@ -520,5 +536,6 @@
         private System.Windows.Forms.TextBox subtotalEstadia;
         private System.Windows.Forms.TextBox bonificacion;
         private System.Windows.Forms.TextBox totalFactura;
+        private System.Windows.Forms.Button cancelar;
     }
 }

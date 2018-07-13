@@ -16,6 +16,7 @@ namespace FrbaHotel.FacturacionEstadia
         DataTable tablaDetalleEstadias;
         DataTable tablaDetalleConsumibles;
         private SqlDataReader qry;
+        public static RegistrarEstadia.MenuRegistrarEstadia MenuEstadia;
         DateTime chkIn, chkOut;
         int diasSobrantes, cantNoches, precio;
         int subConsumibles, subEstadia;
@@ -128,15 +129,7 @@ namespace FrbaHotel.FacturacionEstadia
                 alerta = alerta + "Debe seleccionar una forma de pago\n";
                 inconsistencias = true;
             }
-
-            qry = Index.BD.consultaGetPuntero("select fac_id from EN_CASA_ANDABA.Facturas where fac_est_res_id = "+ estadia.Text);
-            if (qry.Read())
-            {
-                alerta = alerta + "La estadía " + estadia.Text + " ya fue facturada\nFactura Nro.: " + qry.GetInt32(0).ToString() + "\n";
-                inconsistencias = true;
-            }
-            qry.Close();
-            
+  
             if (inconsistencias)
             {
                 MessageBox.Show(alerta);
@@ -157,8 +150,15 @@ namespace FrbaHotel.FacturacionEstadia
                     return;
                 }
                 MessageBox.Show("La factura se ha generado correctamente");
-                this.Close();
+                cancelar_Click(null, null);
             }
+        }
+
+        private void cancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            MenuEstadia = new RegistrarEstadia.MenuRegistrarEstadia();
+            MenuEstadia.Show();
         }
 
     }
