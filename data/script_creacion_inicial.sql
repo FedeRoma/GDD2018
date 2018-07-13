@@ -706,30 +706,31 @@ create procedure EN_CASA_ANDABA.modificacionClientes_Estadias
 	end
 go
 
-create procedure EN_CASA_ANDABA.altaCheckInEstadia
+create procedure [EN_CASA_ANDABA].[altaCheckInEstadia]
 	@reservaId int, @usuarioId int, @fechaI date as
 	begin
-	declare @fecha date, @estadoId int, @cantidadNoches int, @precio int, @respuesta bit
+	declare @fecha date, @estadoId int, @cantidadNoches int, @precio int, @respuesta int
 	set @fecha = CONVERT(date,@fechaI,121)
 		begin tran tAltaCheckInEstadia
 			begin try
-				set @estadoId = (select estados_id 
-				from EN_CASA_ANDABA.Estados 
-				where estados_desc = 'Reserva CON INGRESO')
-				set @cantidadNoches = (select datediff(day, res_inicio, res_fin) from EN_CASA_ANDABA.Reservas 
-					where res_id = @reservaId)
+				set @estadoId = (select estados_id from EN_CASA_ANDABA.Estados where estados_desc = 'Reserva CON INGRESO')
+				set @cantidadNoches = (select datediff(day, res_inicio, res_fin) from EN_CASA_ANDABA.Reservas where res_id = @reservaId)
 				set @precio = (select((REG.reg_precio * HA.hab_tipo_porcentual) + ((HO.hot_estrellas * HO.hot_recarga_estrellas) * @cantidadNoches)) 
 				from EN_CASA_ANDABA.Regimenes REG, EN_CASA_ANDABA.reservas R, EN_CASA_ANDABA.habitaciones HA, 
 					EN_CASA_ANDABA.hoteles HO, EN_CASA_ANDABA.reservas_habitaciones RYH
 				where R.res_id = @reservaId and REG.reg_id = R.res_reg_id and ryh_res_id = R.res_id 
 					and ryh_hab_hot_id = HA.hab_hot_id and RYH.ryh_hab_id = HA.hab_id and HA.hab_hot_id = HO.hot_id)
+
 				insert into EN_CASA_ANDABA.Estadias (est_res_id, est_checkin, est_usu_alta, est_precio,
 					est_cant_noches)
 				values (@reservaId, @fecha, @usuarioId, @precio, @cantidadNoches)
+
 				UPDATE EN_CASA_ANDABA.Reservas 
 				set res_estados_id = @estadoId where res_id = @reservaId
+
 				set @respuesta = (select est_res_id from EN_CASA_ANDABA.Estadias 
 					where est_res_id = @reservaId and est_checkin = @fecha)
+
 				select @respuesta as respuesta
 				commit tran tAltaCheckInEstadia
 			end try
