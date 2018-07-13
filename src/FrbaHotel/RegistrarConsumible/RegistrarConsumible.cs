@@ -13,7 +13,6 @@ namespace FrbaHotel.RegistrarConsumible
 {
     public partial class RegistrarConsumible : Form
     {
-        private SqlDataReader qry;
         DataTable tablaConsumibles, tablaConsumiblesAsig;
         public static ListadoEstadias regConsumible;
 
