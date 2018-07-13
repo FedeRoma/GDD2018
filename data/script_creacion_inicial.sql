@@ -759,6 +759,8 @@ create procedure EN_CASA_ANDABA.altaCheckOutEstadia
 				UPDATE EN_CASA_ANDABA.Estadias
 				set est_usu_salida = @usuarioId, est_checkout = @fecha, est_dias_sobrantes = @diasSobra,
 					est_cant_noches =  @cantidadNoches where est_res_id = @estadiaId
+				set @respuesta = 1
+				select @respuesta as respuesta
 				commit tran tAltaCheckOutEstadia
 			end try
 			begin catch
@@ -850,8 +852,8 @@ create procedure EN_CASA_ANDABA.modificacionFactura
 	end
 go
 
-create procedure EN_CASA_ANDABA.RegistrarConsumibleEstadia
-	@estadia numeric(18,0), @cons numeric(18,0), @hab numeric(18,0) as
+create procedure EN_CASA_ANDABA.registrarConsumibleEstadia
+	@estadia numeric(18,0), @cons numeric(18,0) as
 	begin
 		declare @respuesta numeric(18,0), @item numeric(18,0), @descri nvarchar(255), @factu numeric(18,0),
 			@precio numeric(18,0)
@@ -860,18 +862,18 @@ create procedure EN_CASA_ANDABA.RegistrarConsumibleEstadia
 			set @precio = (select con_precio from EN_CASA_ANDABA.Consumibles where con_id = @cons)
 			set @descri = (	select con_desc from EN_CASA_ANDABA.Consumibles where con_id = @cons)
 			set @factu = (select fac_id from EN_CASA_ANDABA.Facturas where fac_est_res_id = @estadia)
-			if( exists(select iyf_id from EN_CASA_ANDABA.Items_Facturas where  iyf_fac_id = @factu))
+			if( exists(select iyf_id from EN_CASA_ANDABA.Items_Facturas where iyf_fac_id = @factu))
 				begin
 					set @item = (select iyf_id from EN_CASA_ANDABA.Items_Facturas where  iyf_fac_id = @factu)
 					update EN_CASA_ANDABA.Items_Facturas 
 					set iyf_monto = iyf_monto + @precio, iyf_cantidad = iyf_cantidad + 1
-					where iyf_id=@item
+					where iyf_id = @item
 				end
 			else
 				begin
-					insert into EN_CASA_ANDABA.Items_Facturas(iyf_fac_id,iyf_cantidad,iyf_monto)
-					values(@factu,1,@precio,@descri)
-					set @item = (select iyf_id from EN_CASA_ANDABA.Items_Facturas where iyf_fac_id = @factu)
+					insert into EN_CASA_ANDABA.Items_Facturas(iyf_con_id, iyf_fac_id, iyf_cantidad, iyf_monto, iyf_est_res_id)
+					values(@cons, @factu, 1, @precio, @estadia)
+					--set @item = (select iyf_id from EN_CASA_ANDABA.Items_Facturas where iyf_fac_id = @factu)
 				end
 				set @respuesta = 1
 				select @respuesta as respuesta
