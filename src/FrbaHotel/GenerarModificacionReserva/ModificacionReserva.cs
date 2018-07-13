@@ -281,6 +281,8 @@ namespace FrbaHotel.GenerarModificacionReserva
             insert = insertNro(Index.usuarioID.ToString());
             insert = insertString(tipoDocumento.Text);
 
+            insert = insert.Remove(insert.Length - 1);
+
             int resultado = Index.BD.consultaGetInt(insert);
             if (resultado == 0)
             {

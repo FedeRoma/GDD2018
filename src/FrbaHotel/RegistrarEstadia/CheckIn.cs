@@ -37,13 +37,13 @@ namespace FrbaHotel.RegistrarEstadia
 
         private void aceptar_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(numeroReserva.Text))
+            if (string.IsNullOrEmpty(reserva.Text))
             {
                 MessageBox.Show("Debe ingresar un numero de reserva válido");
                 return;
             }
 
-            qry = Index.BD.consultaGetPuntero("select res_id, res_estados_id, res_inicio from EN_CASA_ANDABA.Reservas where res_id = " + numeroReserva.Text);
+            qry = Index.BD.consultaGetPuntero("select res_id, res_estados_id, res_inicio from EN_CASA_ANDABA.Reservas where res_id = " + reserva.Text);
             if (qry.Read())
             {
                 int estado = qry.GetInt32(1);
@@ -66,11 +66,11 @@ namespace FrbaHotel.RegistrarEstadia
                     return;
                 }
 
-                qry = Index.BD.consultaGetPuntero("select hot_id hot_nombre from EN_CASA_ANDABA.Habitaciones HA, EN_CASA_ANDABA.Hoteles HO, EN_CASA_ANDABA.Reservas_Habitaciones RH where RH.ryh_hab_id = HA.hab_id and HA.hab_hot_id = HO.hot_id and RH.ryh_res_id = " + numeroReserva.Text);
-                int hotelID = 0;
+                qry = Index.BD.consultaGetPuntero("select hot_id from EN_CASA_ANDABA.Habitaciones HA, EN_CASA_ANDABA.Hoteles HO, EN_CASA_ANDABA.Reservas_Habitaciones RH where RH.ryh_hab_id = HA.hab_id and HA.hab_hot_id = HO.hot_id and RH.ryh_res_id = " + reserva.Text);
+                int idHotel = 0;
                 if (qry.Read())
                 {
-                    hotelID = qry.GetInt32(0);
+                    idHotel = qry.GetInt32(0);
                     qry.Close();
                 }
                 else
@@ -79,14 +79,16 @@ namespace FrbaHotel.RegistrarEstadia
                     MessageBox.Show("#error: La reserva no está asociada a ningún hotel");
                     return;
                 }
-                if (hotelID.ToString() != Index.hotel)
+                if (idHotel.ToString() != Index.hotel)
                 {
                     MessageBox.Show("#error: la reserva no pertenece a este hotel");
                     return;
                 }
 
-                int estadia = Index.BD.consultaGetInt("exec EN_CASA_ANDABA.altaCheckInEstadia " + numeroReserva.Text + ", " + Index.usuarioID + ", '" + fechaInicioReserva.ToString("yyyyMMdd HH:mm:ss") +"'");
-                if (estadia == 0)
+                int idEstadia = 0;
+                idEstadia = Index.BD.consultaGetInt("exec EN_CASA_ANDABA.altaCheckInEstadia " + reserva.Text + ", " + Index.usuarioID + ", '" + fechaInicioReserva.ToString("yyyyMMdd HH:mm:ss") + "'");
+                
+                if (idEstadia == 0)
                 {
                     MessageBox.Show("#error!");
                     return;
@@ -96,8 +98,10 @@ namespace FrbaHotel.RegistrarEstadia
                     MessageBox.Show("CheckIn realizado correctamente");
                 }
 
-                int resultado = Index.BD.consultaGetInt("exec EN_CASA_ANDABA.altaFactura " + estadia.ToString() + ", 0, '" + DateTime.Today.ToString("yyyyMMdd HH:mm:ss") + "'");
-                if (resultado == 0)
+                int idFactura = 0;
+                idFactura = Index.BD.consultaGetInt("exec EN_CASA_ANDABA.altaFactura " + idEstadia.ToString() + ", 0, '" + DateTime.Today.ToString("yyyyMMdd HH:mm:ss") + "'");
+                
+                if (idFactura == 0)
                 {
                     MessageBox.Show("#error: factura ya realizada");
                     return;
@@ -105,7 +109,7 @@ namespace FrbaHotel.RegistrarEstadia
                 MessageBox.Show("La factura se ha generado correctamente");
                 this.Close();
 
-                AsignarClientesEstadia ClientesEstadia = new AsignarClientesEstadia(numeroReserva.Text, estadia.ToString());
+                AsignarClientesEstadia ClientesEstadia = new AsignarClientesEstadia(reserva.Text, idEstadia.ToString());
                 ClientesEstadia.Show();
                 this.Close();
             }

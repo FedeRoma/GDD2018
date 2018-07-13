@@ -127,6 +127,8 @@ namespace FrbaHotel.RegistrarEstadia
                 chkOut = updateString(DateTime.Today.ToString("yyyyMMdd HH:mm:ss"));
                 chkOut = updateNro(Index.usuarioID.ToString());
 
+                chkOut = chkOut.Remove(chkOut.Length - 1);
+
                 bool insertOk = false;
 
                 qry = Index.BD.consultaGetPuntero(chkOut);
@@ -148,6 +150,8 @@ namespace FrbaHotel.RegistrarEstadia
                     MessageBox.Show("#error: no se ha podido realizar la operación");
                 }
                 this.Close();
+                MenuEstadia = new MenuRegistrarEstadia();
+                MenuEstadia.Show();
             }
         }
         
@@ -155,8 +159,8 @@ namespace FrbaHotel.RegistrarEstadia
         {
             DataView vistaEstadias = new DataView(tablaEstadias);
             string filtro = "";
-            filtro = filtro + this.esExactamente("[ID ESTADIA]", estadia.Text);
-            filtro = filtro + this.esExactamente("[ID HABITACION]", habitacion.Text);
+            filtro = filtro + this.esExactamente("[ESTADIA]", estadia.Text);
+            filtro = filtro + this.esExactamente("[HABITACION]", habitacion.Text);
             filtro = filtro + this.esExactamente("NUMERO", numero.Text);
             filtro = filtro + this.esExactamente("PISO", piso.Text);
 
