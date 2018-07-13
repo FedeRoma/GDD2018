@@ -103,7 +103,7 @@ namespace FrbaHotel.Login
                     break;
                 case "Registrar Consumibles":
                     this.Hide();
-                    RegistrarConsumible.RegistrarConsumible indexRegistrarConsumibles = new RegistrarConsumible.RegistrarConsumible();
+                    RegistrarConsumible.ListadoEstadias indexRegistrarConsumibles = new RegistrarConsumible.ListadoEstadias();
                     indexRegistrarConsumibles.Show();
                     break;
                 case "Listado Estadístico":
