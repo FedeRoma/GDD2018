@@ -16,6 +16,7 @@ namespace FrbaHotel.AbmUsuario
         private SqlDataReader qry;
         public static ListadoUsuarios ListadoUsu;
         string usernameUsuario;
+        string nombreUsuarioOriginal;
         int usuId = 0;
         String calle = "";
         int calleNro = 0;
@@ -51,17 +52,9 @@ namespace FrbaHotel.AbmUsuario
             }
         }
 
-        public ModificacionUsuario(string usernameU,
-                                    string nombreU,
-                                    string apellidoU,
-                                    string emailU,
-                                    string telefonoU,
-                                    string tipoDocU,
-                                    string numeroDocU,
-                                    string fechaNacU,                                    
-                                    string direccionU,
-                                    string rolU,
-                                    string estadoU)
+        public ModificacionUsuario(string usernameU, string nombreU, string apellidoU, string emailU,
+                                    string telefonoU, string tipoDocU, string numeroDocU, string fechaNacU,                                    
+                                    string direccionU, string rolU, string estadoU)
         {
             InitializeComponent();
             usernameUsuario = usernameU;
@@ -98,6 +91,8 @@ namespace FrbaHotel.AbmUsuario
             {
                 estado.Checked = true;
             }
+
+            nombreUsuarioOriginal = usernameU;
            
         }
 
@@ -151,6 +146,26 @@ namespace FrbaHotel.AbmUsuario
             }
             if (string.IsNullOrEmpty(nombreUsuario.Text))
             {
+                alerta = alerta + "Debe ingresar un nombre de usuario válido\n";
+                inconsistencias = true;
+            }
+            else
+            {
+                qry = Index.BD.consultaGetPuntero("select * from EN_CASA_ANDABA.Usuarios where usu_username = '" + nombreUsuario.Text + "'");
+                if (qry.Read())
+                {
+                    if (!(nombreUsuario.Text == nombreUsuarioOriginal))
+                    {
+                        alerta = alerta + "Nombre de usuario ya registrado\n";
+                        inconsistencias = true;
+                    }
+                }
+                qry.Close();
+            }
+
+            if (string.IsNullOrEmpty(nombreUsuario.Text))
+            {
+
                 alerta = alerta + "Debe ingresar un nombre de usuario válido\n";
                 inconsistencias = true;
             }
@@ -217,21 +232,18 @@ namespace FrbaHotel.AbmUsuario
                 qry = Index.BD.consultaGetPuntero("select usu_id from EN_CASA_ANDABA.Usuarios where usu_username = '" + usernameUsuario + "'");
                 if (qry.Read())
                 {
-
-                    usuId = qry.GetInt32(0);
-                    
-                    
+                    usuId = qry.GetInt32(0);   
                 }
                 qry.Close();
 
                 qry = Index.BD.consultaGetPuntero("select hot_calle, hot_calle_nro from EN_CASA_ANDABA.Hoteles where hot_id = '" + Index.hotel + "'");
                 if (qry.Read())
                 {
-
                     calle = qry.GetString(0);
                     calleNro = qry.GetInt32(1);
                 }
                 qry.Close();
+
                 update = "exec EN_CASA_ANDABA.modificacionUsuario ";
                 update = updateNro(usuId.ToString());
                 update = updateString(rol.Text);
@@ -248,8 +260,8 @@ namespace FrbaHotel.AbmUsuario
                 fecha = Convert.ToDateTime(fechaNacimiento.Value);
                 update = updateString(fecha.Date.ToString("yyyyMMdd HH:mm:ss"));
                 update = updateString(direccion.Text);
-              
-                if (estado.Text == "True")
+
+                if (estado.Checked)
                 {
                     update = updateNro("1");
                 }

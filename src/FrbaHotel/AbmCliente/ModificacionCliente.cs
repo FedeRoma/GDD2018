@@ -236,7 +236,8 @@ namespace FrbaHotel.AbmCliente
                 update = updateString(localidad.Text);
                 update = updateString(pais.Text);
                 update = updateString(telefono.Text);
-                if (estado.Text == "True")
+
+                if (estado.Checked)
                 {
                     update = updateNro("1");
                 }
