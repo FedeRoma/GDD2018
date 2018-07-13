@@ -33,6 +33,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.iniciarSesion = new System.Windows.Forms.Button();
             this.invitado = new System.Windows.Forms.Button();
+            this.estadoReservasVencidas = new System.Windows.Forms.TextBox();
+            this.minFechaRes = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -67,7 +69,7 @@
             this.iniciarSesion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.iniciarSesion.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.iniciarSesion.ForeColor = System.Drawing.Color.White;
-            this.iniciarSesion.Location = new System.Drawing.Point(170, 246);
+            this.iniciarSesion.Location = new System.Drawing.Point(170, 271);
             this.iniciarSesion.Name = "iniciarSesion";
             this.iniciarSesion.Size = new System.Drawing.Size(364, 44);
             this.iniciarSesion.TabIndex = 1;
@@ -81,7 +83,7 @@
             this.invitado.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.invitado.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.invitado.ForeColor = System.Drawing.Color.White;
-            this.invitado.Location = new System.Drawing.Point(170, 296);
+            this.invitado.Location = new System.Drawing.Point(170, 321);
             this.invitado.Name = "invitado";
             this.invitado.Size = new System.Drawing.Size(364, 44);
             this.invitado.TabIndex = 2;
@@ -89,12 +91,40 @@
             this.invitado.UseVisualStyleBackColor = false;
             this.invitado.Click += new System.EventHandler(this.invitado_Click);
             // 
+            // estadoReservasVencidas
+            // 
+            this.estadoReservasVencidas.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.estadoReservasVencidas.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.estadoReservasVencidas.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.estadoReservasVencidas.ForeColor = System.Drawing.Color.Gray;
+            this.estadoReservasVencidas.Location = new System.Drawing.Point(221, 208);
+            this.estadoReservasVencidas.Name = "estadoReservasVencidas";
+            this.estadoReservasVencidas.ReadOnly = true;
+            this.estadoReservasVencidas.Size = new System.Drawing.Size(262, 13);
+            this.estadoReservasVencidas.TabIndex = 165;
+            this.estadoReservasVencidas.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // minFechaRes
+            // 
+            this.minFechaRes.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.minFechaRes.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.minFechaRes.Font = new System.Drawing.Font("Arial Black", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.minFechaRes.ForeColor = System.Drawing.Color.DarkGray;
+            this.minFechaRes.Location = new System.Drawing.Point(221, 236);
+            this.minFechaRes.Name = "minFechaRes";
+            this.minFechaRes.ReadOnly = true;
+            this.minFechaRes.Size = new System.Drawing.Size(262, 19);
+            this.minFechaRes.TabIndex = 166;
+            this.minFechaRes.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // Index
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(704, 442);
+            this.Controls.Add(this.minFechaRes);
+            this.Controls.Add(this.estadoReservasVencidas);
             this.Controls.Add(this.invitado);
             this.Controls.Add(this.iniciarSesion);
             this.Controls.Add(this.label2);
@@ -118,5 +148,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button iniciarSesion;
         private System.Windows.Forms.Button invitado;
+        private System.Windows.Forms.TextBox estadoReservasVencidas;
+        private System.Windows.Forms.TextBox minFechaRes;
     }
 }

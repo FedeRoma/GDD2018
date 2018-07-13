@@ -26,6 +26,16 @@ namespace FrbaHotel
         public Index()
         {
             InitializeComponent();
+
+            string minFechaReservas = DateTime.Today.ToShortDateString();
+
+            int reservasVencidasCanceladas = Index.BD.consultaGetInt("exec EN_CASA_ANDABA.bajaReservasVencidas '" + DateTime.Today.ToString() + "'");
+
+            if (reservasVencidasCanceladas == 1)
+            {
+                estadoReservasVencidas.Text = "NO HAY RESERVAS ACTIVAS ANTERIORES AL";
+                minFechaRes.Text = minFechaReservas;
+            }
         }
 
         private void iniciarSesion_Click(object sender, EventArgs e)
@@ -53,7 +63,6 @@ namespace FrbaHotel
                     rolesUsuario = new RolesUsuario();
                     rolesUsuario.Show();
                 }
-
             }
             else
             {
