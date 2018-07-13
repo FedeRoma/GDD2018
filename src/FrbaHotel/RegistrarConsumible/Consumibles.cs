@@ -167,6 +167,11 @@ namespace FrbaHotel.RegistrarConsumible
                 resultado.Close();
             }
             MessageBox.Show("El proceso de carga de consumibles finalizo correctamente");
+
+            if (checkBox1.Checked == true)
+            {
+                MessageBox.Show("Descuento por régimen de estadía");
+            }
             this.Close();
             RegCons = new RegistrarConsumible.RegistrarConsumibles();
             RegCons.Show();
