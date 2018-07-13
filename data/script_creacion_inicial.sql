@@ -826,15 +826,15 @@ create procedure EN_CASA_ANDABA.modificacionFactura
 			set @facturaId = (select fac_id from EN_CASA_ANDABA.Facturas where fac_est_res_id = @estadiaId)
 			if (@regimenId != 4)
 				begin
-					set @deuda = (select est_precio from EN_CASA_ANDABA.Estadias 
-						where est_res_id = @estadiaId) + EN_CASA_ANDABA.deudaConsumibles(@estadiaId)
+					set @deuda = (select est_precio from EN_CASA_ANDABA.Estadias where est_res_id = @estadiaId) * (select est_cant_noches from EN_CASA_ANDABA.Estadias where est_res_id = @estadiaId)
+										+ EN_CASA_ANDABA.deudaConsumibles(@estadiaId)
 					UPDATE EN_CASA_ANDABA.Facturas
 					set fac_med_id = @medioPagoId, fac_fecha = @fecha, fac_total = @deuda
 						where fac_id = @facturaId
 				end
 			else
 				begin
-					set @deuda = (select est_precio from EN_CASA_ANDABA.Estadias where est_res_id = @estadiaId)
+					set @deuda = (select est_precio from EN_CASA_ANDABA.Estadias where est_res_id = @estadiaId) * (select est_cant_noches from EN_CASA_ANDABA.Estadias where est_res_id = @estadiaId)
 					UPDATE EN_CASA_ANDABA.Facturas
 					set fac_med_id =@medioPagoId, fac_fecha = @fecha, fac_total = @deuda
 						where fac_id = @facturaId
