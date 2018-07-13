@@ -77,20 +77,41 @@ namespace FrbaHotel.AbmHotel
             return inconsistencias;
         }
 
+        private string insertString(string campo)
+        {
+            if (string.IsNullOrEmpty(campo))
+            {
+                insert = insert + "null,";
+            }
+            else
+            {
+                insert = insert + "'" + campo + "',";
+            }
+            return insert;
+        }
+
         private void aceptar_Click(object sender, EventArgs e)
         {
             if (checkCampos())
             {
-                insert = "insert into EN_CASA_ANDABA.BajasHotel ";
-                insert = insert + "(baj_hot_id, baj_fecha_inicio, baj_fecha_fin, baj_motivo) ";
-                insert = insert + "values (" + hotelID + ",'" + bajaDesde.Value.Date.ToString("yyyyMMdd HH:mm:ss") + "','" + bajaHasta.Value.Date.ToString("yyyyMMdd HH:mm:ss") + "','" + motivo.Text + "')";
-                qry = Index.BD.consultaGetPuntero(insert);
+                bool insertOk = false;
 
+                qry = Index.BD.consultaGetPuntero("insert into EN_CASA_ANDABA.BajasHotel (baj_hot_id, baj_fecha_inicio, baj_fecha_fin, baj_motivo) values (" + hotelID + ",'" + bajaDesde.Value.Date.ToString("yyyyMMdd HH:mm:ss") + "', '" + bajaHasta.Value.Date.ToString("yyyyMMdd HH:mm:ss") + "', 'test')");
                 if (qry.Read())
+                {
+                    insertOk = qry.GetBoolean(0);
+                }
+                qry.Close();
+
+                if (insertOk)
                 {
                     MessageBox.Show("El Hotel " + hotelActivo.Text + ", fue dado de baja /n desde el " + bajaDesde.Value + "/n" + "hasta el " + bajaHasta.Value);
                 }
-                qry.Close();
+                else
+                {
+                    MessageBox.Show("#error: no se ha podido realizar la operación");
+                }
+                limpiar.PerformClick();
             }
         }
 
