@@ -18,6 +18,7 @@ namespace FrbaHotel.Login
         public static RolesUsuario rolesUsuario;
         public static MenuFuncionalidades funcionalidadesUsuarios;
         private int cantIntentos = 0;
+        public string nombreUsuarioCombo = "";
 
         public Login()
         {
@@ -33,7 +34,7 @@ namespace FrbaHotel.Login
         private void ingresar_Click(object sender, EventArgs e)
         {
             cantIntentos++;
-
+            nombreUsuarioCombo = nombreUsuario.Text;
             qry = Index.BD.consultaGetPuntero("select usu_estado, usu_id from EN_CASA_ANDABA.Usuarios where usu_username = '"+ nombreUsuario.Text +"' and usu_password = hashbytes('SHA2_256', '"+ contrasenia.Text +"')");
            
             if (nombreUsuario.Text == "guest" || nombreUsuario.Text == "Guest")
@@ -65,19 +66,23 @@ namespace FrbaHotel.Login
                             rolesUsuario = new RolesUsuario();
                             rolesUsuario.Show();
                         }
-                        if (cantRoles == 1)
-                        {
-                            Index.rol = Index.BD.consultaGetString("select rol_nombre from EN_CASA_ANDABA.Roles where rol_id = (select ryu_rol_id from EN_CASA_ANDABA.Roles_Usuarios where ryu_usu_id = " + Index.usuarioID.ToString() + ")");
-                            this.Hide();
-                            rolesUsuario = new RolesUsuario();
-                            rolesUsuario.Show();
-                        }
                         else
                         {
-                            MessageBox.Show("#error: El usuario seleccionado no tiene ningún Rol asignado");
-                            nombreUsuario.Clear();
-                            contrasenia.Clear();
-                            nombreUsuario.Focus();
+
+                            if (cantRoles == 1)
+                            {
+                                Index.rol = Index.BD.consultaGetString("select rol_nombre from EN_CASA_ANDABA.Roles where rol_id = (select ryu_rol_id from EN_CASA_ANDABA.Roles_Usuarios where ryu_usu_id = " + Index.usuarioID.ToString() + ")");
+                                this.Hide();
+                                rolesUsuario = new RolesUsuario();
+                                rolesUsuario.Show();
+                            }
+                            else
+                            {
+                                MessageBox.Show("#error: El usuario seleccionado no tiene ningún Rol asignado");
+                                nombreUsuario.Clear();
+                                contrasenia.Clear();
+                                nombreUsuario.Focus();
+                            }
                         }
                     }
                     else
@@ -87,6 +92,7 @@ namespace FrbaHotel.Login
                         contrasenia.Clear();
                         nombreUsuario.Focus();
                     }
+
                 }
                 else
                 {
@@ -96,7 +102,24 @@ namespace FrbaHotel.Login
                     nombreUsuario.Focus();
                     if (cantIntentos > 3)
                     {
-                        MessageBox.Show("#error: Ha sobrepasado la cantidad de intentos fallidos");
+                        qry.Close();
+                        //Compruebo que existe el usuario
+                        qry = Index.BD.consultaGetPuntero("select usu_estado, usu_id from EN_CASA_ANDABA.Usuarios where usu_username = '" + nombreUsuarioCombo + "'");
+                        if (qry.Read())
+                        {
+                            qry.Close();
+                            //Deshabilito el usuario
+                            MessageBox.Show("#error: Ha sobrepasado la cantidad de intentos fallidos y de deshabilitara el usuario");
+                            qry = Index.BD.consultaGetPuntero("update EN_CASA_ANDABA.Usuarios set usu_estado=0 where usu_username = '" + nombreUsuarioCombo + "'");
+                            MessageBox.Show("Usuario Inhabilitado", "AVISO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            qry.Close();
+                        }
+                        else
+                        {
+                            qry.Close();
+                            MessageBox.Show("#error: Ha sobrepasado la cantidad de intentos fallidos");
+                        }
+                        
                         this.Hide();
                         index = new Index();
                         index.Show();
