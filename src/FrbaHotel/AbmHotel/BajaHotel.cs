@@ -58,8 +58,8 @@ namespace FrbaHotel.AbmHotel
                 alerta = alerta + "La fecha de fin de la baja debe ser posterior a la fecha de inicio\n";
                 inconsistencias = true;
             }
-
-            int resultado = Index.BD.consultaGetInt("exec EN_CASA_ANDABA.tieneReservaHotel '" + desde.Date.ToString("yyyyMMdd HH:mm:ss") + "', '" + hasta.Date.ToString("yyyyMMdd HH:mm:ss") + "', " + hotelID);
+            
+            int resultado = Index.BD.consultaGetInt("select EN_CASA_ANDABA.tieneReservaHotel ('" + desde.Date.ToString() + "', '" + hasta.Date.ToString() + "', " + hotelID.ToString() + ")");
             if (resultado == 1)
             {
                 alerta = alerta + "#error: En el período ingresado el Hotel tiene reservas activas\n";
