@@ -51,17 +51,17 @@ namespace FrbaHotel.GenerarModificacionReserva
                 this.Close();
             }
 
+            qry = Index.BD.consultaGetPuntero("exec EN_CASA_ANDABA.buscarRegimenesHotel '" + calle + "', " + calleNumero.ToString());
+            while (qry.Read())
+            {
+                regimen.Items.Add(qry.GetString(0));
+            }
+            qry.Close();
+
             qry = Index.BD.consultaGetPuntero("exec EN_CASA_ANDABA.buscarTiposHabitacionesHotel '" + calle + "', " + calleNumero.ToString());
             while (qry.Read())
             {
                 tipoHabitacion.Items.Add(qry.GetString(0));
-            }
-            qry.Close();
-
-            qry = Index.BD.consultaGetPuntero("exec EN_CASA_ANDABA.buscarRegimenesHotel '" + calle + "', " + calleNumero);
-            while (qry.Read())
-            {
-                regimen.Items.Add(qry.GetString(0));
             }
             qry.Close();
 
@@ -287,15 +287,13 @@ namespace FrbaHotel.GenerarModificacionReserva
             if (resultado == 0)
             {
                 MessageBox.Show("#error!");
-                ModificacionReserva modificacionReserva = new ModificacionReserva(reserva.Text);
-                modificacionReserva.Show();
-                this.Close();
             }
             else
             {
                 MessageBox.Show("Reserva modificada con éxito");
-                atras_Click(null, null);
             }
+            this.Close();
+            atras_Click(null, null);
         }
 
         private void atras_Click(object sender, EventArgs e)
