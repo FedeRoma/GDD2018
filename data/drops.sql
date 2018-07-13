@@ -69,6 +69,7 @@ drop procedure EN_CASA_ANDABA.top5_hoteles_consumibles_facturados
 drop procedure EN_CASA_ANDABA.top5_hoteles_dias_fuera_de_servicio
 drop procedure EN_CASA_ANDABA.top5_clientes_puntos
 drop procedure EN_CASA_ANDABA.top5_habitaciones_veces_ocupadas
+drop procedure EN_CASA_ANDABA.altaTarjeta
 PRINT 'Chau Store Procedures!'
 drop schema EN_CASA_ANDABA
 PRINT 'Chau Esquema!'
