@@ -850,7 +850,7 @@ create procedure EN_CASA_ANDABA.modificacionFactura
 	end
 go
 
-create procedure EN_CASA_ANDABA.RegistrarConsumbleEstadia
+create procedure EN_CASA_ANDABA.RegistrarConsumibleEstadia
 	@estadia numeric(18,0), @cons numeric(18,0), @hab numeric(18,0) as
 	begin
 		declare @respuesta numeric(18,0), @item numeric(18,0), @descri nvarchar(255), @factu numeric(18,0),

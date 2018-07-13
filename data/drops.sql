@@ -59,12 +59,11 @@ drop procedure EN_CASA_ANDABA.altaReservaHabitacion
 drop procedure EN_CASA_ANDABA.bajaReservaHabitacion
 drop procedure EN_CASA_ANDABA.altaClientes_Estadias
 drop procedure EN_CASA_ANDABA.modificacionClientes_Estadias
-drop procedure EN_CASA_ANDABA.altaTarjeta
 drop procedure EN_CASA_ANDABA.altaCheckInEstadia
 drop procedure EN_CASA_ANDABA.altaCheckOutEstadia
 drop procedure EN_CASA_ANDABA.altaFactura
 drop procedure EN_CASA_ANDABA.modificacionFactura
-drop procedure EN_CASA_ANDABA.RegistrarConsumbleEstadia
+drop procedure EN_CASA_ANDABA.RegistrarConsumibleEstadia
 drop procedure EN_CASA_ANDABA.top5_hoteles_reservas_canceladas
 drop procedure EN_CASA_ANDABA.top5_hoteles_consumibles_facturados
 drop procedure EN_CASA_ANDABA.top5_hoteles_dias_fuera_de_servicio
