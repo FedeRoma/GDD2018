@@ -31,7 +31,7 @@ namespace FrbaHotel.RegistrarConsumible
             botonRegCons.Name = "regCons";
             listaEstadias.Columns.Add(botonRegCons);
 
-            tablaEstadias = Index.BD.consultaGetTabla("select distinct CE.cye_cye_id IdEstadia, CE. cye_hab_id IdHabitacion, H.hab_numero NUMERO, H.hab_piso PISO, R.res_reg_id Regimen from EN_CASA_ANDABA.Estadias E, EN_CASA_ANDABA.Clientes_Estadias CE, EN_CASA_ANDABA.Habitaciones H,EN_CASA_ANDABA.Reservas R  where CE. cye_est_res_id = E. est_res_id and CE. cye_hab_id=H.hab_id and (cye_cye_id)is not NULL and CE.cye_hab_hot_id=H.hab_hot_id and H.hab_hot_id =" + Index.hotel);
+            tablaEstadias = Index.BD.consultaGetTabla("select distinct CE.cye_cye_id IdEstadia, CE. cye_hab_id IdHabitacion, H.hab_numero NUMERO, H.hab_piso PISO, R.res_reg_id Regimen from EN_CASA_ANDABA.Estadias E, EN_CASA_ANDABA.Clientes_Estadias CE, EN_CASA_ANDABA.Habitaciones H,EN_CASA_ANDABA.Reservas R  where CE. cye_est_res_id = E. est_res_id and CE. cye_hab_id=H.hab_id and (cye_cye_id)is not NULL and CE.cye_hab_hot_id=H.hab_hot_id and est_res_id = R.res_id and H.hab_hot_id =" + Index.hotel);
             
 
 
