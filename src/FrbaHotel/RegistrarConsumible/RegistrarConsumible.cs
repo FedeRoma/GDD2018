@@ -106,20 +106,18 @@ namespace FrbaHotel.RegistrarConsumible
             }
             foreach (DataRow fila in tablaConsumiblesAsig.Rows)
             {
-                qry = Index.BD.consultaGetPuntero("exec EN_CASA_ANDABA.RegistrarConsumibleEstadia " + estadia.Text + "," + fila["ID"].ToString());
-                if (qry.Read())
+                int resultado = Index.BD.consultaGetInt("exec EN_CASA_ANDABA.registrarConsumibleEstadia " + estadia.Text + "," + fila["ID"].ToString());
+        
+                if (resultado != 0)
                 {
-                    if (qry.GetInt32(0) != 0)
-                    {
-                        MessageBox.Show("Consumibles cargados correctamente");
-                    }
+                    MessageBox.Show("Consumibles cargados correctamente");
                 }
                 else
                 {
                     MessageBox.Show("#error: no se ha podido asignar el consumible elegida a la estadía");
                 }
-                qry.Close();
             }
+
             if (allInclusive.Checked == true)
             {
                 MessageBox.Show("Descuento por régimen de estadía");
