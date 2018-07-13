@@ -19,6 +19,7 @@ namespace FrbaHotel
         public static Login.Login login;
         public static RolesUsuario rolesUsuario;
         public static int usuarioID = 0;
+        public static bool estadoID = true;
         public static string rol = "";
         public static string hotel = "";
        
@@ -36,26 +37,29 @@ namespace FrbaHotel
 
         private void invitado_Click(object sender, EventArgs e)
         {
-            qry = Index.BD.consultaGetPuntero("select usu_id FROM EN_CASA_ANDABA.Usuarios where usu_username = 'Guest'");
+            qry = Index.BD.consultaGetPuntero("select usu_id,usu_estado FROM EN_CASA_ANDABA.Usuarios where usu_username = 'Guest'");
             qry.Read();
             usuarioID = qry.GetInt32(0);
+            estadoID = qry.GetBoolean(1);
             qry.Close();
-
-            qry = Index.BD.consultaGetPuntero("select distinct R.rol_nombre from EN_CASA_ANDABA.Roles_Usuarios RU, EN_CASA_ANDABA.Roles R where RU.ryu_rol_id = R.rol_id and RU.ryu_usu_id = " + usuarioID.ToString() + " and R.rol_estado = 1");
-            if (qry.Read())
+            if (estadoID != false)
             {
-                rol = qry.GetString(0);
-                qry.Close();
-                this.Hide();
-                rolesUsuario = new RolesUsuario();
-                rolesUsuario.Show();            
+                qry = Index.BD.consultaGetPuntero("select distinct R.rol_nombre from EN_CASA_ANDABA.Roles_Usuarios RU, EN_CASA_ANDABA.Roles R where RU.ryu_rol_id = R.rol_id and RU.ryu_usu_id = " + usuarioID.ToString() + " and R.rol_estado = 1");
+                if (qry.Read())
+                {
+                    rol = qry.GetString(0);
+                    qry.Close();
+                    this.Hide();
+                    rolesUsuario = new RolesUsuario();
+                    rolesUsuario.Show();
+                }
+
             }
             else
             {
                 qry.Close();
                 MessageBox.Show("#error: Rol de Guest inhabilitado");
             }
-            
         }
 
     }
