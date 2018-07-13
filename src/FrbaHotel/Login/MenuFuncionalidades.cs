@@ -75,8 +75,16 @@ namespace FrbaHotel.Login
                     break;
                 case "Generar Reserva":
                     this.Hide();
-                    GenerarModificacionReserva.GenerarReservaCliente generarReserva = new GenerarModificacionReserva.GenerarReservaCliente();
-                    generarReserva.Show();
+                    if (Index.rol == "Guest")
+                    {
+                        GenerarModificacionReserva.GenerarReservaCliente generarReservaCliente = new GenerarModificacionReserva.GenerarReservaCliente();
+                        generarReservaCliente.Show();
+                    }
+                    else
+                    {
+                        GenerarModificacionReserva.GenerarReserva generarReserva = new GenerarModificacionReserva.GenerarReserva();
+                        generarReserva.Show();
+                    }
                     break;
                 case "Modificar Reserva":
                     this.Hide();
