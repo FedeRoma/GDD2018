@@ -16,6 +16,7 @@ namespace FrbaHotel.AbmUsuario
         private SqlDataReader qry;
         public static MenuAbmUsuario AbmUsu;
         DataTable tablaUsuario;
+        string rolModif = "";
 
         private class TipoDocumento
         {
@@ -106,7 +107,16 @@ namespace FrbaHotel.AbmUsuario
 
                 if (MessageBox.Show("Esta seguro que quiere inhabilitar el usuario?", "AVISO", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    if (Index.rol != "Administrador General")
+                    //Obtengo el rol del usuario a eliminar
+                    qry = Index.BD.consultaGetPuntero("select top 1 rol_nombre from EN_CASA_ANDABA.Roles,EN_CASA_ANDABA.Roles_Usuarios,EN_CASA_ANDABA.Usuarios where usu_id = ryu_usu_id and rol_id = ryu_rol_id and usu_username = '" + username + "'");
+                    if (qry.Read())
+                    {
+                        rolModif = qry.GetString(0);
+                    }
+                    qry.Close();
+
+
+                    if (rolModif != "Administrador General")
                     {
                         qry = Index.BD.consultaGetPuntero("update EN_CASA_ANDABA.Usuarios set usu_estado=0 where usu_username = '" + username + "'");
                         MessageBox.Show("Usuario Inhabilitado", "AVISO", MessageBoxButtons.OK, MessageBoxIcon.Information);
