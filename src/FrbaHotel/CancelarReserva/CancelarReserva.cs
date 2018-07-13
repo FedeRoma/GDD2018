@@ -59,6 +59,19 @@ namespace FrbaHotel.CancelarReserva
                 alerta = alerta + "Debe ingresar un código de reserva válido\n";
                 inconsistencias = true;
             }
+            else
+            {
+                qry = Index.BD.consultaGetPuntero("select HO.hot_id from EN_CASA_ANDABA.Hoteles HO, EN_CASA_ANDABA.Reservas_Habitaciones RSHA where HO.hot_id = RSHA.ryh_hab_hot_id and RSHA.ryh_res_id = " + codigoReserva.Text);
+                if (qry.Read())
+                {
+                    if (qry.GetInt32(0) != Convert.ToInt32(Index.hotel))
+                    {
+                        alerta = alerta + "La reserva no pertenece a este Hotel\n";
+                        inconsistencias = true;
+                    }
+                }
+                qry.Close();
+            }
 
             if (string.IsNullOrEmpty(fechaCancelacion.Text))
             {
@@ -121,6 +134,7 @@ namespace FrbaHotel.CancelarReserva
                         return;
                     }
                 }
+                limpiar_Click(null, null);
             }
         }
 

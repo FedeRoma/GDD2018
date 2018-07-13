@@ -71,9 +71,9 @@
             this.label3.ForeColor = System.Drawing.Color.Black;
             this.label3.Location = new System.Drawing.Point(148, 92);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(111, 14);
+            this.label3.Size = new System.Drawing.Size(126, 14);
             this.label3.TabIndex = 7;
-            this.label3.Text = "Código de Reserva";
+            this.label3.Text = "Código de Reserva (*)";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label2
@@ -83,9 +83,9 @@
             this.label2.ForeColor = System.Drawing.Color.Black;
             this.label2.Location = new System.Drawing.Point(148, 134);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(142, 14);
+            this.label2.Size = new System.Drawing.Size(157, 14);
             this.label2.TabIndex = 8;
-            this.label2.Text = "Motivo de la Cancelación";
+            this.label2.Text = "Motivo de la Cancelación (*)";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // motivoCancelacion
@@ -154,9 +154,9 @@
             this.label9.ForeColor = System.Drawing.Color.Black;
             this.label9.Location = new System.Drawing.Point(148, 312);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(39, 14);
+            this.label9.Size = new System.Drawing.Size(54, 14);
             this.label9.TabIndex = 17;
-            this.label9.Text = "Fecha";
+            this.label9.Text = "Fecha (*)";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // CancelarReserva
