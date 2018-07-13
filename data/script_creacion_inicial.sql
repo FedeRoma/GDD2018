@@ -305,11 +305,18 @@ create procedure EN_CASA_ANDABA.altaHabitacion
 		declare @tipoHabitacionId int, @respuesta bit
 		begin tran tAltaHabitacion
 			begin try
+
 				set @tipoHabitacionId =(select tip_id from EN_CASA_ANDABA.TiposHabitaciones 
 					where @tipoHabitacion = tip_nombre)
 				insert into EN_CASA_ANDABA.Habitaciones (hab_numero, hab_piso, hab_vista, hab_tip_id, hab_hot_id,
 					hab_desc, hab_habilitado) 
 				values (@numero, @piso, @vista, @tipoHabitacionId, @hotelId, @descripcion, 1)
+				update EN_CASA_ANDABA.Habitaciones
+				set hab_tipo_porcentual = case when @tipoHabitacion = 'Base Simple' Then 1
+												when @tipoHabitacion = 'Base Doble' Then 2
+												when @tipoHabitacion = 'Base Triple' Then 3
+												when @tipoHabitacion = 'Base Cuadruple' Then 4
+												else 4 end
 				set @respuesta = (select hab_id from EN_CASA_ANDABA.Habitaciones 
 					where @numero = hab_numero and @piso = hab_piso and @tipoHabitacionId = hab_tip_id 
 					and @hotelId = hab_hot_id)
