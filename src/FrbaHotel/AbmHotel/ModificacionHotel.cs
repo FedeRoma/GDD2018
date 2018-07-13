@@ -213,7 +213,7 @@ namespace FrbaHotel.AbmHotel
                 fecha = Convert.ToDateTime(fechaCreacion.Value);
                 update = updateString(fecha.Date.ToString("yyyyMMdd HH:mm:ss"));
 
-                if (estado.Text == "True")
+                if (estado.Checked == true)
                 {
                     update = updateNro("1");
                 }
