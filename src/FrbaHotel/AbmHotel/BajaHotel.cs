@@ -17,6 +17,7 @@ namespace FrbaHotel.AbmHotel
         public static MenuAbmHotel AbmHot;
         int hotelID = 0;
         string insert = "";
+        DateTime desde, hasta;
 
         public BajaHotel(string calleHot, string calleNroHot)
         {
@@ -31,8 +32,6 @@ namespace FrbaHotel.AbmHotel
 
             hotelActivo.Items.Add(calleHot + " " + calleNroHot);
 
-            bajaDesde.Value = DateTime.Today;
-            bajaHasta.Value = DateTime.Today;
         }
 
         private bool checkCampos()
@@ -51,7 +50,6 @@ namespace FrbaHotel.AbmHotel
                 inconsistencias = true;
             }
 
-            DateTime desde, hasta;
             desde = Convert.ToDateTime(bajaDesde.Value);
             hasta = Convert.ToDateTime(bajaHasta.Value);
 
@@ -61,15 +59,13 @@ namespace FrbaHotel.AbmHotel
                 inconsistencias = true;
             }
 
-            qry = Index.BD.consultaGetPuntero("exec EN_CASA_ANDABA.tieneReservaHotel '" + desde.Date.ToString("yyyyMMdd HH:mm:ss") + "', '" + hasta.Date.ToString("yyyyMMdd HH:mm:ss") + "', " + hotelID);
-
-            if (qry.Read())
+            int resultado = Index.BD.consultaGetInt("exec EN_CASA_ANDABA.tieneReservaHotel '" + desde.Date.ToString("yyyyMMdd HH:mm:ss") + "', '" + hasta.Date.ToString("yyyyMMdd HH:mm:ss") + "', " + hotelID);
+            if (resultado == 1)
             {
                 alerta = alerta + "#error: En el período ingresado el Hotel tiene reservas activas\n";
                 inconsistencias = true;
             }
-            qry.Close();
-           
+ 
             if (inconsistencias)
             {
                 MessageBox.Show(alerta);
@@ -96,7 +92,7 @@ namespace FrbaHotel.AbmHotel
             {
                 bool insertOk = false;
 
-                qry = Index.BD.consultaGetPuntero("insert into EN_CASA_ANDABA.BajasHotel (baj_hot_id, baj_fecha_inicio, baj_fecha_fin, baj_motivo) values (" + hotelID + ",'" + bajaDesde.Value.Date.ToString("yyyyMMdd HH:mm:ss") + "', '" + bajaHasta.Value.Date.ToString("yyyyMMdd HH:mm:ss") + "', 'test')");
+                qry = Index.BD.consultaGetPuntero("insert into EN_CASA_ANDABA.BajasHotel (baj_hot_id, baj_fecha_inicio, baj_fecha_fin, baj_motivo) values (" + hotelID + ",'" + desde.Date.ToString("yyyyMMdd HH:mm:ss") + "', '" + hasta.Date.ToString("yyyyMMdd HH:mm:ss") + "', '" + motivo.Text + "')");
                 if (qry.Read())
                 {
                     insertOk = qry.GetBoolean(0);
