@@ -59,10 +59,10 @@
             this.nombre = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.nroDocumento = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.tipoDocumento = new System.Windows.Forms.ComboBox();
+            this.tipoDocumento = new System.Windows.Forms.TextBox();
+            this.nroDocumento = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -406,15 +406,6 @@
             this.label4.Text = "Nombre (*)";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // nroDocumento
-            // 
-            this.nroDocumento.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nroDocumento.ForeColor = System.Drawing.Color.DimGray;
-            this.nroDocumento.Location = new System.Drawing.Point(67, 164);
-            this.nroDocumento.Name = "nroDocumento";
-            this.nroDocumento.Size = new System.Drawing.Size(206, 22);
-            this.nroDocumento.TabIndex = 2;
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -441,13 +432,25 @@
             // 
             // tipoDocumento
             // 
+            this.tipoDocumento.BackColor = System.Drawing.Color.WhiteSmoke;
             this.tipoDocumento.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tipoDocumento.ForeColor = System.Drawing.Color.DimGray;
-            this.tipoDocumento.FormattingEnabled = true;
             this.tipoDocumento.Location = new System.Drawing.Point(67, 120);
             this.tipoDocumento.Name = "tipoDocumento";
-            this.tipoDocumento.Size = new System.Drawing.Size(206, 24);
-            this.tipoDocumento.TabIndex = 1;
+            this.tipoDocumento.ReadOnly = true;
+            this.tipoDocumento.Size = new System.Drawing.Size(206, 22);
+            this.tipoDocumento.TabIndex = 106;
+            // 
+            // nroDocumento
+            // 
+            this.nroDocumento.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.nroDocumento.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nroDocumento.ForeColor = System.Drawing.Color.DimGray;
+            this.nroDocumento.Location = new System.Drawing.Point(67, 162);
+            this.nroDocumento.Name = "nroDocumento";
+            this.nroDocumento.ReadOnly = true;
+            this.nroDocumento.Size = new System.Drawing.Size(206, 22);
+            this.nroDocumento.TabIndex = 107;
             // 
             // ModificacionCliente
             // 
@@ -455,6 +458,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(704, 442);
+            this.Controls.Add(this.nroDocumento);
+            this.Controls.Add(this.tipoDocumento);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.nacionalidad);
@@ -467,10 +472,8 @@
             this.Controls.Add(this.nombre);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.nroDocumento);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.tipoDocumento);
             this.Controls.Add(this.estado);
             this.Controls.Add(this.atras);
             this.Controls.Add(this.guardar);
@@ -522,9 +525,9 @@
         private System.Windows.Forms.TextBox nombre;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox nroDocumento;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox tipoDocumento;
+        private System.Windows.Forms.TextBox tipoDocumento;
+        private System.Windows.Forms.TextBox nroDocumento;
     }
 }

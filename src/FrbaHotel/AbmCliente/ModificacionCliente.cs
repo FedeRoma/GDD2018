@@ -20,21 +20,6 @@ namespace FrbaHotel.AbmCliente
         string update = "";
         string docNumeroInic, docTipoInic;
 
-        private class TipoDocumento
-        {
-            public string Nombre;
-            public int Valor;
-            public TipoDocumento(int valor, string nombre)
-            {
-                Nombre = nombre;
-                Valor = valor;
-            }
-            public override string ToString()
-            {
-                return Nombre;
-            }
-        }
-
         public ModificacionCliente(string nombreCli, string apellidoCli, string docTipoCli, 
                                     string docNumeroCli, string eMailCli, string telefonoCli,
                                     string nacionalidadCli, string fechaNacCli, string estadoCli, 
@@ -45,13 +30,6 @@ namespace FrbaHotel.AbmCliente
 
             docNumeroInic = docNumeroCli;
             docTipoInic = docTipoCli;
-
-            qry = Index.BD.consultaGetPuntero("select distinct doc_id, doc_desc from EN_CASA_ANDABA.Documentos");
-            while (qry.Read())
-            {
-                tipoDocumento.Items.Add(new TipoDocumento(qry.GetInt32(0), qry.GetString(1)));
-            }
-            qry.Close();
 
             tipoDocumento.Text = docTipoCli;
             nroDocumento.Text = docNumeroCli;
