@@ -99,19 +99,21 @@ namespace FrbaHotel.RegistrarEstadia
                 }
 
                 int idFactura = 0;
-                idFactura = Index.BD.consultaGetInt("exec EN_CASA_ANDABA.altaFactura " + idEstadia.ToString() + ", 0, '" + DateTime.Today.ToString("yyyyMMdd HH:mm:ss") + "'");
-                
+                idFactura = Index.BD.consultaGetInt("exec EN_CASA_ANDABA.altaFactura " + idEstadia.ToString() + ", 1, '" + DateTime.Today.ToString("yyyyMMdd HH:mm:ss") + "'");
+
                 if (idFactura == 0)
                 {
                     MessageBox.Show("#error: factura ya realizada");
                     return;
                 }
-                MessageBox.Show("La factura se ha generado correctamente");
-                this.Close();
-
-                AsignarClientesEstadia ClientesEstadia = new AsignarClientesEstadia(reserva.Text, idEstadia.ToString());
-                ClientesEstadia.Show();
-                this.Close();
+                else
+                {
+                    MessageBox.Show("La factura se ha generado correctamente");
+   
+                    AsignarClientesEstadia ClientesEstadia = new AsignarClientesEstadia(reserva.Text, idEstadia.ToString());
+                    ClientesEstadia.Show();
+                    this.Close();
+                }
             }
             else
             {
@@ -119,6 +121,7 @@ namespace FrbaHotel.RegistrarEstadia
                 qry.Close();
                 return;
             }
+            qry.Close();
         }
 
         private void atras_Click(object sender, EventArgs e)
