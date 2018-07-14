@@ -705,14 +705,15 @@ create procedure EN_CASA_ANDABA.bajaReservaHabitacion
 go
 
 create procedure EN_CASA_ANDABA.altaClientes_Estadias
-	@documento int, @tipoDocumento int, @estadiaId int, @habitacionId int, @habitacionHotelId int as 
+	@documento int, @tipoDocumento varchar(50), @estadiaId int, @habitacionId int, @habitacionHotelId int as 
 	begin
-		declare @respuesta bit
+		declare @respuesta int, @tipodocint int
 		begin tran tAltaClientes_Estadias
 			begin try
+				set @tipodocint = (select doc_id from en_casa_andaba.Documentos where doc_desc = @tipoDocumento)
 				insert into EN_CASA_ANDABA.Clientes_Estadias (cye_cli_documento, cye_est_res_id, cye_hab_id, 
 					cye_hab_hot_id, cye_cli_doc_id) 
-				values (@documento, @estadiaId, @habitacionId, @habitacionHotelId, @tipoDocumento)
+				values (@documento, @estadiaId, @habitacionId, @habitacionHotelId, @tipodocint)
 				set @respuesta = 1
 				select @respuesta as respuesta
 				commit tran tAltaClientes_Estadias
