@@ -247,7 +247,7 @@ create procedure EN_CASA_ANDABA.modificacionUsuario
 	end
 go
 
-create procedure [EN_CASA_ANDABA].[altaHotel]
+create procedure EN_CASA_ANDABA.altaHotel
 	@nombre varchar(50), @cantEstrellas int, @calle varchar(50), @numero int, @ciudad varchar(50), 
 	@pais varchar(50), @email nvarchar(50), @telefono varchar(50), @fecha datetime,
 	@recargaEstrellas int as
@@ -270,6 +270,7 @@ create procedure [EN_CASA_ANDABA].[altaHotel]
 				select @respuesta as respuesta
 			end catch
 	end
+go
 
 create procedure EN_CASA_ANDABA.modificacionHotel
 	@hotelId int, @nombre varchar(50), @cantEstrellas int, @calle varchar(50), @calleNro int, @ciudad varchar(50),
@@ -295,7 +296,7 @@ create procedure EN_CASA_ANDABA.modificacionHotel
 				select @respuesta as respuesta
 			end catch
 	end
-GO
+go
 
 create procedure EN_CASA_ANDABA.altaHabitacion
 	@numero int, @piso int, @vista char(1), @tipoHabitacion varchar(50), @hotelId int,
