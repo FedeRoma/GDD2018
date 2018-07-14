@@ -95,7 +95,10 @@ namespace FrbaHotel.RegistrarEstadia
 
                 if (cantHuespedes < Convert.ToInt32(capacidadHabitacion.Text))
                 {
-                    int resultado = Index.BD.consultaGetInt("exec EN_CASA_ANDABA.modificacionClientes_Estadias " + listaClientes.CurrentRow.Cells[2].Value.ToString() + ", '" + listaClientes.CurrentRow.Cells[3].Value.ToString() + "', " + numeroEstadia + ", " + habitacion.Text + ", " + Index.hotel);
+                    string tipoDocumento = listaClientes.CurrentRow.Cells[1].Value.ToString();
+                    string nroDocumento = listaClientes.CurrentRow.Cells[2].Value.ToString();
+                    
+                    int resultado = Index.BD.consultaGetInt("exec EN_CASA_ANDABA.modificacionClientes_Estadias " + nroDocumento + ", '" + tipoDocumento + "', " + numeroEstadia + ", " + habitacion.Text + ", " + Index.hotel);
                     if (resultado == 0)
                     {
                         MessageBox.Show("#error: el cliente ya está asignado a la estadía");

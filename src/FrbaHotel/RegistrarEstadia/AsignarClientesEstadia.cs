@@ -126,7 +126,10 @@ namespace FrbaHotel.RegistrarEstadia
         {
             foreach (DataRow fila in tablaClientes.Rows)
             {
-                qry = Index.BD.consultaGetPuntero("exec EN_CASA_ANDABA.altaClientes_Estadias " + clienteNroDocumento.ToString() + ", '" + clienteTipoDocumento + "', " + estadiaID + ", 1, " + Index.hotel);
+                string tipoDocumento = listaClientes.CurrentRow.Cells[1].Value.ToString();
+                string nroDocumento = listaClientes.CurrentRow.Cells[2].Value.ToString();
+
+                qry = Index.BD.consultaGetPuntero("exec EN_CASA_ANDABA.altaClientes_Estadias " + nroDocumento + ", '" + tipoDocumento + "', " + estadiaID + ", 1, " + Index.hotel);
                 if (qry.Read())
                 {
                     if (qry.GetInt32(0) == 0)
