@@ -25,6 +25,11 @@ namespace FrbaHotel.RegistrarEstadia
 
             numeroEstadia = estadia;
             numeroReserva = reserva;
+
+            DataGridViewButtonColumn botonAsignar = new DataGridViewButtonColumn();
+            botonAsignar.Name = "asignar";
+            listaClientes.Columns.Add(botonAsignar);
+
             tablaClientes = tablaCli;
             listaClientes.DataSource = tablaClientes;
 
@@ -43,7 +48,7 @@ namespace FrbaHotel.RegistrarEstadia
             {
                 numeroHabitacion.Text = qry.GetInt32(0).ToString();
                 pisoHabitacion.Text = qry.GetInt32(1).ToString();
-                tipoHabitacion.Text = qry.GetInt32(2).ToString();
+                tipoHabitacion.Text = qry.GetString(2).ToString();
                 capacidadHabitacion.Text = qry.GetInt32(3).ToString();
             }
             else
@@ -53,9 +58,26 @@ namespace FrbaHotel.RegistrarEstadia
             qry.Close();
         }
 
+        private void listaClientes_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            if (e.ColumnIndex >= 0 && this.listaClientes.Columns[e.ColumnIndex].Name == "asignar" && e.RowIndex >= 0)
+            {
+                e.Paint(e.CellBounds, DataGridViewPaintParts.All);
+
+                DataGridViewButtonCell botonAsignar = this.listaClientes.Rows[e.RowIndex].Cells["asignar"] as DataGridViewButtonCell;
+                Icon icono = new Icon(Environment.CurrentDirectory + @"\\plus.ico");
+                e.Graphics.DrawIcon(icono, e.CellBounds.Left + 2, e.CellBounds.Top + 2);
+
+                this.listaClientes.Rows[e.RowIndex].Height = icono.Height + 5;
+                this.listaClientes.Columns[e.ColumnIndex].Width = icono.Width + 5;
+
+                e.Handled = true;
+            }
+        }
+
         private void listaClientes_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 0)
+            if (listaClientes.Columns[e.ColumnIndex].Name == "asignar")
             {
                 if (Convert.ToInt32(habitacion.SelectedIndex) == -1)
                 {
@@ -71,9 +93,9 @@ namespace FrbaHotel.RegistrarEstadia
                 }
                 qry.Close();
 
-                if (cantHuespedes < Convert.ToInt32(capacidadHabitacion))
+                if (cantHuespedes < Convert.ToInt32(capacidadHabitacion.Text))
                 {
-                    int resultado = Index.BD.consultaGetInt("exec EN_CASA_ANDABA.modificacionClientes_Estadias " + habitacion.Text + ", " + listaClientes.CurrentRow.Cells[1].Value.ToString() + ", " + numeroEstadia);
+                    int resultado = Index.BD.consultaGetInt("exec EN_CASA_ANDABA.modificacionClientes_Estadias " + listaClientes.CurrentRow.Cells[1].Value.ToString() + ", '" + listaClientes.CurrentRow.Cells[2].Value.ToString() + "', " + numeroEstadia + ", " + habitacion.Text + ", " + Index.hotel);
                     if (resultado == 0)
                     {
                         MessageBox.Show("#error: el cliente ya está asignado a la estadía");

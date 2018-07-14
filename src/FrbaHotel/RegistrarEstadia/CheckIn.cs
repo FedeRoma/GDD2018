@@ -27,7 +27,7 @@ namespace FrbaHotel.RegistrarEstadia
             reservaModificadaID = Index.BD.consultaGetInt("select estados_id from EN_CASA_ANDABA.Estados where estados_desc = 'RESERVA CORRECTA'");
         }
 
-        private void numeroReserva_KeyPress(object sender, KeyPressEventArgs e)
+        private void reserva_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {

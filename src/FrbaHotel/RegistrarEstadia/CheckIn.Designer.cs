@@ -75,7 +75,7 @@
             this.reserva.Name = "reserva";
             this.reserva.Size = new System.Drawing.Size(280, 22);
             this.reserva.TabIndex = 1;
-            this.reserva.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.numeroReserva_KeyPress);
+            this.reserva.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.reserva_KeyPress);
             // 
             // label5
             // 

@@ -727,14 +727,15 @@ create procedure EN_CASA_ANDABA.altaClientes_Estadias
 go
 
 create procedure EN_CASA_ANDABA.modificacionClientes_Estadias
-	@documento int, @tipoDocumento int, @estadiaId int, @habitacionId int, @habitacionHotelId int as
+	@documento int, @tipoDocumento varchar(50), @estadiaId int, @habitacionId int, @habitacionHotelId int as
 	begin
-		declare @respuesta bit
+		declare @respuesta int, @tipodocint int
 		begin tran tModificacionClientes_Estadias
 			begin try
+				set @tipodocint = (select doc_id from en_casa_andaba.Documentos where doc_desc = @tipoDocumento)
 				UPDATE EN_CASA_ANDABA.Clientes_Estadias
 				set cye_hab_id = @habitacionId, cye_hab_hot_id = @HabitacionHotelId
-					where cye_est_res_id = @estadiaId and cye_cli_documento = @documento  and cye_cli_doc_id = @tipoDocumento
+					where cye_est_res_id = @estadiaId and cye_cli_documento = @documento  and cye_cli_doc_id = @tipodocint
 				set @respuesta = 1
 				select @respuesta as respuesta
 				commit tran tModificacionClientes_Estadias

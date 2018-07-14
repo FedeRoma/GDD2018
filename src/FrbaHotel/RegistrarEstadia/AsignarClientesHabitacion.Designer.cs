@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -47,7 +48,9 @@
             this.pisoHabitacion = new System.Windows.Forms.TextBox();
             this.tipoHabitacion = new System.Windows.Forms.TextBox();
             this.capacidadHabitacion = new System.Windows.Forms.TextBox();
+            this.bindingSourceListaClientes = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.listaClientes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceListaClientes)).BeginInit();
             this.SuspendLayout();
             // 
             // label7
@@ -210,6 +213,7 @@
             this.listaClientes.Size = new System.Drawing.Size(468, 217);
             this.listaClientes.TabIndex = 110;
             this.listaClientes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listaClientes_CellClick);
+            this.listaClientes.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.listaClientes_CellPainting);
             // 
             // numeroHabitacion
             // 
@@ -284,6 +288,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FRBA Hotel 2018";
             ((System.ComponentModel.ISupportInitialize)(this.listaClientes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceListaClientes)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -305,5 +310,6 @@
         private System.Windows.Forms.TextBox pisoHabitacion;
         private System.Windows.Forms.TextBox tipoHabitacion;
         private System.Windows.Forms.TextBox capacidadHabitacion;
+        private System.Windows.Forms.BindingSource bindingSourceListaClientes;
     }
 }
