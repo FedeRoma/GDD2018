@@ -294,7 +294,7 @@ namespace FrbaHotel.GenerarModificacionReserva
 
             bool estado = false;
 
-            qry = Index.BD.consultaGetPuntero("select cli_habilitado from EN_CASA_ANDABA.Clientes where cli_doc_id =" + tipoDocumento.Text + " and cli_documento" + nroDocumento.Text);
+            qry = Index.BD.consultaGetPuntero("select C.cli_habilitado from EN_CASA_ANDABA.Clientes C, EN_CASA_ANDABA.Documentos D where D.doc_desc = '" + tipoDocumento.Text + "' and C.cli_documento = " + nroDocumento.Text+" and C.doc_id = D.cli_doc_id");
             if (qry.Read())
             {
                 estado = qry.GetBoolean(0);
