@@ -98,15 +98,15 @@ namespace FrbaHotel.AbmHotel
                 hasta = Convert.ToDateTime(bajaHasta.Value);
                 hastaS = hasta.Date.ToString("yyyyMMdd HH:mm:ss");
                 qry = Index.BD.consultaGetPuntero("insert into EN_CASA_ANDABA.BajasHotel (baj_hot_id, baj_fecha_inicio, baj_fecha_fin, baj_motivo) values (" + hotelID.ToString() + ",'" + desdeS + "', '" + hastaS + "', '" + motivo.Text + "')");
-                /*if (qry.Read())
+                if (qry.Read())
                 {
                     insertOk = qry.GetBoolean(0);
-                }*/
+                }
                 qry.Close();
 
                 if (insertOk)
                 {
-                    MessageBox.Show("El Hotel " + hotelActivo.Text + ", fue dado de baja /n desde el " + bajaDesde.Value + "/n" + "hasta el " + bajaHasta.Value);
+                    MessageBox.Show("El Hotel fue dado de baja con éxito");
                 }
                 else
                 {
