@@ -18,7 +18,7 @@ namespace FrbaHotel.GenerarModificacionReserva
         public static Login.MenuFuncionalidades menuFuncionalidades;
         DataTable tablaHabitaciones;
         string calle, tipo;
-        int calleNumero, capacidad, cambio, i, j, dias, totalH, totalHA, reservaID;
+        int calleNumero, capacidad, cambio, i, j=0, dias, totalH, totalHA, reservaID;
         string habitaciones, habitacionesAsig, insert;
         DataGridViewButtonColumn botonAsignar = new DataGridViewButtonColumn();
         
@@ -73,6 +73,7 @@ namespace FrbaHotel.GenerarModificacionReserva
             columna.Unique = true;
             tablaHabitaciones.Columns.Add("PRECIO");
 
+
             qry = Index.BD.consultaGetPuntero("exec EN_CASA_ANDABA.buscarReservaHabitacion " + reservaID);
             while (qry.Read())
             {
@@ -98,16 +99,16 @@ namespace FrbaHotel.GenerarModificacionReserva
             BindingSource bindingSourceListaHabitaciones = new BindingSource();
             bindingSourceListaHabitaciones.DataSource = tablaHabitaciones;
             listaHabitaciones.DataSource = bindingSourceListaHabitaciones;
+
+            DataGridViewButtonColumn botonAsignar = new DataGridViewButtonColumn();
+            botonAsignar.Name = "asignar";
+            listaHabitaciones.Columns.Add(botonAsignar);
         }
 
         private void ModificacionReserva_Load(object sender, EventArgs e)
         {
             tipoHabitacion.SelectedText = tipo;
-            cantidadPersonas.SelectedText = capacidad.ToString();
-
-            
-            botonAsignar.Name = "asignar";
-            listaHabitaciones.Columns.Add(botonAsignar);
+            cantidadPersonas.SelectedText = capacidad.ToString();       
         }
 
         private void listaHabitaciones_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
@@ -141,8 +142,9 @@ namespace FrbaHotel.GenerarModificacionReserva
         {
             if (listaHabitaciones.Columns[e.ColumnIndex].Name == "asignar")
             {
-                string idHab = listaHabitaciones.CurrentRow.Cells[0].Value.ToString();
-                string precioHab = listaHabitaciones.CurrentRow.Cells[1].Value.ToString();
+                
+                string idHab = listaHabitaciones.CurrentRow.Cells[1].Value.ToString();
+                string precioHab = listaHabitaciones.CurrentRow.Cells[2].Value.ToString();
                 string regimenHab = regimen.Text;
                 int item = listaHabitaciones.CurrentRow.Index;
 
@@ -178,6 +180,7 @@ namespace FrbaHotel.GenerarModificacionReserva
                 catch
                 {
                     MessageBox.Show("La habitación seleccionada ya fue agregada con anterioridad");
+                    
                 }
             }
         }
@@ -210,6 +213,7 @@ namespace FrbaHotel.GenerarModificacionReserva
 
         private void buscarHabitaciones_Click(object sender, EventArgs e)
         {
+            
             listaHabitaciones.DataSource = null;
             
             if (string.IsNullOrEmpty(regimen.Text))
@@ -254,10 +258,6 @@ namespace FrbaHotel.GenerarModificacionReserva
             bindingSourceListaHabitaciones.DataSource = tablaHabitaciones;
             listaHabitaciones.DataSource = bindingSourceListaHabitaciones;
 
-            listaHabitaciones.Columns.Remove(botonAsignar);
-            DataGridViewButtonColumn botonAsignar2 = new DataGridViewButtonColumn();
-            botonAsignar2.Name = "asignar";
-            listaHabitaciones.Columns.Add(botonAsignar2);
         }
 
         private void regimen_SelectedIndexChanged(object sender, EventArgs e)
