@@ -20,6 +20,7 @@ namespace FrbaHotel.AbmHotel
         private DataTable tablaRegimenesAsig;
         private string regimenes = "";
         private int cantRegimenes = 0;
+        private int resultado = 0;
 
         public AltaHotel()
         {
@@ -230,25 +231,22 @@ namespace FrbaHotel.AbmHotel
                 insert = insertString(recargaEstrellas.Text);
                 insert = insert.Remove(insert.Length - 1);
 
-                bool insertOk = false;
+                resultado = Index.BD.consultaGetInt(insert);
 
-                qry = Index.BD.consultaGetPuntero(insert);
-                if (qry.Read())
+                if (resultado == 0)
                 {
-                    insertOk = qry.GetBoolean(0);
+                   MessageBox.Show("#error: no se ha podido realizar la operación");
                 }
-                qry.Close();
-
-                if (insertOk)
+                else 
                 {
-                    MessageBox.Show("Hotel dado de alta");
+                    int altaHotUsu = Index.BD.consultaGetInt("insert EN_CASA_ANDABA.Hoteles_Usuarios (hyu_usu_id, hyu_hot_id) values(" + Index.usuarioID.ToString() + ", " + resultado.ToString() + ")");
+                    if (altaHotUsu == 0)
+                    {
+                        MessageBox.Show("Hotel dado de alta");
+                    }
                 }
-                else
-                {
-                    MessageBox.Show("#error: no se ha podido realizar la operación");
-                }
-                limpiar.PerformClick();
             }
+            limpiar.PerformClick();
         }
 
         private void limpiar_Click(object sender, EventArgs e)
