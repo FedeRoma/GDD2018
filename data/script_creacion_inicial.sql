@@ -364,6 +364,26 @@ create procedure EN_CASA_ANDABA.modificacionHabitacion
 	end
 go
 
+create procedure EN_CASA_ANDABA.bajaUnRegimenHotel
+	@regimenId int, @hotelId int as
+	begin
+		declare @respuesta bit
+		begin tran tBajaRegimenesHotel
+			begin try
+				delete from EN_CASA_ANDABA.Regimenes_Hoteles where ryh_hot_id = @hotelId and ryh_reg_id = @regimenId
+				set @respuesta = 1
+				select @respuesta as respuesta
+				commit tran tBajaRegimenesHotel
+			end try
+			begin catch
+				rollback tran tBajaRegimenesHotel
+				set @respuesta = 0
+				select @respuesta as respuesta
+			end catch
+
+	end
+go
+
 create procedure EN_CASA_ANDABA.altaCliente
 	@documento bigint, @tipoDocumento varchar(50), @nombre varchar(50), @apellido varchar(50), @email varchar(50),
 	@nacionalidad varchar(50), @fechaNac date, @calle varchar(50), @numeroCalle int, @piso nvarchar(10),

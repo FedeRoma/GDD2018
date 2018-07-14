@@ -238,13 +238,32 @@ namespace FrbaHotel.AbmHotel
                 if (insertOk)
                 {
                     MessageBox.Show("Hotel modificado con éxito");
+
+                    int regimenAltaID = Index.BD.consultaGetInt("select reg_id from EN_CASA_ANDABA.Regimenes where reg_desc = '" + altaRegimen.Text + "'");
+                    qry = Index.BD.consultaGetPuntero("exec EN_CASA_ANDABA.altaRegimenesHotel " + regimenAltaID.ToString() + "," + hotelID.ToString());
+                    if (!qry.Read())
+                    {
+                        MessageBox.Show("#error: no se ha podido asignar el régimen elegido al hotel");
+                        qry.Close();
+                        return;
+                    }
+                    qry.Close();
+                    int regimenBajaID = Index.BD.consultaGetInt("select reg_id from EN_CASA_ANDABA.Regimenes where reg_desc = '" + bajaRegimen.Text + "'");
+                    qry = Index.BD.consultaGetPuntero("exec EN_CASA_ANDABA.bajaUnRegimenHotel " + regimenBajaID.ToString() + "," + hotelID.ToString());
+                    if (!qry.Read())
+                    {
+                        MessageBox.Show("#error: no se ha podido quitar el régimen elegido del hotel");
+                        qry.Close();
+                        return;
+                    }
+                    qry.Close();
                     atras_Click(null, null);
                 }
                 else
                 {
                     MessageBox.Show("#error: no se ha podido realizar la operación");
                 }
-            }
+           }
         }
 
         private void atras_Click(object sender, EventArgs e)
