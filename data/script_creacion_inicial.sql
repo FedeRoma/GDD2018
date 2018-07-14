@@ -863,9 +863,9 @@ create procedure EN_CASA_ANDABA.registrarConsumibleEstadia
 			set @precio = (select con_precio from EN_CASA_ANDABA.Consumibles where con_id = @cons)
 			set @descri = (	select con_desc from EN_CASA_ANDABA.Consumibles where con_id = @cons)
 			set @factu = (select fac_id from EN_CASA_ANDABA.Facturas where fac_est_res_id = @estadia)
-			if( exists(select iyf_id from EN_CASA_ANDABA.Items_Facturas where iyf_fac_id = @factu))
+			if( exists(select iyf_id from EN_CASA_ANDABA.Items_Facturas where iyf_fac_id = @factu and iyf_con_id = @cons))
 				begin
-					set @item = (select iyf_id from EN_CASA_ANDABA.Items_Facturas where  iyf_fac_id = @factu)
+					set @item = (select iyf_id from EN_CASA_ANDABA.Items_Facturas where  iyf_fac_id = @factu  and iyf_con_id = @cons)
 					update EN_CASA_ANDABA.Items_Facturas 
 					set iyf_monto = iyf_monto + @precio, iyf_cantidad = iyf_cantidad + 1
 					where iyf_id = @item
