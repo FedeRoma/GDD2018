@@ -101,13 +101,14 @@ namespace FrbaHotel.RegistrarEstadia
         {
             if (listaClientes.Columns[e.ColumnIndex].Name == "agregar")
             {
-                DataRow columna = AsignarClientesEstadia.tablaClientes.NewRow();
-                columna["ID"] = listaClientes.CurrentRow.Cells[1].Value.ToString();
-                columna["NOMBRE"] = listaClientes.CurrentRow.Cells[2].Value.ToString();
-                columna["APELLIDO"] = listaClientes.CurrentRow.Cells[3].Value.ToString();
+                DataRow fila = AsignarClientesEstadia.tablaClientes.NewRow();
+                fila["TIPO DOCUMENTO"] = listaClientes.CurrentRow.Cells[3].Value.ToString();
+                fila["NRO DOCUMENTO"] = listaClientes.CurrentRow.Cells[4].Value.ToString();
+                fila["NOMBRE"] = listaClientes.CurrentRow.Cells[1].Value.ToString();
+                fila["APELLIDO"] = listaClientes.CurrentRow.Cells[2].Value.ToString();
                 try
                 {
-                    AsignarClientesEstadia.tablaClientes.Rows.Add(columna);
+                    AsignarClientesEstadia.tablaClientes.Rows.Add(fila);
                     AsignarClientesEstadia.plazasDisponibles--;
                 }
                 catch

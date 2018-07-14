@@ -18,8 +18,8 @@ namespace FrbaHotel.RegistrarEstadia
         public static RegistrarEstadia.AsignarClientesHabitacion AsignarCliHab;
         public static string reservaID, estadiaID;
         public static int plazasTotales, plazasDisponibles;
-        int clienteID;
-        string clienteNombre, clienteApellido;
+        Int64 clienteNroDocumento;
+        string clienteTipoDocumento, clienteNombre, clienteApellido;
         public static DataTable tablaClientes;
 
         public AsignarClientesEstadia(string reserva, string estadia)
@@ -30,9 +30,8 @@ namespace FrbaHotel.RegistrarEstadia
             estadiaID = estadia;
 
             tablaClientes = new DataTable();
-            tablaClientes.Columns.Add("ID");
-            DataColumn column = tablaClientes.Columns["ID"];
-            column.Unique = true;
+            tablaClientes.Columns.Add("TIPO DOCUMENTO");
+            tablaClientes.Columns.Add("NRO DOCUMENTO");
             tablaClientes.Columns.Add("NOMBRE");
             tablaClientes.Columns.Add("APELLIDO");
                         
@@ -52,20 +51,24 @@ namespace FrbaHotel.RegistrarEstadia
             }
             qry.Close();
 
-            qry = Index.BD.consultaGetPuntero("select C.cli_doc_id ID, C.cli_nombre NOMBRE, C.cli_apellido APELLIDO from EN_CASA_ANDABA.Reservas R, EN_CASA_ANDABA.Clientes C where R.res_cli_doc_id = C.cli_doc_id and r.res_cli_documento = c.cli_documento and R.res_id = " + reservaID);
+            qry = Index.BD.consultaGetPuntero("select D.doc_desc [TIPO DOCUMENTO], C.cli_documento [NRO DOCUMENTO], C.cli_nombre NOMBRE, C.cli_apellido APELLIDO from EN_CASA_ANDABA.Reservas R, EN_CASA_ANDABA.Clientes C, EN_CASA_ANDABA.Documentos D where R.res_cli_doc_id = C.cli_doc_id and r.res_cli_documento = c.cli_documento and C.cli_doc_id = D.doc_id and R.res_id = " + reservaID);
             if (qry.Read())
             {
-                titularEstadia.Text = qry.GetString(1) + "" + qry.GetString(2);
+                clienteTipoDocumento = qry.GetString(0);
+                clienteNroDocumento = qry.GetInt64(1);
+                clienteNombre = qry.GetString(2);
+                clienteApellido = qry.GetString(3); 
+                titularEstadia.Text = qry.GetString(2) + " " + qry.GetString(3);
                 plazasDisponibles = plazasTotales - 1;
                 plazasRestantes.Text = (plazasDisponibles).ToString();
-                clienteID = qry.GetInt32(0);
-                clienteNombre = qry.GetString(1);
-                clienteApellido = qry.GetString(2);
-                DataRow columna = tablaClientes.NewRow();
-                columna["ID"] = clienteID;
-                columna["NOMBRE"] = clienteNombre;
-                columna["APELLIDO"] = clienteApellido;
-                tablaClientes.Rows.Add(columna);
+
+                DataRow fila = tablaClientes.NewRow();
+
+                fila["TIPO DOCUMENTO"] = clienteTipoDocumento;
+                fila["NRO DOCUMENTO"] = clienteNroDocumento;
+                fila["NOMBRE"] = clienteNombre;
+                fila["APELLIDO"] = clienteApellido;
+                tablaClientes.Rows.Add(fila);
                 numeroReserva.Text = reservaID;
             }
             qry.Close();
@@ -108,7 +111,7 @@ namespace FrbaHotel.RegistrarEstadia
             if (e.ColumnIndex == 0)
             {
                 int item = listaClientes.CurrentRow.Index;
-                if (listaClientes.CurrentRow.Cells[1].Value.ToString() == clienteID.ToString())
+                if (listaClientes.CurrentRow.Cells[3].Value.ToString() == clienteTipoDocumento && listaClientes.CurrentRow.Cells[4].Value.ToString() == clienteNroDocumento.ToString())
                 {
                     MessageBox.Show("No se puede eliminar al titular de la reserva");
                     return;
@@ -149,11 +152,12 @@ namespace FrbaHotel.RegistrarEstadia
         {
             tablaClientes.Clear();
             plazasDisponibles = plazasTotales - 1;
-            DataRow columna = tablaClientes.NewRow();
-            columna["ID"] = clienteID;
-            columna["NOMBRE"] = clienteNombre;
-            columna["APELLIDO"] = clienteApellido;
-            tablaClientes.Rows.Add(columna);
+            DataRow fila = tablaClientes.NewRow();
+            fila["TIPO DOCUMENTO"] = clienteTipoDocumento;
+            fila["NRO DOCUMENTO"] = clienteNroDocumento;
+            fila["NOMBRE"] = clienteNombre;
+            fila["APELLIDO"] = clienteApellido;
+            tablaClientes.Rows.Add(fila);
         }
 
         private void atras_Click(object sender, EventArgs e)
