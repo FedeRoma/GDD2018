@@ -237,27 +237,26 @@ namespace FrbaHotel.GenerarModificacionReserva
                 return;
             }
 
-            insert = "exec EN_CASA_ANDABA.buscarHabitacionesDisponibles ";
-            insert = insertString(calle);
-            insert = insertString(calleNumero.ToString());
+            string consulta = "exec EN_CASA_ANDABA.buscarHabitacionesDisponibles ";
+            consulta = insertString(calle);
+            consulta = insertString(calleNumero.ToString());
 
             DateTime fechaDesde;
             fechaDesde = Convert.ToDateTime(desde.Value);
-            insert = insertString(fechaDesde.Date.ToString("yyyyMMdd HH:mm:ss"));
+            consulta = insertString(fechaDesde.Date.ToString("yyyyMMdd HH:mm:ss"));
             DateTime fechaHasta;
             fechaHasta = Convert.ToDateTime(desde.Value);
-            insert = insertString(fechaHasta.Date.ToString("yyyyMMdd HH:mm:ss"));
+            consulta = insertString(fechaHasta.Date.ToString("yyyyMMdd HH:mm:ss"));
 
-            insert = insertString(regimen.Text);
-            insert = insertString(tipoHabitacion.Text);
+            consulta = insertString(regimen.Text);
+            consulta = insertString(tipoHabitacion.Text);
 
-            insert = insert.Remove(insert.Length - 1);
+            consulta = consulta.Remove(consulta.Length - 1);
 
             tablaHabitaciones = Index.BD.consultaGetTabla(insert);
             BindingSource bindingSourceListaHabitaciones = new BindingSource();
             bindingSourceListaHabitaciones.DataSource = tablaHabitaciones;
             listaHabitaciones.DataSource = bindingSourceListaHabitaciones;
-
         }
 
         private void regimen_SelectedIndexChanged(object sender, EventArgs e)
