@@ -211,6 +211,7 @@ namespace FrbaHotel.GenerarModificacionReserva
 
             insert = "exec EN_CASA_ANDABA.buscarHabitacionesDisponibles ";
             insert = insertString(calle);
+            insert = insertString(calleNumero.ToString());
 
             DateTime fechaDesde;
             fechaDesde = Convert.ToDateTime(desde.Value);
