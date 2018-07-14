@@ -236,8 +236,7 @@ namespace FrbaHotel.GenerarModificacionReserva
                 MessageBox.Show("La fecha de inicio debe ser posterior a la fecha actual\n");
                 return;
             }
-
-            string consulta = "exec EN_CASA_ANDABA.buscarHabitacionesDisponibles ";
+            string consulta;
             consulta = insertString(calle);
             consulta = insertNro(calleNumero.ToString());
 
@@ -253,7 +252,7 @@ namespace FrbaHotel.GenerarModificacionReserva
 
             consulta = consulta.Remove(consulta.Length - 1);
 
-            tablaHabitaciones = Index.BD.consultaGetTabla(consulta);
+            tablaHabitaciones = Index.BD.consultaGetTabla("exec EN_CASA_ANDABA.buscarHabitacionesDisponibles " + consulta);
             BindingSource bindingSourceListaHabitaciones = new BindingSource();
             bindingSourceListaHabitaciones.DataSource = tablaHabitaciones;
             listaHabitaciones.DataSource = bindingSourceListaHabitaciones;
