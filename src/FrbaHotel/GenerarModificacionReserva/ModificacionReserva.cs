@@ -171,7 +171,7 @@ namespace FrbaHotel.GenerarModificacionReserva
                     {
                         habitacionesAsig = habitacionesAsig + "," + idHab;
                     }
-                    totalHA = totalHA + (((int)listaHabitaciones.CurrentRow.Cells[3].Value) * dias);
+                    totalHA = totalHA + (((int)listaHabitaciones.CurrentRow.Cells[2].Value) * dias);
                     listaHabitaciones.Rows.RemoveAt(item);
                     total.Text = totalHA.ToString();
                     j++;
