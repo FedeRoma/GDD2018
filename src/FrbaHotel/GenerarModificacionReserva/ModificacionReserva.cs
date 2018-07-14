@@ -18,8 +18,8 @@ namespace FrbaHotel.GenerarModificacionReserva
         public static Login.MenuFuncionalidades menuFuncionalidades;
         DataTable tablaHabitaciones;
         string calle, tipo;
-        int calleNumero, capacidad, cambio, i, j=0, dias, totalH, totalHA, reservaID;
-        string habitaciones, habitacionesAsig, insert;
+        int calleNumero, capacidad, cambio, contHabitaciones, contHabitacionesAsig = 0, dias, totalH, totalHA, reservaID;
+        string habitaciones, habitacionesAsig, insert, update;
         DataGridViewButtonColumn botonAsignar = new DataGridViewButtonColumn();
         
             
@@ -81,7 +81,7 @@ namespace FrbaHotel.GenerarModificacionReserva
                 fila["ID"] = qry.GetInt32(0).ToString();
                 fila["PRECIO"] = qry.GetInt32(1).ToString();
                 tablaHabitaciones.Rows.Add(fila);
-                if (i == 0)
+                if (contHabitaciones == 0)
                 {
                     habitaciones = habitaciones + qry.GetInt32(0).ToString();
                 }
@@ -90,7 +90,7 @@ namespace FrbaHotel.GenerarModificacionReserva
                     habitaciones = habitaciones + "," + qry.GetInt32(0).ToString();
                     
                 }
-                i++;
+                contHabitaciones++;
                 totalH = totalH + qry.GetInt32(1);
             }
             cambio = 0;
@@ -155,7 +155,7 @@ namespace FrbaHotel.GenerarModificacionReserva
                 {
                     tablaHabitaciones.Rows.Add(fila);
 
-                    if (j == 0)
+                    if (contHabitacionesAsig == 0)
                     {
                         habitaciones = habitaciones + idHab;
                         if (string.IsNullOrEmpty(regimen.Text))
@@ -174,7 +174,7 @@ namespace FrbaHotel.GenerarModificacionReserva
                     totalHA = totalHA + (((int)listaHabitaciones.CurrentRow.Cells[2].Value) * dias);
                     listaHabitaciones.Rows.RemoveAt(item);
                     total.Text = totalHA.ToString();
-                    j++;
+                    contHabitacionesAsig++;
                     listaHabitacionesAsig.DataSource = bindingSourceListaHabitacionesAsig;
                 }
                 catch
@@ -263,7 +263,7 @@ namespace FrbaHotel.GenerarModificacionReserva
         private void regimen_SelectedIndexChanged(object sender, EventArgs e)
         {
             listaHabitacionesAsig.DataSource = null;
-            j = 0;
+            contHabitacionesAsig = 0;
             habitacionesAsig = "";
             cambio = 1;
             totalHA = 0;
@@ -281,7 +281,7 @@ namespace FrbaHotel.GenerarModificacionReserva
 
         private void aceptar_Click(object sender, EventArgs e)
         {
-            if (habitacionesAsig == "" || j == 0)
+            if (habitacionesAsig == "" || contHabitacionesAsig == 0)
             {
                 MessageBox.Show("Debe seleccionar por lo menos una habitacion");
                 return;
@@ -292,38 +292,145 @@ namespace FrbaHotel.GenerarModificacionReserva
                 return;
             }
 
-            insert = "exec EN_CASA_ANDABA.modificacionReserva ";
-            insert = insertNro(reserva.Text);
+            bool estado = false;
+
+            qry = Index.BD.consultaGetPuntero("select cli_habilitado from EN_CASA_ANDABA.Clientes where cli_doc_id =" + tipoDocumento.Text + " and cli_documento" + nroDocumento.Text);
+            if (qry.Read())
+            {
+                estado = qry.GetBoolean(0);
+            }
+            qry.Close();
+
+            if (estado == false)
+            {
+                MessageBox.Show("El cliente se encuentra inhabilitado para realizar reservas");
+                return;
+            }
+
+            update = "exec EN_CASA_ANDABA.modificacionReserva ";
+            update = insertNro(reserva.Text);
 
             DateTime fechaHoy;
             fechaHoy = Convert.ToDateTime(DateTime.Today);
-            insert = insertString(fechaHoy.Date.ToString("yyyyMMdd HH:mm:ss"));
+            update = insertString(fechaHoy.Date.ToString("yyyyMMdd HH:mm:ss"));
             DateTime fechaDesde;
             fechaDesde = Convert.ToDateTime(desde.Value);
-            insert = insertString(fechaDesde.Date.ToString("yyyyMMdd HH:mm:ss"));
+            update = insertString(fechaDesde.Date.ToString("yyyyMMdd HH:mm:ss"));
             DateTime fechaHasta;
             fechaHasta = Convert.ToDateTime(desde.Value);
-            insert = insertString(fechaHasta.Date.ToString("yyyyMMdd HH:mm:ss"));
+            update = insertString(fechaHasta.Date.ToString("yyyyMMdd HH:mm:ss"));
 
-            insert = insertString(tipoHabitacion.Text);
-            insert = insertString(regimen.Text);
-            insert = insertNro(nroDocumento.Text);
-            insert = insertNro(Index.usuarioID.ToString());
-            insert = insertString(tipoDocumento.Text);
+            update = insertString(tipoHabitacion.Text);
+            update = insertString(regimen.Text);
+            update = insertNro(nroDocumento.Text);
+            update = insertNro(Index.usuarioID.ToString());
+            update = insertString(tipoDocumento.Text);
 
-            insert = insert.Remove(insert.Length - 1);
+            update = update.Remove(update.Length - 1);
 
-            string resultado = Index.BD.consultaGetString(insert);
+            string resultado = Index.BD.consultaGetString(update);
             if (resultado == "0")
             {
                 MessageBox.Show("#error!");
+                this.Close();
+                atras_Click(null, null);
             }
             else
             {
-                MessageBox.Show("Reserva modificada con éxito");
+                reservaID = Convert.ToInt32(reserva.Text);
             }
+
+            string insert = "";
+            string[] strArr = null;
+            int i = 0;
+            char[] coma = { ',' };
+            if (cambio == 1)
+            {
+                insert = "exec EN_CASA_ANDABA.bajaReservaHabitacion " + reservaID + ", ";
+                if (contHabitaciones > 1)
+                {
+                    strArr = habitaciones.Split(coma);
+
+                    for (i = 0; i <= strArr.Length - 1; i++)
+                    {
+                        qry = Index.BD.consultaGetPuntero(insert + strArr[i]);
+
+                        if (!qry.Read())
+                        {
+                            MessageBox.Show("#error");
+                            qry.Close();
+                            return;
+                        }
+                        if (qry.GetInt32(0) == 0)
+                        {
+                            MessageBox.Show("#error: no se pudo borrar habitación duplicada");
+                            qry.Close();
+                        }
+                    }
+                }
+                else
+                {
+                    qry = Index.BD.consultaGetPuntero(insert + habitaciones);
+                    if (!qry.Read())
+                    {
+                        MessageBox.Show("#error");
+                        qry.Close();
+                        return;
+                    }
+                    if (qry.GetInt32(0) == 0)
+                    {
+                        MessageBox.Show("#error: no se pudo borrar habitación duplicada");
+                        qry.Close();
+                    }
+                    qry.Close();
+                }
+            }
+
+            insert = "exec EN_CASA_ANDABA.altaReservaHabitacion " + reservaID + ", ";
+
+            if (contHabitacionesAsig > 1)
+            {
+                strArr = null;
+                i = 0;
+                strArr = habitacionesAsig.Split(coma);
+
+                for (i = 0; i <= strArr.Length -1; i++)
+                {
+                    qry = Index.BD.consultaGetPuntero(insert + strArr[i]);
+
+                    if (!qry.Read())
+                    {
+                        MessageBox.Show("#error");
+                        qry.Close();
+                        return;
+                    }
+                    if (qry.GetInt32(0) == 0)
+                    {
+                        MessageBox.Show("#error: no se pudo borrar habitación duplicada");
+                        qry.Close();
+                        return;
+                    }
+                    qry.Close();
+                }
+            }
+            else
+                {
+                    qry = Index.BD.consultaGetPuntero(insert + habitaciones);
+                    if (!qry.Read())
+                    {
+                        MessageBox.Show("#error");
+                        qry.Close();
+                        return;
+                    }
+                    if (qry.GetInt32(0) == 0)
+                    {
+                        MessageBox.Show("#error: no se pudo borrar habitación duplicada");
+                        qry.Close();
+                    }
+                    qry.Close();
+                }
+            MessageBox.Show("Reserva modificada con éxito");
             this.Close();
-            atras_Click(null, null);
         }
 
         private void atras_Click(object sender, EventArgs e)
