@@ -38,7 +38,7 @@ namespace FrbaHotel.GenerarModificacionReserva
                 return;
             }
 
-            qry = Index.BD.consultaGetPuntero("select res_fecha from EN_CASA_ANDABA.Reservas where res_id = " + reserva.Text);
+            qry = Index.BD.consultaGetPuntero("select res_fecha from EN_CASA_ANDABA.Reservas where res_estados_id <= 3 and res_id = " + reserva.Text);
             if (qry.Read())
             {
                 if ((qry.GetDateTime(0).Date >= DateTime.Today))
@@ -58,7 +58,7 @@ namespace FrbaHotel.GenerarModificacionReserva
             else
             {
                 qry.Close();
-                MessageBox.Show("Número de reserva Inválido");
+                MessageBox.Show("Número de reserva Inválido, recuerde que solo pueden ser modificadas reservas correctas y/o modificadas");
                 return;
             }
             

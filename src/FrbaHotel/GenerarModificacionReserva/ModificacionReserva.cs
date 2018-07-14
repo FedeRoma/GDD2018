@@ -28,7 +28,7 @@ namespace FrbaHotel.GenerarModificacionReserva
             tablaHabitaciones = new DataTable();
             reserva.Text = reservaID;
 
-            qry = Index.BD.consultaGetPuntero("select HO.hot_calle, HO.hot_calle_nro, RS.res_inicio, RS.res_fin, RG.reg_desc, D.doc_desc, RS.res_cli_documento, TH.tip_nombre, TH.tip_personas, E.est_precio from EN_CASA_ANDABA.Reservas RS, EN_CASA_ANDABA.Hoteles HO, EN_CASA_ANDABA.Regimenes RG, EN_CASA_ANDABA.Habitaciones HA, EN_CASA_ANDABA.Reservas_Habitaciones RSHA, EN_CASA_ANDABA.Estadias E, EN_CASA_ANDABA.TiposHabitaciones TH, EN_CASA_ANDABA.Documentos D where RG.reg_id = RS.res_reg_id and RSHA.ryh_res_id = RS.res_id and E.est_res_id = RS.res_id and RSHA.ryh_hab_id = HA.hab_id and HA.hab_hot_id = HO.hot_id and TH.tip_id = HA.hab_tip_id and RS.res_cli_doc_id = D.doc_id and res_id = " + reservaID);
+            qry = Index.BD.consultaGetPuntero("select HO.hot_calle, HO.hot_calle_nro, RS.res_inicio, RS.res_fin, RG.reg_desc, D.doc_desc, RS.res_cli_documento,TH.tip_nombre, TH.tip_personas,((RG.reg_precio * HA.hab_tipo_porcentual) + ((HO.hot_estrellas * HO.hot_recarga_estrellas) * (select datediff(day, res_inicio, res_fin) from EN_CASA_ANDABA.Reservas where res_id = "+ reservaID+"))) from EN_CASA_ANDABA.Reservas RS, EN_CASA_ANDABA.Hoteles HO,EN_CASA_ANDABA.Regimenes RG, EN_CASA_ANDABA.Habitaciones HA, EN_CASA_ANDABA.Reservas_Habitaciones RSHA,EN_CASA_ANDABA.TiposHabitaciones TH, EN_CASA_ANDABA.Documentos D where RG.reg_id = RS.res_reg_id and RSHA.ryh_res_id = RS.res_id and RSHA.ryh_hab_id = HA.hab_id and HA.hab_hot_id = HO.hot_id and TH.tip_id = HA.hab_tip_id and RS.res_cli_doc_id = D.doc_id and res_id =" + reservaID);
             if (qry.Read())
             {
                 calle = qry.GetString(0);
@@ -117,9 +117,9 @@ namespace FrbaHotel.GenerarModificacionReserva
         {
             if (e.ColumnIndex == 0)
             {
-                string idHab = listaHabitaciones.CurrentRow.Cells[1].Value.ToString();
-                string precioHab = listaHabitaciones.CurrentRow.Cells[3].Value.ToString();
-                string regimenHab = listaHabitaciones.CurrentRow.Cells[4].Value.ToString();
+                string idHab = listaHabitaciones.CurrentRow.Cells[0].Value.ToString();
+                string precioHab = listaHabitaciones.CurrentRow.Cells[1].Value.ToString();
+                string regimenHab = regimen.Text;
                 int item = listaHabitaciones.CurrentRow.Index;
 
                 DataRow fila = tablaHabitaciones.NewRow();
