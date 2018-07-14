@@ -19,7 +19,7 @@ namespace FrbaHotel.GenerarModificacionReserva
         DataTable tablaHabitaciones;
         string calle, tipo;
         int calleNumero, capacidad, cambio, contHabitaciones, contHabitacionesAsig = 0, dias, totalH, totalHA, reservaID;
-        string habitaciones, habitacionesAsig, insert;
+        string habitaciones, habitacionesAsig;
         DataGridViewButtonColumn botonAsignar = new DataGridViewButtonColumn();         
         
         public ModificacionReserva(string reservaID)
@@ -182,33 +182,7 @@ namespace FrbaHotel.GenerarModificacionReserva
                 }
             }
         }
-
-        private string insertString(string campo)
-        {
-            if (string.IsNullOrEmpty(campo))
-            {
-                insert = insert + "null,";
-            }
-            else
-            {
-                insert = insert + "'" + campo + "',";
-            }
-            return insert;
-        }
-
-        private string insertNro(string campo)
-        {
-            if (string.IsNullOrEmpty(campo))
-            {
-                insert = insert + "null,";
-            }
-            else
-            {
-                insert = insert + "" + campo + ",";
-            }
-            return insert;
-        }
-
+        
         private void buscarHabitaciones_Click(object sender, EventArgs e)
         {
             
@@ -236,22 +210,21 @@ namespace FrbaHotel.GenerarModificacionReserva
             }
 
             string insert = "";
-            insert = insertString(calle);
-            insert = insertNro(calleNumero.ToString());
+            insert = "exec EN_CASA_ANDABA.buscarHabitacionesDisponibles ";
+            insert = insert + "'" + calle + "',";
+            insert = insert + " " + calleNumero.ToString() + ",";
 
             DateTime fechaDesde;
             fechaDesde = Convert.ToDateTime(desde.Value);
-            insert = insertString(fechaDesde.Date.ToString("yyyyMMdd HH:mm:ss"));
+            insert = insert + "'" + fechaDesde.Date.ToString("yyyyMMdd HH:mm:ss") + "',";
             DateTime fechaHasta;
-            fechaHasta = Convert.ToDateTime(desde.Value);
-            insert = insertString(fechaHasta.Date.ToString("yyyyMMdd HH:mm:ss"));
+            fechaHasta = Convert.ToDateTime(hasta.Value);
+            insert = insert + "'" + fechaHasta.Date.ToString("yyyyMMdd HH:mm:ss") + "',";
 
-            insert = insertString(regimen.Text);
-            insert = insertString(tipoHabitacion.Text);
+            insert = insert + "'" + regimen.Text + "',";
+            insert = insert + "'" + tipoHabitacion.Text;
 
-            insert = insert.Remove(insert.Length - 1);
-
-            tablaHabitaciones = Index.BD.consultaGetTabla("exec EN_CASA_ANDABA.buscarHabitacionesDisponibles " + insert);
+            tablaHabitaciones = Index.BD.consultaGetTabla(insert);
             BindingSource bindingSourceListaHabitaciones = new BindingSource();
             bindingSourceListaHabitaciones.DataSource = tablaHabitaciones;
             listaHabitaciones.DataSource = bindingSourceListaHabitaciones;
@@ -305,27 +278,26 @@ namespace FrbaHotel.GenerarModificacionReserva
             }
 
             string insert = "";
-            insert = insertNro(reserva.Text);
+            insert = "exec EN_CASA_ANDABA.modificacionReserva ";
+            insert = insert + " " + reservaID + ",";
 
             DateTime fechaHoy;
             fechaHoy = Convert.ToDateTime(DateTime.Today);
-            insert = insertString(fechaHoy.Date.ToString("yyyyMMdd HH:mm:ss"));
+            insert = insert + "'" + fechaHoy.Date.ToString("yyyyMMdd HH:mm:ss") + "',";
             DateTime fechaDesde;
             fechaDesde = Convert.ToDateTime(desde.Value);
-            insert = insertString(fechaDesde.Date.ToString("yyyyMMdd HH:mm:ss"));
+            insert = insert + "'" + fechaDesde.Date.ToString("yyyyMMdd HH:mm:ss") + "',";
             DateTime fechaHasta;
             fechaHasta = Convert.ToDateTime(desde.Value);
-            insert = insertString(fechaHasta.Date.ToString("yyyyMMdd HH:mm:ss"));
+            insert = insert + "'" + fechaHasta.Date.ToString("yyyyMMdd HH:mm:ss") + "',";
 
-            insert = insertString(tipoHabitacion.Text);
-            insert = insertString(regimen.Text);
-            insert = insertNro(nroDocumento.Text);
-            insert = insertNro(Index.usuarioID.ToString());
-            insert = insertString(tipoDocumento.Text);
-
-            insert = insert.Remove(insert.Length - 1);
-
-            string resultado = Index.BD.consultaGetString("exec EN_CASA_ANDABA.modificacionReserva " + insert);
+            insert = insert + "'" + tipoHabitacion.Text + "',";
+            insert = insert + "'" + regimen.Text + "',";
+            insert = insert + " " + nroDocumento.Text + ",";
+            insert = insert + " " + Index.usuarioID.ToString() + ",";
+            insert = insert + "'" + tipoDocumento.Text;
+   
+            string resultado = Index.BD.consultaGetString(insert);
             if (resultado == "0")
             {
                 MessageBox.Show("#error!");
