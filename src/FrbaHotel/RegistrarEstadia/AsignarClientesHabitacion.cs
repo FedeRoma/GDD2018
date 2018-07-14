@@ -14,6 +14,7 @@ namespace FrbaHotel.RegistrarEstadia
     public partial class AsignarClientesHabitacion : Form
     {
         private SqlDataReader qry;
+        public static MenuRegistrarEstadia MenuEstadia;
         DataTable tablaClientes;
         public static AsignarClientesEstadia ClientesEstadia;
         string numeroReserva, numeroEstadia;
@@ -120,6 +121,8 @@ namespace FrbaHotel.RegistrarEstadia
             if (tablaClientes.Rows.Count == 0)
             {
                 this.Close();
+                MenuEstadia = new MenuRegistrarEstadia();
+                MenuEstadia.Show();
             }
             else
             {
