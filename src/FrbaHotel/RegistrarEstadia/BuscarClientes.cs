@@ -150,8 +150,11 @@ namespace FrbaHotel.RegistrarEstadia
 
         private void atras_Click(object sender, EventArgs e)
         {
+            string reservaID = AsignarClientesEstadia.reservaID;
+            string estadiaID = AsignarClientesEstadia.estadiaID;
+
             this.Hide();
-            AsignarClientesEstadia ClientesEstadia = new AsignarClientesEstadia(reserva.Text, idEstadia.ToString());
+            AsignarClientesEstadia ClientesEstadia = new AsignarClientesEstadia(reservaID, estadiaID);
             ClientesEstadia.Show();
         }
 

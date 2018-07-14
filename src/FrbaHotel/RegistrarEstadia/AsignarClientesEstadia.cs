@@ -16,7 +16,7 @@ namespace FrbaHotel.RegistrarEstadia
         private SqlDataReader qry;
         public static MenuRegistrarEstadia MenuEstadia;
         public static RegistrarEstadia.AsignarClientesHabitacion AsignarCliHab;
-        string reservaID, estadiaID;
+        public static string reservaID, estadiaID;
         public static int plazasTotales, plazasDisponibles;
         int clienteID;
         string clienteNombre, clienteApellido;
