@@ -20,7 +20,7 @@ namespace FrbaHotel.AbmHotel
         private DataTable tablaRegimenesAsig;
         private string regimenes = "";
         private int cantRegimenes = 0;
-        private int resultado = 0;
+        int nuevoHotelID = 0;
 
         public AltaHotel()
         {
@@ -228,21 +228,41 @@ namespace FrbaHotel.AbmHotel
                 DateTime fecha;
                 fecha = Convert.ToDateTime(fechaCreacion.Value);
                 insert = insertString(fecha.Date.ToString("yyyyMMdd HH:mm:ss"));
-                insert = insertString(recargaEstrellas.Text);
+                insert = insertNro(recargaEstrellas.Text);
                 insert = insert.Remove(insert.Length - 1);
 
-                resultado = Index.BD.consultaGetInt(insert);
+                qry = Index.BD.consultaGetPuntero(insert);
 
-                if (resultado == 0)
+                if (qry.Read())
+                {
+                    nuevoHotelID = qry.GetInt32(0);
+                }
+                qry.Close();
+
+                if (nuevoHotelID == 0)
                 {
                    MessageBox.Show("#error: no se ha podido realizar la operación");
                 }
                 else 
                 {
-                    int altaHotUsu = Index.BD.consultaGetInt("insert EN_CASA_ANDABA.Hoteles_Usuarios (hyu_usu_id, hyu_hot_id) values(" + Index.usuarioID.ToString() + ", " + resultado.ToString() + ")");
+                    int altaHotUsu = Index.BD.consultaGetInt("insert EN_CASA_ANDABA.Hoteles_Usuarios (hyu_usu_id, hyu_hot_id) values(" + Index.usuarioID.ToString() + ", " + nuevoHotelID.ToString() + ")");
                     if (altaHotUsu == 0)
                     {
                         MessageBox.Show("Hotel dado de alta");
+                    }
+
+                    string[] regimenesArr = null;
+                    regimenesArr = regimenes.Split(',');
+
+                    for (int i = 0; i <= regimenesArr.Length - 1; i++)
+                    {
+                        qry = Index.BD.consultaGetPuntero("exec EN_CASA_ANDABA.altaRegimenesHotel " + regimenesArr[i].ToString() + "," + nuevoHotelID.ToString());
+                        if (!qry.Read())
+                        {
+                            MessageBox.Show("#error: no se ha podido asignar el régimen elegido al hotel");
+                            return;
+                        }
+                        qry.Close();
                     }
                 }
             }
