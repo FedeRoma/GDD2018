@@ -18,6 +18,8 @@ namespace FrbaHotel.AbmHotel
         int hotelID = 0;
         string insert = "";
         DateTime desde, hasta;
+        string desdeS, hastaS;
+        bool inconsistencias = false;
 
         public BajaHotel(string calleHot, string calleNroHot)
         {
@@ -36,7 +38,7 @@ namespace FrbaHotel.AbmHotel
 
         private bool checkCampos()
         {
-            bool inconsistencias = false;
+            inconsistencias = false;
             string alerta = "";
 
             if (string.IsNullOrEmpty(bajaDesde.Text) || string.IsNullOrEmpty(bajaHasta.Text))
@@ -88,15 +90,18 @@ namespace FrbaHotel.AbmHotel
 
         private void aceptar_Click(object sender, EventArgs e)
         {
-            if (checkCampos())
+            if (inconsistencias == false)
             {
-                bool insertOk = false;
-
-                qry = Index.BD.consultaGetPuntero("insert into EN_CASA_ANDABA.BajasHotel (baj_hot_id, baj_fecha_inicio, baj_fecha_fin, baj_motivo) values (" + hotelID + ",'" + desde.Date.ToString("yyyyMMdd HH:mm:ss") + "', '" + hasta.Date.ToString("yyyyMMdd HH:mm:ss") + "', '" + motivo.Text + "')");
-                if (qry.Read())
+                bool insertOk = true;
+                desde = Convert.ToDateTime(bajaDesde.Value);
+                desdeS = desde.Date.ToString("yyyyMMdd HH:mm:ss");
+                hasta = Convert.ToDateTime(bajaHasta.Value);
+                hastaS = hasta.Date.ToString("yyyyMMdd HH:mm:ss");
+                qry = Index.BD.consultaGetPuntero("insert into EN_CASA_ANDABA.BajasHotel (baj_hot_id, baj_fecha_inicio, baj_fecha_fin, baj_motivo) values (" + hotelID.ToString() + ",'" + desdeS + "', '" + hastaS + "', '" + motivo.Text + "')");
+                /*if (qry.Read())
                 {
                     insertOk = qry.GetBoolean(0);
-                }
+                }*/
                 qry.Close();
 
                 if (insertOk)
