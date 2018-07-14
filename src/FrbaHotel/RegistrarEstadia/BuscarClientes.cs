@@ -119,5 +119,41 @@ namespace FrbaHotel.RegistrarEstadia
             }
         }
 
+        private void buscar_Click(object sender, EventArgs e)
+        {
+            DataView vistaClientes = new DataView(tablaClientes);
+            string filtro = "";
+            filtro = filtro + this.esExactamente("[TIPO DOCUMENTO]", tipoDocumento.Text);
+            filtro = filtro + this.esExactamente("[NRO DOCUMENTO]", nroDocumento.Text);
+            filtro = filtro + this.esAproximadamente("NOMBRE", nombre.Text);
+            filtro = filtro + this.esAproximadamente("APELLIDO", apellido.Text);
+            filtro = filtro + this.esAproximadamente("EMAIL", eMail.Text);
+
+            if (filtro.Length > 0)
+            {
+                filtro = filtro.Remove(filtro.Length - 4);
+            }
+
+            vistaClientes.RowFilter = filtro;
+            listaClientes.DataSource = vistaClientes;
+        }
+
+        private void limpiar_Click(object sender, EventArgs e)
+        {
+            tipoDocumento.ResetText();
+            nroDocumento.Text = string.Empty;
+            nombre.Text = string.Empty;
+            apellido.Text = string.Empty;
+            eMail.Text = string.Empty;
+            tipoDocumento.Focus();
+        }
+
+        private void atras_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            AsignarClientesEstadia ClientesEstadia = new AsignarClientesEstadia(reserva.Text, idEstadia.ToString());
+            ClientesEstadia.Show();
+        }
+
     }
 }
