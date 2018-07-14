@@ -239,7 +239,7 @@ namespace FrbaHotel.GenerarModificacionReserva
 
             string consulta = "exec EN_CASA_ANDABA.buscarHabitacionesDisponibles ";
             consulta = insertString(calle);
-            consulta = insertString(calleNumero.ToString());
+            consulta = insertNro(calleNumero.ToString());
 
             DateTime fechaDesde;
             fechaDesde = Convert.ToDateTime(desde.Value);
