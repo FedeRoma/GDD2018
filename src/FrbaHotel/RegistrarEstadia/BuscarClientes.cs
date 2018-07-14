@@ -43,7 +43,7 @@ namespace FrbaHotel.RegistrarEstadia
             qry.Close();
         }
 
-        private void ListadoClientes_Load(object sender, EventArgs e)
+        private void BuscarClientes_Load(object sender, EventArgs e)
         {
             DataGridViewButtonColumn botonAgregar = new DataGridViewButtonColumn();
             botonAgregar.Name = "agregar";

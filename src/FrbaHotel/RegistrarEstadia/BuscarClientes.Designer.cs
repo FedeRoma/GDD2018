@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -49,8 +50,10 @@
             this.limpiar = new System.Windows.Forms.Button();
             this.buscar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.bindingSourceListaClientes = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.listaClientes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceListaClientes)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -114,6 +117,7 @@
             this.nroDocumento.Name = "nroDocumento";
             this.nroDocumento.Size = new System.Drawing.Size(262, 22);
             this.nroDocumento.TabIndex = 2;
+            this.nroDocumento.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.numeroDocumento_Keypress);
             // 
             // label4
             // 
@@ -226,6 +230,8 @@
             this.listaClientes.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.listaClientes.Size = new System.Drawing.Size(566, 169);
             this.listaClientes.TabIndex = 43;
+            this.listaClientes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listaClientes_CellClick);
+            this.listaClientes.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.listaClientes_CellPainting);
             // 
             // atras
             // 
@@ -299,9 +305,11 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FRBA Hotel 2018";
+            this.Load += new System.EventHandler(this.BuscarClientes_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.listaClientes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceListaClientes)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -325,6 +333,7 @@
         private System.Windows.Forms.Button limpiar;
         private System.Windows.Forms.Button buscar;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.BindingSource bindingSourceListaClientes;
 
     }
 }
