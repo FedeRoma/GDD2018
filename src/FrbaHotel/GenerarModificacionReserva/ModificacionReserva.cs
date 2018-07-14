@@ -20,6 +20,9 @@ namespace FrbaHotel.GenerarModificacionReserva
         string calle, tipo;
         int calleNumero, capacidad, cambio, i, j, dias, totalH, totalHA, reservaID;
         string habitaciones, habitacionesAsig, insert;
+        DataGridViewButtonColumn botonAsignar = new DataGridViewButtonColumn();
+        
+            
         
         public ModificacionReserva(string reservaID)
         {
@@ -102,7 +105,7 @@ namespace FrbaHotel.GenerarModificacionReserva
             tipoHabitacion.SelectedText = tipo;
             cantidadPersonas.SelectedText = capacidad.ToString();
 
-            DataGridViewButtonColumn botonAsignar = new DataGridViewButtonColumn();
+            
             botonAsignar.Name = "asignar";
             listaHabitaciones.Columns.Add(botonAsignar);
         }
@@ -249,7 +252,12 @@ namespace FrbaHotel.GenerarModificacionReserva
             tablaHabitaciones = Index.BD.consultaGetTabla(insert);
             BindingSource bindingSourceListaHabitaciones = new BindingSource();
             bindingSourceListaHabitaciones.DataSource = tablaHabitaciones;
-            listaHabitaciones.DataSource = bindingSourceListaHabitaciones;           
+            listaHabitaciones.DataSource = bindingSourceListaHabitaciones;
+
+            listaHabitaciones.Columns.Remove(botonAsignar);
+            DataGridViewButtonColumn botonAsignar2 = new DataGridViewButtonColumn();
+            botonAsignar2.Name = "asignar";
+            listaHabitaciones.Columns.Add(botonAsignar2);
         }
 
         private void regimen_SelectedIndexChanged(object sender, EventArgs e)
