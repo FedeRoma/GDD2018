@@ -33,6 +33,7 @@ PRINT 'Chau Tablas!'
 drop function EN_CASA_ANDABA.estaReservadaHabitacion
 drop function EN_CASA_ANDABA.deudaConsumibles
 drop function EN_CASA_ANDABA.tieneReservaHotel
+drop function EN_CASA_ANDABA.tieneReservaRegimenHotel
 PRINT 'Chau Funciones!'
 drop procedure EN_CASA_ANDABA.buscarHoteles
 drop procedure EN_CASA_ANDABA.buscarRegimenesHotel
@@ -64,6 +65,7 @@ drop procedure EN_CASA_ANDABA.altaCheckOutEstadia
 drop procedure EN_CASA_ANDABA.altaFactura
 drop procedure EN_CASA_ANDABA.modificacionFactura
 drop procedure EN_CASA_ANDABA.registrarConsumibleEstadia
+drop procedure EN_CASA_ANDABA.bajaUnRegimenHotel
 drop procedure EN_CASA_ANDABA.top5_hoteles_reservas_canceladas
 drop procedure EN_CASA_ANDABA.top5_hoteles_consumibles_facturados
 drop procedure EN_CASA_ANDABA.top5_hoteles_dias_fuera_de_servicio

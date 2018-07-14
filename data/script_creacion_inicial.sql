@@ -95,6 +95,18 @@ create function EN_CASA_ANDABA.deudaConsumibles
 	end        
 go
 
+create function EN_CASA_ANDABA.tieneReservaRegimenHotel
+	(@regimenid int, @hotelid int) RETURNS bit as
+	begin
+		if(exists (select res_reg_id from en_casa_andaba.reservas, en_casa_andaba.reservas_habitaciones
+		where res_id = ryh_res_id and res_estados_id <3 and res_reg_id = @regimenid and ryh_hab_hot_id = @hotelid))
+			begin
+				return 1
+			end
+			return 0
+	end
+go
+
 -------------------------------------------------------------------------------				
 ---------- STORED PROCEDURES --------------------------------------------------
 -------------------------------------------------------------------------------

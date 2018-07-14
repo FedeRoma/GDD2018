@@ -248,14 +248,29 @@ namespace FrbaHotel.AbmHotel
                         return;
                     }
                     qry.Close();
-                    int regimenBajaID = Index.BD.consultaGetInt("select reg_id from EN_CASA_ANDABA.Regimenes where reg_desc = '" + bajaRegimen.Text + "'");
-                    qry = Index.BD.consultaGetPuntero("exec EN_CASA_ANDABA.bajaUnRegimenHotel " + regimenBajaID.ToString() + "," + hotelID.ToString());
-                    if (!qry.Read())
+
+                    
+
+                    if (bajaRegimen.Items.Count > 2)
                     {
-                        MessageBox.Show("#error: no se ha podido quitar el régimen elegido del hotel");
-                        qry.Close();
-                        return;
+                        int regimenBajaID = Index.BD.consultaGetInt("select reg_id from EN_CASA_ANDABA.Regimenes where reg_desc = '" + bajaRegimen.Text + "'");
+                        int tieneReservasRegimen = Index.BD.consultaGetInt("select EN_CASA_ANDABA.tieneReservaRegimenHotel(" + regimenBajaID.ToString() + "," + hotelID.ToString() + ")");
+                        if (tieneReservasRegimen == 0)
+                        {
+                            qry = Index.BD.consultaGetPuntero("exec EN_CASA_ANDABA.bajaUnRegimenHotel " + regimenBajaID.ToString() + "," + hotelID.ToString());
+                            if (!qry.Read())
+                            {
+                                MessageBox.Show("#error: no se ha podido quitar el régimen elegido del hotel");
+                                qry.Close();
+                                return;
+                            }
+                        }
                     }
+                    else
+                    {
+                        MessageBox.Show("El hotel debe tener como mínimo un régimen asignado");
+                    }
+
                     qry.Close();
                     atras_Click(null, null);
                 }
