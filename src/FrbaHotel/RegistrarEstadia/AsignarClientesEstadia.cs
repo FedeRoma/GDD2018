@@ -52,7 +52,7 @@ namespace FrbaHotel.RegistrarEstadia
             }
             qry.Close();
 
-            qry = Index.BD.consultaGetPuntero("select C.cli_doc_id, C.cli_nombre, C.cli_apellido from EN_CASA_ANDABA.Reservas R, EN_CASA_ANDABA.Clientes C where R.res_cli_doc_id = C.cli_doc_id and r.res_cli_documento = c.cli_documento and R.res_id = " + reservaID);
+            qry = Index.BD.consultaGetPuntero("select C.cli_doc_id ID, C.cli_nombre NOMBRE, C.cli_apellido APELLIDO from EN_CASA_ANDABA.Reservas R, EN_CASA_ANDABA.Clientes C where R.res_cli_doc_id = C.cli_doc_id and r.res_cli_documento = c.cli_documento and R.res_id = " + reservaID);
             if (qry.Read())
             {
                 titularEstadia.Text = qry.GetString(1) + "" + qry.GetString(2);
