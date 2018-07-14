@@ -17,7 +17,7 @@ namespace FrbaHotel.GenerarModificacionReserva
         public static Login.Login login;
         public static Login.MenuFuncionalidades menuFuncionalidades;
         public static AbmCliente.AltaCliente nuevoCli;
-        DataTable tablaHabitaciones;
+        DataTable tablaHabitaciones, tablaHabitacionesAsig;
         string calle;
         int calleNumero, i, j, dias, totalH, totalHA;
         string habitaciones, habitacionesAsig, insert;
@@ -74,10 +74,38 @@ namespace FrbaHotel.GenerarModificacionReserva
             }
             qry.Close();
 
-            tablaHabitaciones.Columns.Add("ID");
-            DataColumn columna = tablaHabitaciones.Columns["ID"];
+            tablaHabitacionesAsig = new DataTable();
+            tablaHabitacionesAsig.Columns.Add("ID");
+            DataColumn columna = tablaHabitacionesAsig.Columns["ID"];
             columna.Unique = true;
-            tablaHabitaciones.Columns.Add("PRECIO");
+            tablaHabitacionesAsig.Columns.Add("PRECIO");
+            BindingSource bindingSourceListaHabitacionesAsig = new BindingSource();
+            bindingSourceListaHabitacionesAsig.DataSource = tablaHabitacionesAsig;
+            listaHabitacionesAsig.DataSource = bindingSourceListaHabitacionesAsig;
+        }
+
+        private void GenerarReserva_Load(object sender, EventArgs e)
+        {
+            DataGridViewButtonColumn botonAsignar = new DataGridViewButtonColumn();
+            botonAsignar.Name = "asignar";
+            listaHabitaciones.Columns.Add(botonAsignar);
+        }
+
+        private void listaHabitaciones_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            if (e.ColumnIndex >= 0 && this.listaHabitaciones.Columns[e.ColumnIndex].Name == "asignar" && e.RowIndex >= 0)
+            {
+                e.Paint(e.CellBounds, DataGridViewPaintParts.All);
+
+                DataGridViewButtonCell botonColumna = this.listaHabitaciones.Rows[e.RowIndex].Cells["asignar"] as DataGridViewButtonCell;
+                Icon icono = new Icon(Environment.CurrentDirectory + @"\\plus.ico");
+                e.Graphics.DrawIcon(icono, e.CellBounds.Left + 2, e.CellBounds.Top + 2);
+
+                this.listaHabitaciones.Rows[e.RowIndex].Height = icono.Height + 5;
+                this.listaHabitaciones.Columns[e.ColumnIndex].Width = icono.Width + 5;
+
+                e.Handled = true;
+            }
         }
 
         private void tipoHabitacion_SelectedIndexChanged(object sender, EventArgs e)
@@ -92,19 +120,19 @@ namespace FrbaHotel.GenerarModificacionReserva
 
         private void listaHabitaciones_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 0)
+            if (listaHabitaciones.Columns[e.ColumnIndex].Name == "asignar")
             {
                 string idHab = listaHabitaciones.CurrentRow.Cells[1].Value.ToString();
                 string precioHab = listaHabitaciones.CurrentRow.Cells[3].Value.ToString();
                 string regimenHab = listaHabitaciones.CurrentRow.Cells[4].Value.ToString();
                 int item = listaHabitaciones.CurrentRow.Index;
 
-                DataRow fila = tablaHabitaciones.NewRow();
+                DataRow fila = tablaHabitacionesAsig.NewRow();
                 fila["ID"] = idHab;
                 fila["PRECIO"] = precioHab;
                 try
                 {
-                    tablaHabitaciones.Rows.Add(fila);
+                    tablaHabitacionesAsig.Rows.Add(fila);
 
                     if (j == 0)
                     {
@@ -323,6 +351,8 @@ namespace FrbaHotel.GenerarModificacionReserva
             nuevoCli = new AbmCliente.AltaCliente();
             nuevoCli.Show();
         }
+
+
 
     }
 }

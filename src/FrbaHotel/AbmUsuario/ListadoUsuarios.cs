@@ -13,11 +13,9 @@ namespace FrbaHotel.AbmUsuario
 {
     public partial class ListadoUsuarios : Form
     {
-        private SqlDataReader qry;
         public static MenuAbmUsuario AbmUsu;
         public static ModificacionUsuario ModifUsu;
         DataTable tablaUsuarios;
-
 
         public ListadoUsuarios()
         {
@@ -132,7 +130,6 @@ namespace FrbaHotel.AbmUsuario
 
         private void limpiar_Click(object sender, EventArgs e)
         {
-            //tipoDocumento.ResetText();
             nroDocumento.Text = string.Empty;
             nombre.Text = string.Empty;
             apellido.Text = string.Empty;

@@ -165,7 +165,6 @@
             this.cantidadPersonas.Size = new System.Drawing.Size(108, 22);
             this.cantidadPersonas.TabIndex = 161;
             this.cantidadPersonas.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.cantidadPersonas.TextChanged += new System.EventHandler(this.tipoHabitacion_SelectedIndexChanged);
             // 
             // label4
             // 
@@ -289,6 +288,8 @@
             this.listaHabitaciones.RowsDefaultCellStyle = dataGridViewCellStyle8;
             this.listaHabitaciones.Size = new System.Drawing.Size(253, 105);
             this.listaHabitaciones.TabIndex = 71;
+            this.listaHabitaciones.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listaHabitaciones_CellClick);
+            this.listaHabitaciones.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.listaHabitaciones_CellPainting);
             // 
             // label6
             // 
@@ -421,6 +422,7 @@
             this.tipoHabitacion.Name = "tipoHabitacion";
             this.tipoHabitacion.Size = new System.Drawing.Size(262, 24);
             this.tipoHabitacion.TabIndex = 148;
+            this.tipoHabitacion.TextChanged += new System.EventHandler(this.tipoHabitacion_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -493,6 +495,7 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FRBA Hotel 2018";
+            this.Load += new System.EventHandler(this.GenerarReserva_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.listaHabitacionesAsig)).EndInit();
