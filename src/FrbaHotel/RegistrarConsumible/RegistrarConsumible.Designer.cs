@@ -75,6 +75,7 @@
             this.atras.TabIndex = 55;
             this.atras.Text = "atrás";
             this.atras.UseVisualStyleBackColor = false;
+            this.atras.Click += new System.EventHandler(this.atras_Click);
             // 
             // limpiar
             // 
@@ -359,7 +360,7 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FRBA Hotel 2018";
-            this.Load += new System.EventHandler(this.Consumibles_Load);
+            this.Load += new System.EventHandler(this.RegistrarConsumible_Load);
             ((System.ComponentModel.ISupportInitialize)(this.listaConsumiblesAsig)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.listaConsumibles)).EndInit();
             this.groupBox2.ResumeLayout(false);

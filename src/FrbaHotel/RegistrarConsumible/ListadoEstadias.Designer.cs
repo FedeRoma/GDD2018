@@ -36,6 +36,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListadoEstadias));
             this.label5 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.estadia = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.habitacion = new System.Windows.Forms.TextBox();
@@ -48,7 +49,6 @@
             this.limpiar = new System.Windows.Forms.Button();
             this.buscar = new System.Windows.Forms.Button();
             this.bindingSourceListaEstadias = new System.Windows.Forms.BindingSource(this.components);
-            this.estadia = new System.Windows.Forms.TextBox();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.listaEstadias)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceListaEstadias)).BeginInit();
@@ -83,6 +83,15 @@
             this.groupBox2.TabIndex = 40;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "FILTROS";
+            // 
+            // estadia
+            // 
+            this.estadia.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.estadia.ForeColor = System.Drawing.Color.DimGray;
+            this.estadia.Location = new System.Drawing.Point(9, 33);
+            this.estadia.Name = "estadia";
+            this.estadia.Size = new System.Drawing.Size(280, 22);
+            this.estadia.TabIndex = 34;
             // 
             // label6
             // 
@@ -251,15 +260,6 @@
             this.buscar.Text = "buscar";
             this.buscar.UseVisualStyleBackColor = false;
             this.buscar.Click += new System.EventHandler(this.buscar_Click);
-            // 
-            // estadia
-            // 
-            this.estadia.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.estadia.ForeColor = System.Drawing.Color.DimGray;
-            this.estadia.Location = new System.Drawing.Point(9, 33);
-            this.estadia.Name = "estadia";
-            this.estadia.Size = new System.Drawing.Size(280, 22);
-            this.estadia.TabIndex = 34;
             // 
             // ListadoEstadias
             // 

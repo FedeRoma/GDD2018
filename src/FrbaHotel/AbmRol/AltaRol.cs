@@ -175,15 +175,8 @@ namespace FrbaHotel.AbmRol
         {
             nombre.Clear();
             nombre.Focus();
-
-            tablaFuncionalidades = Index.BD.consultaGetTabla("select distinct F.fun_id ID,F.fun_desc DESCRIPCION from EN_CASA_ANDABA.Funcionalidades F");
-            BindingSource bindingSourceListaFuncionalidades = new BindingSource();
-            bindingSourceListaFuncionalidades.DataSource = tablaFuncionalidades;
-            listaFuncionalidades.DataSource = bindingSourceListaFuncionalidades;
-
-            tablaFuncionalidadesAsig.Clear();
-            listaFuncionalidadesAsig.DataSource = bindingSourceListaFuncionalidadesAsig;
-            funcionalidades = null;
+            listaFuncionalidades.Columns.Clear();
+            AltaRol_Load(null, null);
         }
 
         private void atras_Click(object sender, EventArgs e)

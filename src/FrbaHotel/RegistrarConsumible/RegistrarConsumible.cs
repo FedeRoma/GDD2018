@@ -14,7 +14,7 @@ namespace FrbaHotel.RegistrarConsumible
     public partial class RegistrarConsumible : Form
     {
         DataTable tablaConsumibles, tablaConsumiblesAsig;
-        public static ListadoEstadias regConsumible;
+        public static ListadoEstadias listadoConsumibles;
 
         public RegistrarConsumible(string estadiaID, string habitacionID, string numeroHab, string pisoHab, string regimenHab)
         {
@@ -40,7 +40,7 @@ namespace FrbaHotel.RegistrarConsumible
             }
         }
 
-        private void Consumibles_Load(object sender, EventArgs e)
+        private void RegistrarConsumible_Load(object sender, EventArgs e)
         {
             DataGridViewButtonColumn botonAsignar = new DataGridViewButtonColumn();
             botonAsignar.Name = "asignar";
@@ -122,19 +122,21 @@ namespace FrbaHotel.RegistrarConsumible
                 MessageBox.Show("Descuento por régimen de estadía");
             }
             this.Close();
-            regConsumible = new ListadoEstadias();
-            regConsumible.Show();
+            listadoConsumibles = new ListadoEstadias();
+            listadoConsumibles.Show();
         }
 
         private void limpiar_Click(object sender, EventArgs e)
         {
-            tablaConsumibles = Index.BD.consultaGetTabla("select con_id Id,con_precio Precio, con_desc Nombre from EN_CASA_ANDABA.Consumibles");
-            bindingSourceListaConsumibles = new BindingSource();
-            bindingSourceListaConsumibles.DataSource = tablaConsumibles;
-            listaConsumibles.DataSource = bindingSourceListaConsumibles;
+            listaConsumibles.Columns.Clear();
+            RegistrarConsumible_Load(null, null);
+        }
 
-            tablaConsumiblesAsig.Clear();
-            listaConsumiblesAsig.DataSource = bindingSourceListaConsumibles;
+        private void atras_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            listadoConsumibles = new ListadoEstadias();
+            listadoConsumibles.Show();
         }
 
     }

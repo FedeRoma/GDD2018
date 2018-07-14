@@ -35,7 +35,7 @@ namespace FrbaHotel.AbmHotel
             botonAsignar.Name = "asignar";
             listaRegimenes.Columns.Add(botonAsignar);
 
-            tablaRegimenes = Index.BD.consultaGetTabla("select distinct reg_id Id,reg_desc Descripcion from EN_CASA_ANDABA.Regimenes");
+            tablaRegimenes = Index.BD.consultaGetTabla("select distinct reg_id ID,reg_desc DESCRIPCION from EN_CASA_ANDABA.Regimenes");
             BindingSource bindingSourceListaRegimenes = new BindingSource();
             bindingSourceListaRegimenes.DataSource = tablaRegimenes;
             listaRegimenes.DataSource = bindingSourceListaRegimenes;
@@ -43,9 +43,9 @@ namespace FrbaHotel.AbmHotel
             tablaRegimenesAsig = new DataTable();
             tablaRegimenesAsig.Columns.Add("ID");
             tablaRegimenesAsig.Columns.Add("DESCRIPCION");
-            BindingSource bindingSourceListaFuncionalidadesAsig = new BindingSource();
-            bindingSourceListaFuncionalidadesAsig.DataSource = tablaRegimenesAsig;
-            listaRegimenesAsig.DataSource = bindingSourceListaFuncionalidadesAsig;
+            BindingSource bindingSourceListaRegimenesAsig = new BindingSource();
+            bindingSourceListaRegimenesAsig.DataSource = tablaRegimenesAsig;
+            listaRegimenesAsig.DataSource = bindingSourceListaRegimenesAsig;
         }
 
         private void cantidadEstrellas_Keypress(object sender, KeyPressEventArgs e)
@@ -287,6 +287,8 @@ namespace FrbaHotel.AbmHotel
             pais.Text = string.Empty;
             telefono.Text = string.Empty;
             nombre.Focus();
+            listaRegimenes.Columns.Clear();
+            AltaHotel_Load(null, null);
         }
 
         private void cancelar_Click(object sender, EventArgs e)
