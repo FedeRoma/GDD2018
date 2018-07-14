@@ -247,28 +247,36 @@ create procedure EN_CASA_ANDABA.modificacionUsuario
 	end
 go
 
-create procedure EN_CASA_ANDABA.altaHotel
+create procedure [EN_CASA_ANDABA].[altaHotel]
 	@nombre varchar(50), @cantEstrellas int, @calle varchar(50), @numero int, @ciudad varchar(50), 
 	@pais varchar(50), @email nvarchar(50), @telefono varchar(50), @fecha datetime,
 	@recargaEstrellas int as
 	begin
 		declare @fechaCreacion datetime, @respuesta int
 		set @fechaCreacion = CONVERT(datetime,@fecha,121)
-		begin tran tAltaHotel
-			begin try
-				insert into EN_CASA_ANDABA.Hoteles (hot_nombre, hot_estrellas, hot_calle, hot_calle_nro,
-					hot_ciudad, hot_pais, hot_mail, hot_telefono, hot_fecha_cre, hot_habilitado, hot_recarga_estrellas) 
-				values (@nombre, @cantEstrellas, @calle, @numero, @ciudad, @pais, @email, @telefono, @fechaCreacion,
-					1, @recargaEstrellas)        
-				set @respuesta = (Select IDENT_CURRENT('EN_CASA_ANDABA.Hoteles'));
-				select @respuesta as respuesta
-				commit tran tAltaHotel
-			end try
-			begin catch
-				rollback tran tAltaHotel
-				set @respuesta = 0
-				select @respuesta as respuesta
-			end catch
+		if((select count(*) from EN_CASA_ANDABA.Hoteles where hot_calle = @calle and hot_calle_nro = @numero)<1)
+		begin
+			begin tran tAltaHotel
+				begin try
+					insert into EN_CASA_ANDABA.Hoteles (hot_nombre, hot_estrellas, hot_calle, hot_calle_nro,
+						hot_ciudad, hot_pais, hot_mail, hot_telefono, hot_fecha_cre, hot_habilitado, hot_recarga_estrellas) 
+					values (@nombre, @cantEstrellas, @calle, @numero, @ciudad, @pais, @email, @telefono, @fechaCreacion,
+						1, @recargaEstrellas)        
+					set @respuesta = (Select IDENT_CURRENT('EN_CASA_ANDABA.Hoteles'));
+					select @respuesta as respuesta
+					commit tran tAltaHotel
+				end try		
+				begin catch
+					rollback tran tAltaHotel
+					set @respuesta = 0
+					select @respuesta as respuesta
+				end catch
+		end
+		else
+		begin
+			set @respuesta = 0
+			select @respuesta as respuesta
+		end
 	end
 go
 
