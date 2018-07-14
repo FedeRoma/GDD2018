@@ -111,7 +111,7 @@ namespace FrbaHotel.RegistrarEstadia
             if (e.ColumnIndex == 0)
             {
                 int item = listaClientes.CurrentRow.Index;
-                if (listaClientes.CurrentRow.Cells[3].Value.ToString() == clienteTipoDocumento && listaClientes.CurrentRow.Cells[4].Value.ToString() == clienteNroDocumento.ToString())
+                if (listaClientes.CurrentRow.Cells[0].Value.ToString() == clienteTipoDocumento && listaClientes.CurrentRow.Cells[1].Value.ToString() == clienteNroDocumento.ToString())
                 {
                     MessageBox.Show("No se puede eliminar al titular de la reserva");
                     return;
@@ -126,8 +126,8 @@ namespace FrbaHotel.RegistrarEstadia
         {
             foreach (DataRow fila in tablaClientes.Rows)
             {
-                string tipoDocumento = listaClientes.CurrentRow.Cells[1].Value.ToString();
-                string nroDocumento = listaClientes.CurrentRow.Cells[2].Value.ToString();
+                string tipoDocumento = listaClientes.CurrentRow.Cells[0].Value.ToString();
+                string nroDocumento = listaClientes.CurrentRow.Cells[1].Value.ToString();
 
                 qry = Index.BD.consultaGetPuntero("exec EN_CASA_ANDABA.altaClientes_Estadias " + nroDocumento + ", '" + tipoDocumento + "', " + estadiaID + ", 1, " + Index.hotel);
                 if (qry.Read())
