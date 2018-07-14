@@ -253,7 +253,7 @@ namespace FrbaHotel.GenerarModificacionReserva
 
             consulta = consulta.Remove(consulta.Length - 1);
 
-            tablaHabitaciones = Index.BD.consultaGetTabla(insert);
+            tablaHabitaciones = Index.BD.consultaGetTabla(consulta);
             BindingSource bindingSourceListaHabitaciones = new BindingSource();
             bindingSourceListaHabitaciones.DataSource = tablaHabitaciones;
             listaHabitaciones.DataSource = bindingSourceListaHabitaciones;
