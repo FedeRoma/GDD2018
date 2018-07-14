@@ -122,6 +122,12 @@ namespace FrbaHotel.AbmHotel
             bool inconsistencias = false;
             string alerta = "";
 
+            if (regimenes == "")
+            {
+                alerta = alerta + "Se debe asignar por lo menos un regimen\n";
+                inconsistencias = true;
+            }
+
             if (string.IsNullOrEmpty(nombre.Text))
             {
                 alerta = alerta + "Debe ingresar un nombre válido\n";
