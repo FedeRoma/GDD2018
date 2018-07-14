@@ -19,7 +19,7 @@ namespace FrbaHotel.GenerarModificacionReserva
         DataTable tablaHabitaciones;
         string calle, tipo;
         int calleNumero, capacidad, cambio, contHabitaciones, contHabitacionesAsig = 0, dias, totalH, totalHA, reservaID;
-        string habitaciones, habitacionesAsig, insert, update;
+        string habitaciones, habitacionesAsig, insert;
         DataGridViewButtonColumn botonAsignar = new DataGridViewButtonColumn();
         
             
@@ -292,7 +292,7 @@ namespace FrbaHotel.GenerarModificacionReserva
 
             bool estado = false;
 
-            qry = Index.BD.consultaGetPuntero("select C.cli_habilitado from EN_CASA_ANDABA.Clientes C, EN_CASA_ANDABA.Documentos D where D.doc_desc = '" + tipoDocumento.Text + "' and C.cli_documento = " + nroDocumento.Text+" and C.doc_id = D.cli_doc_id");
+            qry = Index.BD.consultaGetPuntero("select cli_habilitado from EN_CASA_ANDABA.Clientes, EN_CASA_ANDABA.Documentos where doc_desc = '" + tipoDocumento.Text + "' and cli_documento = " + nroDocumento.Text+" and doc_id = cli_doc_id");
             if (qry.Read())
             {
                 estado = qry.GetBoolean(0);
@@ -305,7 +305,7 @@ namespace FrbaHotel.GenerarModificacionReserva
                 return;
             }
 
-            update = "exec EN_CASA_ANDABA.modificacionReserva ";
+            string update;
             update = insertNro(reserva.Text);
 
             DateTime fechaHoy;
@@ -326,7 +326,7 @@ namespace FrbaHotel.GenerarModificacionReserva
 
             update = update.Remove(update.Length - 1);
 
-            string resultado = Index.BD.consultaGetString(update);
+            string resultado = Index.BD.consultaGetString("exec EN_CASA_ANDABA.modificacionReserva " + update);
             if (resultado == "0")
             {
                 MessageBox.Show("#error!");
