@@ -197,6 +197,7 @@
             this.listaHabitaciones.Size = new System.Drawing.Size(253, 105);
             this.listaHabitaciones.TabIndex = 75;
             this.listaHabitaciones.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.listaHabitaciones_CellClick);
+            this.listaHabitaciones.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.listaHabitaciones_CellPainting);
             // 
             // label6
             // 

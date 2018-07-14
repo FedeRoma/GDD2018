@@ -101,6 +101,27 @@ namespace FrbaHotel.GenerarModificacionReserva
         {
             tipoHabitacion.SelectedText = tipo;
             cantidadPersonas.SelectedText = capacidad.ToString();
+
+            DataGridViewButtonColumn botonAsignar = new DataGridViewButtonColumn();
+            botonAsignar.Name = "asignar";
+            listaHabitaciones.Columns.Add(botonAsignar);
+        }
+
+        private void listaHabitaciones_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            if (e.ColumnIndex >= 0 && this.listaHabitaciones.Columns[e.ColumnIndex].Name == "asignar" && e.RowIndex >= 0)
+            {
+                e.Paint(e.CellBounds, DataGridViewPaintParts.All);
+
+                DataGridViewButtonCell botonColumna = this.listaHabitaciones.Rows[e.RowIndex].Cells["asignar"] as DataGridViewButtonCell;
+                Icon icono = new Icon(Environment.CurrentDirectory + @"\\plus.ico");
+                e.Graphics.DrawIcon(icono, e.CellBounds.Left + 2, e.CellBounds.Top + 2);
+
+                this.listaHabitaciones.Rows[e.RowIndex].Height = icono.Height + 5;
+                this.listaHabitaciones.Columns[e.ColumnIndex].Width = icono.Width + 5;
+
+                e.Handled = true;
+            }
         }
 
         private void tipoHabitacion_SelectedIndexChanged(object sender, EventArgs e)
@@ -115,7 +136,7 @@ namespace FrbaHotel.GenerarModificacionReserva
 
         private void listaHabitaciones_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 0)
+            if (listaHabitaciones.Columns[e.ColumnIndex].Name == "asignar")
             {
                 string idHab = listaHabitaciones.CurrentRow.Cells[0].Value.ToString();
                 string precioHab = listaHabitaciones.CurrentRow.Cells[1].Value.ToString();
