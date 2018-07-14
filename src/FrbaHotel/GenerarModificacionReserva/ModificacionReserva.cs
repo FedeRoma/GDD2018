@@ -19,7 +19,7 @@ namespace FrbaHotel.GenerarModificacionReserva
         DataTable tablaHabitaciones;
         string calle, tipo;
         int calleNumero, capacidad, cambio, contHabitaciones, contHabitacionesAsig = 0, dias, totalH, totalHA, reservaID;
-        string habitaciones, habitacionesAsig, insert;
+        string habitaciones, habitacionesAsig;
         DataGridViewButtonColumn botonAsignar = new DataGridViewButtonColumn();
         
             
@@ -187,6 +187,7 @@ namespace FrbaHotel.GenerarModificacionReserva
 
         private string insertString(string campo)
         {
+            string insert = "";
             if (string.IsNullOrEmpty(campo))
             {
                 insert = insert + "null,";
@@ -200,6 +201,7 @@ namespace FrbaHotel.GenerarModificacionReserva
 
         private string insertNro(string campo)
         {
+            string insert = "";
             if (string.IsNullOrEmpty(campo))
             {
                 insert = insert + "null,";
