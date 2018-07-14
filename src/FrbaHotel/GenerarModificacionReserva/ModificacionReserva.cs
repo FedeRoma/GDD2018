@@ -222,7 +222,7 @@ namespace FrbaHotel.GenerarModificacionReserva
             insert = insert + "'" + fechaHasta.Date.ToString("yyyyMMdd HH:mm:ss") + "',";
 
             insert = insert + "'" + regimen.Text + "',";
-            insert = insert + "'" + tipoHabitacion.Text;
+            insert = insert + "'" + tipoHabitacion.Text + "'";
 
             tablaHabitaciones = Index.BD.consultaGetTabla(insert);
             BindingSource bindingSourceListaHabitaciones = new BindingSource();
@@ -295,7 +295,7 @@ namespace FrbaHotel.GenerarModificacionReserva
             insert = insert + "'" + regimen.Text + "',";
             insert = insert + " " + nroDocumento.Text + ",";
             insert = insert + " " + Index.usuarioID.ToString() + ",";
-            insert = insert + "'" + tipoDocumento.Text;
+            insert = insert + "'" + tipoDocumento.Text + "'";
    
             string resultado = Index.BD.consultaGetString(insert);
             if (resultado == "0")
