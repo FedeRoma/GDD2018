@@ -313,8 +313,8 @@ namespace FrbaHotel.GenerarModificacionReserva
 
             insert = insert.Remove(insert.Length - 1);
 
-            int resultado = Index.BD.consultaGetInt(insert);
-            if (resultado == 0)
+            string resultado = Index.BD.consultaGetString(insert);
+            if (resultado == "0")
             {
                 MessageBox.Show("#error!");
             }

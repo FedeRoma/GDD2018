@@ -129,7 +129,7 @@ create procedure EN_CASA_ANDABA.buscarRegimenesHotel
 	end
 go
 
-create procedure EN_CASA_ANDABA.buscarHabitacionesDisponibles
+create procedure [EN_CASA_ANDABA].[buscarHabitacionesDisponibles]
 	@hotelCalle varchar(50), @hotelNumero int, @fechaInicio date, @fechaFin date, @regimen nvarchar(255) = null,
 	@tipoHabitacion nvarchar(255) as
 	begin
@@ -140,8 +140,8 @@ create procedure EN_CASA_ANDABA.buscarHabitacionesDisponibles
 		set @tipoHabitacionId = (select tip_id from EN_CASA_ANDABA.TiposHabitaciones where tip_nombre = @tipoHabitacion)
 		if (@regimen is null)
 			begin
-				select distinct HA.hab_id, HA.hab_vista, (R.reg_precio * TH.tip_personas) + (HO.hot_estrellas * HO.hot_recarga_estrellas) 
-					PrecioPorNoche, R.reg_desc
+				select distinct HA.hab_id ID, HA.hab_vista, (R.reg_precio * TH.tip_personas) + (HO.hot_estrellas * HO.hot_recarga_estrellas) 
+					PRECIO, R.reg_desc
 					from EN_CASA_ANDABA.Habitaciones HA, EN_CASA_ANDABA.Hoteles HO, EN_CASA_ANDABA.TiposHabitaciones TH, EN_CASA_ANDABA.Regimenes R
 					where HO.hot_id = @hotelId and TH.tip_id = @tipoHabitacionId and HA.hab_hot_id = @hotelId and
 					HA.hab_tip_id = @tipoHabitacion and	not exists (select baj_hot_id 
@@ -155,8 +155,8 @@ create procedure EN_CASA_ANDABA.buscarHabitacionesDisponibles
 			begin
 				declare @regimenId int
 				set @regimenId = (select reg_id from EN_CASA_ANDABA.Regimenes where reg_desc = @regimen)
-				select distinct HA.hab_id, HA.hab_vista, (R.reg_precio * TH.tip_personas) + (HO.hot_estrellas * HO.hot_recarga_estrellas) 
-					PrecioPorNoche, R.reg_desc
+				select distinct HA.hab_id ID,(R.reg_precio * TH.tip_personas) + (HO.hot_estrellas * HO.hot_recarga_estrellas) 
+					PRECIO,HA.hab_vista, R.reg_desc
 					from EN_CASA_ANDABA.Habitaciones HA, EN_CASA_ANDABA.Hoteles HO, EN_CASA_ANDABA.TiposHabitaciones TH,
 					EN_CASA_ANDABA.Regimenes R where R.reg_id = @regimenId and HO.hot_id = @hotelId and 
 					TH.tip_id = @tipoHabitacionId and HA.hab_hot_id = @hotelId and HA.hab_tip_id = @tipoHabitacionId and
@@ -606,12 +606,12 @@ create procedure EN_CASA_ANDABA.altaReserva
 	end
 go
 
-create procedure EN_CASA_ANDABA.modificacionReserva
+create procedure [EN_CASA_ANDABA].[modificacionReserva]
 	@reservaId int, @fecha datetime, @inicio date, @fin date, @tipoHabitacion varchar(50), @regimen varchar(50),
-	@documento bigint, @usuarioId int, @tipoDocumento int as
+	@documento bigint, @usuarioId int, @tipoDocumento varchar(50) as
 	begin
 		declare @fechaInicio date, @fechaFin date, @fechaReg datetime, @regimenId int, @tipoHabitacionId int,
-			 @estadoId int, @respuesta bit
+			 @estadoId int, @respuesta int
 		set @fechaInicio = CONVERT(date,@inicio,121)
 		set @fechaFin = CONVERT(date,@fin,121)
 		set @fechaReg = CONVERT(datetime,@fecha,121)
