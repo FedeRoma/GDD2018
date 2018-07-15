@@ -333,7 +333,7 @@ namespace FrbaHotel.GenerarModificacionReserva
                 }
                 else
                 {
-                    qry = Index.BD.consultaGetPuntero(query + habitaciones);
+                    qry = Index.BD.consultaGetPuntero(query + habitaciones + ", " + Index.hotel);
                     if (!qry.Read())
                     {
                         MessageBox.Show("#error");
