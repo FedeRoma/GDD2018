@@ -18,7 +18,7 @@ namespace FrbaHotel.GenerarModificacionReserva
         public static Login.MenuFuncionalidades menuFuncionalidades;
         DataTable tablaHabitaciones;
         string calle, tipo;
-        int calleNumero, capacidad, cambio, contHabitaciones, contHabitacionesAsig = 0, dias, totalH, totalHA, reservaID;
+        int calleNumero, capacidad, cambio, contHabitaciones, contHabitacionesAsig = 0, dias, totalH, totalHA;
         string habitaciones, habitacionesAsig;
         DataGridViewButtonColumn botonAsignar = new DataGridViewButtonColumn();         
         
@@ -29,7 +29,7 @@ namespace FrbaHotel.GenerarModificacionReserva
             tablaHabitaciones = new DataTable();
             reserva.Text = reservaID;
 
-            qry = Index.BD.consultaGetPuntero("select HO.hot_calle, HO.hot_calle_nro, RS.res_inicio, RS.res_fin, RG.reg_desc, D.doc_desc, RS.res_cli_documento,TH.tip_nombre, TH.tip_personas,((RG.reg_precio * HA.hab_tipo_porcentual) + ((HO.hot_estrellas * HO.hot_recarga_estrellas) * (select datediff(day, res_inicio, res_fin) from EN_CASA_ANDABA.Reservas where res_id = "+ reservaID+"))) from EN_CASA_ANDABA.Reservas RS, EN_CASA_ANDABA.Hoteles HO,EN_CASA_ANDABA.Regimenes RG, EN_CASA_ANDABA.Habitaciones HA, EN_CASA_ANDABA.Reservas_Habitaciones RSHA,EN_CASA_ANDABA.TiposHabitaciones TH, EN_CASA_ANDABA.Documentos D where RG.reg_id = RS.res_reg_id and RSHA.ryh_res_id = RS.res_id and RSHA.ryh_hab_id = HA.hab_id and HA.hab_hot_id = HO.hot_id and TH.tip_id = HA.hab_tip_id and RS.res_cli_doc_id = D.doc_id and res_id =" + reservaID);
+            qry = Index.BD.consultaGetPuntero("select HO.hot_calle, HO.hot_calle_nro, RS.res_inicio, RS.res_fin, RG.reg_desc, D.doc_desc, RS.res_cli_documento,TH.tip_nombre, TH.tip_personas,((RG.reg_precio * HA.hab_tipo_porcentual) + ((HO.hot_estrellas * HO.hot_recarga_estrellas) * (select datediff(day, res_inicio, res_fin) from EN_CASA_ANDABA.Reservas where res_id = " + reserva.Text + "))) from EN_CASA_ANDABA.Reservas RS, EN_CASA_ANDABA.Hoteles HO,EN_CASA_ANDABA.Regimenes RG, EN_CASA_ANDABA.Habitaciones HA, EN_CASA_ANDABA.Reservas_Habitaciones RSHA,EN_CASA_ANDABA.TiposHabitaciones TH, EN_CASA_ANDABA.Documentos D where RG.reg_id = RS.res_reg_id and RSHA.ryh_res_id = RS.res_id and RSHA.ryh_hab_id = HA.hab_id and HA.hab_hot_id = HO.hot_id and TH.tip_id = HA.hab_tip_id and RS.res_cli_doc_id = D.doc_id and res_id =" + reserva.Text);
             if (qry.Read())
             {
                 calle = qry.GetString(0);
@@ -72,7 +72,7 @@ namespace FrbaHotel.GenerarModificacionReserva
             tablaHabitaciones.Columns.Add("PRECIO");
 
 
-            qry = Index.BD.consultaGetPuntero("exec EN_CASA_ANDABA.buscarReservaHabitacion " + reservaID);
+            qry = Index.BD.consultaGetPuntero("exec EN_CASA_ANDABA.buscarReservaHabitacion " + reserva.Text);
             while (qry.Read())
             {
                 DataRow fila = tablaHabitaciones.NewRow();
@@ -209,8 +209,7 @@ namespace FrbaHotel.GenerarModificacionReserva
                 return;
             }
 
-            string insert = "";
-            insert = "exec EN_CASA_ANDABA.buscarHabitacionesDisponibles ";
+            string insert = "exec EN_CASA_ANDABA.buscarHabitacionesDisponibles ";
             insert = insert + "'" + calle + "',";
             insert = insert + " " + calleNumero.ToString() + ",";
 
@@ -277,9 +276,8 @@ namespace FrbaHotel.GenerarModificacionReserva
                 return;
             }
 
-            string insert = "";
-            insert = "exec EN_CASA_ANDABA.modificacionReserva ";
-            insert = insert + " " + reservaID + ",";
+            string insert = "exec EN_CASA_ANDABA.modificacionReserva ";
+            insert = insert + " " + reserva.Text + ",";
 
             DateTime fechaHoy;
             fechaHoy = Convert.ToDateTime(DateTime.Today);
@@ -304,10 +302,6 @@ namespace FrbaHotel.GenerarModificacionReserva
                 this.Close();
                 atras_Click(null, null);
             }
-            else
-            {
-                reservaID = Convert.ToInt32(reserva.Text);
-            }
 
             string query = "";
             string[] strArr = null;
@@ -315,7 +309,7 @@ namespace FrbaHotel.GenerarModificacionReserva
             char[] coma = { ',' };
             if (cambio == 1)
             {
-                query = "exec EN_CASA_ANDABA.bajaReservaHabitacion " + reservaID + ", ";
+                query = "exec EN_CASA_ANDABA.bajaReservaHabitacion " + reserva.Text + ", ";
                 if (contHabitaciones > 1)
                 {
                     strArr = habitaciones.Split(coma);
@@ -355,7 +349,7 @@ namespace FrbaHotel.GenerarModificacionReserva
                 }
             }
 
-            query = "exec EN_CASA_ANDABA.altaReservaHabitacion " + reservaID + ", ";
+            query = "exec EN_CASA_ANDABA.altaReservaHabitacion " + reserva.Text + ", ";
 
             if (contHabitacionesAsig > 1)
             {

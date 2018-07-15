@@ -352,7 +352,5 @@ namespace FrbaHotel.GenerarModificacionReserva
             nuevoCli.Show();
         }
 
-
-
     }
 }
