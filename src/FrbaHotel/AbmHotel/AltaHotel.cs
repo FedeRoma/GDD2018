@@ -223,7 +223,7 @@ namespace FrbaHotel.AbmHotel
             if (!checkCampos())
             {
                 insert = "exec EN_CASA_ANDABA.altaHotel ";
-                insert = insertNro(nombre.Text);
+                insert = insertString(nombre.Text);
                 insert = insertString(cantidadEstrellas.Text);
                 insert = insertString(calle.Text);
                 insert = insertString(calleNumero.Text);
