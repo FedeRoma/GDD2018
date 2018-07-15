@@ -16,7 +16,7 @@ namespace FrbaHotel.GenerarModificacionReserva
         private SqlDataReader qry;
         public static Login.Login login;
         public static Login.MenuFuncionalidades menuFuncionalidades;
-        DataTable tablaHabitaciones;
+        DataTable tablaHabitaciones, tablaHabitacionesAsig;
         string calle, tipo;
         int calleNumero, capacidad, cambio, contHabitaciones, contHabitacionesAsig = 0, dias, totalH, totalHA;
         string habitaciones, habitacionesAsig;
@@ -106,7 +106,14 @@ namespace FrbaHotel.GenerarModificacionReserva
         private void ModificacionReserva_Load(object sender, EventArgs e)
         {
             tipoHabitacion.SelectedText = tipo;
-            cantidadPersonas.SelectedText = capacidad.ToString();       
+            cantidadPersonas.SelectedText = capacidad.ToString();
+
+            tablaHabitacionesAsig = new DataTable();
+            tablaHabitacionesAsig.Columns.Add("ID");
+            tablaHabitacionesAsig.Columns.Add("PRECIO");
+            BindingSource bindingSourceListaHabitacionessAsig = new BindingSource();
+            bindingSourceListaHabitacionesAsig.DataSource = tablaHabitacionesAsig;
+            listaHabitacionesAsig.DataSource = bindingSourceListaHabitacionesAsig;
         }
 
         private void listaHabitaciones_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)

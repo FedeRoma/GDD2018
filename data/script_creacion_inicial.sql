@@ -665,7 +665,7 @@ go
 create procedure EN_CASA_ANDABA.altaReservaHabitacion
 	@reservaId int, @habitacionId int, @hotelId int as
 	begin
-		declare @respuesta bit
+		declare @respuesta int
 		begin tran tAltaReservaHabitacion
 			begin try
 				insert into EN_CASA_ANDABA.Reservas_Habitaciones (ryh_res_id, ryh_hab_id, ryh_hab_hot_id) 
