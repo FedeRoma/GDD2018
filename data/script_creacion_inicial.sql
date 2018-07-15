@@ -687,7 +687,7 @@ go
 create procedure EN_CASA_ANDABA.bajaReservaHabitacion
 	@reservaId int, @habitacionId int, @hotelId int as
 	begin
-		declare @respuesta bit
+		declare @respuesta int
 		begin tran tBajaReservaHabitacion
 			begin try
 				delete from EN_CASA_ANDABA.Reservas_Habitaciones where RYH_res_id = @reservaId and 
