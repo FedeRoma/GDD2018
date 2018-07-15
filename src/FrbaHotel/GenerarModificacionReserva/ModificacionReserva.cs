@@ -359,7 +359,7 @@ namespace FrbaHotel.GenerarModificacionReserva
 
                 for (i = 0; i <= strArr.Length -1; i++)
                 {
-                    qry = Index.BD.consultaGetPuntero(query + strArr[i]);
+                    qry = Index.BD.consultaGetPuntero(query + strArr[i] + ", " + Index.hotel);
 
                     if (!qry.Read())
                     {
@@ -378,7 +378,7 @@ namespace FrbaHotel.GenerarModificacionReserva
             }
             else
                 {
-                    qry = Index.BD.consultaGetPuntero(query + habitaciones);
+                    qry = Index.BD.consultaGetPuntero(query + habitaciones + ", " + Index.hotel);
                     if (!qry.Read())
                     {
                         MessageBox.Show("#error");
